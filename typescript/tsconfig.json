@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+      "baseUrl": ".",
+      "paths": {
+        "*": ["types/*", "node_modules/*"] // Add node_modules path for resolving modules
+      },
+      "outDir": "./dist",
+      "noImplicitAny": false,
+      "target": "esnext", // Change target to esnext for broader compatibility
+      "module": "commonjs", // Change module to commonjs for Node.js environment
+      "allowJs": true,
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "lib": ["dom", "es2017"],
+      "types": ["@citizenfx/server", "@citizenfx/client", "@types/node"],
+      "moduleResolution": "node",
+      "skipLibCheck": true
+    },
+    "exclude": ["node_modules"]
+  }
+  

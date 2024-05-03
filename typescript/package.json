@@ -1,0 +1,43 @@
+{
+  "name": "inventory",
+  "version": "1.0.0",
+  "description": "A boilerplate for TypeScript in FiveM",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "watch": "webpack --watch --mode development"
+  },
+  "author": "Project Error",
+  "license": "MIT",
+  "dependencies": {
+    "@msgpack/msgpack": "^3.0.0-beta2",
+    "browserify-fs": "^1.0.0",
+    "crypto-js": "3.1.9-1",
+    "fs": "0.0.1-security",
+    "javascript-obfuscator": "^2.9.4",
+    "npx": "^10.2.2",
+    "pako": "^2.1.0",
+    "path": "^0.12.7",
+    "pure-uuid": "^1.8.1",
+    "util": "^0.12.5",
+    "uuid": "^9.0.1"
+  },
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
+  },
+  "devDependencies": {
+    "@citizenfx/client": "^2.0.5012-1",
+    "@citizenfx/server": "^2.0.5012-1",
+    "@types/node": "^16.11.10",
+    "@types/webpack-env": "^1.16.3",
+    "clean-webpack-plugin": "^4.0.0",
+    "ts-loader": "^9.2.6",
+    "typescript": "^5.4.5",
+    "webpack": "^5.64.4",
+    "webpack-cli": "^4.9.1",
+    "webpack-obfuscator": "^3.5.1",
+    "zlib": "^1.0.5"
+  }
+}
