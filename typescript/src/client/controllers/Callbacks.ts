@@ -62,6 +62,13 @@ NUI.register('unequipItem', async(data: any, cb: any) => {
 })
 
 NUI.register('useItem', async(data: any, cb: any) => {
+    // global.exports['np-objects'].IsPlacingObject('bkr_prop_money_wrapped_01',{
+    //     collision: false,
+    //     groundSnap: true,
+    //     forceGroundSnap: true,
+    //     useModelOffset: false,
+    //     distance: 2.5
+    //   }, function(){return true})
     emit('inventory:sendNotification', data.ItemId, 1, 'Used')
     usedItem(data)
 })

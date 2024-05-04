@@ -39,6 +39,23 @@ export async function initTrunk(): Promise<void> {
     //     eventSDK: "np-jobs:sanitation:openCompactor",
     //     parameters: []
     //   };
+    //Give Items Function
+    // var _0x5b59c8 = {
+    //     isEnabled: function () {
+    //       return true;
+    //     },
+    //     distance: {
+    //       use: 2,
+    //       draw: 3
+    //     }
+    //   };
+    // Interface.addPlayerInteraction("inventory_give", [{
+    //     id: "inventory_give",
+    //     label: "Give",
+    //     eventSDK: "inventory:giveItem",
+    //     parameters: {}
+    //   }], _0x5b59c8);
+
     Interface.addVehicleInteraction("vehicle:engineBay", [
         {
             id: "vehicle_engine_bay",
