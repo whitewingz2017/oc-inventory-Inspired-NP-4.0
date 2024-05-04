@@ -4,8 +4,7 @@ import { updateInventory } from "./Exports";
 let DroppedInventories = [];
 let DrawInventories = [];
 let NearInventories = [];
-let dropNames
-
+export let dropNames
 onNet('Inventory-Dropped-Addition', (object) => {
     DroppedInventories.push(object);
     NearInventories.push(object);

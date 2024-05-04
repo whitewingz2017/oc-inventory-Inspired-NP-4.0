@@ -8,7 +8,7 @@ export const AdditionalInventories = () => {
         Inventory,
         setInventory
     } = getInventoryContext()
-    console.log("ADDITIONAL INV",Inventory.slots,JSON.stringify(Inventory))
+    // console.log("ADDITIONAL INV",Inventory.slots,JSON.stringify(Inventory))
     return (
         <>
             <For

@@ -17,15 +17,14 @@ RPC.register('inventory:additionalInventoriesClear', async (source: any) => {
 RPC.register('inventory:additionalInventoriesAdd', async (source: any, data: any) => {
     const character = global.exports['qb-lib'].getCharacter(source);
     let invAdd: any = {}
-   
     const result = await global.exports['oxmysql'].query_async('SELECT id FROM user_inventory2 WHERE name = @name AND item_id = @item AND slot = @slot', {
         '@name': data.isSideSlot ? 'pockets-'+character.id : data.fromInventory,
         '@item': data.ItemId,
         '@slot': data.slot
     });
     
-    let openItem = data.ItemId + result[0].id
-    if(openItem === lastAction){
+    // let openItem = data.ItemId + result[0].id
+    if(data.itemAction === lastAction){
         return
     }
     lastAction = data.itemAction
@@ -36,24 +35,40 @@ RPC.register('inventory:additionalInventoriesAdd', async (source: any, data: any
     if (data.itemAction === "openSimSlot"){
         AdditionalInventories[character.id] = [];
         invAdd = {
-            name: 'phone-1',
+            name: data.ItemId+'::'+result[0].id+'::'+character.id,
             InvName: 'Mobile Phone',
             ConfigName: 'Simcard'
         }
     }else if(data.itemAction === "openWallet"){
         AdditionalInventories[character.id] = [];
         invAdd = {
-            name: 'wallet-1',
+            name: data.ItemId+'::'+result[0].id+'::'+character.id,
             InvName: 'Wallet',
             ConfigName: 'Wallet'
         }
+    }else if(data.itemAction === "apartment::stash"){
+        AdditionalInventories[character.id] = [];
+        invAdd = {
+            name: 'apartment-'+character.id,
+            InvName: 'Stash',
+            ConfigName: 'ApartmentStash'
+        }
+    }else if(data.itemAction === "openTrunk"){
+        console.log("THIS TRUNK",JSON.stringify(data))
+        AdditionalInventories[character.id] = [];
+        invAdd = {
+            name: 'trunk-' + data.Plate,
+            InvName: 'Trunk',
+            ConfigName: 'Trunk'
+        }
     }
+    console.log('invAdd.InvName',invAdd.InvName)
     if (!Array.isArray(AdditionalInventories[character.id])) {
         AdditionalInventories[character.id] = [];
     }
     AdditionalInventories[character.id].push({
         id: AdditionalInventories[character.id].length + 1,
-        name: 'phone-'+result[0].id,
+        name: invAdd.name,
         inventoryName: invAdd.InvName,
         ConfigName: invAdd.ConfigName,
         MaxWeight: invAdd.MaxWeight,
@@ -66,7 +81,7 @@ export async function getAdditionalInventories(source: any) {
     const AddedInventory = []
 
     AdditionalInventories[character.id].map(async (data: any) => {
-        // console.log('AdditionalInventories data', JSON.stringify(data))
+        console.log('AdditionalInventories data',data.name, JSON.stringify(data))
         AddedInventory.push({
             id: data.id,
             name: data.name,

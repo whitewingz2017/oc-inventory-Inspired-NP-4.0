@@ -270,26 +270,32 @@ RPC.register('inventory:dragItem', async (source: any, data: any, coords: any) =
     // console.log("ANO TO",totalItemWeight,totalToItemWeightI,totalItemWeight !== totalToItemWeightI,totalWeight === InventoryConfig['PersonalInventory'].MaxWeight && data.toInventory.includes('body') || invAndItemWeight > InventoryConfig['PersonalInventory'].MaxWeight && data.toInventory.includes('body') && totalItemWeight !== totalToItemWeightI)
     // console.log("DRAG ITEMS IN SHIT", totalWeight,totalWeight === InventoryConfig['PersonalInventory'].MaxWeight)
     // console.log("SAME WEIGHT?",totalItemWeight === totalToItemWeightI,Number(totalItemWeight) !== Number(totalToItemWeightI))
-    // console.log("totalItemWeight", totalItemWeight, 'OVERALL WEIGHT:',invAndItemWeight)
+    // console.log("totalItemWeight", totalItemWeight, 'OVERALL WEIGHT:',invAndItemWeight, data.fromInventory, data.toInventory)
+    // console.log("CHECKING",data.toInventory !== data.fromInventory, totalWeight === InventoryConfig['Backpack'].MaxWeight && data.toInventory.includes('backpack'))
     // console.log("ON BACKPACK",totalWeight === InventoryConfig['Backpack'].MaxWeight && data.toInventory.includes('backpack') || invAndItemWeight > InventoryConfig['Backpack'].MaxWeight && data.toInventory.includes('backpack') && totalItemWeight !== totalToItemWeightI)
-    console.log(invAndItemWeight > InventoryConfig['PersonalInventory'].MaxWeight,invAndItemWeight > InventoryConfig['PersonalInventory'].MaxWeight, totalWeight === InventoryConfig['PersonalInventory'].MaxWeight)
-    if(totalItemWeight !== totalToItemWeightI && totalWeight === InventoryConfig['PersonalInventory'].MaxWeight && data.toInventory.includes('body') || invAndItemWeight > InventoryConfig['PersonalInventory'].MaxWeight && data.toInventory.includes('body')){
-        console.log("OH SHIT")
+    // console.log(invAndItemWeight > InventoryConfig['PersonalInventory'].MaxWeight,invAndItemWeight > InventoryConfig['PersonalInventory'].MaxWeight, totalWeight === InventoryConfig['PersonalInventory'].MaxWeight)
+    if(data.toInventory !== data.fromInventory && totalItemWeight !== totalToItemWeightI && totalWeight === InventoryConfig['PersonalInventory'].MaxWeight && data.toInventory.includes('body') || data.toInventory !== data.fromInventory && invAndItemWeight > InventoryConfig['PersonalInventory'].MaxWeight && data.toInventory.includes('body')){
         return
     }
-    if(totalItemWeight !== totalToItemWeightI && totalWeight === InventoryConfig['Backpack'].MaxWeight && data.toInventory.includes('backpack') || invAndItemWeight > InventoryConfig['Backpack'].MaxWeight && data.toInventory.includes('backpack') && totalItemWeight !== totalToItemWeightI){
-        console.log("OH SHIT 2")
+    if(data.toInventory !== data.fromInventory && totalItemWeight !== totalToItemWeightI && totalWeight === InventoryConfig['Backpack'].MaxWeight && data.toInventory.includes('backpack') || data.toInventory !== data.fromInventory && invAndItemWeight > InventoryConfig['Backpack'].MaxWeight && data.toInventory.includes('backpack') && totalItemWeight !== totalToItemWeightI){
         return
     }
+    // console.log('data.toSlot && data.toInventory',data.toSlot,data.toInventory)
     if (data.toSlot && data.toInventory) {
         if (data.toInventory.includes('pockets')) {
             if (!Inventory.Pockets.Slots[data.toSlot - 1].acceptedItems.includes(ItemList[data.itemId].name)) {
                 return
             }
         }
-        if (data.toInventory.includes('phone-')) {
+        if (data.toInventory.includes('phone')) {
             const phoneSlot = Inventory.AdditionalInventories[0]
             if (!phoneSlot.acceptedItems[0].acceptedItems.includes(ItemList[data.itemId].name)) {
+                return
+            }
+        }
+        if (data.toInventory.includes('wallet')) {
+            const WalletSlot = Inventory.AdditionalInventories[0]
+            if (!WalletSlot.acceptedItems[0].acceptedItems.includes(ItemList[data.itemId].name)) {
                 return
             }
         }
@@ -304,7 +310,6 @@ RPC.register('inventory:dragItem', async (source: any, data: any, coords: any) =
                 '@name': targetName
             });
             DropIcon[targetName] = [];
-            console.log("TARGETNAME:",targetName, result.length)
             if (dropInv[targetName].used === false) {
                 if(result.length === 0){
                     itemObject = ItemList[data.itemId].name
@@ -324,8 +329,6 @@ RPC.register('inventory:dragItem', async (source: any, data: any, coords: any) =
                     used: true,
                     lastUpdated: Date.now()
                 }
-
-                console.log("FUCKER CHECKER 2",ItemList[data.itemId].name,dropInv[targetName])
                 emitNet('Inventory:Drops:Create', -1, dropInv[targetName])
                 emitNet("Inventory-Dropped-Addition", -1, dropInv[targetName])
             }else if (dropInv[targetName].used === true) {
@@ -347,8 +350,6 @@ RPC.register('inventory:dragItem', async (source: any, data: any, coords: any) =
                     used: true,
                     lastUpdated: Date.now()
                 }
-
-                console.log("FUCKER CHECKER 2",ItemList[data.itemId].name,dropInv[targetName])
                 emitNet('Inventory:Drops:Create', -1, dropInv[targetName])
                 emitNet("Inventory-Dropped-Addition", -1, dropInv[targetName])
             }
@@ -359,17 +360,16 @@ RPC.register('inventory:dragItem', async (source: any, data: any, coords: any) =
             '@ItemId': data.itemId,
             '@Name': data.fromInventory
         });
-    
+       
         if (Item) {
             const OldItem = await global.exports['oxmysql'].query_async('SELECT * FROM user_inventory2 WHERE slot = @Slot AND name = @Name', {
                 '@Slot': data.toSlot,
                 '@Name': data.toInventory
             })
-    
+           
             if (OldItem[0]) {
-                if (OldItem[0].item_id == data.itemId && invAndItemWeight < InventoryConfig[data.toInventory.includes('backpack') ? 'Backpack' : 'PersonalInventory'].MaxWeight) {
-                    // console.log("SO THIS IS StACKABLE",data.toInventory,InventoryConfig[data.toInventory.includes('backpack') ? 'Backpack' : 'PersonalInventory'].MaxWeight)
-                    if (ItemList[data.itemId].stackable) {
+                if (OldItem[0].item_id == data.itemId && invAndItemWeight < InventoryConfig[data.toInventory.includes('backpack') ? 'Backpack' : 'PersonalInventory'].MaxWeight || OldItem[0].item_id == data.itemId && data.fromInventory === data.toInventory) {
+                   if (ItemList[data.itemId].stackable) {
                         await global.exports['oxmysql'].query_async('UPDATE user_inventory2 SET slot = @Slot, name = @Name WHERE slot = @oldSlot AND item_id = @ItemId', {
                             '@oldSlot': data.fromSlot,
                             '@Slot': data.toSlot,
@@ -385,7 +385,7 @@ RPC.register('inventory:dragItem', async (source: any, data: any, coords: any) =
                     }
 
                     // Todo:
-                    // Check the weight of both invs if has enough weight swap them..
+                    // Check the weight of both invs if has enough weight swap them.. Fixed
 
                     const CheckToItemWeight = await global.exports.oxmysql.query_async('SELECT * FROM user_inventory2 WHERE name = @Name AND item_id = @Item AND slot = @Slot', {
                         ['@Name']: data.toInventory,
@@ -404,13 +404,9 @@ RPC.register('inventory:dragItem', async (source: any, data: any, coords: any) =
                     });
                     let currentBodyWeight = await CheckInvWeight(toCheckWeight)
                     let totalToItemWeight = await CheckInvWeight(CheckToItemWeight)
-                    let itemFromBackPack = totalToItemWeight + InventoryConfig['PersonalInventory'].MaxWeight
-                    let bodyItemWeight = totalItemWeight + InventoryConfig['PersonalInventory'].MaxWeight
-                    // console.log('itemFromBackPack', itemFromBackPack, 'itemFromBody', bodyItemWeight)
-                    // console.log("CURRENT BODY WEIGHT:",currentBodyWeight, "current that get item:",currentBodyWeight - totalItemWeight)
-                    // //so the item from backpack is totalToItemWeight
-                    // console.log("TOTAL OF TOTAL: ",totalToItemWeight + (currentBodyWeight - totalItemWeight))
+                
                     if(totalToItemWeight + (currentBodyWeight - totalItemWeight) > InventoryConfig['PersonalInventory'].MaxWeight && data.fromInventory.includes('body')){
+                        
                         return
                     }
                     if(totalToItemWeight + (currentBodyWeight - totalItemWeight) > InventoryConfig['Backpack'].MaxWeight && data.fromInventory.includes('backpack')){
@@ -418,7 +414,7 @@ RPC.register('inventory:dragItem', async (source: any, data: any, coords: any) =
                     }
                     //To Fix | To Do
                     //Fix also the quality when swapping same items
-                    // console.log(OldItem[0].item_id,':', data.fromSlot,' : ',data.fromInventory,' | ', data.itemId ,':',data.toSlot,':',data.toInventory)
+                   
                     if(OldItem[0].item_id === data.itemId){
 
                         await global.exports['oxmysql'].query_async('UPDATE user_inventory2 SET slot = @Slot, name = @Name WHERE slot = @oldSlot AND item_id = @ItemId AND name = @toInv LIMIT 1', {
@@ -562,45 +558,44 @@ RPC.register('inventory:unequipItem', async(source: any, data: any) => {
 
 RPC.register('inventory:pickupObject', async(source: any, data: any) => {
     const character = global.exports['qb-lib'].getCharacter(source)
-    console.log("CHARACTER ID", character.id)
-    console.log("DATA", data)
+
    // Define the query based on whether data.item_id is provided or not
-let query;
-let queryParams = {
-    '@Name': data.name
-};
+    let query;
+    let queryParams = {
+        '@Name': data.name
+    };
 
-if (data.item != null) {
-    // If data.item_id is not null, include it in the query
-    query = 'SELECT * FROM user_inventory2 WHERE item_id = @ItemId AND name = @Name';
-    queryParams['@ItemId'] = data.item_id;
-} else {
-    // If data.item_id is null or undefined, query based only on data.name
-    query = 'SELECT * FROM user_inventory2 WHERE name = @Name';
-}
+    if (data.item != null) {
+        // If data.item_id is not null, include it in the query
+        query = 'SELECT * FROM user_inventory2 WHERE item_id = @ItemId AND name = @Name';
+        queryParams['@ItemId'] = data.item_id;
+    } else {
+        // If data.item_id is null or undefined, query based only on data.name
+        query = 'SELECT * FROM user_inventory2 WHERE name = @Name';
+    }
 
-// Fetch the items based on the query
-const items = await global.exports['oxmysql'].query_async(query, queryParams);
+    // Fetch the items based on the query
+    const items = await global.exports['oxmysql'].query_async(query, queryParams);
 
-// Determine the number of items found
-if (items.length > 0) {
-    for (let item of items) {
-        // Find a new available slot for each item
-        const newSlot = await findNextAvailableSlot(source, 'body-' + character.id);
+    // Determine the number of items found
+    if (items.length > 0) {
+        for (let item of items) {
+            // Find a new available slot for each item
+            const newSlot = await findNextAvailableSlot(source, 'body-' + character.id);
 
-        if (newSlot) {
-            // Update the item's slot and name
-            await global.exports['oxmysql'].query_async(
-                'UPDATE user_inventory2 SET slot = @Slot, name = @Name WHERE id = @Id',
-                {
-                    '@Id': item.id,
-                    '@Slot': newSlot,
-                    '@Name': 'body-' + character.id
-                }
-            );
+            if (newSlot) {
+                // Update the item's slot and name
+                await global.exports['oxmysql'].query_async(
+                    'UPDATE user_inventory2 SET slot = @Slot, name = @Name WHERE id = @Id',
+                    {
+                        '@Id': item.id,
+                        '@Slot': newSlot,
+                        '@Name': 'body-' + character.id
+                    }
+                );
+            }
         }
     }
-}
     console.log("ITEM LENGTH CHECK",items.length)
     if(data.count === 0 || items.length === 0 || items.length === 1){
         emit('Inventory-deleteObject',data.name)

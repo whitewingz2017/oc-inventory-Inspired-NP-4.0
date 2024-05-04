@@ -1,7 +1,7 @@
 import { count } from "console";
 import { Delay, loadAnimDict } from "./Exports";
 import {TaskBarMinigame} from "../modules/minigames"
-
+import { dropNames } from "./Inventory";
 let ItemCallbacks = {}
 
 const validWaterItem: Record<string, boolean> = {
@@ -1095,6 +1095,48 @@ export async function usedItem(item) {
     }, 500);
    
 }
+
+onNet('apartments:stash', async () => {
+    let cid = global.exports['isPed'].isPed('cid')
+    let data = {
+        itemAction: 'apartment::stash'
+    }
+    // RPC.execute('inventory:additionalInventoriesClear')
+    RPC.execute('inventory:additionalInventoriesAdd', data)
+    const Inventory = await RPC.execute('inventory:getInventories',cid, IsPedInVehicle(PlayerPedId(), GetVehiclePedIsIn(PlayerPedId(), false), false), GetVehicleNumberPlateText(GetVehiclePedIsIn(PlayerPedId(), false)), false, GetEntityCoords(PlayerPedId()), false)
+    if(Inventory){
+        let dropNamesx = Inventory.PrimarySecondaryInventory
+        let dropName = dropNames
+        SendNUIMessage({
+            Inventory: Inventory,
+        })
+    
+        SendNUIMessage({
+            show: true,
+            PlayerData: {
+                character: {
+                    id: global.exports['isPed'].isPed('cid'),
+                    name: global.exports['isPed'].isPed('fullname'),
+                    cash: 0,
+                    personalVehicle: 'Landstalker',
+                    home: '#23 No3 Alta Street',
+                    phone: '+1 (628) 123-4567',
+                },
+        
+                settings: {
+                    holdToDrag: GetResourceKvpInt('inventory:holdToDrag'),
+                    shiftQuickMove: GetResourceKvpInt('inventory:shiftQuickMove')
+                }
+            }
+        });
+        global.exports.focusmanager.SetUIFocus(true, true)
+    }
+    setTimeout(() => {
+        RPC.execute('inventory:additionalInventoriesAdd', data)
+    }, 1000); 
+    
+    global.exports.focusmanager.SetUIFocus(true, true)
+})
 
 export async function hasEnoughOfItem(itemId, amount, shouldReturnText, checkQuality, metaInformation){
     if(shouldReturnText === undefined) shouldReturnText = true;

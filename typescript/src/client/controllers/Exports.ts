@@ -44,6 +44,7 @@ export async function loadAnimDict(dict: string) {
 
 export async function updateInventory() {
     let cid = global.exports['isPed'].isPed('cid')
+    console.log("UPDATE AND IS TRUNK?",inTrunk)
     const Inventory = await RPC.execute('inventory:getInventories',cid, IsPedInVehicle(PlayerPedId(), GetVehiclePedIsIn(PlayerPedId(), false), false), GetVehicleNumberPlateText(GetVehiclePedIsIn(PlayerPedId(), false)), inTrunk, trunkPlate)
 
     SendNUIMessage({

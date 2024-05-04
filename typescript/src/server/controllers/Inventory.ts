@@ -177,6 +177,8 @@ RPC.register('inventory:getInventories', async(source: any, cid: number, inVehic
             ]
         },
 
+        AdditionalInventories: await getAdditionalInventories(source), //Dont put this in other line this is already fixed.
+
         PersonalInventory: {
             maxWeight: InventoryConfig.PersonalInventory.MaxWeight,
             Weight: await calculateInventoryWeight('body-' + character.id),
@@ -190,10 +192,11 @@ RPC.register('inventory:getInventories', async(source: any, cid: number, inVehic
             inventoryName: 'backpack-' + character.id,
             slots: await getInventory('backpack-' + character.id, InventoryConfig.Backpack.Slots, false, null)
         },
+        
 
-        AdditionalInventories: await getAdditionalInventories(source)
         
     }
+    // console.log("GET ADDITIONAL INVENTORIES",await getAdditionalInventories(source))
     let dropItem = false
     if (!inVehicle) {
         Inventory.PrimarySecondaryInventory = {
@@ -216,13 +219,15 @@ RPC.register('inventory:getInventories', async(source: any, cid: number, inVehic
     }
 
     if (isTrunk) {
-        Inventory.PrimarySecondaryInventory = {
-            maxWeight: InventoryConfig.Trunk.MaxWeight,
-            Weight: await calculateInventoryWeight('trunk::' + TrunkPlate),
-            inventoryName: 'trunk::' + TrunkPlate,
-            inventoryLabel: 'Trunk',
-            slots: await getInventory('trunk::' + TrunkPlate, InventoryConfig.Trunk.Slots, false, null)
-        }
+        // console.log("TRUNK PLATE HAHA", TrunkPlate)
+        
+        // Inventory.PrimarySecondaryInventory = {
+        //     maxWeight: InventoryConfig.Trunk.MaxWeight,
+        //     Weight: await calculateInventoryWeight('trunk::' + TrunkPlate),
+        //     inventoryName: 'trunk::' + TrunkPlate,
+        //     inventoryLabel: 'Trunk',
+        //     slots: await getInventory('trunk::' + TrunkPlate, InventoryConfig.Trunk.Slots, false, null)
+        // }
     }
     return Inventory
 })
@@ -230,7 +235,7 @@ RPC.register('inventory:getInventories', async(source: any, cid: number, inVehic
 onNet("server-inventory-close", async(player, targetInventoryName) => {
     let src = source
     //line 647
-    // console.log("CLOSE INVENTORY",targetInventoryName)
+    console.log("CLOSE INVENTORY",targetInventoryName)
     if (targetInventoryName.startsWith("Trunk"))
         emitNet("toggle-animation", src, false);
     InUseInventories = InUseInventories.filter(item => item != player);

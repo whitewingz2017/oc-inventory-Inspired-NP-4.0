@@ -60,7 +60,7 @@ export const PocketSlot = (props: any) => {
             return 'background:radial-gradient(83%_83%_at_50%_50%,_rgba(255,_0,_0,_0.15),_rgba(102,_0,_0,_0.25))'
         }
     }
-    console.log("props.acceptedItems",props.acceptedItems,JSON.stringify(props))
+    // console.log("props.acceptedItems",props.acceptedItems,JSON.stringify(props))
     const handleMouseDown = (e: any) => {
         if (e.button === 2) {return}
         if (PlayerState.settings.holdToDrag && props.item && !movingSplitItem()) {

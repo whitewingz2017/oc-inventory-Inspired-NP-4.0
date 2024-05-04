@@ -57,7 +57,7 @@ export function App(props: any) {
     })
 
     function createImage(Item: any){
-        return `https://assets.nopixel.net/dev/images/inventory/icons/${Item}.png`
+        return `https://whitewingz2017.github.io/rprpmap/dev/images/inventory/icon/${Item}.png`
     }
 
     const [itemList, setItemList] = createStore<any>({
@@ -123,7 +123,7 @@ export function App(props: any) {
             description: 'U Thirsty Mate??',
             stackable: true,
             image: createImage('water'),
-            weight: 0.01,
+            weight: 0.1,
             context: {
                 useItem: true,
             }
@@ -133,7 +133,7 @@ export function App(props: any) {
             description: 'Cash Money',
             stackable: true,
             image: createImage('np_cash'),
-            weight: 1.0,
+            weight: 0.001,
             context: {
                 useItem: false,
             }
@@ -143,7 +143,7 @@ export function App(props: any) {
             description: 'HOT DOG????????',
             stackable: true,
             image: createImage('hotdog'),
-            weight: 1.0,
+            weight: 0.1,
             context: {
                 useItem: true,
             }
@@ -153,7 +153,7 @@ export function App(props: any) {
             description: '',
             stackable: false,
             image: createImage('np_simcard'),
-            weight: 1.0,
+            weight: 0.02,
             context: {
                 useItem: true,
                 equipItem: true,
@@ -177,7 +177,7 @@ export function App(props: any) {
             description: 'Hungry????????',
             stackable: true,
             image: createImage('sandwich'),
-            weight: 1.0,
+            weight: 0.2,
             context: {
                 useItem: true,
             }
@@ -197,7 +197,7 @@ export function App(props: any) {
             description: 'Diary?',
             stackable: true,
             image: createImage('notebook'),
-            weight: 3.0,
+            weight: 0.3,
             context: {
                 useItem: true,
             }
@@ -208,7 +208,7 @@ export function App(props: any) {
             description: 'Bandage?',
             stackable: true,
             image: createImage('bandage_1'),
-            weight: 2.0,
+            weight: 0.2,
             context: {
                 useItem: true,
             }
@@ -218,7 +218,7 @@ export function App(props: any) {
             description: 'Bandage?',
             stackable: true,
             image: createImage('bandage_2'),
-            weight: 3.0,
+            weight: 0.3,
             context: {
                 useItem: true,
             }
@@ -228,7 +228,7 @@ export function App(props: any) {
             description: 'Bandage?',
             stackable: true,
             image: createImage('bandage_3'),
-            weight: 3.0,
+            weight: 0.3,
             context: {
                 useItem: true,
             }
@@ -238,7 +238,7 @@ export function App(props: any) {
             description: 'Bandage?',
             stackable: true,
             image: createImage('bandage_4'),
-            weight: 3.0,
+            weight: 0.3,
             context: {
                 useItem: true,
             }

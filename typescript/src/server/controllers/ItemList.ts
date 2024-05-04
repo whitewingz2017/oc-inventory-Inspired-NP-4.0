@@ -1,5 +1,5 @@
 async function createImage(Item: any) {
-    return `https://assets.nopixel.net/dev/images/inventory/icons/${Item}.png`
+    return `https://whitewingz2017.github.io/rprpmap/dev/images/inventory/icon/${Item}.png`
 }
 
 export const ItemList = {
@@ -72,7 +72,7 @@ export const ItemList = {
         decayrate: 0.01,
         stackable: true,
         image: createImage('water'),
-        weight: 0.01,
+        weight: 0.1,
         context: {
             useItem: true,
         }
@@ -83,7 +83,7 @@ export const ItemList = {
         decayrate: 0.0,
         stackable: true,
         image: createImage('np_cash'),
-        weight: 1.0,
+        weight: 0.001,
         context: {
             useItem: false,
         }
@@ -94,7 +94,7 @@ export const ItemList = {
         decayrate: 0.01,
         stackable: true,
         image: createImage('hotdog'),
-        weight: 1.0,
+        weight: 0.1,
         context: {
             useItem: true,
         }
@@ -105,7 +105,7 @@ export const ItemList = {
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_simcard'),
-        weight: 1.0,
+        weight: 0.02,
         context: {
             useItem: true,
             equipItem: true,
@@ -131,7 +131,7 @@ export const ItemList = {
         decayrate: 0.01,
         stackable: true,
         image: createImage('sandwich'),
-        weight: 1.0,
+        weight: 0.2,
         context: {
             useItem: true,
         }

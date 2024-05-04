@@ -72,7 +72,7 @@ export const CreateInventory = (props: any) => {
                                     console.log(JSON.stringify(props, null, 2))
                                 }}   
                             >
-                                {props.Weight}kg / {props.maxWeight}kg
+                                {props.Weight.toFixed(1)}kg / {props.maxWeight}kg
                             </div>
                         </div>
 
@@ -113,9 +113,10 @@ export const CreateInventory = (props: any) => {
 
                 <div
                     class="overflow-y-auto [scrollbar-gutter:stable]"
-                    style={{
-                        display: props.InventoryOpened ? '' : 'none'
-                    }}
+                    style="max-height: 20.5rem;"
+                    // style={{
+                    //     "max-height": '20.5rem'
+                    // }}
                     onMouseEnter={() => {
                         console.log('Setting active inventory ' + props.name)
                         setActiveInventory(props.name)

@@ -55,11 +55,13 @@ const AddPeekEntryByModel = (pModels: string[], pData: any, pOptions: any): void
   };
   
   const AddVehicleInteraction = (id: string, options: any, context: any): void => {
+    // console.log("ADD VEHICLE INTERACTION", options, JSON.stringify(options))
     const data = {
       id,
       options,
       context,
     };
+    global.exports["interactions"].AddVehicleInteraction(data);
     globalThis.exports["interactions"].AddVehicleInteraction(data);
   };
   

@@ -24,7 +24,6 @@ NUI.register('itemDrag', async(data: any, cb: any) => {
 
     setTimeout(async() => {
         const Inventory = await RPC.execute('inventory:getInventories',cid, IsPedInVehicle(PlayerPedId(), GetVehiclePedIsIn(PlayerPedId(), false), false), GetVehicleNumberPlateText(GetVehiclePedIsIn(PlayerPedId(), false)), inTrunk, trunkPlate)
-        // console.log("GET MY MOTHER FUCKING INV", JSON.stringify(Inventory))
         SendNUIMessage({Inventory: Inventory})
     }, 100)
 })
@@ -67,7 +66,7 @@ NUI.register('useItem', async(data: any, cb: any) => {
     usedItem(data)
 })
 
-NUI.register('opeItem', async(data: any, cb: any) => {
+NUI.register('openItem', async(data: any, cb: any) => {
     let cid = global.exports['isPed'].isPed('cid')
     let open = await RPC.execute('inventory:additionalInventoriesAdd', data)
     const Inventory = await RPC.execute('inventory:getInventories',cid, IsPedInVehicle(PlayerPedId(), GetVehiclePedIsIn(PlayerPedId(), false), false), GetVehicleNumberPlateText(GetVehiclePedIsIn(PlayerPedId(), false)), inTrunk, trunkPlate)

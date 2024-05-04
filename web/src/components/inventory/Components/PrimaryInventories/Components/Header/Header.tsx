@@ -63,7 +63,7 @@ export const Header = () => {
                 <div
                     class="text-[0.88rem] leading-[108.5%] text-gray-300"
                 >
-                    {Inventory.PersonalInventory.Weight}kg / {Inventory.PersonalInventory.maxWeight}kg
+                    {Inventory.PersonalInventory.Weight.toFixed(1)}kg / {Inventory.PersonalInventory.maxWeight}kg
                 </div>
             </div>
 

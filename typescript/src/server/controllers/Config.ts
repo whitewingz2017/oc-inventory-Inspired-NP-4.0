@@ -38,6 +38,11 @@ export const InventoryConfig = {
         MaxWeight: 5
     },
 
+    ApartmentStash: {
+        Slots: 50,
+        MaxWeight: 1000,
+    },
+
     Pockets: {
         Slots: 5,
         MaxWeight: 125
@@ -50,6 +55,6 @@ export const InventoryConfig = {
 
     Trunk: {
         Slots: 50,
-        MaxWeight: 600
+        MaxWeight: 800
     }
 }
