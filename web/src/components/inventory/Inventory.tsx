@@ -697,6 +697,21 @@ export const Inventory = () => {
                             >
                                 <div
                                     class="rounded ring-1 ring-black ring-opacity-5 [background:radial-gradient(83%_83%_at_50%_50%,_rgba(80,_80,_80,_0.9),_rgba(40,_40,_40,_0.9))]"
+                                    onClick={() => {
+                                        nuiAction('giveItem', {
+                                            ItemId: hoveringItem.Information.itemId,
+                                            Info: hoveringItem.Information
+                                        })
+                                        nuiAction('closeInventory')
+                                        setShow(false)
+
+                                        setHoveringItem({
+                                            show: false,
+                                            frozenPosition: false,
+                                            showingOptions: false,
+                                            Information: []
+                                        })
+                                    }}
                                 >
                                     <div
                                         class="text-mediumspringgreen-100 hover:bg-mediumspringgreen-200 flex cursor-pointer rounded px-2 py-3 text-sm hover:text-white"

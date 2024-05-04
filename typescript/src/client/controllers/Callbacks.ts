@@ -3,6 +3,8 @@ import { NUI } from "../modules/nui"
 import { inTrunk, trunkPlate, trunkState } from "./Trunk"
 import { usedItem } from "./Functions"
 
+export let giveItem = false;
+
 NUI.register('closeInventory', async(data: any, cb: any) => {
     global.exports.focusmanager.SetUIFocus(false, false)
     let cid = global.exports['isPed'].isPed('cid')
@@ -81,4 +83,9 @@ NUI.register('openItem', async(data: any, cb: any) => {
     SendNUIMessage({
         Inventory: Inventory,
     })
+})
+
+NUI.register('giveItem', async(data: any, cb: any) => {
+    console.log("GIVE ITEM SHIT HAHAHA")
+    giveItem = true
 })

@@ -1,6 +1,7 @@
 import { Vector3 } from "../../shared/classes/vector";
 import { Interface } from "../modules/interface";
 import { updateInventory } from "./Exports";
+import { giveItem } from "./Callbacks";
 
 export let inTrunk = false
 export let trunkPlate = null
@@ -40,21 +41,21 @@ export async function initTrunk(): Promise<void> {
     //     parameters: []
     //   };
     //Give Items Function
-    // var _0x5b59c8 = {
-    //     isEnabled: function () {
-    //       return true;
-    //     },
-    //     distance: {
-    //       use: 2,
-    //       draw: 3
-    //     }
-    //   };
-    // Interface.addPlayerInteraction("inventory_give", [{
-    //     id: "inventory_give",
-    //     label: "Give",
-    //     eventSDK: "inventory:giveItem",
-    //     parameters: {}
-    //   }], _0x5b59c8);
+    var _0x5b59c8 = {
+        isEnabled: function () {
+          return giveItem;
+        },
+        distance: {
+          use: 2,
+          draw: 3
+        }
+      };
+    Interface.addPlayerInteraction("inventory_give", [{
+        id: "inventory_give",
+        label: "Give",
+        eventSDK: "inventory:giveItem",
+        parameters: {}
+      }], _0x5b59c8);
 
     Interface.addVehicleInteraction("vehicle:engineBay", [
         {
