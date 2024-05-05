@@ -81,7 +81,6 @@ export async function getAdditionalInventories(source: any) {
     const AddedInventory = []
 
     AdditionalInventories[character.id].map(async (data: any) => {
-        console.log('AdditionalInventories data',data.name, JSON.stringify(data))
         AddedInventory.push({
             id: data.id,
             name: data.name,

@@ -86,6 +86,15 @@ setTick(checking);
 
 RPC.register('inventory:getInventories', async(source: any, cid: number, inVehicle: any, licensePlate: any, isTrunk: any, TrunkPlate: any, coords: any, isDrop: boolean) => {
     const character = global.exports['qb-lib'].getCharacter(source)
+    const result = await global.exports.oxmysql.query_async('SELECT * FROM user_inventory2 WHERE item_id = @item_id AND name = @Name', {
+        '@item_id': 'simcard',
+        '@Name': 'phone::1::'+character.id
+    });
+    if(result[0]){
+        let number = JSON.parse(result[0].information)
+        emitNet('updatePhoneNumber',source, number.Number)
+    }
+  
     Inventory = {
         // Make the clothing and pockets slots generate like backpack and personalinv.
         // Pass the weight and max weight and do it on the UI.

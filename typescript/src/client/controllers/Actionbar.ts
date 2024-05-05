@@ -20,15 +20,16 @@ async function displayActionbar(state: any) {
         event: 'inventory:toggleActionbar'
     });
 
-    global.exports.hud.sendAppEvent({
-        showLargeIcons: state,
-        displayAllForce: state,
-        displayAllForceVehicle: state ? !!GetVehiclePedIsIn(PlayerPedId(), false) : false,
-        displayRadioChannel: state
-    });
+    // global.exports.hud.sendAppEvent({
+    //     showLargeIcons: state,
+    //     displayAllForce: state,
+    //     displayAllForceVehicle: state ? !!GetVehiclePedIsIn(PlayerPedId(), false) : false,
+    //     displayRadioChannel: state
+    // });
 }
 
 RegisterCommand('+actionBar', () => {
+    console.log("FUCK U KBA ACTION BAR")
     displayActionbar(true);
 }, false);
 

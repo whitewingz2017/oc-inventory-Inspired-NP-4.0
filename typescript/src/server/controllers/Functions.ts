@@ -45,10 +45,9 @@ export async function findNextAvailableSlot(source: any, Inventory: any) {
             '@Name': Inventory,
             '@Slot': slot
         });
-
         if (slot > 15) {
             // emitNet('DoLongHudText', source, 'No available slots.', 2)
-            return
+            return true
         }
 
         if (slotCheck[0].count === 0) {
@@ -211,6 +210,16 @@ RPC.register('getCustomAnim:bandage', (source) => {
     return data
 })
 
+RPC.register('inventory:characterSpawned', async (source) => {
+    const character = global.exports['qb-lib'].getCharacter(source);
+    const result = await global.exports.oxmysql.query_async('SELECT * FROM user_inventory2 WHERE item_id = @item_id AND name = @Name', {
+        '@item_id': 'simcard',
+        '@Name': 'phone::1::'+character.id
+    });
+    let number = JSON.parse(result[0].information)
+    emitNet('updatePhoneNumber',source, number.Number)
+})
+
 const TimeAllowed: number = 1000 * 60 * 40320; // 28 days
 
 export function ConvertQuality(itemID: string, creationDate: string): number {
@@ -228,4 +237,81 @@ export function ConvertQuality(itemID: string, creationDate: string): number {
     }
 
     return percentDone;
+}
+
+export async function GenerateInformation(item: any) {
+    if (item === "simcard") {
+        // Query the database for the item information
+        const result = await global.exports.oxmysql.query_async('SELECT * FROM user_inventory2 WHERE item_id = @item_id', {
+            '@item_id': item,
+        });
+
+        // Iterate over the result set (in case there are multiple items with the same item_id)
+        let phoneNumber;
+        let isNumberUnique = false;
+        while (!isNumberUnique) {
+            // Generate a new phone number with prefix 639
+            phoneNumber = generatePhoneNumberWithPrefix(639);
+
+            // Iterate over the result set and compare phone numbers
+            isNumberUnique = true;
+            for (const row of result) {
+                // Parse the information property
+                const info = JSON.parse(row.information);
+
+                // Compare the generated phone number with the number from the information
+                if (info && info.Number === phoneNumber) {
+                    isNumberUnique = false;
+                    break; // Exit the loop as soon as a match is found
+                }
+            }
+        }
+
+        // Create a valid JSON string for the information
+        let infoString = JSON.stringify({ Number: phoneNumber });
+
+        // Return the JSON string
+        return infoString;
+    }
+}
+
+
+/**
+ * Generates a phone number starting with the specified prefix.
+ * The total length of the phone number should be 10 digits.
+ *
+ * @param prefix - The desired prefix (e.g., 639).
+ * @returns A phone number starting with the specified prefix.
+ */
+function generatePhoneNumberWithPrefix(prefix: number): number {
+    // Calculate the number of digits needed to reach 10 digits in total
+    const remainingDigitsCount = 10 - prefix.toString().length;
+
+    // Generate a random number with the remaining digits
+    const remainingDigits = randomInt(
+        Math.pow(10, remainingDigitsCount - 1), // Minimum value with the correct number of digits
+        Math.pow(10, remainingDigitsCount) // Maximum value (exclusive) with the correct number of digits
+    );
+
+    // Combine the prefix and the remaining random digits to form the phone number
+    const phoneNumber = parseInt(prefix.toString() + remainingDigits.toString());
+
+    return phoneNumber;
+}
+
+/**
+ * Generates a random integer within the given range [min, max).
+ *
+ * @param min - The minimum value of the range (inclusive).
+ * @param max - The maximum value of the range (exclusive).
+ * @returns A random integer within the specified range.
+ */
+function randomInt(min: number, max: number): number {
+    // Ensure that the range is valid
+    if (min >= max) {
+        throw new Error('Invalid range: min must be less than max');
+    }
+
+    // Generate a random float between 0 and 1, scale it to the range, and use Math.floor to get an integer
+    return Math.floor(Math.random() * (max - min) + min);
 }

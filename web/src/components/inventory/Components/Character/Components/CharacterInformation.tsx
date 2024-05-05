@@ -4,6 +4,23 @@ export const CharacterInformation = () => {
     const {
         PlayerState
     } = getInventoryContext()
+
+    function formatPhoneNumber(number: any) {
+        const numberString = number;
+        let formattedNumber
+        if(isNumber(numberString)){
+            let num = numberString.toString()
+            formattedNumber = `(${num.slice(0, 3)}) ${num.slice(3, 6)}-${num.slice(6, 10)}`;
+        }else{
+            formattedNumber = 'N/A'
+        }
+        return formattedNumber;
+    }
+
+    function isNumber(value: any) {
+        return typeof value === 'number';
+    }
+
     return (
         <div
             class="flex h-[20rem] w-full flex-col"
@@ -86,7 +103,7 @@ export const CharacterInformation = () => {
                             <div
                                 class="select-text text-white"
                             >
-                               {PlayerState.character.phone}
+                               {formatPhoneNumber(PlayerState.character.phone)}
                             </div>
                         </div>
                     </div>

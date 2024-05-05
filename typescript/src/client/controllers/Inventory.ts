@@ -25,7 +25,7 @@ RegisterCommand('+inventory', async() => {
         SendNUIMessage({
             Inventory: Inventory,
         })
-    
+        console.log("OPEN FUCKING NUMBER",global.exports['isPed'].isPed('phonenumbers').toString())
         SendNUIMessage({
             show: true,
             PlayerData: {
@@ -34,8 +34,8 @@ RegisterCommand('+inventory', async() => {
                     name: global.exports['isPed'].isPed('fullname'),
                     cash: 0,
                     personalVehicle: 'Landstalker',
-                    home: '#23 No3 Alta Street',
-                    phone: '+1 (628) 123-4567',
+                    home: 'Little Seoul',
+                    phone: global.exports['isPed'].isPed('phonenumbers'),
                 },
         
                 settings: {
@@ -54,7 +54,8 @@ RegisterCommand('-inventory', async() => {}, false)
 global.exports['qb-keybinds'].registerKeyMapping('inventory', 'Inventory', 'Open Inventory', '+inventory', '-inventory', 'K', true);
 
 onNet('inventory:addItem', async(data: any) => {
-    emit('inventory:sendNotification', data.Item, data.Amount, 'Added')
+    console.log("FUCKNG ADD ITEMS?")
+    // emit('inventory:sendNotification', data.Item, data.Amount, 'Added')
     RPC.execute('inventory:addItem', data)
 })
 

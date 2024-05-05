@@ -101,7 +101,7 @@ export const ItemList = {
     },
     'simcard': {
         name: 'Sim Card',
-        description: '',
+        description: 'A Sim Card for a Mobile Device',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_simcard'),
@@ -1427,7 +1427,7 @@ export const ItemList = {
         displayname: '5g Crack',
         information: 'Crack... ',
         decayrate: 0.0,
-        stackable: false,
+        stackable: true,
         image: createImage('np_crack'),
         weight: 1.0,
         context: {
@@ -1449,7 +1449,7 @@ export const ItemList = {
         displayname: 'Air Tight Cocaine Brick (1kg)',
         information: 'Tightly sealed to prevent water from seeping in.',
         decayrate: 0.0,
-        stackable: false,
+        stackable: true,
         image: createImage('np_cocaine-brick'),
         weight: 5.0,
         context: {
@@ -1460,7 +1460,7 @@ export const ItemList = {
         displayname: 'Coke Baggy (5g)',
         information: 'Increases your Stamina and Movement Speed',
         decayrate: 0.0,
-        stackable: false,
+        stackable: true,
         image: createImage('np_cocaine-baggy'),
         weight: 1.0,
         context: {
@@ -1471,9 +1471,9 @@ export const ItemList = {
         displayname: '3g Joint',
         information: 'Its a Joint, man. ',
         decayrate: 0.0,
-        stackable: false,
+        stackable: true,
         image: createImage('np_joint'),
-        weight: 2.0,
+        weight: 0.5,
         context: {
             useItem: true,
         }
@@ -1482,9 +1482,9 @@ export const ItemList = {
         displayname: 'Marijuana Seed',
         information: 'Plant this seed if you wish for more seeds!',
         decayrate: 0.0,
-        stackable: false,
+        stackable: true,
         image: createImage('np_weed-seed'),
-        weight: 1.0,
+        weight: 0.05,
         context: {
             useItem: true,
         }
@@ -1493,9 +1493,9 @@ export const ItemList = {
         displayname: 'Female Marijuana Seed',
         information: 'Surely I can just plant this, right?',
         decayrate: 0.0,
-        stackable: false,
+        stackable: true,
         image: createImage('np_weed-seed'),
-        weight: 1.0,
+        weight: 0.05,
         context: {
             useItem: true,
         }
@@ -1504,9 +1504,9 @@ export const ItemList = {
         displayname: 'Coca Leaves',
         information: '',
         decayrate: 0.0,
-        stackable: false,
+        stackable: true,
         image: createImage('leaf'),
-        weight: 1.0,
+        weight: 0.01,
         context: {
             useItem: true,
         }
@@ -1515,9 +1515,9 @@ export const ItemList = {
         displayname: 'Weed Plant',
         information: '',
         decayrate: 0.0,
-        stackable: false,
+        stackable: true,
         image: createImage('weedplant'),
-        weight: 20.0,
+        weight: 0.20,
         context: {
             useItem: true,
         }
@@ -1526,9 +1526,9 @@ export const ItemList = {
         displayname: 'Oxy 100mg',
         information: 'Prescribed by Betta Life Pharmacy (Prescription required)',
         decayrate: 0.0,
-        stackable: false,
+        stackable: true,
         image: createImage('np_Oxy'),
-        weight: 3.0,
+        weight: 0.3,
         context: {
             useItem: true,
         }

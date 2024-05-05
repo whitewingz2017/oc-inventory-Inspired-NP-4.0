@@ -1,9 +1,10 @@
 import { InventoryConfig } from "./Config";
-import { findNextAvailableSlot } from "./Functions";
+import { GenerateInformation, findNextAvailableSlot } from "./Functions";
 import { Inventory } from "./Inventory";
 import { ItemList } from "./ItemList";
 import { getDropInventories, getDataEntries, getDroppInventoriesName } from "./Inventory"
 let DropIcon = {};
+let pickedUp = false;
 
 RegisterCommand('addItem', async(source, args) => {
     // console.log("POTA BOBO")
@@ -35,9 +36,10 @@ export async function addItem(source, data) {
         ['@Name']: 'body-' + character.id
     });
     let totalWeight = await CheckInvWeight(toCheckWeight)
-    
+    // console.log("DATA SHIT", JSON.stringify(data))
     if (foundItem[0]) {
         if(totalWeight !== InventoryConfig['PersonalInventory'].MaxWeight){
+            // console.log("ItemList[data.Item].stackable",ItemList[data.Item].stackable)
             if (ItemList[data.Item].stackable) {
                 // console.log('Went past the ItemList[data.Item].stackable')
                 for (let i = 0; i < data.Amount; i++) {
@@ -50,19 +52,40 @@ export async function addItem(source, data) {
                 }
                 emitNet('inventory:sendNotification',Number(source), data.Item, data.Amount, 'Added')
             } else {
-                for (let i = 0; i < data.Amount; i++) {
-                    global.exports['oxmysql'].query_async('INSERT INTO user_inventory2 (item_id, name, slot, creationDate) VALUES (@ItemId, @Name, @Slot, @creationDate)', {
-                        ['@ItemId']: data.Item,
-                        ['@Name']: 'body-' + character.id,
-                        ['@Slot']: await findNextAvailableSlot(source, 'body-' + character.id),
-                        ['@creationDate']: creationDate
-                    })
+                let isMaxSlot = await findNextAvailableSlot(source, 'body-' + character.id)
+                if(isMaxSlot === true){
+                    let info: any = await GenerateInformation(data.Item)
+                    for (let i = 0; i < data.Amount; i++) {
+                        global.exports['oxmysql'].query_async('INSERT INTO user_inventory2 (item_id, name, slot, creationDate, information) VALUES (@ItemId, @Name, @Slot, @creationDate, @Info)', {
+                            ['@ItemId']: data.Item,
+                            ['@Name']: 'backpack-' + character.id,
+                            ['@Slot']: await findNextAvailableSlot(source, 'backpack-' + character.id),
+                            ['@creationDate']: creationDate,
+                            ['@Info']: info
+                        })
+                    }
+                    emitNet('inventory:sendNotification',source, data.Item, data.Amount, 'Added')
+                }else{
+                    // console.log("ADD ITEM",GenerateInformation(data.Item))
+                    let info: any = await GenerateInformation(data.Item)
+                    console.log("INFO SHIT",info)
+                    for (let i = 0; i < data.Amount; i++) {
+                        global.exports['oxmysql'].query_async('INSERT INTO user_inventory2 (item_id, name, slot, creationDate, information) VALUES (@ItemId, @Name, @Slot, @creationDate, @Info)', {
+                            ['@ItemId']: data.Item,
+                            ['@Name']: 'body-' + character.id,
+                            ['@Slot']: await findNextAvailableSlot(source, 'body-' + character.id),
+                            ['@creationDate']: creationDate,
+                            ['@Info']: info
+                        })
+                    }  
+                    emitNet('inventory:sendNotification',source, data.Item, data.Amount, 'Added')
                 }
-                emitNet('inventory:sendNotification',source, data.Item, data.Amount, 'Added')
+               
+               
             }
         }else{
             if (ItemList[data.Item].stackable) {
-                // console.log('Went past the ItemList[data.Item].stackable')
+                // console.log('Went past the ItemList[data.Item].stackable 1')
                 for (let i = 0; i < data.Amount; i++) {
                     global.exports['oxmysql'].query_async('INSERT INTO user_inventory2 (item_id, name, slot, creationDate) VALUES (@ItemId, @Name, @Slot, @creationDate)', {
                         ['@ItemId']: data.Item,
@@ -73,6 +96,7 @@ export async function addItem(source, data) {
                 }
                 emitNet('inventory:sendNotification',Number(source), data.Item, data.Amount, 'Added')
             } else {
+                // console.log('Went past the ItemList[data.Item].stackable 2')
                 for (let i = 0; i < data.Amount; i++) {
                     global.exports['oxmysql'].query_async('INSERT INTO user_inventory2 (item_id, name, slot, creationDate) VALUES (@ItemId, @Name, @Slot, @creationDate)', {
                         ['@ItemId']: data.Item,
@@ -89,62 +113,29 @@ export async function addItem(source, data) {
         const Slot = await findNextAvailableSlot(source, 'body-' + character.id)
 
         for (let i = 0; i < data.Amount; i++) {
+            // console.log('Went past the ItemList[data.Item].stackable 3')
+            let info: any = await GenerateInformation(data.Item)
             if (ItemList[data.Item].stackable) {
-                global.exports['oxmysql'].query_async('INSERT INTO user_inventory2 (item_id, name, slot, creationDate) VALUES (@ItemId, @Name, @Slot, @creationDate)', {
+                global.exports['oxmysql'].query_async('INSERT INTO user_inventory2 (item_id, name, slot, creationDate, information) VALUES (@ItemId, @Name, @Slot, @creationDate, @Info)', {
                     ['@ItemId']: data.Item,
                     ['@Name']: 'body-' + character.id,
                     ['@Slot']: Slot,
-                    ['@creationDate']: creationDate
+                    ['@creationDate']: creationDate,
+                    ['@Info']: info
                 })
                 emitNet('inventory:sendNotification',source, data.Item, data.Amount, 'Added')
             } else {
-                global.exports['oxmysql'].query_async('INSERT INTO user_inventory2 (item_id, name, slot, creationDate) VALUES (@ItemId, @Name, @Slot, @creationDate)', {
+                // console.log('Went past the ItemList[data.Item].stackable 4')
+                let info: any = await GenerateInformation(data.Item)
+                global.exports['oxmysql'].query_async('INSERT INTO user_inventory2 (item_id, name, slot, creationDate, information) VALUES (@ItemId, @Name, @Slot, @creationDate, @Info)', {
                     ['@ItemId']: data.Item,
                     ['@Name']: 'body-' + character.id,
                     ['@Slot']: await findNextAvailableSlot(source, 'body-' + character.id),
-                    ['@creationDate']: creationDate
+                    ['@creationDate']: creationDate,
+                    ['@Info']: info
                 })
                 emitNet('inventory:sendNotification',source, data.Item, data.Amount, 'Added')
             }
-        }
-    }
-}
-
-export async function removeItem(source, data){
-    const character = global.exports['qb-lib'].getCharacter(source)
-    const foundItemInBody = await global.exports.oxmysql.query_async('SELECT * FROM user_inventory2 WHERE name = @Name AND item_id = @ItemId', {
-        ['@Name']: 'body-' + character.id,
-        ['@ItemId']: data.Item
-    });
-    const foundItemInBackpack = await global.exports.oxmysql.query_async('SELECT * FROM user_inventory2 WHERE name = @Name AND item_id = @ItemId', {
-        ['@Name']: 'backpack-' + character.id,
-        ['@ItemId']: data.Item
-    });
-    if (foundItemInBody[0] && foundItemInBackpack[0] === undefined) {
-        const removeItem = await global.exports.oxmysql.query_async(`DELETE FROM user_inventory2 WHERE name = @Name AND item_id = @ItemId LIMIT ${data.Amount}`, {
-            ['@Name']: 'body-' + character.id,
-            ['@ItemId']: data.Item
-        });
-        if(removeItem.affectedRows === 1){
-            emitNet('inventory:sendNotification',Number(source), data.Item, data.Amount, 'Removed')
-        }
-    }
-    if (foundItemInBody[0] === undefined && foundItemInBackpack[0]) {
-        const removeItem = await global.exports.oxmysql.query_async(`DELETE FROM user_inventory2 WHERE name = @Name AND item_id = @ItemId LIMIT ${data.Amount}`, {
-            ['@Name']: 'backpack-' + character.id,
-            ['@ItemId']: data.Item
-        });
-        if(removeItem.affectedRows === 1){
-            emitNet('inventory:sendNotification',Number(source), data.Item, data.Amount, 'Removed')
-        }
-    }
-    if (foundItemInBody[0] && foundItemInBackpack[0]) {
-        const removeItem = await global.exports.oxmysql.query_async(`DELETE FROM user_inventory2 WHERE name = @Name AND item_id = @ItemId LIMIT ${data.Amount}`, {
-            ['@Name']: 'body-' + character.id,
-            ['@ItemId']: data.Item
-        });
-        if(removeItem.affectedRows === 1){
-            emitNet('inventory:sendNotification',Number(source), data.Item, data.Amount, 'Removed')
         }
     }
 }
@@ -160,7 +151,7 @@ RPC.register('inventory:addItem', async(source: any, data: any) => {
         ['@Name']: 'body-' + character.id
     });
     let totalWeight = await CheckInvWeight(toCheckWeight)
-    
+    console.log("DATA SHIT 2", data, JSON.stringify(data))
     if (foundItem[0]) {
         if(totalWeight !== InventoryConfig['PersonalInventory'].MaxWeight){
             if (ItemList[data.Item].stackable) {
@@ -237,6 +228,47 @@ RPC.register('inventory:addItem', async(source: any, data: any) => {
         }
     }
 })
+
+export async function removeItem(source, data){
+    const character = global.exports['qb-lib'].getCharacter(source)
+    const foundItemInBody = await global.exports.oxmysql.query_async('SELECT * FROM user_inventory2 WHERE name = @Name AND item_id = @ItemId', {
+        ['@Name']: 'body-' + character.id,
+        ['@ItemId']: data.Item
+    });
+    const foundItemInBackpack = await global.exports.oxmysql.query_async('SELECT * FROM user_inventory2 WHERE name = @Name AND item_id = @ItemId', {
+        ['@Name']: 'backpack-' + character.id,
+        ['@ItemId']: data.Item
+    });
+    if (foundItemInBody[0] && foundItemInBackpack[0] === undefined) {
+        const removeItem = await global.exports.oxmysql.query_async(`DELETE FROM user_inventory2 WHERE name = @Name AND item_id = @ItemId LIMIT ${data.Amount}`, {
+            ['@Name']: 'body-' + character.id,
+            ['@ItemId']: data.Item
+        });
+        if(removeItem.affectedRows === 1){
+            emitNet('inventory:sendNotification',Number(source), data.Item, data.Amount, 'Removed')
+        }
+    }
+    if (foundItemInBody[0] === undefined && foundItemInBackpack[0]) {
+        const removeItem = await global.exports.oxmysql.query_async(`DELETE FROM user_inventory2 WHERE name = @Name AND item_id = @ItemId LIMIT ${data.Amount}`, {
+            ['@Name']: 'backpack-' + character.id,
+            ['@ItemId']: data.Item
+        });
+        if(removeItem.affectedRows === 1){
+            emitNet('inventory:sendNotification',Number(source), data.Item, data.Amount, 'Removed')
+        }
+    }
+    if (foundItemInBody[0] && foundItemInBackpack[0]) {
+        const removeItem = await global.exports.oxmysql.query_async(`DELETE FROM user_inventory2 WHERE name = @Name AND item_id = @ItemId LIMIT ${data.Amount}`, {
+            ['@Name']: 'body-' + character.id,
+            ['@ItemId']: data.Item
+        });
+        if(removeItem.affectedRows === 1){
+            emitNet('inventory:sendNotification',Number(source), data.Item, data.Amount, 'Removed')
+        }
+    }
+}
+
+
 
 RPC.register('inventory:removeItem', async(source: any, data: any) => {
     removeItem(source, data)
@@ -282,16 +314,35 @@ RPC.register('inventory:dragItem', async (source: any, data: any, coords: any) =
     }
     // console.log('data.toSlot && data.toInventory',data.toSlot,data.toInventory)
     if (data.toSlot && data.toInventory) {
+
         if (data.toInventory.includes('pockets')) {
             if (!Inventory.Pockets.Slots[data.toSlot - 1].acceptedItems.includes(ItemList[data.itemId].name)) {
                 return
             }
         }
         if (data.toInventory.includes('phone')) {
+           
             const phoneSlot = Inventory.AdditionalInventories[0]
+            if (phoneSlot.acceptedItems[0].acceptedItems.includes(ItemList[data.itemId].name)) {
+                const result = await global.exports.oxmysql.query_async('SELECT * FROM user_inventory2 WHERE item_id = @item_id AND slot = @Slot AND name = @Name', {
+                    '@Name': data.fromInventory,
+                    '@Slot': data.fromSlot,
+                    '@item_id': data.itemId,
+                });
+                let number = JSON.parse(result[0].information)
+                console.log("FUCKING SHIT PHONE",number,data)
+                emitNet('inventory:phoneNumber', source, number)
+                emitNet('updatePhoneNumber',source, number)
+            }
             if (!phoneSlot.acceptedItems[0].acceptedItems.includes(ItemList[data.itemId].name)) {
                 return
             }
+        }
+
+        if(data.fromInventory.includes('phone')){
+            console.log("FUCKING SHIT PHONE 2")
+            emitNet('inventory:phoneNumber', source, 'N/A')
+            emitNet('updatePhoneNumber',source, 'N/A')
         }
         if (data.toInventory.includes('wallet')) {
             const WalletSlot = Inventory.AdditionalInventories[0]
@@ -299,6 +350,8 @@ RPC.register('inventory:dragItem', async (source: any, data: any, coords: any) =
                 return
             }
         }
+
+       
 
         let dropInventories = await getDropInventories()
         if(data.toInventory.includes('drop-') || data.toInventory.includes('hidden-') || dropInventories[data.toInventory]){
@@ -335,7 +388,6 @@ RPC.register('inventory:dragItem', async (source: any, data: any, coords: any) =
                 if(result.length === 0){
                     itemObject = ItemList[data.itemId].name
                 }
-                console.log("ONE MORE PUSH",data.itemId,ItemList[data.itemId].name, itemObject)
                 DropIcon[targetName].push(ItemList[data.itemId].name);
                 dropInv[targetName] = {
                     position: {
@@ -369,13 +421,44 @@ RPC.register('inventory:dragItem', async (source: any, data: any, coords: any) =
            
             if (OldItem[0]) {
                 if (OldItem[0].item_id == data.itemId && invAndItemWeight < InventoryConfig[data.toInventory.includes('backpack') ? 'Backpack' : 'PersonalInventory'].MaxWeight || OldItem[0].item_id == data.itemId && data.fromInventory === data.toInventory) {
-                   if (ItemList[data.itemId].stackable) {
+                    if (ItemList[data.itemId].stackable) {
                         await global.exports['oxmysql'].query_async('UPDATE user_inventory2 SET slot = @Slot, name = @Name WHERE slot = @oldSlot AND item_id = @ItemId', {
                             '@oldSlot': data.fromSlot,
                             '@Slot': data.toSlot,
                             '@Name': data.toInventory,
                             '@ItemId': data.itemId
                         })
+                    }else{
+                        if(OldItem[0].item_id === data.itemId){
+                            //yeah already fixed this same item swap and not stackable
+                            const Items = await global.exports['oxmysql'].query_async('SELECT * FROM user_inventory2 WHERE slot = @Slot AND item_id = @ItemId AND name = @Name', {
+                                '@Slot': data.fromSlot,
+                                '@ItemId': data.itemId,
+                                '@Name': data.fromInventory
+                            });
+                            let update = await global.exports['oxmysql'].query_async('UPDATE user_inventory2 SET slot = @Slot, name = @Name, information = @Info WHERE slot = @oldSlot AND item_id = @ItemId AND name = @toInv LIMIT 1', {
+                                '@oldSlot': data.fromSlot,
+                                '@Slot': data.toSlot,
+                                '@toInv': data.fromInventory,
+                                '@Name': data.toInventory,
+                                '@ItemId': data.itemId,
+                                '@Info': Items[0].information
+                            })
+                            if(update.affectedRows === 1){
+                                await global.exports['oxmysql'].query_async('UPDATE user_inventory2 SET slot = @Slot, name = @Name, information = @Info WHERE id = @Id AND slot = @oldSlot AND item_id = @ItemId AND name = @toInv LIMIT 1', {
+                                    '@Id': OldItem[0].id,
+                                    '@oldSlot': data.toSlot,
+                                    '@Slot': data.fromSlot,
+                                    '@toInv': data.toInventory,
+                                    '@Name': data.fromInventory,
+                                    '@ItemId': OldItem[0].item_id,
+                                    '@Info': OldItem[0].information
+                                })
+                            }
+                          
+                            
+                            return
+                        }
                     }
                 } else {
                     if (data.fromInventory.includes('pockets')) {
@@ -383,7 +466,6 @@ RPC.register('inventory:dragItem', async (source: any, data: any, coords: any) =
                             return
                         }
                     }
-
                     // Todo:
                     // Check the weight of both invs if has enough weight swap them.. Fixed
 
@@ -416,7 +498,6 @@ RPC.register('inventory:dragItem', async (source: any, data: any, coords: any) =
                     //Fix also the quality when swapping same items
                    
                     if(OldItem[0].item_id === data.itemId){
-
                         await global.exports['oxmysql'].query_async('UPDATE user_inventory2 SET slot = @Slot, name = @Name WHERE slot = @oldSlot AND item_id = @ItemId AND name = @toInv LIMIT 1', {
                             '@oldSlot': data.fromSlot,
                             '@Slot': data.toSlot,
@@ -450,6 +531,29 @@ RPC.register('inventory:dragItem', async (source: any, data: any, coords: any) =
                         '@Name': data.fromInventory,
                         '@ItemId': OldItem[0].item_id
                     })
+
+                    if (data.toInventory.includes('phone')) {
+           
+                        const phoneSlot = Inventory.AdditionalInventories[0]
+                        if (phoneSlot.acceptedItems[0].acceptedItems.includes(ItemList[data.itemId].name)) {
+                            const result = await global.exports.oxmysql.query_async('SELECT * FROM user_inventory2 WHERE item_id = @item_id AND slot = @Slot AND name = @Name', {
+                                '@Name': data.fromInventory,
+                                '@Slot': data.fromSlot,
+                                '@item_id': data.itemId,
+                            });
+                            let number = JSON.parse(result[0].information)
+                            emitNet('inventory:phoneNumber', source, number)
+                            emitNet('updatePhoneNumber',source, number)
+                        }
+                        if (!phoneSlot.acceptedItems[0].acceptedItems.includes(ItemList[data.itemId].name)) {
+                            return
+                        }
+                    }
+            
+                    if(data.fromInventory.includes('phone')){
+                        emitNet('inventory:phoneNumber', source, 'N/A')
+                        emitNet('updatePhoneNumber',source, 'N/A')
+                    }
                 }
             } else {
                 await global.exports['oxmysql'].query_async('UPDATE user_inventory2 SET slot = @Slot, name = @Name WHERE slot = @oldSlot AND item_id = @ItemId AND name = @oldName', {
@@ -558,12 +662,23 @@ RPC.register('inventory:unequipItem', async(source: any, data: any) => {
 
 RPC.register('inventory:pickupObject', async(source: any, data: any) => {
     const character = global.exports['qb-lib'].getCharacter(source)
-
+    pickedUp = true 
    // Define the query based on whether data.item_id is provided or not
     let query;
     let queryParams = {
         '@Name': data.name
     };
+
+    const toCheckWeight = await global.exports.oxmysql.query_async('SELECT * FROM user_inventory2 WHERE name = @Name', {
+        ['@Name']: 'body-'+character.id
+    });
+
+    let totalWeight = await CheckInvWeight(toCheckWeight)
+
+    console.log("TOTAL WEIGHT FOR PICKUP", totalWeight)
+    if(totalWeight >= InventoryConfig['PersonalInventory'].MaxWeight){
+        return emitNet('DoLongHudText',source, "You are full! You can't pickup more item!", 2)
+    }
 
     if (data.item != null) {
         // If data.item_id is not null, include it in the query
@@ -581,29 +696,58 @@ RPC.register('inventory:pickupObject', async(source: any, data: any) => {
     if (items.length > 0) {
         for (let item of items) {
             // Find a new available slot for each item
-            const newSlot = await findNextAvailableSlot(source, 'body-' + character.id);
-
-            if (newSlot) {
-                // Update the item's slot and name
-                await global.exports['oxmysql'].query_async(
+            const foundItem = await global.exports.oxmysql.query_async('SELECT * FROM user_inventory2 WHERE name = @Name AND item_id = @ItemId', {
+                ['@Name']: 'body-' + character.id,
+                ['@ItemId']: data.item_id
+            });
+            if(foundItem[0]){
+                // console.log('foundItem', foundItem[0].slot, foundItem[0].name)
+                let affected = await global.exports['oxmysql'].query_async(
                     'UPDATE user_inventory2 SET slot = @Slot, name = @Name WHERE id = @Id',
                     {
                         '@Id': item.id,
-                        '@Slot': newSlot,
-                        '@Name': 'body-' + character.id
+                        '@Slot': foundItem[0].slot,
+                        '@Name': foundItem[0].name
                     }
                 );
+                console.log(affected, JSON.stringify(affected))
+                if(affected.affectedRows === 1){
+                    if(data.count === 0 || items.length === 0 || items.length === 1){
+                        emit('Inventory-deleteObject',data.name)
+                        emit('Inventory-deleteObject',data.name)
+                        emitNet("Inventory-Dropped-Remove", -1, [data.name])
+                        pickedUp = false
+                    }
+                }
+               
+            }else{
+                const newSlot = await findNextAvailableSlot(source, 'body-' + character.id);
+
+                if (newSlot) {
+                    // Update the item's slot and name
+                   let affected = await global.exports['oxmysql'].query_async(
+                        'UPDATE user_inventory2 SET slot = @Slot, name = @Name WHERE id = @Id',
+                        {
+                            '@Id': item.id,
+                            '@Slot': newSlot,
+                            '@Name': 'body-' + character.id
+                        }
+                    );
+                    if(affected.affectedRows === 1){
+                        if(data.count === 0 || items.length === 0 || items.length === 1){
+                            emit('Inventory-deleteObject',data.name)
+                            emit('Inventory-deleteObject',data.name)
+                            emitNet("Inventory-Dropped-Remove", -1, [data.name])
+                            pickedUp = false
+                        }
+                    }
+                }
             }
         }
     }
-    console.log("ITEM LENGTH CHECK",items.length)
-    if(data.count === 0 || items.length === 0 || items.length === 1){
-        emit('Inventory-deleteObject',data.name)
-        emit('Inventory-deleteObject',data.name)
-        emitNet("Inventory-Dropped-Remove", -1, [data.name])
-    }
- 
-    console.log("Item", items)
+    setTimeout(() => {
+        pickedUp = false
+    }, 1000);
 })
 
 onNet("Inventory-deleteObject", async(targetInventoryName) => {
@@ -619,7 +763,7 @@ async function CheckInvWeight(Inv) {
         totalWeight += itemWeight;
     }
 
-    return totalWeight;
+    return Number(totalWeight.toFixed(1));
 }
 
 export function DroppedIcon(name) {

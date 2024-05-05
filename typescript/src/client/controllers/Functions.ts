@@ -145,6 +145,27 @@ const activeTasks: any = {};
 let taskInProcess: any = false;
 // let smoking = false;
 
+onNet('inventory:phoneNumber', (number)=> {
+    let PhoneNumber = number.Number
+    SendNUIMessage({
+        PlayerData: {
+            character: {
+                id: global.exports['isPed'].isPed('cid'),
+                name: global.exports['isPed'].isPed('fullname'),
+                cash: 0,
+                personalVehicle: 'Landstalker',
+                home: 'Little Seoul',
+                phone: PhoneNumber,
+            },
+    
+            settings: {
+                holdToDrag: GetResourceKvpInt('inventory:holdToDrag'),
+                shiftQuickMove: GetResourceKvpInt('inventory:shiftQuickMove')
+            }
+        }
+    });
+})
+
 export async function usedItem(item) {
     let isWeapon = true;
     // console.log("ITEM USED HERE", JSON.stringify(item))
@@ -155,12 +176,13 @@ export async function usedItem(item) {
     if(item === undefined) return;
     const player = PlayerPedId();
     const currentVehicle = GetVehiclePedIsUsing(player)
-    const quality = item.durability
-    if(quality < 1){
+    const quality = item.Info.durability
+    if(Number(quality) < Number(1)){
         emit("DoLongHudText","Item is too worn.",2)
         if(isWeapon){
             emit('brokenWeapon')
         }
+        return
     }
     LastUsedItem = item.id
     LastUsedItemId = item
@@ -1119,8 +1141,8 @@ onNet('apartments:stash', async () => {
                     name: global.exports['isPed'].isPed('fullname'),
                     cash: 0,
                     personalVehicle: 'Landstalker',
-                    home: '#23 No3 Alta Street',
-                    phone: '+1 (628) 123-4567',
+                    home: 'Little Seoul',
+                    phone: global.exports['isPed'].isPed('phonenumbers'),
                 },
         
                 settings: {
@@ -1131,12 +1153,24 @@ onNet('apartments:stash', async () => {
         });
         global.exports.focusmanager.SetUIFocus(true, true)
     }
-    setTimeout(() => {
-        RPC.execute('inventory:additionalInventoriesAdd', data)
-    }, 1000); 
+    // setTimeout(() => {
+    //     RPC.execute('inventory:additionalInventoriesAdd', data)
+    // }, 1000); 
     
     global.exports.focusmanager.SetUIFocus(true, true)
 })
+
+onNet('qb-base:playerSpawned', ()=> {
+    RPC.execute('inventory:characterSpawned')
+})
+
+RegisterCommand('checkers', ()=>{
+    console.log("global.exports['isPed'].isPed('phoneNumber')",global.exports['isPed'].isPed('phonenumbers'))
+    RPC.execute('inventory:characterSpawned')
+    setTimeout(() => {
+        console.log("global.exports['isPed'].isPed('phoneNumber') 222",global.exports['isPed'].isPed('phonenumbers'))
+    }, 2000);
+}, false)
 
 export async function hasEnoughOfItem(itemId, amount, shouldReturnText, checkQuality, metaInformation){
     if(shouldReturnText === undefined) shouldReturnText = true;

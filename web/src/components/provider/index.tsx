@@ -150,7 +150,7 @@ export function App(props: any) {
         },
         'simcard': {
             name: 'Sim Card',
-            description: '',
+            description: 'A Sim Card for a Mobile Device',
             stackable: false,
             image: createImage('np_simcard'),
             weight: 0.02,
@@ -536,7 +536,7 @@ export function App(props: any) {
         '-120179019': {
             name: 'Glock 19',
             description: `Compact and Reliable, the GC19x is a versatile 9mm handgun.   
-            Serial: Unknown  Issuer: Unknown  Attachments:`,
+            <br /><br/> Serial: Unknown  <br /> Issuer: Unknown  <br /> Attachments:`,
             stackable: false,
             image: createImage('np_glock'),
             weight: 5.0,
@@ -1407,7 +1407,7 @@ export function App(props: any) {
             information: 'Its a Joint, man. ',
             stackable: true,
             image: createImage('np_joint'),
-            weight: 2.0,
+            weight: 0.5,
             context: {
                 useItem: true,
             }
@@ -1417,7 +1417,7 @@ export function App(props: any) {
             information: 'Plant this seed if you wish for more seeds!',
             stackable: true,
             image: createImage('np_weed-seed'),
-            weight: 1.0,
+            weight: 0.05,
             context: {
                 useItem: true,
             }
@@ -1427,7 +1427,7 @@ export function App(props: any) {
             information: 'Surely I can just plant this, right?',
             stackable: true,
             image: createImage('np_weed-seed'),
-            weight: 1.0,
+            weight: 0.05,
             context: {
                 useItem: true,
             }
@@ -1437,7 +1437,7 @@ export function App(props: any) {
             information: '',
             stackable: true,
             image: createImage('leaf'),
-            weight: 1.0,
+            weight: 0.05,
             context: {
                 useItem: true,
             }
@@ -1447,7 +1447,7 @@ export function App(props: any) {
             information: '',
             stackable: true,
             image: createImage('weedplant'),
-            weight: 20.0,
+            weight: 0.20,
             context: {
                 useItem: true,
             }
@@ -1457,7 +1457,7 @@ export function App(props: any) {
             information: 'Prescribed by Betta Life Pharmacy (Prescription required)',
             stackable: true,
             image: createImage('np_Oxy'),
-            weight: 3.0,
+            weight: 0.3,
             context: {
                 useItem: true,
             }
@@ -6464,8 +6464,8 @@ export function App(props: any) {
             name: 'John Doe',
             cash: 0,
             personalVehicle: 'Landstalker',
-            home: '#23 No3 Alta Street',
-            phone: '+1 (628) 123-4567',
+            home: 'Little Seoul',
+            phone: 'N/A',
         },
 
         settings: {

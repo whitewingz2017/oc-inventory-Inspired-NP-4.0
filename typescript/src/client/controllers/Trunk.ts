@@ -202,8 +202,8 @@ on('inventory:openTrunk', async(Parameters: any, Entity: any) => {
                 name: global.exports['isPed'].isPed('fullname'),
                 cash: 0,
                 personalVehicle: 'Landstalker',
-                home: '#23 No3 Alta Street',
-                phone: '+1 (628) 123-4567',
+                home: 'Little Seoul',
+                phone: global.exports['isPed'].isPed('phonenumbers'),
             },
     
             settings: {

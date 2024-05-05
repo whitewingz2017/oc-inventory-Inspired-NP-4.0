@@ -1,3 +1,4 @@
+import { nuiAction } from "../../../../../Callbacks"
 import { getInventoryContext } from "../../../../../provider"
 
 export const Header = () => {
@@ -5,13 +6,19 @@ export const Header = () => {
         showingHelpMenu,
         setShowingHelpMenu,
         setShowingSettingsMenu,
-        showingSettingsMenu
+        showingSettingsMenu,
+        setShow
     } = getInventoryContext()
 
     return (
         <>
             <div
                 class="absolute left-7 top-[-2rem] flex h-6 w-28 cursor-pointer items-center justify-around border border-solid border-neutral-800/80 text-center text-[0.75rem] text-neutral-400 hover:border-neutral-500"
+                onClick={() => {
+                    console.log("CLICK EXIT")
+                    nuiAction('closeInventory')
+                    setShow(false)
+                }}
             >
                 <span
                     class="flex h-full w-4/5 place-items-center justify-center"

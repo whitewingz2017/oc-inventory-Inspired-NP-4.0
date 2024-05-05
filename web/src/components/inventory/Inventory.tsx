@@ -56,7 +56,7 @@ export const Inventory = () => {
 
     const onMessage = async (data: any) => {
         const eventData: any = data.data
-        // console.log("WTF", eventData.event, JSON.stringify(eventData))
+        // console.log("WTF", JSON.stringify(eventData))
         // console.log("SHESH", eventData.Inventory, JSON.stringify(eventData.Inventory))
         if (eventData.show) {
             setShow(eventData.show)
@@ -71,7 +71,8 @@ export const Inventory = () => {
         }
 
         if (eventData.PlayerData) {
-            setPlayerState(eventData.PlayerData)
+            console.log("PLAYERDATA", JSON.stringify(eventData.PlayerData))
+           setPlayerState(eventData.PlayerData)
         }
 
         if (eventData.event === 'inventory:sendNotification') {
@@ -106,6 +107,10 @@ export const Inventory = () => {
             })
         }
     };
+
+    const createInnerHTML = (htmlString: any) => ({
+        innerHTML: htmlString,
+    });
 
     return (
         onMount(async () => {
@@ -324,9 +329,16 @@ export const Inventory = () => {
                             <div
                                 class="flex flex-col gap-2 rounded p-4 ring-1 ring-black ring-opacity-5 [background:radial-gradient(83%_83%_at_50%_50%,_rgba(80,_80,_80,_0.9),_rgba(40,_40,_40,_0.9))]"
                             >
-                                <div>
-                                    {itemList[hoveringItem.Information?.itemId].description}
-                                </div>
+                            <div>
+                            <div {...createInnerHTML(itemList[hoveringItem.Information?.itemId]?.description)} />
+                                {hoveringItem.Information?.information.length > 2 ? (
+                                    <>
+                                        <br />
+                                        {hoveringItem.Information?.information}
+                                    </>
+                                ) : ''}
+                            </div>
+
                             </div>
                         </Show>
 
