@@ -55,27 +55,27 @@ export async function addItem(source, data) {
                 let isMaxSlot = await findNextAvailableSlot(source, 'body-' + character.id)
                 if(isMaxSlot === true){
                     let info: any = await GenerateInformation(data.Item)
+                    let iInfo = info === undefined ? '{}' : info
                     for (let i = 0; i < data.Amount; i++) {
                         global.exports['oxmysql'].query_async('INSERT INTO user_inventory2 (item_id, name, slot, creationDate, information) VALUES (@ItemId, @Name, @Slot, @creationDate, @Info)', {
                             ['@ItemId']: data.Item,
                             ['@Name']: 'backpack-' + character.id,
                             ['@Slot']: await findNextAvailableSlot(source, 'backpack-' + character.id),
                             ['@creationDate']: creationDate,
-                            ['@Info']: info
+                            ['@Info']: iInfo
                         })
                     }
                     emitNet('inventory:sendNotification',source, data.Item, data.Amount, 'Added')
                 }else{
-                    // console.log("ADD ITEM",GenerateInformation(data.Item))
                     let info: any = await GenerateInformation(data.Item)
-                    console.log("INFO SHIT",info)
+                    let iInfo = info === undefined ? '{}' : info
                     for (let i = 0; i < data.Amount; i++) {
                         global.exports['oxmysql'].query_async('INSERT INTO user_inventory2 (item_id, name, slot, creationDate, information) VALUES (@ItemId, @Name, @Slot, @creationDate, @Info)', {
                             ['@ItemId']: data.Item,
                             ['@Name']: 'body-' + character.id,
                             ['@Slot']: await findNextAvailableSlot(source, 'body-' + character.id),
                             ['@creationDate']: creationDate,
-                            ['@Info']: info
+                            ['@Info']: iInfo
                         })
                     }  
                     emitNet('inventory:sendNotification',source, data.Item, data.Amount, 'Added')
@@ -85,7 +85,6 @@ export async function addItem(source, data) {
             }
         }else{
             if (ItemList[data.Item].stackable) {
-                // console.log('Went past the ItemList[data.Item].stackable 1')
                 for (let i = 0; i < data.Amount; i++) {
                     global.exports['oxmysql'].query_async('INSERT INTO user_inventory2 (item_id, name, slot, creationDate) VALUES (@ItemId, @Name, @Slot, @creationDate)', {
                         ['@ItemId']: data.Item,
@@ -96,7 +95,6 @@ export async function addItem(source, data) {
                 }
                 emitNet('inventory:sendNotification',Number(source), data.Item, data.Amount, 'Added')
             } else {
-                // console.log('Went past the ItemList[data.Item].stackable 2')
                 for (let i = 0; i < data.Amount; i++) {
                     global.exports['oxmysql'].query_async('INSERT INTO user_inventory2 (item_id, name, slot, creationDate) VALUES (@ItemId, @Name, @Slot, @creationDate)', {
                         ['@ItemId']: data.Item,
@@ -113,26 +111,26 @@ export async function addItem(source, data) {
         const Slot = await findNextAvailableSlot(source, 'body-' + character.id)
 
         for (let i = 0; i < data.Amount; i++) {
-            // console.log('Went past the ItemList[data.Item].stackable 3')
             let info: any = await GenerateInformation(data.Item)
+            let iInfo = info === undefined ? '{}' : info
             if (ItemList[data.Item].stackable) {
                 global.exports['oxmysql'].query_async('INSERT INTO user_inventory2 (item_id, name, slot, creationDate, information) VALUES (@ItemId, @Name, @Slot, @creationDate, @Info)', {
                     ['@ItemId']: data.Item,
                     ['@Name']: 'body-' + character.id,
                     ['@Slot']: Slot,
                     ['@creationDate']: creationDate,
-                    ['@Info']: info
+                    ['@Info']: iInfo
                 })
                 emitNet('inventory:sendNotification',source, data.Item, data.Amount, 'Added')
             } else {
-                // console.log('Went past the ItemList[data.Item].stackable 4')
                 let info: any = await GenerateInformation(data.Item)
+                let iInfo = info === undefined ? '{}' : info
                 global.exports['oxmysql'].query_async('INSERT INTO user_inventory2 (item_id, name, slot, creationDate, information) VALUES (@ItemId, @Name, @Slot, @creationDate, @Info)', {
                     ['@ItemId']: data.Item,
                     ['@Name']: 'body-' + character.id,
                     ['@Slot']: await findNextAvailableSlot(source, 'body-' + character.id),
                     ['@creationDate']: creationDate,
-                    ['@Info']: info
+                    ['@Info']: iInfo
                 })
                 emitNet('inventory:sendNotification',source, data.Item, data.Amount, 'Added')
             }
@@ -151,12 +149,9 @@ RPC.register('inventory:addItem', async(source: any, data: any) => {
         ['@Name']: 'body-' + character.id
     });
     let totalWeight = await CheckInvWeight(toCheckWeight)
-    console.log("DATA SHIT 2", data, JSON.stringify(data))
     if (foundItem[0]) {
         if(totalWeight !== InventoryConfig['PersonalInventory'].MaxWeight){
             if (ItemList[data.Item].stackable) {
-                // console.log('Went past the ItemList[data.Item].stackable')
-
                 for (let i = 0; i < data.Amount; i++) {
                     global.exports['oxmysql'].query_async('INSERT INTO user_inventory2 (item_id, name, slot, creationDate) VALUES (@ItemId, @Name, @Slot, @creationDate)', {
                         ['@ItemId']: data.Item,
@@ -165,7 +160,6 @@ RPC.register('inventory:addItem', async(source: any, data: any) => {
                         ['@creationDate']: creationDate
                     })
                 }
-                // console.log("ADD ITEM")
                 emitNet('inventory:sendNotification',Number(source), data.Item, data.Amount, 'Added')
             } else {
                 for (let i = 0; i < data.Amount; i++) {
@@ -176,12 +170,10 @@ RPC.register('inventory:addItem', async(source: any, data: any) => {
                         ['@creationDate']: creationDate
                     })
                 }
-                // console.log("ADD ITEM 2")
                 emitNet('inventory:sendNotification',source, data.Item, data.Amount, 'Added')
             }
         }else{
             if (ItemList[data.Item].stackable) {
-                // console.log('Went past the ItemList[data.Item].stackable')
 
                 for (let i = 0; i < data.Amount; i++) {
                     global.exports['oxmysql'].query_async('INSERT INTO user_inventory2 (item_id, name, slot, creationDate) VALUES (@ItemId, @Name, @Slot, @creationDate)', {
@@ -191,7 +183,6 @@ RPC.register('inventory:addItem', async(source: any, data: any) => {
                         ['@creationDate']: creationDate
                     })
                 }
-                // console.log("ADD ITEM")
                 emitNet('inventory:sendNotification',Number(source), data.Item, data.Amount, 'Added')
             } else {
                 for (let i = 0; i < data.Amount; i++) {
@@ -202,7 +193,6 @@ RPC.register('inventory:addItem', async(source: any, data: any) => {
                         ['@creationDate']: creationDate
                     })
                 }
-                // console.log("ADD ITEM 2")
                 emitNet('inventory:sendNotification',source, data.Item, data.Amount, 'Added')
             }
         }
@@ -279,8 +269,8 @@ RPC.register('inventory:removeItem', async(source: any, data: any) => {
 // Make it so you can use an item in your backpack ? NoPixel has this.
 
 RPC.register('inventory:dragItem', async (source: any, data: any, coords: any) => {
-    console.log("toInventory", data.toInventory,JSON.stringify(data))
-    console.log("fromInventory?",data.fromInventory)
+    // console.log("toInventory", data.toInventory,JSON.stringify(data))
+    // console.log("fromInventory?",data.fromInventory)
     const toCheckWeight = await global.exports.oxmysql.query_async('SELECT * FROM user_inventory2 WHERE name = @Name', {
         ['@Name']: data.toInventory
     });
@@ -299,20 +289,14 @@ RPC.register('inventory:dragItem', async (source: any, data: any, coords: any) =
     let totalItemWeight = await CheckInvWeight(CheckFromItemWeight)
     let totalToItemWeightI = await CheckInvWeight(CheckToItemWeight)
     let invAndItemWeight = totalWeight + totalItemWeight
-    // console.log("ANO TO",totalItemWeight,totalToItemWeightI,totalItemWeight !== totalToItemWeightI,totalWeight === InventoryConfig['PersonalInventory'].MaxWeight && data.toInventory.includes('body') || invAndItemWeight > InventoryConfig['PersonalInventory'].MaxWeight && data.toInventory.includes('body') && totalItemWeight !== totalToItemWeightI)
-    // console.log("DRAG ITEMS IN SHIT", totalWeight,totalWeight === InventoryConfig['PersonalInventory'].MaxWeight)
-    // console.log("SAME WEIGHT?",totalItemWeight === totalToItemWeightI,Number(totalItemWeight) !== Number(totalToItemWeightI))
-    // console.log("totalItemWeight", totalItemWeight, 'OVERALL WEIGHT:',invAndItemWeight, data.fromInventory, data.toInventory)
-    // console.log("CHECKING",data.toInventory !== data.fromInventory, totalWeight === InventoryConfig['Backpack'].MaxWeight && data.toInventory.includes('backpack'))
-    // console.log("ON BACKPACK",totalWeight === InventoryConfig['Backpack'].MaxWeight && data.toInventory.includes('backpack') || invAndItemWeight > InventoryConfig['Backpack'].MaxWeight && data.toInventory.includes('backpack') && totalItemWeight !== totalToItemWeightI)
-    // console.log(invAndItemWeight > InventoryConfig['PersonalInventory'].MaxWeight,invAndItemWeight > InventoryConfig['PersonalInventory'].MaxWeight, totalWeight === InventoryConfig['PersonalInventory'].MaxWeight)
+    
     if(data.toInventory !== data.fromInventory && totalItemWeight !== totalToItemWeightI && totalWeight === InventoryConfig['PersonalInventory'].MaxWeight && data.toInventory.includes('body') || data.toInventory !== data.fromInventory && invAndItemWeight > InventoryConfig['PersonalInventory'].MaxWeight && data.toInventory.includes('body')){
         return
     }
     if(data.toInventory !== data.fromInventory && totalItemWeight !== totalToItemWeightI && totalWeight === InventoryConfig['Backpack'].MaxWeight && data.toInventory.includes('backpack') || data.toInventory !== data.fromInventory && invAndItemWeight > InventoryConfig['Backpack'].MaxWeight && data.toInventory.includes('backpack') && totalItemWeight !== totalToItemWeightI){
         return
     }
-    // console.log('data.toSlot && data.toInventory',data.toSlot,data.toInventory)
+
     if (data.toSlot && data.toInventory) {
 
         if (data.toInventory.includes('pockets')) {
@@ -330,7 +314,6 @@ RPC.register('inventory:dragItem', async (source: any, data: any, coords: any) =
                     '@item_id': data.itemId,
                 });
                 let number = JSON.parse(result[0].information)
-                console.log("FUCKING SHIT PHONE",number,data)
                 emitNet('inventory:phoneNumber', source, number)
                 emitNet('updatePhoneNumber',source, number)
             }
@@ -340,7 +323,6 @@ RPC.register('inventory:dragItem', async (source: any, data: any, coords: any) =
         }
 
         if(data.fromInventory.includes('phone')){
-            console.log("FUCKING SHIT PHONE 2")
             emitNet('inventory:phoneNumber', source, 'N/A')
             emitNet('updatePhoneNumber',source, 'N/A')
         }
@@ -675,7 +657,6 @@ RPC.register('inventory:pickupObject', async(source: any, data: any) => {
 
     let totalWeight = await CheckInvWeight(toCheckWeight)
 
-    console.log("TOTAL WEIGHT FOR PICKUP", totalWeight)
     if(totalWeight >= InventoryConfig['PersonalInventory'].MaxWeight){
         return emitNet('DoLongHudText',source, "You are full! You can't pickup more item!", 2)
     }
@@ -710,7 +691,6 @@ RPC.register('inventory:pickupObject', async(source: any, data: any) => {
                         '@Name': foundItem[0].name
                     }
                 );
-                console.log(affected, JSON.stringify(affected))
                 if(affected.affectedRows === 1){
                     if(data.count === 0 || items.length === 0 || items.length === 1){
                         emit('Inventory-deleteObject',data.name)
@@ -751,7 +731,7 @@ RPC.register('inventory:pickupObject', async(source: any, data: any) => {
 })
 
 onNet("Inventory-deleteObject", async(targetInventoryName) => {
-    console.log("DELETE OBJECT SPAWN",targetInventoryName)
+    // console.log("DELETE OBJECT SPAWN",targetInventoryName)
     delete DropIcon[targetInventoryName]
 })
 

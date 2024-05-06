@@ -166,7 +166,6 @@ export async function getAdditionalInventories(source: any) {
             acceptedItems: await getInventoryAccepted(data.ConfigName, InventoryConfig[data.ConfigName].Slots, InventoryConfig[data.ConfigName].acceptedItems)
         })
     })
-    // console.log("AddedInventory",AddedInventory,JSON.stringify(AddedInventory))
     return AddedInventory
 }
 
@@ -182,4 +181,4 @@ function extractNumber(inputString: string): number | null {
     
     // Check if the conversion was successful and return the number or null
     return isNaN(number) ? null : number;
-  }
+}

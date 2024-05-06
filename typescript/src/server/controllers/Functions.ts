@@ -315,3 +315,17 @@ function randomInt(min: number, max: number): number {
     // Generate a random float between 0 and 1, scale it to the range, and use Math.floor to get an integer
     return Math.floor(Math.random() * (max - min) + min);
 }
+
+//Clean Inventory Removed 0 Quality Items
+setImmediate(async () => {
+    const result = await global.exports.oxmysql.query_async('SELECT * FROM user_inventory2');
+    for (const row of result) {
+        let quality = ConvertQuality(row.item_id,row.creationDate)
+        if(quality === 0){
+            await global.exports.oxmysql.query_async(`DELETE FROM user_inventory2 WHERE id = @ID AND item_id = @ItemId`, {
+                ['@ID']: row.id,
+                ['@ItemId']: row.item_id
+            });
+        }
+    }
+})
