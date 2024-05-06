@@ -1174,14 +1174,14 @@ RegisterCommand('checkers', ()=>{
 
 RegisterCommand('testRob', async ()=> {
     let cid = global.exports['isPed'].isPed('cid')
-    let open = await RPC.execute('inventory:additionalInventoriesAdd', {itemAction: "robPlayer", cid: 156})
+    // let open = await RPC.execute('inventory:additionalInventoriesAdd', {itemAction: "robPlayer", cid: 156})
     // const Inventory = await RPC.execute('inventory:getInventories',cid, IsPedInVehicle(PlayerPedId(), GetVehiclePedIsIn(PlayerPedId(), false), false), GetVehicleNumberPlateText(GetVehiclePedIsIn(PlayerPedId(), false)), false)
     // console.log("INVENTORY ADD",JSON.stringify(Inventory))
     // SendNUIMessage({
     //     Inventory: Inventory,
     // })
-    const Inventory = await RPC.execute('inventory:getInventories',cid, IsPedInVehicle(PlayerPedId(), GetVehiclePedIsIn(PlayerPedId(), false), false), GetVehicleNumberPlateText(GetVehiclePedIsIn(PlayerPedId(), false)), false)
-
+    const Inventory = await RPC.execute('inventory:getInventories',cid, IsPedInVehicle(PlayerPedId(), GetVehiclePedIsIn(PlayerPedId(), false), false), GetVehicleNumberPlateText(GetVehiclePedIsIn(PlayerPedId(), false)),false, "{}", {}, false,true)
+    console.log("INVENTORY", JSON.stringify(Inventory))
     SendNUIMessage({
         Inventory: Inventory,
     })
@@ -1205,7 +1205,7 @@ RegisterCommand('testRob', async ()=> {
         }
     });
     
-    updateInventory()
+    // updateInventory()
     global.exports.focusmanager.SetUIFocus(true, true)
 }, false)
 

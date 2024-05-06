@@ -84,12 +84,14 @@ setTick(checking);
 //     console.log("HELLO INVTERBAL", DroppedInventories)
 // }, 3000)
 
-RPC.register('inventory:getInventories', async(source: any, cid: number, inVehicle: any, licensePlate: any, isTrunk: any, TrunkPlate: any, coords: any, isDrop: boolean) => {
+RPC.register('inventory:getInventories', async(source: any, cid: number, inVehicle: any, licensePlate: any, isTrunk: any, TrunkPlate: any, coords: any, isDrop: boolean, isRob: boolean) => {
     const character = global.exports['qb-lib'].getCharacter(source)
     const result = await global.exports.oxmysql.query_async('SELECT * FROM user_inventory2 WHERE item_id = @item_id AND name = @Name', {
         '@item_id': 'simcard',
         '@Name': 'simcard-'+character.id
     });
+    console.log(cid, inVehicle, licensePlate, isTrunk, TrunkPlate, coords, isDrop, isRob)
+    console.log('cid, inVehicle, licensePlate, isTrunk, TrunkPlate, coords, isDrop, isRob')
     if(result[0]){
         let number = JSON.parse(result[0].information)
         emitNet('updatePhoneNumber',source, number.Number)
@@ -207,7 +209,7 @@ RPC.register('inventory:getInventories', async(source: any, cid: number, inVehic
     }
     // console.log("GET ADDITIONAL INVENTORIES",await getAdditionalInventories(source))
     let dropItem = false
-    if (!inVehicle) {
+    if (!inVehicle && !isRob) {
         Inventory.PrimarySecondaryInventory = {
             maxWeight: 150,
             Weight: await calculateInventoryWeight(NewDroppedName),
@@ -237,6 +239,32 @@ RPC.register('inventory:getInventories', async(source: any, cid: number, inVehic
         //     inventoryLabel: 'Trunk',
         //     slots: await getInventory('trunk::' + TrunkPlate, InventoryConfig.Trunk.Slots, false, null)
         // }
+    }
+
+    if(isRob) {
+        console.log("IS THIS ROB?")
+        Inventory.PrimarySecondaryInventory = {
+            maxWeight: InventoryConfig.PersonalInventory.MaxWeight,
+            Weight: await calculateInventoryWeight('body-156'),
+            inventoryName: 'body-156',
+            inventoryLabel: 'Player',
+            slots: await getInventory('body-156', InventoryConfig.PersonalInventory.Slots, false, null)
+        }
+        Inventory.PrimaryThirdInventory = {
+            maxWeight: InventoryConfig.Backpack.MaxWeight,
+            Weight: await calculateInventoryWeight('backpack-156'),
+            inventoryName: 'backpack-156',
+            inventoryLabel: 'Backpack',
+            slots: await getInventory('backpack-156', InventoryConfig.Backpack.Slots, false, null)
+        }
+        Inventory.PrimaryFourthInventory = {
+            maxWeight: InventoryConfig.Pockets.MaxWeight,
+            Weight: await calculateInventoryWeight('pockets-156'),
+            inventoryName: 'pockets-156',
+            inventoryLabel: 'Body',
+            slots: await getInventory('pockets-156', InventoryConfig.Pockets.Slots, false, null)
+        }
+      
     }
 
     return Inventory

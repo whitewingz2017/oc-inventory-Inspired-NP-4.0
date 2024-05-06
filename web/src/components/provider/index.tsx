@@ -6788,6 +6788,10 @@ export function App(props: any) {
             ]
         },
 
+        PrimaryThirdInventory: {},
+
+        PrimaryFourthInventory: {},
+
         Drops: [
             {
                 id: 1,

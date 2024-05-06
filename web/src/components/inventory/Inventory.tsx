@@ -64,6 +64,7 @@ export const Inventory = () => {
         }
 
         if (eventData.Inventory) {
+            console.log("HOW MANY FUCKING INVENTORY",JSON.stringify(eventData.Inventory))
             setInventory(eventData.Inventory)
         }
 
@@ -157,6 +158,12 @@ export const Inventory = () => {
                         {Inventory.PrimarySecondaryInventory &&
                             <SecondaryInventory />
                         }
+                         {/* {Inventory.PrimaryThirdInventory &&
+                            <ThirdInventory />
+                        }
+                         {Inventory.PrimaryFourthInventory &&
+                            <FourthInventory />
+                        } */}
                     </div>
                 </div>
             </Show>
