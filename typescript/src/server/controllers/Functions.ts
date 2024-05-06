@@ -214,7 +214,7 @@ RPC.register('inventory:characterSpawned', async (source) => {
     const character = global.exports['qb-lib'].getCharacter(source);
     const result = await global.exports.oxmysql.query_async('SELECT * FROM user_inventory2 WHERE item_id = @item_id AND name = @Name', {
         '@item_id': 'simcard',
-        '@Name': 'phone::1::'+character.id
+        '@Name': 'simcard-'+character.id
     });
     let number = JSON.parse(result[0].information)
     emitNet('updatePhoneNumber',source, number.Number)

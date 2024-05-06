@@ -33,7 +33,8 @@ export const Inventory = () => {
         hoveringWound,
         woundPosition,
         setHoveringWound,
-        Inventory
+        Inventory,
+        activeInventory
     } = getInventoryContext()
 
     const position = useMousePosition()
@@ -357,7 +358,7 @@ export const Inventory = () => {
                                             fromInventory: hoveringItem.isSideSlot ? null : hoveringItem.fromInventory,
                                             itemAction: itemList[hoveringItem.Information.itemId].context.action
                                         })
-                                        console.log("OH SHIT",JSON.stringify(hoveringItem))
+                                        console.log("OH SHIT",hoveringItem.fromInventory,JSON.stringify(hoveringItem))
                                         // nuiAction('closeInventory')
                                         // setShow(false)
 

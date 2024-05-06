@@ -64,18 +64,12 @@ NUI.register('unequipItem', async(data: any, cb: any) => {
 })
 
 NUI.register('useItem', async(data: any, cb: any) => {
-    // global.exports['np-objects'].IsPlacingObject('bkr_prop_money_wrapped_01',{
-    //     collision: false,
-    //     groundSnap: true,
-    //     forceGroundSnap: true,
-    //     useModelOffset: false,
-    //     distance: 2.5
-    //   }, function(){return true})
     emit('inventory:sendNotification', data.ItemId, 1, 'Used')
     usedItem(data)
 })
 
 NUI.register('openItem', async(data: any, cb: any) => {
+    console.log("OPEN ITEM", JSON.stringify(data))
     let cid = global.exports['isPed'].isPed('cid')
     let open = await RPC.execute('inventory:additionalInventoriesAdd', data)
     const Inventory = await RPC.execute('inventory:getInventories',cid, IsPedInVehicle(PlayerPedId(), GetVehiclePedIsIn(PlayerPedId(), false), false), GetVehicleNumberPlateText(GetVehiclePedIsIn(PlayerPedId(), false)), inTrunk, trunkPlate)

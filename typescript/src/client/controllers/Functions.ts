@@ -1,5 +1,5 @@
 import { count } from "console";
-import { Delay, loadAnimDict } from "./Exports";
+import { Delay, loadAnimDict, updateInventory } from "./Exports";
 import {TaskBarMinigame} from "../modules/minigames"
 import { dropNames } from "./Inventory";
 let ItemCallbacks = {}
@@ -1170,6 +1170,43 @@ RegisterCommand('checkers', ()=>{
     setTimeout(() => {
         console.log("global.exports['isPed'].isPed('phoneNumber') 222",global.exports['isPed'].isPed('phonenumbers'))
     }, 2000);
+}, false)
+
+RegisterCommand('testRob', async ()=> {
+    let cid = global.exports['isPed'].isPed('cid')
+    let open = await RPC.execute('inventory:additionalInventoriesAdd', {itemAction: "robPlayer", cid: 156})
+    // const Inventory = await RPC.execute('inventory:getInventories',cid, IsPedInVehicle(PlayerPedId(), GetVehiclePedIsIn(PlayerPedId(), false), false), GetVehicleNumberPlateText(GetVehiclePedIsIn(PlayerPedId(), false)), false)
+    // console.log("INVENTORY ADD",JSON.stringify(Inventory))
+    // SendNUIMessage({
+    //     Inventory: Inventory,
+    // })
+    const Inventory = await RPC.execute('inventory:getInventories',cid, IsPedInVehicle(PlayerPedId(), GetVehiclePedIsIn(PlayerPedId(), false), false), GetVehicleNumberPlateText(GetVehiclePedIsIn(PlayerPedId(), false)), false)
+
+    SendNUIMessage({
+        Inventory: Inventory,
+    })
+
+    SendNUIMessage({
+        show: true,
+        PlayerData: {
+            character: {
+                id: global.exports['isPed'].isPed('cid'),
+                name: global.exports['isPed'].isPed('fullname'),
+                cash: 0,
+                personalVehicle: 'Landstalker',
+                home: 'Little Seoul',
+                phone: global.exports['isPed'].isPed('phonenumbers'),
+            },
+    
+            settings: {
+                holdToDrag: GetResourceKvpInt('inventory:holdToDrag'),
+                shiftQuickMove: GetResourceKvpInt('inventory:shiftQuickMove')
+            }
+        }
+    });
+    
+    updateInventory()
+    global.exports.focusmanager.SetUIFocus(true, true)
 }, false)
 
 export async function hasEnoughOfItem(itemId, amount, shouldReturnText, checkQuality, metaInformation){

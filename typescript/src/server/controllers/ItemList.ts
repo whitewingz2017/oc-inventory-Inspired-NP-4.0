@@ -107,8 +107,8 @@ export const ItemList = {
         image: createImage('np_simcard'),
         weight: 0.02,
         context: {
-            useItem: true,
-            equipItem: true,
+            useItem: false,
+            equipItem: false,
         }
     },
     'mobilephone': {
