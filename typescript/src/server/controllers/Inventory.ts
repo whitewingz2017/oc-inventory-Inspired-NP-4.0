@@ -164,7 +164,7 @@ RPC.register('inventory:getInventories', async(source: any, cid: number, inVehic
                     icon: 'tablet',
                     item: await getItemInSlot(source, 'pockets-' + character.id, 3),
                     acceptedItems: [
-                        'OneCity Tablet'
+                        'OC Tablet'
                     ]
                 },
                 {
@@ -238,7 +238,6 @@ RPC.register('inventory:getInventories', async(source: any, cid: number, inVehic
         //     slots: await getInventory('trunk::' + TrunkPlate, InventoryConfig.Trunk.Slots, false, null)
         // }
     }
-
     return Inventory
 })
 

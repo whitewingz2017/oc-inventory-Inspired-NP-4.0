@@ -20,12 +20,13 @@ RegisterCommand('+inventory', async() => {
     RPC.execute('addDrop-Inventory',GetEntityCoords(PlayerPedId()),isDrop)
     const Inventory = await RPC.execute('inventory:getInventories',cid, IsPedInVehicle(PlayerPedId(), GetVehiclePedIsIn(PlayerPedId(), false), false), GetVehicleNumberPlateText(GetVehiclePedIsIn(PlayerPedId(), false)), false, GetEntityCoords(PlayerPedId()), isDrop)
     if(Inventory){
+        console.log("INV", JSON.stringify(Inventory))
         let dropNamesx = Inventory.PrimarySecondaryInventory
         dropNames = dropNamesx.inventoryName
         SendNUIMessage({
             Inventory: Inventory,
         })
-        console.log("OPEN FUCKING NUMBER",global.exports['isPed'].isPed('phonenumbers').toString())
+        console.log("OPEN FUCKING NUMBER",global.exports['isPed'].isPed('phonenumbers'))
         SendNUIMessage({
             show: true,
             PlayerData: {

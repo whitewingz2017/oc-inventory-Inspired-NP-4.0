@@ -161,8 +161,44 @@ export async function initTrunk(): Promise<void> {
     })
 }
 
+var buss = ["bus", "dashhound", "tourbus", "trash2", "train", "brickade", "npwheelchair"];
+var truck = ["trash", "pounder", "packer"];
+
+function _0x38a701(Entity) {
+    if (!Entity) {
+      return false;
+    }
+    if (!IsEntityAVehicle(Entity)) {
+      return false;
+    }
+    var ArchType = GetEntityArchetypeName(Entity);
+    if (ArchType && truck.includes(ArchType)) {
+      return true;
+    }
+    if (ArchType && buss.includes(ArchType)) {
+      return false;
+    }
+    var Doors = GetNumberOfVehicleDoors(Entity);
+    if (Doors < 3) {
+      return false;
+    }
+    var Model = GetEntityModel(Entity);
+    if (IsThisModelABicycle(Model)) {
+      return false;
+    }
+    var Class = GetVehicleClass(Entity);
+    if (Doors == 3 && (Class == 10 || Class == 20)) {
+      return false;
+    }
+    var VehicleIdentifier = globalThis.exports["rp-vehicles"].GetVehicleIdentifier(Entity);
+    if (!VehicleIdentifier) {
+      return false;
+    }
+    return true;
+  }
+
 on('inventory:openTrunk', async(Parameters: any, Entity: any) => {
-    const LockState = GetVehicleDoorLockStatus(Entity)
+    
     let cid = global.exports['isPed'].isPed('cid')
     var _0x407527 = PlayerPedId();
     var _0x2350cc = new Vector3(GetOffsetFromEntityInWorldCoords(_0x407527, 0, 0.5, 0));
@@ -171,9 +207,17 @@ on('inventory:openTrunk', async(Parameters: any, Entity: any) => {
     var AName = GetEntityArchetypeName(Entity);
     var Class = GetVehicleClass(Entity);
     var identifier = global.exports['rp-vehicles'].GetVehicleIdentifier(Entity)
-    const pEngineDistance = _0x2350cc.getDistance(_0x460859.x, _0x460859.y, _0x460859.z)
-    // console.log("FUCKING OPEN THE FUCKING TRUNK",LockState,pEngineDistance)
-    // console.log("Model,AName, AName ?? Model",identifier,Class,AName, AName ?? Model)
+    const trunk = _0x2350cc.getDistance(_0x460859.x, _0x460859.y, _0x460859.z)
+
+    if(trunk > 5){
+        emit("DoLongHudText", "You are too far from the vehicle.", 2);
+          return;
+    }
+    if (!_0x38a701(Entity)) {
+        emit("DoLongHudText", "The vehicle does not have a valid trunk.", 2);
+        return;
+    }
+    const LockState = GetVehicleDoorLockStatus(Entity)
     inTrunk = true
     // trunkPlate = GetVehicleNumberPlateText(Entity)
     trunkPlate = identifier + '::'+Class+'::'+ AName ?? Model
@@ -181,12 +225,13 @@ on('inventory:openTrunk', async(Parameters: any, Entity: any) => {
     if(LockState === 2){
         return emit('DoLongHudText', 'The vehicle is locked.',2)
     }
+    TaskTurnPedToFaceEntity(_0x407527, Entity, 1);
     // Add checks for taskbar active ect.
    let data = {
         itemAction: 'openTrunk',
         Plate: trunkPlate,
     }
-    // RPC.execute('inventory:additionalInventoriesClear')
+    RPC.execute('inventory:additionalInventoriesClear')
     RPC.execute('inventory:additionalInventoriesAdd', data)
     const Inventory = await RPC.execute('inventory:getInventories',cid, IsPedInVehicle(PlayerPedId(), GetVehiclePedIsIn(PlayerPedId(), false), false), GetVehicleNumberPlateText(GetVehiclePedIsIn(PlayerPedId(), false)), inTrunk, trunkPlate)
 

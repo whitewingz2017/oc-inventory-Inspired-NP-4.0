@@ -27,6 +27,8 @@ RegisterCommand('delItem', async(source, args) => {
 
 export async function addItem(source, data) {
     const character = global.exports['qb-lib'].getCharacter(source)
+    let values = [];
+    let placeholders = [];
     let creationDate = Date.now()
     const foundItem = await global.exports.oxmysql.query_async('SELECT * FROM user_inventory2 WHERE name = @Name AND item_id = @ItemId', {
         ['@Name']: 'body-' + character.id,
@@ -37,47 +39,92 @@ export async function addItem(source, data) {
     });
     let totalWeight = await CheckInvWeight(toCheckWeight)
     // console.log("DATA SHIT", JSON.stringify(data))
+   
     if (foundItem[0]) {
         if(totalWeight !== InventoryConfig['PersonalInventory'].MaxWeight){
             // console.log("ItemList[data.Item].stackable",ItemList[data.Item].stackable)
             if (ItemList[data.Item].stackable) {
                 // console.log('Went past the ItemList[data.Item].stackable')
+                // for (let i = 0; i < data.Amount; i++) {
+                    // global.exports['oxmysql'].query_async('INSERT INTO user_inventory2 (item_id, name, slot, creationDate) VALUES (@ItemId, @Name, @Slot, @creationDate)', {
+                    //     ['@ItemId']: data.Item,
+                    //     ['@Name']: 'body-' + character.id,
+                    //     ['@Slot']: foundItem[0].slot,
+                    //     ['@creationDate']: creationDate
+                    // })
+                // }
                 for (let i = 0; i < data.Amount; i++) {
-                    global.exports['oxmysql'].query_async('INSERT INTO user_inventory2 (item_id, name, slot, creationDate) VALUES (@ItemId, @Name, @Slot, @creationDate)', {
-                        ['@ItemId']: data.Item,
-                        ['@Name']: 'body-' + character.id,
-                        ['@Slot']: foundItem[0].slot,
-                        ['@creationDate']: creationDate
-                    })
+                    values.push(data.Item, 'body-' + character.id, foundItem[0].slot, creationDate);
+                    placeholders.push('(?, ?, ?, ?)');
                 }
+                let query = `
+                            INSERT INTO user_inventory2 (item_id, name, slot, creationDate) 
+                            VALUES ${placeholders.join(', ')}
+                        `;
+
+                global.exports['oxmysql'].query_async(query, values)
+                    .then(() => {
+                        console.log('Bulk insert completed');
+                    })
+                    .catch((err) => {
+                        console.error('Error during bulk insert:', err);
+                });
+                console.log("ADD CASH 1")
                 emitNet('inventory:sendNotification',Number(source), data.Item, data.Amount, 'Added')
             } else {
                 let isMaxSlot = await findNextAvailableSlot(source, 'body-' + character.id)
                 if(isMaxSlot === true){
                     let info: any = await GenerateInformation(data.Item)
                     let iInfo = info === undefined ? '{}' : info
+                    // for (let i = 0; i < data.Amount; i++) {
+                    //     global.exports['oxmysql'].query_async('INSERT INTO user_inventory2 (item_id, name, slot, creationDate, information) VALUES (@ItemId, @Name, @Slot, @creationDate, @Info)', {
+                    //         ['@ItemId']: data.Item,
+                    //         ['@Name']: 'backpack-' + character.id,
+                    //         ['@Slot']: await findNextAvailableSlot(source, 'backpack-' + character.id),
+                    //         ['@creationDate']: creationDate,
+                    //         ['@Info']: iInfo
+                    //     })
+                    // }
                     for (let i = 0; i < data.Amount; i++) {
-                        global.exports['oxmysql'].query_async('INSERT INTO user_inventory2 (item_id, name, slot, creationDate, information) VALUES (@ItemId, @Name, @Slot, @creationDate, @Info)', {
-                            ['@ItemId']: data.Item,
-                            ['@Name']: 'backpack-' + character.id,
-                            ['@Slot']: await findNextAvailableSlot(source, 'backpack-' + character.id),
-                            ['@creationDate']: creationDate,
-                            ['@Info']: iInfo
-                        })
+                        let slot = await findNextAvailableSlot(source, 'backpack-' + character.id);
+                        values.push(data.Item, 'backpack-' + character.id, slot, creationDate, iInfo);
+                        placeholders.push('(?, ?, ?, ?, ?)');
                     }
+                    let query = `
+                                INSERT INTO user_inventory2 (item_id, name, slot, creationDate) 
+                                VALUES ${placeholders.join(', ')}
+                            `;
+    
+                    global.exports['oxmysql'].query_async(query, values)
+                        .then(() => {
+                            console.log('Bulk insert completed');
+                        })
+                        .catch((err) => {
+                            console.error('Error during bulk insert:', err);
+                    });
+                    console.log("ADD CASH 2")
                     emitNet('inventory:sendNotification',source, data.Item, data.Amount, 'Added')
                 }else{
                     let info: any = await GenerateInformation(data.Item)
-                    let iInfo = info === undefined ? '{}' : info
+                    let iInfo = info === undefined ? '{}' : info 
                     for (let i = 0; i < data.Amount; i++) {
-                        global.exports['oxmysql'].query_async('INSERT INTO user_inventory2 (item_id, name, slot, creationDate, information) VALUES (@ItemId, @Name, @Slot, @creationDate, @Info)', {
-                            ['@ItemId']: data.Item,
-                            ['@Name']: 'body-' + character.id,
-                            ['@Slot']: await findNextAvailableSlot(source, 'body-' + character.id),
-                            ['@creationDate']: creationDate,
-                            ['@Info']: iInfo
+                        let slot = await findNextAvailableSlot(source, 'body-' + character.id);
+                        values.push(data.Item, 'body-' + character.id, slot, creationDate, iInfo);
+                        placeholders.push('(?, ?, ?, ?, ?)');
+                    }
+                    let query = `
+                                INSERT INTO user_inventory2 (item_id, name, slot, creationDate) 
+                                VALUES ${placeholders.join(', ')}
+                            `;
+    
+                    global.exports['oxmysql'].query_async(query, values)
+                        .then(() => {
+                            console.log('Bulk insert completed');
                         })
-                    }  
+                        .catch((err) => {
+                            console.error('Error during bulk insert:', err);
+                    });
+                    console.log("ADD CASH 3")
                     emitNet('inventory:sendNotification',source, data.Item, data.Amount, 'Added')
                 }
                
@@ -140,6 +187,7 @@ export async function addItem(source, data) {
 
 RPC.register('inventory:addItem', async(source: any, data: any) => {
     const character = global.exports['qb-lib'].getCharacter(source)
+    console.log("ADD ITEM")
     let creationDate = Date.now()
     const foundItem = await global.exports.oxmysql.query_async('SELECT * FROM user_inventory2 WHERE name = @Name AND item_id = @ItemId', {
         ['@Name']: 'body-' + character.id,
@@ -258,9 +306,17 @@ export async function removeItem(source, data){
     }
 }
 
+global.exports('invaddItem', async(source, data) => {
+    addItem(source, data)
+})
 
+global.exports('invremoveItem', async(source, data) => {
+    console.log("REMOVE ITEM EXPORTS")
+    // removeItem(source, data)
+})
 
 RPC.register('inventory:removeItem', async(source: any, data: any) => {
+    console.log("REMOVE ITEM SHIT", JSON.stringify(data))
     removeItem(source, data)
 })
 
@@ -329,6 +385,12 @@ RPC.register('inventory:dragItem', async (source: any, data: any, coords: any) =
         if (data.toInventory.includes('wallet')) {
             const WalletSlot = Inventory.AdditionalInventories[0]
             if (!WalletSlot.acceptedItems[0].acceptedItems.includes(ItemList[data.itemId].name)) {
+                return
+            }
+        }
+        if (data.toInventory.includes('simcard')) {
+            const Sicmard = Inventory.AdditionalInventories[0]
+            if (!Sicmard.acceptedItems[0].acceptedItems.includes(ItemList[data.itemId].name)) {
                 return
             }
         }

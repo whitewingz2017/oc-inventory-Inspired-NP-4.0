@@ -789,6 +789,9 @@ export async function usedItem(item) {
     if (item.ItemId === "octablet"){
         let checkEquip = await RPC.execute('inventory:checkIfEquip', item.ItemId, item.Info.slot)
         console.log("USE THE TABLET",checkEquip)
+        if(checkEquip){
+            TriggerEvent('tablet:open')
+        }
         // if exports["qb-inventory"]:hasEnoughOfItem("vpnxj",1,false) then
         // TriggerEvent("rahe-boosting:client:openTablet")
     }

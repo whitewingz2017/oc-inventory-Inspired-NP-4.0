@@ -95,7 +95,7 @@ RPC.register('inventory:additionalInventoriesAdd', async (source: any, data: any
                     icon: 'tablet',
                     item: await getItemInSlot(source, 'pockets-' + data.cid, 3),
                     acceptedItems: [
-                        'OneCity Tablet'
+                        'OC Tablet'
                     ]
                 },
                 {

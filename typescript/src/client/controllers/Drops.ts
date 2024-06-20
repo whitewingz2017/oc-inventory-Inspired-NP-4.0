@@ -1,3 +1,4 @@
+import { Interface } from "../modules/interface";
 import { loadAnimDict } from "./Exports";
 
 const Drops = []
@@ -139,28 +140,47 @@ const createOneDrop = async (item,name,coords, props) => {
     SetEntityCollision(box, false, false)
     DropItemid[name].push(box);
     let  _0x22fda5 = GetEntityCoords(box);
-    // console.log('_0x22fda5',_0x22fda5,_0x22fda5[0])
-    global.exports['interactions'].AddInteraction({
-        id: "pickup_object_"+box,
-        coords: [_0x22fda5[0], _0x22fda5[1], _0x22fda5[2]],
-        options: [{
-          id: "pickup_object_"+box,
-          label: "Pickup",
-          icon: "comment",
-          event: "inventory:pickupObject",
-          parameters: {
-            entity:box,
-            dropId:box,
-            item: item
-          }
-        }],
-        context: {
-          distance: {
-            draw: 2,
-            use: 2
-          }
+    var _0x5d283b = {
+        distance: {
+          draw: 2,
+          use: 2
+        },
+        isToggled: true,
+        flag: [],
+        isEnabled: function () {
+          return true;
         }
-      })
+      };
+    Interface.addInteractionByModel(`deploy-${object}`, [object], [{
+        id: `deploy-${object}`,
+        label: "Pick Up",
+        event: "inventory:pickupObject",
+        parameters: {
+            item: item
+        }
+      }], _0x5d283b);
+    // console.log('_0x22fda5',_0x22fda5,_0x22fda5[0])
+    // global.exports['interactions'].AddInteraction({
+    //     id: "pickup_object_"+box,
+    //     coords: [_0x22fda5[0], _0x22fda5[1], _0x22fda5[2]],
+    //     options: [{
+    //       id: "pickup_object_"+box,
+    //       label: "Pick Up",
+    //       icon: "comment",
+    //       event: "inventory:pickupObject",
+    //       parameters: {
+    //         entity:box,
+    //         dropId:box,
+    //         item: item
+    //       }
+    //     }],
+    //     context: {
+    //       distance: {
+    //         draw: 2,
+    //         use: 2
+    //       }
+    //     }
+    //   })
 }
 
 const createMultiDrop = (item, name, coords, props) => {
@@ -174,27 +194,47 @@ const createMultiDrop = (item, name, coords, props) => {
     PlaceObjectOnGroundProperly(box)
     DropItemid[name].push(box);
     let  _0x22fwda5w = GetEntityCoords(box);
-    global.exports['interactions'].AddInteraction({
-        id: "pickup_object_"+box,
-        coords: [_0x22fwda5w[0], _0x22fwda5w[1], _0x22fwda5w[2]],
-        options: [{
-          id: "pickup_object_"+box,
-          label: "Pickup",
-          icon: "comment",
-          event: "inventory:pickupObject",
-          parameters: {
-            entity:box,
-            dropId:box,
-            item: item
-          }
-        }],
-        context: {
-          distance: {
-            draw: 2,
-            use: 2
-          }
+    const randomDigit = Math.floor(Math.random() * 10);
+    var _0x5d283b = {
+        distance: {
+          draw: 2,
+          use: 2
+        },
+        isToggled: true,
+        flag: [],
+        isEnabled: function () {
+          return true;
         }
-      })
+      };
+    Interface.addInteractionByModel(`deploy-${object}`, [object], [{
+        id: `deploy-${object+randomDigit}`,
+        label: "Pick Up",
+        event: "inventory:pickupObject",
+        parameters: {
+            item: item
+        }
+      }], _0x5d283b);
+    // global.exports['interactions'].AddInteraction({
+    //     id: "pickup_object_"+box,
+    //     coords: [_0x22fwda5w[0], _0x22fwda5w[1], _0x22fwda5w[2]],
+    //     options: [{
+    //       id: "pickup_object_"+box,
+    //       label: "Pickup",
+    //       icon: "comment",
+    //       event: "inventory:pickupObject",
+    //       parameters: {
+    //         entity:box,
+    //         dropId:box,
+    //         item: item
+    //       }
+    //     }],
+    //     context: {
+    //       distance: {
+    //         draw: 2,
+    //         use: 2
+    //       }
+    //     }
+    //   })
 }
 
 const clearObject = (name) => {

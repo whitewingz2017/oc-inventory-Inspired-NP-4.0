@@ -12,7 +12,6 @@ export const CreateInventory = (props: any) => {
         setActiveInventory
     } = getInventoryContext();
 
-    console.log("MOTHER FUCKING SHIT")
     return (
         <div>
             <div>
@@ -69,7 +68,7 @@ export const CreateInventory = (props: any) => {
                             <div
                                 class="text-[0.88rem] leading-[108.5%] text-gray-300"
                                 onClick={() => {
-                                    console.log(JSON.stringify(props, null, 2))
+                                    // console.log(JSON.stringify(props, null, 2))
                                 }}   
                             >
                                 {props.Weight.toFixed(1)}kg / {props.maxWeight}kg
@@ -131,7 +130,7 @@ export const CreateInventory = (props: any) => {
                             each={props.slots}
                         >
                             {(pSlot: any) => (
-                                <CreateSlot {...pSlot} />
+                               <CreateSlot {...pSlot} etf={props} />
                             )}
                         </For>
                     </div>

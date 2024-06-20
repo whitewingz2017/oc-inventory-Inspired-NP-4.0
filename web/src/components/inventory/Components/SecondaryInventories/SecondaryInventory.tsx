@@ -62,7 +62,7 @@ export const SecondaryInventory = () => {
                                     <div
                                         class="text-[0.88rem] leading-[108.5%] text-gray-300"
                                     >
-                                        {Inventory.PrimarySecondaryInventory.Weight.toFixed(1)}kg / {Inventory.PrimarySecondaryInventory.maxWeight}kg
+                                        {Inventory.PrimarySecondaryInventory.Weight.toFixed(1)}kg / {Inventory.PrimarySecondaryInventory.maxWeight.toFixed(1)}kg
                                     </div>
                                 </div>
 

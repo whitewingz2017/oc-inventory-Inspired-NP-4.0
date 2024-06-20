@@ -34,7 +34,8 @@ export const Inventory = () => {
         woundPosition,
         setHoveringWound,
         Inventory,
-        activeInventory
+        activeInventory,
+        setActiveInventory
     } = getInventoryContext()
 
     const position = useMousePosition()
@@ -57,7 +58,7 @@ export const Inventory = () => {
 
     const onMessage = async (data: any) => {
         const eventData: any = data.data
-        // console.log("WTF", JSON.stringify(eventData))
+        console.log("WTF", JSON.stringify(eventData))
         // console.log("SHESH", eventData.Inventory, JSON.stringify(eventData.Inventory))
         if (eventData.show) {
             setShow(eventData.show)
@@ -112,7 +113,6 @@ export const Inventory = () => {
     const createInnerHTML = (htmlString: any) => ({
         innerHTML: htmlString,
     });
-
     return (
         onMount(async () => {
             window.addEventListener('message', onMessage)
