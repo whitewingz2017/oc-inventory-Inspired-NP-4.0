@@ -1,5 +1,9 @@
 This is OneCity Inventory Inspired By NoPixel 4.0 Inventory
 
+I open this to public so we can help each other to fix it.
+
+The problem is that the database load is high due to the structure of getting of items in SQL.
+
 Changes:
 - Fixed Swap
 - Fixed Slot
@@ -39,10 +43,6 @@ Changes:
 - Fixed Player Robbery
 - Fixed Open Sim Slot / Wallet
 - Fixed Open Sim Slot / Wallet From Other Player
-
-I open this to public so we can help each other to fix it.
-
-The problem is that the database load is high due to the structure of getting of items in SQL.
 
 Originaly Created by Aspect
 
