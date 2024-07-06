@@ -2,7 +2,7 @@ fx_version "cerulean"
 
 games { "gta5" }
 
-author 'Aspect'
+author 'Whitewingz'
 description "OneCity Boilerplate"
 
 version "0.1.0"
