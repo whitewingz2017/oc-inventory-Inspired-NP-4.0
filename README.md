@@ -1,7 +1,44 @@
 This is OneCity Inventory Inspired By NoPixel 4.0 Inventory
 
-Changes is in my city discord 
-https://discord.gg/8UEqmkpv8k
+Changes:
+- Fixed Swap
+- Fixed Slot
+- Fixed Move
+- Fixed Split
+- Fixed Backpack
+- Fixed Stack Items
+- Dropped (80%)
+- Glovebox
+- Equipped Items
+- Fixed Props
+- Fixed Pickup
+- Added Use Item Function (30%)
+- Fixed Phone Sim Card Slot
+- Fixed Item Quality
+- Fixed Update Quality
+- Fixed Realtime Add/Removed Items
+- Fixed Added Additional Inventory
+- Use Items Function (80%)
+- Fixed Use of Weapons
+- Fixed Category Weight
+- Fixed Dragged Item if category is full
+- Fixed Can Dragged Item in category even its full using split
+- Fixed Removing Item
+- Fixed Same Swap Item/Weight in full category
+- Fixed Wallet Inventory
+- Fixed Item Kilogram / Gram Weights
+- Vehicle Interactions
+- Fixed Trunk
+- Fixed Wallet
+- Fixed Stash
+- Fixed Glove Box
+- WIP Give Item
+- Fixed Sim Slot
+- Fixed Using Sim Card
+- Fixed Swap Same Sim Card in Sim Slot
+- Fixed Player Robbery
+- Fixed Open Sim Slot / Wallet
+- Fixed Open Sim Slot / Wallet From Other Player
 
 I open this to public so we can help each other to fix it.
 
