@@ -5,12 +5,12 @@ I open this to public so we can help each other to fix it.
 The problem is that the database load is high due to the structure of getting of items in SQL.
 
 Dependecies:
-focusmanager from np 4.0
-qb-keybinds but you can use any np-keybinds
-isPed
-interaction from np 4.0
-qb-taskbar or np-taskbar
-np-interact
+- focusmanager from np 4.0
+- qb-keybinds but you can use any np-keybinds
+- isPed
+- interaction from np 4.0
+- qb-taskbar or np-taskbar
+- np-interact
 
 
 Changes:
