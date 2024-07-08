@@ -11,7 +11,7 @@ Dependecies:
 - interaction from np 4.0
 - qb-taskbar or np-taskbar
 - np-interact
-
+- qb-lib
 
 Changes:
 - Fixed Swap
