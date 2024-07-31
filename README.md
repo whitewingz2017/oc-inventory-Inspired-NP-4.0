@@ -14,7 +14,7 @@ Dependecies:
 - qb-lib
 
 [zlib.rar]
-- Extract it to your node_modules folder to fix the build in typescript source
+- Extract it to your node_modules folder to fixed the build in typescript source
 
 Changes:
 - Fixed Swap
