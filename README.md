@@ -13,6 +13,9 @@ Dependecies:
 - np-interact
 - qb-lib
 
+[zlib.rar]
+- Extract it to your node_modules folder to fixed the build in typescript source
+
 Changes:
 - Fixed Swap
 - Fixed Slot
