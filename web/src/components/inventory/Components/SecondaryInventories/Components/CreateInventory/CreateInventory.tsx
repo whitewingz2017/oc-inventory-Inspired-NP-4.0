@@ -12,7 +12,7 @@ export const CreateInventory = (props: any) => {
         setActiveInventory
     } = getInventoryContext();
 
-    return (
+    return (<>
         <div>
             <div>
                 <div
@@ -68,10 +68,10 @@ export const CreateInventory = (props: any) => {
                             <div
                                 class="text-[0.88rem] leading-[108.5%] text-gray-300"
                                 onClick={() => {
-                                    // console.log(JSON.stringify(props, null, 2))
+                                    console.log(JSON.stringify(props, null, 2))
                                 }}   
                             >
-                                {props.Weight.toFixed(1)}kg / {props.maxWeight}kg
+                                {props.Weight}kg / {props.maxWeight}kg
                             </div>
                         </div>
 
@@ -127,15 +127,19 @@ export const CreateInventory = (props: any) => {
                         style="grid-template-columns: repeat(5, minmax(0px, 1fr));"
                     >
                         <For
-                            each={props.slots}
+                            each={props}
                         >
                             {(pSlot: any) => (
-                               <CreateSlot {...pSlot} etf={props} />
+                              <CreateSlot {...pSlot} />
+
                             )}
                         </For>
+                        {/* {props.map((pSlot: any) => (
+                            <CreateSlot {...pSlot} />
+                        ))} */}
                     </div>
                 </div>
             </div>
         </div>
-    )
+        </>)
 }

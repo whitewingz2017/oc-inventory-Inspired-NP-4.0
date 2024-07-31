@@ -17,16 +17,18 @@ RegisterCommand('+inventory', async() => {
     let isDrop = GroundInventoryScan();
     
     RPC.execute('inventory:additionalInventoriesClear')
-    RPC.execute('addDrop-Inventory',GetEntityCoords(PlayerPedId()),isDrop)
+    const dropName = await RPC.execute('addDrop-Inventory',GetEntityCoords(PlayerPedId()),isDrop)
+    const invConfig = await RPC.execute('inventory:InventoryConfig')
     const Inventory = await RPC.execute('inventory:getInventories',cid, IsPedInVehicle(PlayerPedId(), GetVehiclePedIsIn(PlayerPedId(), false), false), GetVehicleNumberPlateText(GetVehiclePedIsIn(PlayerPedId(), false)), false, GetEntityCoords(PlayerPedId()), isDrop)
+    console.log("GETTNG CONFIG",dropName, JSON.stringify(invConfig))
     if(Inventory){
-        console.log("INV", JSON.stringify(Inventory))
         let dropNamesx = Inventory.PrimarySecondaryInventory
-        dropNames = dropNamesx.inventoryName
+        dropNames = null //dropNamesx.inventoryName
         SendNUIMessage({
+            Config: invConfig,
             Inventory: Inventory,
         })
-        console.log("OPEN FUCKING NUMBER",global.exports['isPed'].isPed('phonenumbers'))
+        console.log("OPEN FUCKING NUMBER",global.exports['isPed'].isPed('phone_number').toString())
         SendNUIMessage({
             show: true,
             PlayerData: {
@@ -36,7 +38,7 @@ RegisterCommand('+inventory', async() => {
                     cash: 0,
                     personalVehicle: 'Landstalker',
                     home: 'Little Seoul',
-                    phone: global.exports['isPed'].isPed('phonenumbers'),
+                    phone: global.exports['isPed'].isPed('phone_number'),
                 },
         
                 settings: {
@@ -55,7 +57,6 @@ RegisterCommand('-inventory', async() => {}, false)
 global.exports['qb-keybinds'].registerKeyMapping('inventory', 'Inventory', 'Open Inventory', '+inventory', '-inventory', 'K', true);
 
 onNet('inventory:addItem', async(data: any) => {
-    console.log("FUCKNG ADD ITEMS?")
     // emit('inventory:sendNotification', data.Item, data.Amount, 'Added')
     RPC.execute('inventory:addItem', data)
 })

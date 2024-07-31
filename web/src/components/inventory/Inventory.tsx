@@ -7,12 +7,17 @@ import { SecondaryInventory } from './Components/SecondaryInventories/SecondaryI
 import { getInventoryContext } from '../provider'
 import { Notification } from './Components/Notifications/Notifications'
 import { nuiAction } from '../Callbacks'
+import { Player } from './Components/PrimaryInventories/Components/Player/Player'
+import { createStore } from 'solid-js/store'
 
 export const Inventory = () => {
     const [enterSplitArea, setInActionLocation] = createSignal<boolean>(false);
     const [splittingValue, setSplittingValue] = createSignal<number>(1);
     const [notiId, setNotiId] = createSignal<number>(1);
+
     const {
+        invConfig, 
+        setInvConfig,
         displayActionbar,
         hoveringItem,
         setHoveringItem,
@@ -27,6 +32,7 @@ export const Inventory = () => {
         Notifications,
         SetNotfications,
         setDisplayActionBar,
+        PlayerState,
         setPlayerState,
         setMovingSplitItem,
         setActionbarItems,
@@ -35,8 +41,32 @@ export const Inventory = () => {
         setHoveringWound,
         Inventory,
         activeInventory,
-        setActiveInventory
+        setDropSlot
     } = getInventoryContext()
+
+    // setTimeout(() => {
+    //     setInventory('PersonalInventory', 'slots', (slots: any[]) => 
+    //         slots.map(slot => 
+    //           slot.id === 2 ? { ...slot, item: { itemId: 'cash', amount: 1000, durability: 100 } } : slot
+    //         )
+    //       );
+    //       setTimeout(() => {
+    //         setInventory('PersonalInventory', 'slots', (slots: any[]) => {
+    //             const itemToMove = slots.find(slot => slot.id === 2).item;
+    //             console.log("slots:", slots, JSON.stringify(slots))
+    //             return slots.map(slot => {
+    //               if (slot.id === 2) {
+    //                 return { ...slot, item: null }; // Clear slot 2
+    //               } else if (slot.id === 6) {
+    //                 return { ...slot, item: itemToMove }; // Move item to slot 6
+    //               } else {
+    //                 return slot; // Keep other slots unchanged
+    //               }
+    //             });
+    //           });
+              
+    //       }, 3000);
+    // }, 5000);
 
     const position = useMousePosition()
     function useMousePosition() {
@@ -58,22 +88,32 @@ export const Inventory = () => {
 
     const onMessage = async (data: any) => {
         const eventData: any = data.data
-        console.log("WTF", JSON.stringify(eventData))
-        // console.log("SHESH", eventData.Inventory, JSON.stringify(eventData.Inventory))
         if (eventData.show) {
             setShow(eventData.show)
         }
-
-        if (eventData.Inventory) {
-            setInventory(eventData.Inventory)
+        if(eventData.Config) {
+            // console.log("SET CONFIG",eventData.Config)
+            // setInvConfig(eventData.Config)
+            // const data = eventData.Config
+            // setDropSlot(data.Drop.Slot)
         }
-
+        if (eventData.Inventory) {
+            // console.log("INVEN", JSON.stringify(eventData.Inventory))
+            resetInventoryItems()
+            // setInventory(eventData.Inventory)
+            setTimeout(() => {
+                updateInventory(eventData.Inventory)
+            }, 500);
+           
+           
+        }
+       
         if (eventData.event === 'inventory:toggleActionbar') {
             setDisplayActionBar(!displayActionbar())
         }
 
         if (eventData.PlayerData) {
-            console.log("PLAYERDATA", JSON.stringify(eventData.PlayerData))
+            // console.log("PLAYERDATA", JSON.stringify(eventData.PlayerData))
            setPlayerState(eventData.PlayerData)
         }
 
@@ -93,6 +133,67 @@ export const Inventory = () => {
             setActionbarItems(eventData.actionBarItems)
         }
     };
+    //Reset Inventory
+    const resetInventoryItems = () => {
+        const updateSlots = (slots: any[]) => slots.map(slot => ({ ...slot, item: null }));
+    
+        setInventory('ClothingSlots', updateSlots(Inventory.ClothingSlots));
+        setInventory('Pockets', 'Slots', updateSlots(Inventory.Pockets.Slots));
+        setInventory('PersonalInventory', 'slots', updateSlots(Inventory.PersonalInventory.slots));
+        setInventory('PersonalBackpack', 'slots', updateSlots(Inventory.PersonalBackpack.slots));
+        setInventory('PrimarySecondaryInventory', 'slots', updateSlots(Inventory.PrimarySecondaryInventory.slots));
+        setInventory('Drops', updateSlots(Inventory.Drops));
+    };
+
+    // Function to update inventory slots
+    function updateInventorySlots(existingSlots: any[], newData: any[]) {
+        return existingSlots.map(slot => {
+            const newItem = newData.find(item => item.slot === slot.id);
+            if (newItem) {
+                return { ...slot, item: { itemId: newItem.item_id, amount: newItem.amount, information: newItem.information, creationDate: newItem.creationDate } };
+            }
+            return slot;
+        });
+    }
+
+    const updateInventoryNames = (type: string, newName:string) => {
+        if (type === 'PersonalInventory') {
+            setInventory('PersonalInventory', 'inventoryName', 'body-'+setPlayerState().id);
+        } else if (type === 'PersonalBackpack') {
+            setInventory('PersonalBackpack', 'inventoryName', newName);
+        } else if (type === 'Pockets') {
+            setInventory('Pockets', 'name', newName);
+        }
+    };
+
+    function updateInventory(data: any[]) {
+        const bodyData = data.filter(item => item.name.startsWith(`body-`));
+        const backpackData = data.filter(item => item.name.startsWith(`backpack-`));
+        const pocketsData = data.filter(item => item.name.startsWith(`pockets-`));
+        const dropData = data.filter(item => item.name.startsWith('drop-'));
+        // console.log("BODY DATA", bodyData, JSON.stringify(bodyData))
+        for (const key in Inventory) {
+            // console.log("S",PlayerState.character.id)
+            // console.log("key", key, JSON.stringifyPlayerData)
+            if (key === 'PersonalInventory') {
+                setInventory(key, 'inventoryName', `body-${PlayerState.character.id}`);
+            } else if (key === 'PersonalBackpack') {
+                setInventory(key, 'inventoryName', `backpack-${PlayerState.character.id}`);
+            } else if (key === 'Pockets') {
+                setInventory(key, 'name', `pockets-${PlayerState.character.id}`);
+            }
+        }
+        // Update PersonalInventory
+        setInventory('PersonalInventory', 'slots', (slots: any) => updateInventorySlots(slots, bodyData));
+    
+        // Update PersonalBackpack
+        setInventory('PersonalBackpack', 'slots', (slots: any) => updateInventorySlots(slots, backpackData));
+    
+        // Update Pockets
+        setInventory('Pockets', 'Slots', (Slots: any[]) => updateInventorySlots(Slots, pocketsData));
+        
+        setInventory('PrimarySecondaryInventory', 'slots', (slots: any[]) => updateInventorySlots(slots, dropData));
+    }
 
     const handleKeyDown = (event: any) => {
         if (event.key === 'Escape') {
@@ -113,6 +214,7 @@ export const Inventory = () => {
     const createInnerHTML = (htmlString: any) => ({
         innerHTML: htmlString,
     });
+
     return (
         onMount(async () => {
             window.addEventListener('message', onMessage)
@@ -293,7 +395,7 @@ export const Inventory = () => {
                                             ></path>
                                         </svg>
                                     </span> 
-                                    {itemList[hoveringItem.Information?.itemId].weight >= 1.0 ? (itemList[hoveringItem.Information?.itemId].weight * hoveringItem.Information?.amount).toFixed(1)+'kg' : ((itemList[hoveringItem.Information?.itemId].weight * 1000) * hoveringItem.Information?.amount) >= 1000 ? (itemList[hoveringItem.Information?.itemId].weight * hoveringItem.Information?.amount).toFixed(1)+'kg' : ((itemList[hoveringItem.Information?.itemId].weight * 1000) * hoveringItem.Information?.amount).toFixed(1)+'g'}
+                                    {itemList[hoveringItem.Information?.itemId].weight >= 1.0 ? (itemList[hoveringItem.Information?.itemId].weight * hoveringItem.Information?.amount)+'kg' : ((itemList[hoveringItem.Information?.itemId].weight * 1000) * hoveringItem.Information?.amount) >= 1000 ? (itemList[hoveringItem.Information?.itemId].weight * hoveringItem.Information?.amount).toFixed(1)+'kg' : ((itemList[hoveringItem.Information?.itemId].weight * 1000) * hoveringItem.Information?.amount).toFixed(1)+'g'}
                                 </div>
                                 <div
                                     class="flex items-center rounded-sm bg-neutral-900/50 p-1"
@@ -358,10 +460,6 @@ export const Inventory = () => {
                                             fromInventory: hoveringItem.isSideSlot ? null : hoveringItem.fromInventory,
                                             itemAction: itemList[hoveringItem.Information.itemId].context.action
                                         })
-                                        console.log("OH SHIT",hoveringItem.fromInventory,JSON.stringify(hoveringItem))
-                                        // nuiAction('closeInventory')
-                                        // setShow(false)
-
                                         setHoveringItem({
                                             show: false,
                                             frozenPosition: false,
@@ -655,7 +753,7 @@ export const Inventory = () => {
                                             max={hoveringItem.Information?.amount}
                                             value={splittingValue()}
                                             onInput={(e: any) => {
-                                                console.log(e.target.value)
+                                                // console.log(e.target.value)
                                                 setSplittingValue(e.target.value)
                                             }}
                                         />

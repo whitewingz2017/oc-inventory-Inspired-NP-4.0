@@ -11,11 +11,8 @@ const DROPPED_ITEM_KEEP_ALIVE = 1000 * 60 * 15;
 let Key
 let NewDroppedName
 function clean() {
-    // console.log("CLEANING SHIT")
     for (let Row in DroppedInventories) {
-        // console.log("THIS TEST HERE")
         if (new Date(DroppedInventories[Row].lastUpdated + DROPPED_ITEM_KEEP_ALIVE).getTime() < Date.now() && DroppedInventories[Row].used && !InUseInventories[DroppedInventories[Row].name]) {
-            // console.log("CAN THIS DELETE")
             emitNet("Inventory-Dropped-Remove", -1, [DroppedInventories[Row].name])
             delete DroppedInventories[Row];
         }
@@ -84,6 +81,10 @@ setTick(checking);
 //     console.log("HELLO INVTERBAL", DroppedInventories)
 // }, 3000)
 
+RPC.register('inventory:InventoryConfig', async(source: any) => {
+    return InventoryConfig
+})
+
 RPC.register('inventory:getInventories', async(source: any, cid: number, inVehicle: any, licensePlate: any, isTrunk: any, TrunkPlate: any, coords: any, isDrop: boolean) => {
     const character = global.exports['qb-lib'].getCharacter(source)
     const result = await global.exports.oxmysql.query_async('SELECT * FROM user_inventory2 WHERE item_id = @item_id AND name = @Name', {
@@ -94,158 +95,163 @@ RPC.register('inventory:getInventories', async(source: any, cid: number, inVehic
         let number = JSON.parse(result[0].information)
         emitNet('updatePhoneNumber',source, number.Number)
     }
-  
-    Inventory = {
-        // Make the clothing and pockets slots generate like backpack and personalinv.
-        // Pass the weight and max weight and do it on the UI.
-        ClothingSlots: [
-            {
-                id: 'hat',
-                item: null,
-                acceptedItems: [
-                    'hat'
-                ]
-            },
-            {
-                id: 'mask',
-                item: null,
-                acceptedItems: [
-                    'mask'
-                ]
-            },
-            {
-                id: 'glasses',
-                item: null,
-                acceptedItems: [
-                    'glasses'
-                ]
-            },
-            {
-                id: 'armor',
-                item: null,
-                acceptedItems: [
-                    'armorplate'
-                ]
-            },
-            {
-                id: 'bag',
-                item: null,
-                acceptedItems: [
-                    'bag'
-                ]
-            }
-        ],
 
-        Pockets: {
-            name: 'pockets-' + character.id,
-            Slots: [
-                {
-                    id: 1,
-                    icon: 'idcard',
-                    item: await getItemInSlot(source, 'pockets-' + character.id, 1),
-                    acceptedItems: [
-                        'ID Card'
-                    ]
-                },
-                {
-                    id: 2,
-                    icon: 'phone',
-                    // item: {
-                    //     itemId: 'phone',
-                    //     durability: 1,
-                    // },
-                    item: await getItemInSlot(source, 'pockets-' + character.id, 2),
-                    acceptedItems: [
-                        'Mobile Phone'
-                    ]
-                },
-                {
-                    id: 3,
-                    icon: 'tablet',
-                    item: await getItemInSlot(source, 'pockets-' + character.id, 3),
-                    acceptedItems: [
-                        'OC Tablet'
-                    ]
-                },
-                {
-                    id: 4,
-                    icon: 'key',
-                    item: await getItemInSlot(source, 'pockets-' + character.id, 4),
-                    acceptedItems: [
-                        'housekey'
-                    ]
-                },
-                {
-                    id: 5,
-                    icon: 'wallet',
-                    item: await getItemInSlot(source, 'pockets-' + character.id, 5),
-                    acceptedItems: [
-                        'Wallet'
-                    ]
-                }
-            ]
-        },
+    const newInv = await global.exports.oxmysql.query_async(`SELECT count(item_id) as amount, item_id, id, name, information, slot, dropped, MIN(creationDate) as creationDate 
+    FROM user_inventory2 
+    WHERE name LIKE 'body-${character.id}%' 
+       OR name LIKE 'backpack-${character.id}%' 
+       OR name LIKE 'pockets-${character.id}%'
+    GROUP BY item_id, slot;`);
+    // Inventory = {
+    //     // Make the clothing and pockets slots generate like backpack and personalinv.
+    //     // Pass the weight and max weight and do it on the UI.
+    //     ClothingSlots: [
+    //         {
+    //             id: 'hat',
+    //             item: null,
+    //             acceptedItems: [
+    //                 'hat'
+    //             ]
+    //         },
+    //         {
+    //             id: 'mask',
+    //             item: null,
+    //             acceptedItems: [
+    //                 'mask'
+    //             ]
+    //         },
+    //         {
+    //             id: 'glasses',
+    //             item: null,
+    //             acceptedItems: [
+    //                 'glasses'
+    //             ]
+    //         },
+    //         {
+    //             id: 'armor',
+    //             item: null,
+    //             acceptedItems: [
+    //                 'armorplate'
+    //             ]
+    //         },
+    //         {
+    //             id: 'bag',
+    //             item: null,
+    //             acceptedItems: [
+    //                 'bag'
+    //             ]
+    //         }
+    //     ],
 
-        AdditionalInventories: await getAdditionalInventories(source), //Dont put this in other line this is already fixed.
+    //     Pockets: {
+    //         name: 'pockets-' + character.id,
+    //         Slots: [
+    //             {
+    //                 id: 1,
+    //                 icon: 'idcard',
+    //                 item: await getItemInSlot(source, 'pockets-' + character.id, 1),
+    //                 acceptedItems: [
+    //                     'ID Card'
+    //                 ]
+    //             },
+    //             {
+    //                 id: 2,
+    //                 icon: 'phone',
+    //                 // item: {
+    //                 //     itemId: 'phone',
+    //                 //     durability: 1,
+    //                 // },
+    //                 item: await getItemInSlot(source, 'pockets-' + character.id, 2),
+    //                 acceptedItems: [
+    //                     'Mobile Phone'
+    //                 ]
+    //             },
+    //             {
+    //                 id: 3,
+    //                 icon: 'tablet',
+    //                 item: await getItemInSlot(source, 'pockets-' + character.id, 3),
+    //                 acceptedItems: [
+    //                     'OneCity Tablet'
+    //                 ]
+    //             },
+    //             {
+    //                 id: 4,
+    //                 icon: 'key',
+    //                 item: await getItemInSlot(source, 'pockets-' + character.id, 4),
+    //                 acceptedItems: [
+    //                     'housekey'
+    //                 ]
+    //             },
+    //             {
+    //                 id: 5,
+    //                 icon: 'wallet',
+    //                 item: await getItemInSlot(source, 'pockets-' + character.id, 5),
+    //                 acceptedItems: [
+    //                     'Wallet'
+    //                 ]
+    //             }
+    //         ]
+    //     },
 
-        PersonalInventory: {
-            maxWeight: InventoryConfig.PersonalInventory.MaxWeight,
-            Weight: await calculateInventoryWeight('body-' + character.id),
-            inventoryName: 'body-' + character.id,
-            slots: await getInventory('body-' + character.id, InventoryConfig.PersonalInventory.Slots, true, null)
-        },
+    //     AdditionalInventories: await getAdditionalInventories(source), //Dont put this in other line this is already fixed.
 
-        PersonalBackpack: {
-            maxWeight: InventoryConfig.Backpack.MaxWeight,
-            Weight: await calculateInventoryWeight('backpack-' + character.id),
-            inventoryName: 'backpack-' + character.id,
-            slots: await getInventory('backpack-' + character.id, InventoryConfig.Backpack.Slots, false, null)
-        },
+    //     PersonalInventory: {
+    //         maxWeight: InventoryConfig.PersonalInventory.MaxWeight,
+    //         Weight: await calculateInventoryWeight('body-' + character.id),
+    //         inventoryName: 'body-' + character.id,
+    //         slots: await getInventory('body-' + character.id, InventoryConfig.PersonalInventory.Slots, true, null)
+    //     },
+
+    //     PersonalBackpack: {
+    //         maxWeight: InventoryConfig.Backpack.MaxWeight,
+    //         Weight: await calculateInventoryWeight('backpack-' + character.id),
+    //         inventoryName: 'backpack-' + character.id,
+    //         slots: await getInventory('backpack-' + character.id, InventoryConfig.Backpack.Slots, false, null)
+    //     },
         
 
         
-    }
-    // console.log("GET ADDITIONAL INVENTORIES",await getAdditionalInventories(source))
-    let dropItem = false
-    if (!inVehicle) {
-        Inventory.PrimarySecondaryInventory = {
-            maxWeight: 150,
-            Weight: await calculateInventoryWeight(NewDroppedName),
-            inventoryName: NewDroppedName,
-            inventoryLabel: 'Ground',
-            slots: await getInventory(NewDroppedName, InventoryConfig.Drop.Slots, false, null)
-        }
-    }
+    // }
+    // // console.log("GET ADDITIONAL INVENTORIES",await getAdditionalInventories(source))
+    // let dropItem = false
+    // if (!inVehicle) {
+    //     Inventory.PrimarySecondaryInventory = {
+    //         maxWeight: 150,
+    //         Weight: await calculateInventoryWeight(NewDroppedName),
+    //         inventoryName: NewDroppedName,
+    //         inventoryLabel: 'Ground',
+    //         slots: await getInventory(NewDroppedName, InventoryConfig.Drop.Slots, false, null)
+    //     }
+    // }
 
-    if (inVehicle && !isTrunk) {
-        Inventory.PrimarySecondaryInventory = {
-            maxWeight: 150,
-            Weight: await calculateInventoryWeight('glovebox::' + licensePlate),
-            inventoryName: 'glovebox::' + licensePlate,
-            inventoryLabel: 'Glovebox',
-            slots: await getInventory('glovebox::' + licensePlate, InventoryConfig.Glovebox.Slots, false, null)
-        }
-    }
+    // if (inVehicle && !isTrunk) {
+    //     Inventory.PrimarySecondaryInventory = {
+    //         maxWeight: 150,
+    //         Weight: await calculateInventoryWeight('glovebox::' + licensePlate),
+    //         inventoryName: 'glovebox::' + licensePlate,
+    //         inventoryLabel: 'Glovebox',
+    //         slots: await getInventory('glovebox::' + licensePlate, InventoryConfig.Glovebox.Slots, false, null)
+    //     }
+    // }
 
-    if (isTrunk) {
-        // console.log("TRUNK PLATE HAHA", TrunkPlate)
+    // if (isTrunk) {
         
-        // Inventory.PrimarySecondaryInventory = {
-        //     maxWeight: InventoryConfig.Trunk.MaxWeight,
-        //     Weight: await calculateInventoryWeight('trunk::' + TrunkPlate),
-        //     inventoryName: 'trunk::' + TrunkPlate,
-        //     inventoryLabel: 'Trunk',
-        //     slots: await getInventory('trunk::' + TrunkPlate, InventoryConfig.Trunk.Slots, false, null)
-        // }
-    }
-    return Inventory
+    //     // Inventory.PrimarySecondaryInventory = {
+    //     //     maxWeight: InventoryConfig.Trunk.MaxWeight,
+    //     //     Weight: await calculateInventoryWeight('trunk::' + TrunkPlate),
+    //     //     inventoryName: 'trunk::' + TrunkPlate,
+    //     //     inventoryLabel: 'Trunk',
+    //     //     slots: await getInventory('trunk::' + TrunkPlate, InventoryConfig.Trunk.Slots, false, null)
+    //     // }
+    // }
+
+    return newInv
 })
 
 
 onNet("server-inventory-close", async(player, targetInventoryName) => {
     let src = source
     //line 647
-    console.log("CLOSE INVENTORY",targetInventoryName)
     if (targetInventoryName.startsWith("Trunk"))
         emitNet("toggle-animation", src, false);
     InUseInventories = InUseInventories.filter(item => item != player);

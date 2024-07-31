@@ -176,6 +176,10 @@ RPC.register('getObject', (source, object) => {
         return 'prop_cs_heist_bag_02'
     }else if(object.toString() === "Rental"){
         return 'prop_cs_cashenvelope'
+    }else if(object.toString() === "Home Safe"){
+        return 'prop_ld_int_safe_01'
+    }else if(object.toString() === null){
+        return 'prop_paper_bag_01'
     }else{
         return 'prop_paper_bag_01'
     }
@@ -317,15 +321,15 @@ function randomInt(min: number, max: number): number {
 }
 
 //Clean Inventory Removed 0 Quality Items
-// setImmediate(async () => {
-//     const result = await global.exports.oxmysql.query_async('SELECT * FROM user_inventory2');
-//     for (const row of result) {
-//         let quality = ConvertQuality(row.item_id,row.creationDate)
-//         if(quality === 0){
-//             await global.exports.oxmysql.query_async(`DELETE FROM user_inventory2 WHERE id = @ID AND item_id = @ItemId`, {
-//                 ['@ID']: row.id,
-//                 ['@ItemId']: row.item_id
-//             });
-//         }
-//     }
-// })
+setImmediate(async () => {
+    const result = await global.exports.oxmysql.query_async('SELECT * FROM user_inventory2');
+    for (const row of result) {
+        let quality = ConvertQuality(row.item_id,row.creationDate)
+        if(quality === 0){
+            await global.exports.oxmysql.query_async(`DELETE FROM user_inventory2 WHERE id = @ID AND item_id = @ItemId`, {
+                ['@ID']: row.id,
+                ['@ItemId']: row.item_id
+            });
+        }
+    }
+})

@@ -151,7 +151,7 @@ export const PocketSlot = (props: any) => {
             }
         }
     };
-    return (<>
+    return (
         <div
             class="p-2"
             onContextMenu={() => {
@@ -233,5 +233,5 @@ export const PocketSlot = (props: any) => {
                 </div>
             </div>
         </div>
-    </>)
+    )
 }

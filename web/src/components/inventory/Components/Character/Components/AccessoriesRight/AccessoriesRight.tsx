@@ -16,7 +16,7 @@ export const AccessoriesRight = () => {
         activeSlot,
         setActiveInventory
     } = getInventoryContext()
-    console.log('Inventory.Pockets.Slots',Inventory.Pockets.Slots, JSON.stringify(Inventory.Pockets.Slots))
+    // console.log('Inventory.Pockets.Slots',Inventory.Pockets.Slots, JSON.stringify(Inventory.Pockets.Slots))
     return (
         <div
             class="overflow-y-auto [scrollbar-gutter:stable]"

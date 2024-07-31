@@ -68,7 +68,7 @@ export const Backpack = () => {
                     <div
                         class="text-[0.88rem] leading-[108.5%] text-gray-300"
                     >
-                        {Inventory.PersonalBackpack.Weight.toFixed(1)}kg / {Inventory.PersonalBackpack.maxWeight}kg
+                        {Inventory.PersonalBackpack.Weight}kg / {Inventory.PersonalBackpack.maxWeight}kg
                     </div>
                 </div>
 
@@ -79,7 +79,7 @@ export const Backpack = () => {
 
             <div
                 onMouseEnter={() => {
-                    console.log('Setting inventory as ' + Inventory.PersonalBackpack.inventoryName)
+                    // console.log('Setting inventory as ' + Inventory.PersonalBackpack.inventoryName)
                     setActiveInventory(Inventory.PersonalBackpack.inventoryName)
                 }}
                 onMouseLeave={() => setActiveInventory('')}

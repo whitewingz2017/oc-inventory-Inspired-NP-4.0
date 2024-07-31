@@ -206,7 +206,6 @@ export async function usedItem(item) {
         lastCounter = 0
         return
     }
-    // console.log("MOTHER FUCKER",parachuteConfig[item.ItemId])
     if(parachuteConfig[item.ItemId] && Number(item.Info.durability) > 0 && !IsPedInParachuteFreeFall(player) && !IsPedFalling(player) && (GetPedParachuteState(player) === -1 || GetPedParachuteState(player) === 0)){
         const pConf = parachuteConfig[item.ItemId];
         SetPlayerParachuteModelOverride(PlayerId(), pConf.replace)
@@ -789,9 +788,6 @@ export async function usedItem(item) {
     if (item.ItemId === "octablet"){
         let checkEquip = await RPC.execute('inventory:checkIfEquip', item.ItemId, item.Info.slot)
         console.log("USE THE TABLET",checkEquip)
-        if(checkEquip){
-            TriggerEvent('tablet:open')
-        }
         // if exports["qb-inventory"]:hasEnoughOfItem("vpnxj",1,false) then
         // TriggerEvent("rahe-boosting:client:openTablet")
     }
@@ -1126,7 +1122,7 @@ onNet('apartments:stash', async () => {
     let data = {
         itemAction: 'apartment::stash'
     }
-    // RPC.execute('inventory:additionalInventoriesClear')
+    RPC.execute('inventory:additionalInventoriesClear')
     RPC.execute('inventory:additionalInventoriesAdd', data)
     const Inventory = await RPC.execute('inventory:getInventories',cid, IsPedInVehicle(PlayerPedId(), GetVehiclePedIsIn(PlayerPedId(), false), false), GetVehicleNumberPlateText(GetVehiclePedIsIn(PlayerPedId(), false)), false, GetEntityCoords(PlayerPedId()), false)
     if(Inventory){
@@ -1145,7 +1141,7 @@ onNet('apartments:stash', async () => {
                     cash: 0,
                     personalVehicle: 'Landstalker',
                     home: 'Little Seoul',
-                    phone: global.exports['isPed'].isPed('phonenumbers'),
+                    phone: global.exports['isPed'].isPed('phone_number'),
                 },
         
                 settings: {
@@ -1163,15 +1159,27 @@ onNet('apartments:stash', async () => {
     global.exports.focusmanager.SetUIFocus(true, true)
 })
 
-onNet('qb-base:playerSpawned', ()=> {
+setImmediate(async () => {
+    console.log("SET CONIFG")
+    const invConfig = await RPC.execute('inventory:InventoryConfig')
+    SendNUIMessage({
+        Config: invConfig
+    })
+})
+
+onNet('qb-base:playerSpawned', async ()=> {
+    const invConfig = await RPC.execute('inventory:InventoryConfig')
+    SendNUIMessage({
+        Config: invConfig
+    })
     RPC.execute('inventory:characterSpawned')
 })
 
 RegisterCommand('checkers', ()=>{
-    console.log("global.exports['isPed'].isPed('phoneNumber')",global.exports['isPed'].isPed('phonenumbers'))
+    console.log("global.exports['isPed'].isPed('phoneNumber')",global.exports['isPed'].isPed('phone_number'))
     RPC.execute('inventory:characterSpawned')
     setTimeout(() => {
-        console.log("global.exports['isPed'].isPed('phoneNumber') 222",global.exports['isPed'].isPed('phonenumbers'))
+        console.log("global.exports['isPed'].isPed('phoneNumber') 222",global.exports['isPed'].isPed('phone_number'))
     }, 2000);
 }, false)
 
@@ -1198,7 +1206,7 @@ RegisterCommand('testRob', async ()=> {
                 cash: 0,
                 personalVehicle: 'Landstalker',
                 home: 'Little Seoul',
-                phone: global.exports['isPed'].isPed('phonenumbers'),
+                phone: global.exports['isPed'].isPed('phone_number'),
             },
     
             settings: {

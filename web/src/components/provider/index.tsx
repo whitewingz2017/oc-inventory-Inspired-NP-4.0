@@ -4,14 +4,14 @@ import { createStore } from "solid-js/store";
 const InventoryContext = createContext({});
 
 export function App(props: any) {
-    const [show, setShow] = createSignal<boolean>(true);
+    const [show, setShow] = createSignal<boolean>(false);
     const [displayActionbar, setDisplayActionBar] = createSignal<boolean>(false);
     const [showingHelpMenu, setShowingHelpMenu] = createSignal<boolean>(false);
     const [showingSettingsMenu, setShowingSettingsMenu] = createSignal<boolean>(false);
-
+    const [invConfig, setInvConfig] = createStore<any>({})
     const [hoveringWound, setHoveringWound] = createSignal<boolean>(false);
     const [woundPosition, setWoundPosition] = createSignal<string>('right')
-
+    const [dropSlot, setDropSlot] = createSignal<number>(0)
     const [searchedItem, setSearchedItem] = createSignal<string>('')
 
     const [activeSlot, setActiveSlot] = createSignal<number>(0)
@@ -48,7 +48,7 @@ export function App(props: any) {
         personalInventory: false,
         canUse: false,
 
-        description: {
+        Information: {
             Name: '',
             Weight: 0,
             Description: '',
@@ -59,6 +59,535 @@ export function App(props: any) {
     function createImage(Item: any){
         return `https://whitewingz2017.github.io/rprpmap/dev/images/inventory/icon/${Item}.png`
     }
+    
+    const dropSlots = new Array(dropSlot() === 0 ? 50 : dropSlot()).fill(null).map((_, index) => ({
+        id: index + 1,
+        count: 0,
+        item: null
+    }));
+    // setTimeout(() => {
+    //     console.log("DROP SLOTS",invConfig.Drop.Slots)
+    // }, 5000);
+
+    const [Inventory, setInventory] = createStore<any>({
+        ClothingSlots: [
+            {
+                id: 'hat',
+                item: null,
+                acceptedItems: [
+                    'hat'
+                ]
+            },
+            {
+                id: 'mask',
+                item: null,
+                acceptedItems: [
+                    'mask'
+                ]
+            },
+            {
+                id: 'glasses',
+                item: null,
+                acceptedItems: [
+                    'glasses'
+                ]
+            },
+            {
+                id: 'armor',
+                item: null,
+                acceptedItems: [
+                    'armorplate'
+                ]
+            },
+            {
+                id: 'bag',
+                item: null,
+                acceptedItems: [
+                    'bag'
+                ]
+            }
+        ],
+
+        Pockets: {
+            name: 'pockets-1',
+            Slots: [
+                {
+                    id: 1,
+                    icon: 'idcard',
+                    item: null,
+                    acceptedItems: [
+                        'ID Card'
+                    ]
+                },
+                {
+                    id: 2,
+                    icon: 'phone',
+                    item: {
+                        itemId: 'phone',
+                        durability: 1,
+                    },
+                    acceptedItems: [
+                        'Mobile Phone'
+                    ]
+                },
+                {
+                    id: 3,
+                    icon: 'tablet',
+                    item: null,
+                    acceptedItems: [
+                        'OneCity Tablet'
+                    ]
+                },
+                {
+                    id: 4,
+                    icon: 'key',
+                    item: null,
+                    acceptedItems: [
+                        'housekey'
+                    ]
+                },
+                {
+                    id: 5,
+                    icon: 'wallet',
+                    item: null,
+                    acceptedItems: [
+                        'Wallet'
+                    ]
+                }
+            ]
+        },
+
+        PersonalInventory: {
+            maxWeight: 150,
+            inventoryName: 'body-1',
+            slots: [
+                {
+                    id: 1,
+                    hotBar: true,
+                    item: null,
+                },
+                {
+                    id: 2,
+                    hotBar: true,
+                    item: null,
+                },
+                {
+                    id: 3,
+                    hotBar: true,
+                    item: null,
+                },
+                {
+                    id: 4,
+                    hotBar: true,
+                    item: null,
+                },
+                {
+                    id: 5,
+                    hotBar: true,
+                    item: null,
+                },
+                {
+                    id: 6,
+                    item: null,
+                },
+                {
+                    id: 7,
+                    item: null,
+                },
+                {
+                    id: 8,
+                    item: null,
+                },
+                {
+                    id: 9,
+                    item: null,
+                },
+                {
+                    id: 10,
+                    item: null,
+                },
+                {
+                    id: 11,
+                    item: null,
+                },
+                {
+                    id: 12,
+                    item: null,
+                },
+                {
+                    id: 13,
+                    item: null,
+                },
+                {
+                    id: 14,
+                    item: null,
+                },
+                {
+                    id: 15,
+                    item: null,
+                },
+            ]
+        },
+
+        PersonalBackpack: {
+            maxWeight: 250,
+            inventoryName: 'backpack-1',
+            slots: [
+                {
+                    id: 1,
+                    item: null,
+                },
+                {
+                    id: 2,
+                    item: null,
+                },
+                {
+                    id: 3,
+                    item: null,
+                },
+                {
+                    id: 4,
+                    item: null,
+                },
+                {
+                    id: 5,
+                    item: null,
+                },
+                {
+                    id: 6,
+                    item: null,
+                },
+                {
+                    id: 7,
+                    item: null,
+                },
+                {
+                    id: 8,
+                    item: null,
+                },
+                {
+                    id: 9,
+                    item: null,
+                },
+                {
+                    id: 10,
+                    item: null,
+                },
+                {
+                    id: 11,
+                    item: null,
+                },
+                {
+                    id: 12,
+                    item: null,
+                },
+                {
+                    id: 13,
+                    item: null,
+                },
+                {
+                    id: 14,
+                    item: null,
+                },
+                {
+                    id: 15,
+                    item: null,
+                },
+                {
+                    id: 16,
+                    item: null,
+                },
+                {
+                    id: 17,
+                    item: null,
+                },
+                {
+                    id: 18,
+                    item: null,
+                },
+                {
+                    id: 19,
+                    item: null,
+                },
+                {
+                    id: 20,
+                    item: null,
+                },
+                {
+                    id: 21,
+                    item: null,
+                },
+                {
+                    id: 22,
+                    item: null,
+                },
+                {
+                    id: 23,
+                    item: null,
+                },
+                {
+                    id: 24,
+                    item: null,
+                },
+                {
+                    id: 25,
+                    item: null,
+                },
+            ]
+        },
+
+        PrimarySecondaryInventory: {
+            maxWeight: 150,
+            Weight: 1,
+            inventoryName: 'drop-1',
+            inventoryLabel: 'Ground',
+            slots: dropSlots
+        },
+
+        Drops: [
+            {
+                id: 1,
+                item: null,
+            },
+            {
+                id: 2,
+                item: null,
+            },
+            {
+                id: 3,
+                item: null,
+            },
+            {
+                id: 4,
+                item: null,
+            },
+            {
+                id: 5,
+                item: null,
+            },
+            {
+                id: 6,
+                item: null,
+            },
+            {
+                id: 7,
+                item: null,
+            },
+            {
+                id: 8,
+                item: null,
+            },
+            {
+                id: 9,
+                item: null,
+            },
+            {
+                id: 10,
+                item: null,
+            },
+            {
+                id: 11,
+                item: null,
+            },
+            {
+                id: 12,
+                item: null,
+            },
+            {
+                id: 13,
+                item: null,
+            },
+            {
+                id: 14,
+                item: null,
+            },
+            {
+                id: 15,
+                item: null,
+            },
+            {
+                id: 16,
+                item: null,
+            },
+            {
+                id: 17,
+                item: null,
+            },
+            {
+                id: 18,
+                item: null,
+            },
+            {
+                id: 19,
+                item: null,
+            },
+            {
+                id: 20,
+                item: null,
+            },
+            {
+                id: 21,
+                item: null,
+            },
+            {
+                id: 22,
+                item: null,
+            },
+            {
+                id: 23,
+                item: null,
+            },
+            {
+                id: 24,
+                item: null,
+            },
+            {
+                id: 25,
+                item: null,
+            },
+            {
+                id: 26,
+                item: null,
+            },
+            {
+                id: 27,
+                item: null,
+            },
+            {
+                id: 28,
+                item: null,
+            },
+            {
+                id: 29,
+                item: null,
+            },
+            {
+                id: 30,
+                item: null,
+            },
+            {
+                id: 31,
+                item: null,
+            },
+            {
+                id: 32,
+                item: null,
+            },
+            {
+                id: 33,
+                item: null,
+            },
+            {
+                id: 34,
+                item: null,
+            },
+            {
+                id: 35,
+                item: null,
+            },
+            {
+                id: 36,
+                item: null,
+            },
+            {
+                id: 37,
+                item: null,
+            },
+            {
+                id: 38,
+                item: null,
+            },
+            {
+                id: 39,
+                item: null,
+            },
+            {
+                id: 40,
+                item: null,
+            },
+            {
+                id: 41,
+                item: null,
+            },
+            {
+                id: 42,
+                item: null,
+            },
+            {
+                id: 43,
+                item: null,
+            },
+            {
+                id: 44,
+                item: null,
+            },
+            {
+                id: 45,
+                item: null,
+            },
+            {
+                id: 46,
+                item: null,
+            },
+            {
+                id: 47,
+                item: null,
+            },
+            {
+                id: 48,
+                item: null,
+            },
+            {
+                id: 49,
+                item: null,
+            },
+            {
+                id: 50,
+                item: null,
+            },
+        ],
+
+        // AdditionalInventories: [
+        //     {
+        //         id: 'body-15',
+        //         name: 'Robbed Player',
+        //         maxWeight: 5,
+        //         InventoryOpened: true,
+        //         inventoryName: 'body-25',
+        //         slots: [
+        //             {
+        //                 id: 1,
+        //                 item: {
+        //                     itemId: 'water',
+        //                     durability: 1,
+        //                 },
+        //             },
+        //             {
+        //                 id: 1,
+        //                 item: {
+        //                     itemId: 'water',
+        //                     durability: 50,
+        //                 },
+        //             }
+        //         ]
+        //     },
+        //     {
+        //         id: '2',
+        //         name: 'Mobile Phone',
+        //         maxWeight: 5,
+        //         InventoryOpened: false,
+        //         inventoryName: 'phone-1',
+        //         slots: [
+        //             {
+        //                 id: 1,
+        //                 item: {
+        //                     itemId: 'simcard',
+        //                 },
+        //             }
+        //         ]
+        //     },
+        // ]
+    })
 
     const [itemList, setItemList] = createStore<any>({
         '2578778090': {
@@ -96,7 +625,7 @@ export function App(props: any) {
             }
         },
         'octablet': {
-            name: 'OC Tablet',
+            name: 'OneCity Tablet',
             description: 'Tablet',
             stackable: false,
             image: createImage('np_tablet'),
@@ -390,7 +919,7 @@ export function App(props: any) {
         },
         '-828058162': {
             name: 'Stolen Shoes',
-            description: 'These are not yours, bro.',
+            information: 'These are not yours, bro.',
             stackable: false,
             image: createImage('np_stolenshoes'),
             weight: 2.0,
@@ -402,7 +931,7 @@ export function App(props: any) {
         // weapon_ltl
         '218362403': {
             name: 'Rubber Slug Shotgun',
-            description: 'PD and DOC Issued LTL Weapon',
+            information: 'PD and DOC Issued LTL Weapon',
             stackable: false,
             image: createImage('np_lessthanlethal'),
             weight: 25.0,
@@ -413,7 +942,7 @@ export function App(props: any) {
         },
         'rubberslugpd': {
             name: 'Rubber Slug Shotgun (Short Life)',
-            description: 'PD and DOC Issued LTL Weapon',
+            information: 'PD and DOC Issued LTL Weapon',
             stackable: false,
             image: createImage('np_lessthanlethal'),
             weight: 25.0,
@@ -425,7 +954,7 @@ export function App(props: any) {
         // weapon_shiv
         '-262696221': {
             name: 'Prison Shiv',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_shiv'),
             weight: 3.0,
@@ -439,7 +968,7 @@ export function App(props: any) {
         // weapon_browning
         '148457251': {
             name: 'Browning Hi-Power',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_browning'),
             weight: 6.0,
@@ -451,7 +980,7 @@ export function App(props: any) {
         // weapon_dp9 (it's called dp9, just rock with it)
         '-2012211169': {
             name: 'Diamondback DB9',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_DB9'),
             weight: 25.0,
@@ -462,7 +991,7 @@ export function App(props: any) {
         },
         '-1746263880': {
             name: 'Colt Python',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_colt'),
             weight: 11.0,
@@ -474,7 +1003,7 @@ export function App(props: any) {
         // weapon_xxxxxx
         '453432689': {
             name: 'Colt 1911',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_pistol'),
             weight: 6.0,
@@ -486,7 +1015,7 @@ export function App(props: any) {
         // weapon_pistol_mk2
         '-1075685676': {
             name: 'FN Five-Seven',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_pistol2'),
             weight: 5.0,
@@ -498,7 +1027,7 @@ export function App(props: any) {
         // weapon_combatpistol
         '1593441988': {
             name: 'FN FNX-45',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_combat-pistol'),
             weight: 5.0,
@@ -510,7 +1039,7 @@ export function App(props: any) {
         // weapon_heavypistol
         '-771403250': {
             name: 'Entreprise Wide Body 1911a',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_heavy-pistol'),
             weight: 5.0,
@@ -522,7 +1051,7 @@ export function App(props: any) {
         // weapon_taser
         '-820634585': {
             name: 'Government (PD/EMS/DOC) Issued Equipment',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_stun-gun'),
             weight: 5.0,
@@ -547,7 +1076,7 @@ export function App(props: any) {
          // weapon_pistol50
         '-1716589765': {
             name: 'Desert Eagle',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_pistol-50'),
             weight: 5.0,
@@ -559,7 +1088,7 @@ export function App(props: any) {
        // weapon_microsmg3
        '-134995899': {
             name: 'Mac-10',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_micro-smg'),
             weight: 5.0,
@@ -572,7 +1101,7 @@ export function App(props: any) {
         // weapon_appistol
         '584646201': {
             name: 'Glock 18C',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_glock18c'),
             weight: 5.0,
@@ -584,7 +1113,7 @@ export function App(props: any) {
         // weapon_microsmg
         '324215364': {
             name: 'MP7',
-            description: 'Government (PD/EMS/DOC) Issued Equipment',
+            information: 'Government (PD/EMS/DOC) Issued Equipment',
             stackable: false,
             image: createImage('np_mp7'),
             weight: 5.0,
@@ -596,7 +1125,7 @@ export function App(props: any) {
         // weapon_microsmg2
         '-942620673': {
             name: 'Uzi',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_micro-smg2'),
             weight: 5.0,
@@ -608,7 +1137,7 @@ export function App(props: any) {
         // weapon_smg
         '736523883': {
             name: 'MP5',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_mp5'),
             weight: 5.0,
@@ -620,7 +1149,7 @@ export function App(props: any) {
         // weapon_carbinerifle
         '-2084633992': {
             name: 'HK416',
-            description: 'SWAT',
+            information: 'SWAT',
             stackable: false,
             image: createImage('HK416'),
             weight: 5.0,
@@ -632,7 +1161,7 @@ export function App(props: any) {
         // weapon_m4
         '1192676223': {
             name: 'M4',
-            description: 'Government (PD/EMS/DOC) Issued Equipment',
+            information: 'Government (PD/EMS/DOC) Issued Equipment',
             stackable: false,
             image: createImage('np_m4'),
             weight: 5.0,
@@ -644,7 +1173,7 @@ export function App(props: any) {
         //Scar-L
         '-1768145561': {
             name: 'FN SCAR-L',
-            description: 'Government (PD/EMS/DOC) Issued Equipment',
+            information: 'Government (PD/EMS/DOC) Issued Equipment',
             stackable: false,
             image: createImage('np_m4'),
             weight: 25.0,
@@ -656,7 +1185,7 @@ export function App(props: any) {
         // weapon_m14
         '-1719357158': {
             name: 'Mk14',
-            description: 'Government (PD/EMS/DOC) Issued Equipment',
+            information: 'Government (PD/EMS/DOC) Issued Equipment',
             stackable: false,
             image: createImage('np_mk14'),
             weight: 25.0,
@@ -668,7 +1197,7 @@ export function App(props: any) {
         // weapon_m24
         '-1536150836': {
             name: 'AWM',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_awm'),
             weight: 25.0,
@@ -680,7 +1209,7 @@ export function App(props: any) {
         // weapon_assaultrifle  
         '-1074790547': {
             name: 'AK 74',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_ak74'),
             weight: 25.0,
@@ -692,7 +1221,7 @@ export function App(props: any) {
         // weapon_assaultrifle2
         '497969164': {
             name: 'M70',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_m70'),
             weight: 25.0,
@@ -704,7 +1233,7 @@ export function App(props: any) {
         // weapon_dbshotgun
         '-275439685': {
             name: 'Sawn-off Shotgun',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_db-shotgun'),
             weight: 14.0,
@@ -716,7 +1245,7 @@ export function App(props: any) {
         // weapon_pumpshotgun
         '487013001': {
             name: 'IZh-81',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_izh81'),
             weight: 21.0,
@@ -728,7 +1257,7 @@ export function App(props: any) {
         // weapon_pumpshotgun_mk2
         '1432025498': {
             name: 'Remington 870',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_remington'),
             weight: 21.0,
@@ -740,7 +1269,7 @@ export function App(props: any) {
         // WEAPON_COMBATPDW
         '171789620': {
             name: 'SIG MPX',
-            description: 'Government (PD/EMS/DOC) Issued Equipment',
+            information: 'Government (PD/EMS/DOC) Issued Equipment',
             stackable: false,
             image: createImage('np_mpx'),
             weight: 11.0,
@@ -752,7 +1281,7 @@ export function App(props: any) {
         // WEAPON_COMPACTRIFLE
         '1649403952': {
             name: 'Draco NAK9',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_draco'),
             weight: 11.0,
@@ -764,7 +1293,7 @@ export function App(props: any) {
         // weapon_gepard used to apply skin and still generate data for the weapon
         '-1518444656': {
             name: 'Gepard',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_gepard'),
             weight: 11.0,
@@ -776,7 +1305,7 @@ export function App(props: any) {
         //WEAPON_MINISMG2
         '-1472189665': {
             name: 'Skorpion',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_skorpion'),
             weight: 7.0,
@@ -788,7 +1317,7 @@ export function App(props: any) {
         // explosive type shit
         '-1813897027': {
             name: 'Stun Grenade (SWAT)',
-            description: 'So police can breach a building without feeling like a ______! If you are not SWAT certified do not buy this.',
+            information: 'So police can breach a building without feeling like a ______! If you are not SWAT certified do not buy this.',
             stackable: false,
             image: createImage('np_stungrenade'),
             weight: 5.0,
@@ -799,7 +1328,7 @@ export function App(props: any) {
         },
         '1233104067': {
             name: 'Flare',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_flare'),
             weight: 5.0,
@@ -810,7 +1339,7 @@ export function App(props: any) {
         },
         '-1600701090': {
             name: 'M67 grenade',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_grenade'),
             weight: 5.0,
@@ -821,7 +1350,7 @@ export function App(props: any) {
         },
         '-37975472': {
             name: 'Smoke Grenade',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_stungrenade'),
             weight: 5.0,
@@ -832,7 +1361,7 @@ export function App(props: any) {
         },
         'smokegrenadeswat': {
             name: 'Smoke Grenade (SWAT)',
-            description: 'Mil-Spec. High price, low quality. If you are not SWAT certified do not buy this.',
+            information: 'Mil-Spec. High price, low quality. If you are not SWAT certified do not buy this.',
             stackable: false,
             image: createImage('np_stungrenade'),
             weight: 25.0,
@@ -843,7 +1372,7 @@ export function App(props: any) {
         },
         'smokegrenadenpa': {
             name: 'Smoke Grenade',
-            description: 'NPA Edition.',
+            information: 'NPA Edition.',
             stackable: false,
             image: createImage('np_stungrenade'),
             weight: 25.0,
@@ -855,7 +1384,7 @@ export function App(props: any) {
         // Pipebomb pipe bomb
         '-1169823560': {
             name: 'Pipebomb',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_pipe-bomb'),
             weight: 7.0,
@@ -867,7 +1396,7 @@ export function App(props: any) {
         // Molotov (Molly)
         '615608432': {
             name: 'Molly',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_molotov'),
             weight: 35.0,
@@ -879,7 +1408,7 @@ export function App(props: any) {
         // Sticky Bomb C4
         '741814745': {
             name: 'Sticky Bomb',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_molotov'),
             weight: 22.0,
@@ -893,7 +1422,7 @@ export function App(props: any) {
         // Nail gun nailgun
         '1748076076': {
             name: 'Nail gun',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_nailgun'),
             weight: 11.0,
@@ -905,7 +1434,7 @@ export function App(props: any) {
         // Parachute
         '-72657034': {
             name: 'Parachute',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_parachute'),
             weight: 30.0,
@@ -917,7 +1446,7 @@ export function App(props: any) {
         // Fire Extinguisher
         '101631238': {
             name: 'Fire Ext',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_fire-extinguisher'),
             weight: 25.0,
@@ -929,7 +1458,7 @@ export function App(props: any) {
         // Petrol can
         '883325847': {
             name: 'Petrol Can',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_petrol-can'),
             weight: 50.0,
@@ -942,7 +1471,7 @@ export function App(props: any) {
         //WEAPON_SLEDGEHAM
         '1923739240': {
             name: 'Sledge Hammer',
-            description: 'Big and girthy.',
+            information: 'Big and girthy.',
             stackable: false,
             image: createImage('np_sledgehammer'),
             weight: 25.0,
@@ -953,7 +1482,7 @@ export function App(props: any) {
         },
         '419712736': {
             name: 'Pipe Wrench',
-            description: 'I\'m here to fix your pipes.',
+            information: 'I\'m here to fix your pipes.',
             stackable: false,
             image: createImage('np_wrench'),
             weight: 25.0,
@@ -964,7 +1493,7 @@ export function App(props: any) {
         },
         '-102323637': {
             name: 'Old broken bottle',
-            description: 'Looks like a green, premium, Karlsberg bottle.',
+            information: 'Looks like a green, premium, Karlsberg bottle.',
             stackable: false,
             image: createImage('np_glass-bottle'),
             weight: 2.0,
@@ -976,7 +1505,7 @@ export function App(props: any) {
         //weapon_knuckle
         '3638508604': {
             name: 'Knuckle',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_knuckle-dusters'),
             weight: 2.0,
@@ -987,7 +1516,7 @@ export function App(props: any) {
         },
         'knuckle_chain': {
             name: 'Chain Dusters',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_chain_dusters'),
             weight: 2.0,
@@ -998,7 +1527,7 @@ export function App(props: any) {
         },
         '1317494643': {
             name: 'Hammer',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_hammer'),
             weight: 8.0,
@@ -1009,7 +1538,7 @@ export function App(props: any) {
         },
         '1737195953': {
             name: 'Nightstick',
-            description: 'Government (PD/EMS/DOC) Issued Equipment',
+            information: 'Government (PD/EMS/DOC) Issued Equipment',
             stackable: false,
             image: createImage('np_nightstick'),
             weight: 4.0,
@@ -1020,7 +1549,7 @@ export function App(props: any) {
         },
         '2227010557': {
             name: 'Crowbar',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_crowbar'),
             weight: 15.0,
@@ -1031,7 +1560,7 @@ export function App(props: any) {
         },
         '-1786099057': {
             name: 'Model M Keyboard',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_keyboard'),
             weight: 15.0,
@@ -1043,7 +1572,7 @@ export function App(props: any) {
         // sharp weapons
         '-1239161099': {
             name: 'Katana',
-            description: 'When you were partying, I studied the blade.',
+            information: 'When you were partying, I studied the blade.',
             stackable: false,
             image: createImage('np_katana'),
             weight: 7.0,
@@ -1054,7 +1583,7 @@ export function App(props: any) {
         },
         'cursedkatanaweapon': {
             name: 'Cursed Katana',
-            description: 'Infused with the blood of a Dragon; a normal human mind cannot control such power.',
+            information: 'Infused with the blood of a Dragon; a normal human mind cannot control such power.',
             stackable: false,
             image: createImage('np_cursed-katana'),
             weight: 7.0,
@@ -1065,7 +1594,7 @@ export function App(props: any) {
         },
         '-538741184': {
             name: 'Shank',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_switchblade'),
             weight: 3.0,
@@ -1076,7 +1605,7 @@ export function App(props: any) {
         },
         '2460120199': {
             name: 'Dagger',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_dagger'),
             weight: 5.0,
@@ -1087,7 +1616,7 @@ export function App(props: any) {
         },
         '126349499': {
             name: 'Snowball',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_dagger'),
             weight: 1.0,
@@ -1098,7 +1627,7 @@ export function App(props: any) {
         },
         '-1024456158': {
             name: 'Bat',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_baseball-bat'),
             weight: 14.0,
@@ -1109,7 +1638,7 @@ export function App(props: any) {
         },
         '-2000187721': {
             name: 'Secure Briefcase',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_securitycase'),
             weight: 25.0,
@@ -1120,7 +1649,7 @@ export function App(props: any) {
         },
         '28811031': {
             name: 'Briefcase',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_suitcase'),
             weight: 25.0,
@@ -1131,7 +1660,7 @@ export function App(props: any) {
         },
         '3713923289': {
             name: 'Machete',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_machete'),
             weight: 15.0,
@@ -1142,7 +1671,7 @@ export function App(props: any) {
         },
         '4191993645': {
             name: 'Hatchet',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_hatchet'),
             weight: 15.0,
@@ -1157,7 +1686,7 @@ export function App(props: any) {
         // weapon ammo
         'subammo': {
             name: 'Sub Ammo x50',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_sub-ammo'),
             weight: 2.0,
@@ -1167,7 +1696,7 @@ export function App(props: any) {
         },
         'heavyammo': {
             name: 'Heavy Ammo x50',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_rifle-ammo'),
             weight: 2.0,
@@ -1177,7 +1706,7 @@ export function App(props: any) {
         },
         'sniperammo': {
             name: 'Sniper Ammo x50',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_sniper-ammo'),
             weight: 2.0,
@@ -1188,7 +1717,7 @@ export function App(props: any) {
         // LMG ammo is not actually being used for anything and has no "use function". It's the same as Heavy Ammo.
         'lmgammo': {
             name: 'LMG Ammo x50',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_lmg-ammo'),
             weight: 2.0,
@@ -1198,7 +1727,7 @@ export function App(props: any) {
         },
         'shotgunammo': {
             name: 'SG Ammo x50',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_shotgun-ammo'),
             weight: 2.0,
@@ -1208,7 +1737,7 @@ export function App(props: any) {
         },
         'pistolammo': {
             name: 'Pistol Ammo x50',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_pistol-ammo'),
             weight: 2.0,
@@ -1216,20 +1745,9 @@ export function App(props: any) {
                 useItem: true,
             }
         },
-        'pistolbullet': {
-            name: '9mm Ammo',
-            description: '',
-            decayrate: 0.0,
-            stackable: false,
-            image: createImage('bullet_1'),
-            weight: 2.0,
-            context: {
-                useItem: true,
-            }
-        },
         'rifleammo': {
             name: 'Rifle Ammo x50',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_rifle-ammo'),
             weight: 2.0,
@@ -1239,7 +1757,7 @@ export function App(props: any) {
         },
         'pistolammoPD': {
             name: 'Pistol Ammo x50 PD',
-            description: 'Government (PD/EMS/DOC) Issued Equipment',
+            information: 'Government (PD/EMS/DOC) Issued Equipment',
             stackable: true,
             image: createImage('np_pistol-ammo'),
             weight: 2.0,
@@ -1249,7 +1767,7 @@ export function App(props: any) {
         },
         'subammoPD': {
             name: 'Sub Ammo x50 PD',
-            description: 'Government (PD/EMS/DOC) Issued Equipment',
+            information: 'Government (PD/EMS/DOC) Issued Equipment',
             stackable: true,
             image: createImage('np_sub-ammo'),
             weight: 2.0,
@@ -1259,7 +1777,7 @@ export function App(props: any) {
         },
         'rifleammoPD': {
             name: 'Rifle Ammo x50 PD',
-            description: 'Government (PD/EMS/DOC) Issued Equipment',
+            information: 'Government (PD/EMS/DOC) Issued Equipment',
             stackable: true,
             image: createImage('np_rifle-ammo'),
             weight: 2.0,
@@ -1269,7 +1787,7 @@ export function App(props: any) {
         },
         'shotgunammoPD': {
             name: 'Shotgun Ammo x50 PD',
-            description: 'Government (PD/EMS/DOC) Issued Equipment',
+            information: 'Government (PD/EMS/DOC) Issued Equipment',
             stackable: true,
             image: createImage('np_shotgun-ammo'),
             weight: 2.0,
@@ -1279,7 +1797,7 @@ export function App(props: any) {
         },
         'taserammo': {
             name: 'Taser Cartridges',
-            description: 'Government (PD/EMS/DOC) Issued Equipment',
+            information: 'Government (PD/EMS/DOC) Issued Equipment',
             stackable: true,
             image: createImage('np_taserammo'),
             weight: 1.0,
@@ -1289,7 +1807,7 @@ export function App(props: any) {
         },
         'empammo': {
             name: 'EMP Cartridge',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_emp_ammo'),
             weight: 20.0,
@@ -1299,7 +1817,7 @@ export function App(props: any) {
         },
         'nails': {
             name: 'Nails',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_nails'),
             weight: 3.0,
@@ -1309,7 +1827,7 @@ export function App(props: any) {
         },
         'paintballs': {
             name: 'Paintballs',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_paintball_ammo'),
             weight: 3.0,
@@ -1319,7 +1837,7 @@ export function App(props: any) {
         },
         'rubberslugs': {
             name: '12-Gauge Rubber Slugs',
-            description: 'Government (PD/EMS/DOC) Issued Equipment',
+            information: 'Government (PD/EMS/DOC) Issued Equipment',
             stackable: true,
             image: createImage('np_rubberslugs'),
             weight: 3.0,
@@ -1332,7 +1850,7 @@ export function App(props: any) {
         // custom items with decay
         'spikes': {
             name: 'PD Spike Kit',
-            description: 'Considered Police Equipment - (only lasts around 10 seconds)',
+            information: 'Considered Police Equipment - (only lasts around 10 seconds)',
             stackable: true,
             image: createImage('np_spikes'),
             weight: 20.0,
@@ -1342,7 +1860,7 @@ export function App(props: any) {
         },
         'repairkit': {
             name: 'Repair Kit',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_basic_repair-kit'),
             weight: 10.0,
@@ -1352,7 +1870,7 @@ export function App(props: any) {
         },
         'wheelchair': {
             name: 'Wheelchair',
-            description: 'For broken legs n stuff',
+            information: 'For broken legs n stuff',
             stackable: true,
             image: createImage('np_wheelchair'),
             weight: 50.0,
@@ -1364,7 +1882,7 @@ export function App(props: any) {
         // drugs
         '1gcocaine': {
             name: '10g cocaine',
-            description: 'Looks really high quality.',
+            information: 'Looks really high quality.',
             stackable: true,
             image: createImage('np_cocaine-baggy'),
             weight: 1.0,
@@ -1374,7 +1892,7 @@ export function App(props: any) {
         },
         '1gcrack': {
             name: '5g Crack',
-            description: 'Crack... ',
+            information: 'Crack... ',
             stackable: true,
             image: createImage('np_crack'),
             weight: 1.0,
@@ -1384,7 +1902,7 @@ export function App(props: any) {
         },
         'cocainebrick': {
             name: 'Coke Brick (50g)',
-            description: 'Increases your Stamina and Movement Speed <br> Breaks down into product.',
+            information: 'Increases your Stamina and Movement Speed <br> Breaks down into product.',
             stackable: true,
             image: createImage('np_cocaine-brick'),
             weight: 20.0,
@@ -1394,7 +1912,7 @@ export function App(props: any) {
         },
         'coke50g': {
             name: 'Air Tight Cocaine Brick (1kg)',
-            description: 'Tightly sealed to prevent water from seeping in.',
+            information: 'Tightly sealed to prevent water from seeping in.',
             stackable: true,
             image: createImage('np_cocaine-brick'),
             weight: 5.0,
@@ -1404,7 +1922,7 @@ export function App(props: any) {
         },
         'coke5g': {
             name: 'Coke Baggy (5g)',
-            description: 'Increases your Stamina and Movement Speed',
+            information: 'Increases your Stamina and Movement Speed',
             stackable: true,
             image: createImage('np_cocaine-baggy'),
             weight: 1.0,
@@ -1414,7 +1932,7 @@ export function App(props: any) {
         },
         'joint': {
             name: '3g Joint',
-            description: 'Its a Joint, man. ',
+            information: 'Its a Joint, man. ',
             stackable: true,
             image: createImage('np_joint'),
             weight: 0.5,
@@ -1424,7 +1942,7 @@ export function App(props: any) {
         },
         'maleseed': {
             name: 'Marijuana Seed',
-            description: 'Plant this seed if you wish for more seeds!',
+            information: 'Plant this seed if you wish for more seeds!',
             stackable: true,
             image: createImage('np_weed-seed'),
             weight: 0.05,
@@ -1434,7 +1952,7 @@ export function App(props: any) {
         },
         'femaleseed': {
             name: 'Female Marijuana Seed',
-            description: 'Surely I can just plant this, right?',
+            information: 'Surely I can just plant this, right?',
             stackable: true,
             image: createImage('np_weed-seed'),
             weight: 0.05,
@@ -1444,7 +1962,7 @@ export function App(props: any) {
         },
         'cocaleaves': {
             name: 'Coca Leaves',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('leaf'),
             weight: 0.05,
@@ -1454,7 +1972,7 @@ export function App(props: any) {
         },
         'weedplant': {
             name: 'Weed Plant',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('weedplant'),
             weight: 0.20,
@@ -1464,7 +1982,7 @@ export function App(props: any) {
         },
         'oxy': {
             name: 'Oxy 100mg',
-            description: 'Prescribed by Betta Life Pharmacy (Prescription required)',
+            information: 'Prescribed by Betta Life Pharmacy (Prescription required)',
             stackable: true,
             image: createImage('np_Oxy'),
             weight: 0.3,
@@ -1474,7 +1992,7 @@ export function App(props: any) {
         },
         'weed12oz': {
             name: 'Weed 250 Oz',
-            description: 'Lowers Stress <br> Breaks Down into other Product',
+            information: 'Lowers Stress <br> Breaks Down into other Product',
             stackable: true,
             image: createImage('np_box-of-weed-12-18-oz'),
             weight: 35.0,
@@ -1484,7 +2002,7 @@ export function App(props: any) {
         },
         'weed5oz': {
             name: 'Weed 5 Oz',
-            description: 'Lowers Stress <br> Breaks Down into other Product',
+            information: 'Lowers Stress <br> Breaks Down into other Product',
             stackable: true,
             image: createImage('np_weed-brick-40-Oz'),
             weight: 8.0,
@@ -1494,7 +2012,7 @@ export function App(props: any) {
         },
         'weedoz': {
             name: 'Weed Oz',
-            description: 'Lowers Stress',
+            information: 'Lowers Stress',
             stackable: true,
             image: createImage('np_weed-4-Oz'),
             weight: 4.0,
@@ -1504,7 +2022,7 @@ export function App(props: any) {
         },
         'weedq': {
             name: 'Weed Q',
-            description: 'Lowers Stress',
+            information: 'Lowers Stress',
             stackable: true,
             image: createImage('np_weed-oz'),
             weight: 2.0,
@@ -1514,7 +2032,7 @@ export function App(props: any) {
         },
         'driedbud': {
             name: 'Dried Bud (100 Grams)',
-            description: 'Pack It?',
+            information: 'Pack It?',
             stackable: true,
             image: createImage('buddry2'),
             weight: 75.0,
@@ -1524,7 +2042,7 @@ export function App(props: any) {
         },
         'smallbud': {
             name: 'Packed Bud (20 Grams)',
-            description: 'Sell It?',
+            information: 'Sell It?',
             stackable: true,
             image: createImage('buddry'),
             weight: 10.0,
@@ -1534,7 +2052,7 @@ export function App(props: any) {
         },
         'lsdtab': {
             name: 'LSD Tab',
-            description: 'For spectacular trips, or whatever.',
+            information: 'For spectacular trips, or whatever.',
             stackable: true,
             image: createImage('np_badlsdtab'),
             weight: 2.0,
@@ -1545,7 +2063,7 @@ export function App(props: any) {
         // Fruits / Alcohol crafting
         'apple': {
             name: 'Apple',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_apple'),
             weight: 1.0,
@@ -1555,7 +2073,7 @@ export function App(props: any) {
         },
         'banana': {
             name: 'Banana',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_banana'),
             weight: 1.0,
@@ -1565,7 +2083,7 @@ export function App(props: any) {
         },
         'cherry': {
             name: 'Cherry',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_cherry'),
             weight: 1.0,
@@ -1575,7 +2093,7 @@ export function App(props: any) {
         },
         'coconut': {
             name: 'Coconut',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_coconut'),
             weight: 1.0,
@@ -1585,7 +2103,7 @@ export function App(props: any) {
         },
         'grain': {
             name: 'Grain',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_grain'),
             weight: 2.0,
@@ -1595,7 +2113,7 @@ export function App(props: any) {
         },
         'grapes': {
             name: 'Grapes',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_grapes2'),
             weight: 2.0,
@@ -1605,7 +2123,7 @@ export function App(props: any) {
         },
         'kiwi': {
             name: 'Kiwi',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_kiwi'),
             weight: 2.0,
@@ -1615,7 +2133,7 @@ export function App(props: any) {
         },
         'lemon': {
             name: 'Lemon',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_lemon'),
             weight: 2.0,
@@ -1625,7 +2143,7 @@ export function App(props: any) {
         },
         'lime': {
             name: 'Lime',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_lime'),
             weight: 2.0,
@@ -1635,7 +2153,7 @@ export function App(props: any) {
         },
         'orange': {
             name: 'Orange',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_orange'),
             weight: 2.0,
@@ -1645,7 +2163,7 @@ export function App(props: any) {
         },
         'peach': {
             name: 'Peach',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_peach'),
             weight: 2.0,
@@ -1655,7 +2173,7 @@ export function App(props: any) {
         },
         'potato': {
             name: 'Potato',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_potato'),
             weight: 2.0,
@@ -1665,7 +2183,7 @@ export function App(props: any) {
         },
         'strawberry': {
             name: 'Strawberry',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_strawberry'),
             weight: 2.0,
@@ -1675,7 +2193,7 @@ export function App(props: any) {
         },
         'watermelon': {
             name: 'Watermelon',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_watermelon'),
             weight: 2.0,
@@ -1686,7 +2204,7 @@ export function App(props: any) {
         // HOA Mead
         'bottle_cap': {
             name: 'Bottle Cap',
-            description: 'Bottle cap saying HOA on it.',
+            information: 'Bottle cap saying HOA on it.',
             stackable: true,
             image: createImage('np_hoa_cap'),
             weight: 2.0,
@@ -1696,7 +2214,7 @@ export function App(props: any) {
         },
         'mead_watermelon': {
             name: 'Watermelon Mead',
-            description: 'The danish vikings really knew how to get hammered.',
+            information: 'The danish vikings really knew how to get hammered.',
             stackable: true,
             image: createImage('np_mead_watermelon'),
             weight: 2.0,
@@ -1706,7 +2224,7 @@ export function App(props: any) {
         },
         'mead_Strawberry': {
             name: 'Strawberry Mead',
-            description: 'The danish vikings really knew how to get hammered.',
+            information: 'The danish vikings really knew how to get hammered.',
             stackable: true,
             image: createImage('np_mead_strawberry'),
             weight: 2.0,
@@ -1716,7 +2234,7 @@ export function App(props: any) {
         },
         'mead_potato': {
             name: 'Potato Mead',
-            description: 'The danish vikings really knew how to get hammered.',
+            information: 'The danish vikings really knew how to get hammered.',
             stackable: true,
             image: createImage('np_mead_potato'),
             weight: 2.0,
@@ -1726,7 +2244,7 @@ export function App(props: any) {
         },
         'mead_peach': {
             name: 'Peach Mead',
-            description: 'The danish vikings really knew how to get hammered.',
+            information: 'The danish vikings really knew how to get hammered.',
             stackable: true,
             image: createImage('np_mead_peach'),
             weight: 2.0,
@@ -1736,7 +2254,7 @@ export function App(props: any) {
         },
         'mead_orange': {
             name: 'Orange Mead',
-            description: 'The danish vikings really knew how to get hammered.',
+            information: 'The danish vikings really knew how to get hammered.',
             stackable: true,
             image: createImage('np_mead_orange'),
             weight: 2.0,
@@ -1746,7 +2264,7 @@ export function App(props: any) {
         },
         'mead_lime': {
             name: 'Lime Mead',
-            description: 'The danish vikings really knew how to get hammered.',
+            information: 'The danish vikings really knew how to get hammered.',
             stackable: true,
             image: createImage('np_mead_lime'),
             weight: 2.0,
@@ -1756,7 +2274,7 @@ export function App(props: any) {
         },
         'mead_lemon': {
             name: 'Lemon Mead',
-            description: 'The danish vikings really knew how to get hammered.',
+            information: 'The danish vikings really knew how to get hammered.',
             stackable: true,
             image: createImage('np_mead_lemon'),
             weight: 2.0,
@@ -1766,7 +2284,7 @@ export function App(props: any) {
         },
         'mead_kiwi': {
             name: 'Kiwi Mead',
-            description: 'The danish vikings really knew how to get hammered.',
+            information: 'The danish vikings really knew how to get hammered.',
             stackable: true,
             image: createImage('np_mead_kiwi'),
             weight: 2.0,
@@ -1776,7 +2294,7 @@ export function App(props: any) {
         },
         'mead_grape': {
             name: 'Grape Mead',
-            description: 'The danish vikings really knew how to get hammered.',
+            information: 'The danish vikings really knew how to get hammered.',
             stackable: true,
             image: createImage('np_mead_grape'),
             weight: 2.0,
@@ -1786,7 +2304,7 @@ export function App(props: any) {
         },
         'mead_coconut': {
             name: 'Coconut Mead',
-            description: 'The danish vikings really knew how to get hammered.',
+            information: 'The danish vikings really knew how to get hammered.',
             stackable: true,
             image: createImage('np_mead_coconut'),
             weight: 2.0,
@@ -1796,7 +2314,7 @@ export function App(props: any) {
         },
         'mead_cherry': {
             name: 'Cherry Mead',
-            description: 'The danish vikings really knew how to get hammered.',
+            information: 'The danish vikings really knew how to get hammered.',
             stackable: true,
             image: createImage('np_mead_cherry'),
             weight: 2.0,
@@ -1806,7 +2324,7 @@ export function App(props: any) {
         },
         'mead_banana': {
             name: 'Banana Mead',
-            description: 'The danish vikings really knew how to get hammered.',
+            information: 'The danish vikings really knew how to get hammered.',
             stackable: true,
             image: createImage('np_mead_banana'),
             weight: 2.0,
@@ -1816,7 +2334,7 @@ export function App(props: any) {
         },
         'mead_apple': {
             name: 'Apple Mead',
-            description: 'The danish vikings really knew how to get hammered.',
+            information: 'The danish vikings really knew how to get hammered.',
             stackable: true,
             image: createImage('np_mead_apple'),
             weight: 2.0,
@@ -1827,7 +2345,7 @@ export function App(props: any) {
         // Drinks for VU
         'drink1': {
             name: 'Orange Lemon',
-            description: 'A perfect happy hour choice for vodka drinkers. Sates Thirst',
+            information: 'A perfect happy hour choice for vodka drinkers. Sates Thirst',
             stackable: true,
             image: createImage('np_drink1'),
             weight: 2.0,
@@ -1837,7 +2355,7 @@ export function App(props: any) {
         },
         'drink2': {
             name: 'Cherry Berry',
-            description: ' Berry bliss. Sates Thirst',
+            information: ' Berry bliss. Sates Thirst',
             stackable: true,
             image: createImage('np_drink2'),
             weight: 2.0,
@@ -1847,7 +2365,7 @@ export function App(props: any) {
         },
         'drink3': {
             name: 'Banana Peach',
-            description: 'Tastes just like fruity bubblegum. Sates Thirst',
+            information: 'Tastes just like fruity bubblegum. Sates Thirst',
             stackable: true,
             image: createImage('np_drink3'),
             weight: 2.0,
@@ -1857,7 +2375,7 @@ export function App(props: any) {
         },
         'drink4': {
             name: 'Orange Banana',
-            description: 'Tastes just like fruity bubblegum. Sates Thirst',
+            information: 'Tastes just like fruity bubblegum. Sates Thirst',
             stackable: true,
             image: createImage('np_drink4'),
             weight: 2.0,
@@ -1867,7 +2385,7 @@ export function App(props: any) {
         },
         'drink5': {
             name: 'Cherry Kiwi',
-            description: 'Fruity and refreshing. Sates Thirst',
+            information: 'Fruity and refreshing. Sates Thirst',
             stackable: true,
             image: createImage('np_drink5'),
             weight: 2.0,
@@ -1877,7 +2395,7 @@ export function App(props: any) {
         },
         'drink6': {
             name: 'Berry Watermelon',
-            description: 'Cool, Sweet, Colorful. Sates Thirst',
+            information: 'Cool, Sweet, Colorful. Sates Thirst',
             stackable: true,
             image: createImage('np_drink6'),
             weight: 2.0,
@@ -1887,7 +2405,7 @@ export function App(props: any) {
         },
         'drink7': {
             name: 'Apple Lime',
-            description: 'Curbs sweet cravings. Sates Thirst',
+            information: 'Curbs sweet cravings. Sates Thirst',
             stackable: true,
             image: createImage('np_polarbear'),
             weight: 2.0,
@@ -1897,7 +2415,7 @@ export function App(props: any) {
         },
         'drink8': {
             name: 'Cherry Peach',
-            description: 'Perfect for cooling off on hot days. Sates Thirst',
+            information: 'Perfect for cooling off on hot days. Sates Thirst',
             stackable: true,
             image: createImage('np_rumcoke'),
             weight: 2.0,
@@ -1907,7 +2425,7 @@ export function App(props: any) {
         },
         'drink9': {
             name: 'Coconut Lime',
-            description: 'Blended with an island twist. Sates Thirst',
+            information: 'Blended with an island twist. Sates Thirst',
             stackable: true,
             image: createImage('np_straightvodka'),
             weight: 2.0,
@@ -1917,7 +2435,7 @@ export function App(props: any) {
         },
         'drink10': {
             name: 'White Paw',
-            description: 'Enjoy on your porch admiring the stars. Sates Thirst',
+            information: 'Enjoy on your porch admiring the stars. Sates Thirst',
             stackable: true,
             image: createImage('np_whitepaw'),
             weight: 2.0,
@@ -1927,7 +2445,7 @@ export function App(props: any) {
         },
         'absinthe': {
             name: 'Absinthe',
-            description: 'The strongest you can get, 95%.',
+            information: 'The strongest you can get, 95%.',
             stackable: true,
             image: createImage('np_absinthe'),
             weight: 2.0,
@@ -1937,7 +2455,7 @@ export function App(props: any) {
         },
         'shot1': {
             name: 'Orange Lemon',
-            description: 'Sates Thirst',
+            information: 'Sates Thirst',
             stackable: true,
             image: createImage('np_shot1'),
             weight: 2.0,
@@ -1947,7 +2465,7 @@ export function App(props: any) {
         },
         'shot2': {
             name: 'Cherry Berry',
-            description: 'Sates Thirst',
+            information: 'Sates Thirst',
             stackable: true,
             image: createImage('np_shot2'),
             weight: 2.0,
@@ -1957,7 +2475,7 @@ export function App(props: any) {
         },
         'shot3': {
             name: 'Banana Peach',
-            description: 'Sates Thirst',
+            information: 'Sates Thirst',
             stackable: true,
             image: createImage('np_shot3'),
             weight: 2.0,
@@ -1967,7 +2485,7 @@ export function App(props: any) {
         },
         'shot4': {
             name: 'Orange Banana',
-            description: 'Sates Thirst',
+            information: 'Sates Thirst',
             stackable: true,
             image: createImage('np_shot4'),
             weight: 2.0,
@@ -1977,7 +2495,7 @@ export function App(props: any) {
         },
         'shot5': {
             name: 'Cherry Kiwi',
-            description: 'Sates Thirst',
+            information: 'Sates Thirst',
             stackable: true,
             image: createImage('np_shot5'),
             weight: 2.0,
@@ -1987,7 +2505,7 @@ export function App(props: any) {
         },
         'shot6': {
             name: 'Berry Watermelon',
-            description: 'Sates Thirst',
+            information: 'Sates Thirst',
             stackable: true,
             image: createImage('np_shot6'),
             weight: 2.0,
@@ -1997,7 +2515,7 @@ export function App(props: any) {
         },
         'shot7': {
             name: 'Orange Lemon',
-            description: 'Lime Apple',
+            information: 'Lime Apple',
             stackable: true,
             image: createImage('np_shot7'),
             weight: 2.0,
@@ -2007,7 +2525,7 @@ export function App(props: any) {
         },
         'shot8': {
             name: 'Cherry Peach',
-            description: 'Sates Thirst',
+            information: 'Sates Thirst',
             stackable: true,
             image: createImage('np_shot8'),
             weight: 2.0,
@@ -2017,7 +2535,7 @@ export function App(props: any) {
         },
         'shot9': {
             name: 'Coconut Lime',
-            description: 'Sates Thirst',
+            information: 'Sates Thirst',
             stackable: true,
             image: createImage('np_shot1'),
             weight: 2.0,
@@ -2027,7 +2545,7 @@ export function App(props: any) {
         },
         'shot10': {
             name: 'Grapes Watermelon',
-            description: 'Sates Thirst',
+            information: 'Sates Thirst',
             stackable: true,
             image: createImage('np_shot10'),
             weight: 2.0,
@@ -2037,7 +2555,7 @@ export function App(props: any) {
         },
         'redwine': {
             name: 'Red Wine',
-            description: 'No crime just wine',
+            information: 'No crime just wine',
             stackable: true,
             image: createImage('np_red-wine-bottle'),
             weight: 2.0,
@@ -2047,7 +2565,7 @@ export function App(props: any) {
         },
         'rum': {
             name: 'Rum',
-            description: 'Why is it gone?',
+            information: 'Why is it gone?',
             stackable: true,
             image: createImage('np_rum'),
             weight: 2.0,
@@ -2057,7 +2575,7 @@ export function App(props: any) {
         },
         'tequila': {
             name: 'Tequila',
-            description: 'Tequilya brand',
+            information: 'Tequilya brand',
             stackable: true,
             image: createImage('np_tequila'),
             weight: 2.0,
@@ -2067,7 +2585,7 @@ export function App(props: any) {
         },
         'tequilashot': {
             name: 'Shot of Tequila',
-            description: 'Uno mas por favor',
+            information: 'Uno mas por favor',
             stackable: true,
             image: createImage('np_tequila-shot'),
             weight: 2.0,
@@ -2077,7 +2595,7 @@ export function App(props: any) {
         },
         'vodka': {
             name: 'Vodka',
-            description: 'Sates Thirst',
+            information: 'Sates Thirst',
             stackable: true,
             image: createImage('np_vodka'),
             weight: 2.0,
@@ -2087,7 +2605,7 @@ export function App(props: any) {
         },
         'whiskey': {
             name: 'Whiskey',
-            description: 'Sates Thirst',
+            information: 'Sates Thirst',
             stackable: true,
             image: createImage('np_whiskey'),
             weight: 2.0,
@@ -2097,7 +2615,7 @@ export function App(props: any) {
         },
         'champagne': {
             name: 'Champagne',
-            description: 'Time to celebrate',
+            information: 'Time to celebrate',
             stackable: true,
             image: createImage('np_champagne'),
             weight: 2.0,
@@ -2107,7 +2625,7 @@ export function App(props: any) {
         },
         'beer': {
             name: 'Beer',
-            description: 'Sates Thirst',
+            information: 'Sates Thirst',
             stackable: true,
             image: createImage('np_beer'),
             weight: 2.0,
@@ -2117,7 +2635,7 @@ export function App(props: any) {
         },
         'pinacolada': {
             name: 'Pina Colada',
-            description: 'And getting caught in the rain',
+            information: 'And getting caught in the rain',
             stackable: true,
             image: createImage('np_pina-colada'),
             weight: 2.0,
@@ -2129,7 +2647,7 @@ export function App(props: any) {
         // other drugy shit
         'aspirin': {
             name: 'Aspirin',
-            description: 'Its an Aspirin',
+            information: 'Its an Aspirin',
             stackable: true,
             image: createImage('np_aspirin'),
             weight: 1.0,
@@ -2139,7 +2657,7 @@ export function App(props: any) {
         },
         'cabsinthe': {
             name: 'Cannabis Absinthe',
-            description: 'Duuude..bro...',
+            information: 'Duuude..bro...',
             stackable: true,
             image: createImage('np_cannabis-absinthe'),
             weight: 1.0,
@@ -2149,7 +2667,7 @@ export function App(props: any) {
         },
         '420bar': {
             name: '420 Bar',
-            description: 'Duuude..bro...',
+            information: 'Duuude..bro...',
             stackable: true,
             image: createImage('np_420-bar'),
             weight: 1.0,
@@ -2159,7 +2677,7 @@ export function App(props: any) {
         },
         '69box': {
             name: '69 Cigar Box',
-            description: 'A taste of Cuba',
+            information: 'A taste of Cuba',
             stackable: true,
             image: createImage('np_69-cigar-box'),
             weight: 1.0,
@@ -2169,7 +2687,7 @@ export function App(props: any) {
         },
         '69pack': {
             name: '69 Brand Pack',
-            description: 'Just one more',
+            information: 'Just one more',
             stackable: true,
             image: createImage('np_69-brand-pack'),
             weight: 1.0,
@@ -2179,7 +2697,7 @@ export function App(props: any) {
         },
         'cgummies': {
             name: 'Cannabis Gummies',
-            description: 'Duuude...',
+            information: 'Duuude...',
             stackable: true,
             image: createImage('np_cannabis-gummies'),
             weight: 1.0,
@@ -2189,7 +2707,7 @@ export function App(props: any) {
         },
         'chloroform': {
             name: 'Chloroform',
-            description: 'Special Cross recipe',
+            information: 'Special Cross recipe',
             stackable: true,
             image: createImage('np_chloroform'),
             weight: 1.0,
@@ -2199,7 +2717,7 @@ export function App(props: any) {
         },
         'ibuprofen': {
             name: 'Ibuprofen',
-            description: 'Cures all. Right?',
+            information: 'Cures all. Right?',
             stackable: true,
             image: createImage('np_ibuprofen'),
             weight: 1.0,
@@ -2209,7 +2727,7 @@ export function App(props: any) {
         },
         'drugx': {
             name: 'Drug X',
-            description: 'Now in testing by Humane Labs',
+            information: 'Now in testing by Humane Labs',
             stackable: true,
             image: createImage('np_drug-x'),
             weight: 1.0,
@@ -2219,7 +2737,7 @@ export function App(props: any) {
         },
         'cbrownie': {
             name: 'Cannabis Brownie',
-            description: 'Dude...',
+            information: 'Dude...',
             stackable: true,
             image: createImage('np_cannabis-brownie'),
             weight: 1.0,
@@ -2231,7 +2749,7 @@ export function App(props: any) {
         //food
         'bfsandwich': {
             name: 'Breakfast Sandwich',
-            description: 'Rise and shine',
+            information: 'Rise and shine',
             stackable: true,
             image: createImage('np_breakfast-sandwich'),
             weight: 1.0,
@@ -2241,7 +2759,7 @@ export function App(props: any) {
         },
         'cbfowl': {
             name: 'Fowl Burger',
-            description: 'If you enjoyed it, the chicken didnt die in vain! 900Cal',
+            information: 'If you enjoyed it, the chicken didnt die in vain! 900Cal',
             stackable: true,
             image: createImage('np_fowl-burger'),
             weight: 1.0,
@@ -2251,7 +2769,7 @@ export function App(props: any) {
         },
         'cbfries': {
             name: 'Cluckin Fries',
-            description: 'Cluckinsize included. 680Cal',
+            information: 'Cluckinsize included. 680Cal',
             stackable: true,
             image: createImage('np_cluckin-fries'),
             weight: 1.0,
@@ -2261,7 +2779,7 @@ export function App(props: any) {
         },
         'cookie': {
             name: 'Cookie',
-            description: 'Baked with love',
+            information: 'Baked with love',
             stackable: true,
             image: createImage('np_cookie'),
             weight: 1.0,
@@ -2271,7 +2789,7 @@ export function App(props: any) {
         },
         'tobacco': {
             name: 'Tobacco',
-            description: 'Used for ciggies',
+            information: 'Used for ciggies',
             stackable: true,
             image: createImage('np_tobacco'),
             weight: 1.0,
@@ -2281,7 +2799,7 @@ export function App(props: any) {
         },
         'gause': {
             name: 'Gause',
-            description: 'Used for making bandages',
+            information: 'Used for making bandages',
             stackable: true,
             image: createImage('np_gause'),
             weight: 1.0,
@@ -2291,7 +2809,7 @@ export function App(props: any) {
         },
         'pizza': {
             name: 'Pizza Slice',
-            description: 'Check for pineapple',
+            information: 'Check for pineapple',
             stackable: true,
             image: createImage('np_pizza-slice'),
             weight: 1.0,
@@ -2301,7 +2819,7 @@ export function App(props: any) {
         },
         'chips': {
             name: 'Chips',
-            description: 'Phat Chips yeeeaaah. Thickens blood.',
+            information: 'Phat Chips yeeeaaah. Thickens blood.',
             stackable: true,
             image: createImage('np_chips'),
             weight: 1.0,
@@ -2311,7 +2829,7 @@ export function App(props: any) {
         },
         'chocobar': {
             name: 'Chips',
-            description: 'Phat Chips yeeeaaah. Thickens blood.',
+            information: 'Phat Chips yeeeaaah. Thickens blood.',
             stackable: true,
             image: createImage('np_chips'),
             weight: 1.0,
@@ -2321,7 +2839,7 @@ export function App(props: any) {
         },
         'torta': {
             name: 'Torta',
-            description: 'El mejor jamon',
+            information: 'El mejor jamon',
             stackable: true,
             image: createImage('np_torta'),
             weight: 1.0,
@@ -2331,7 +2849,7 @@ export function App(props: any) {
         },
         'coffee': {
             name: 'Cheap Coffee',
-            description: 'Tastes like dirt, but has the caffeine you need',
+            information: 'Tastes like dirt, but has the caffeine you need',
             stackable: true,
             image: createImage('np_coffee'),
             weight: 1.0,
@@ -2341,7 +2859,7 @@ export function App(props: any) {
         },
         'burrito': {
             name: 'Burrito',
-            description: 'Burrito',
+            information: 'Burrito',
             stackable: true,
             image: createImage('np_burrito'),
             weight: 1.0,
@@ -2351,7 +2869,7 @@ export function App(props: any) {
         },
         'donut': {
             name: 'Donut',
-            description: 'Fill the hole',
+            information: 'Fill the hole',
             stackable: true,
             image: createImage('donut'),
             weight: 1.0,
@@ -2361,7 +2879,7 @@ export function App(props: any) {
         },
         'foodingredient': {
             name: 'Ingredients',
-            description: 'Used to craft food - be aware, food doesnt last forever!',
+            information: 'Used to craft food - be aware, food doesnt last forever!',
             stackable: true,
             image: createImage('np_ingredients'),
             weight: 1.0,
@@ -2371,7 +2889,7 @@ export function App(props: any) {
         },
         'greencow': {
             name: 'Green Cow',
-            description: 'Slightly Increases Stamina and Speed',
+            information: 'Slightly Increases Stamina and Speed',
             stackable: true,
             image: createImage('np_green-cow'),
             weight: 1.0,
@@ -2381,7 +2899,7 @@ export function App(props: any) {
         },
         'icecream': {
             name: 'Ice Cream',
-            description: 'Made from real human titty milk. Prevents stress from being gained or relieved.',
+            information: 'Made from real human titty milk. Prevents stress from being gained or relieved.',
             stackable: true,
             image: createImage('np_icecream'),
             weight: 1.0,
@@ -2391,7 +2909,7 @@ export function App(props: any) {
         },
         'jailfood': {
             name: 'Jail Food',
-            description: "Looks as bad as the Sheriff's aim.",
+            information: "Looks as bad as the Sheriff's aim.",
             stackable: true,
             image: createImage('np_jailfood'),
             weight: 1.0,
@@ -2401,7 +2919,7 @@ export function App(props: any) {
         },
         'jaildrink': {
             name: 'Jail Drink',
-            description: "Looks as bad as the Chief of Police's aim.",
+            information: "Looks as bad as the Chief of Police's aim.",
             stackable: true,
             image: createImage('np_jaildrink'),
             weight: 1.0,
@@ -2411,7 +2929,7 @@ export function App(props: any) {
         },
         'hamburger': {
             name: 'Hamburger',
-            description: "Sates Hunger",
+            information: "Sates Hunger",
             stackable: true,
             image: createImage('np_hamburger'),
             weight: 1.0,
@@ -2423,7 +2941,7 @@ export function App(props: any) {
         //Materials
         'aluminium': {
             name: 'Aluminium',
-            description: "",
+            information: "",
             stackable: true,
             image: createImage('np_aluminum'),
             weight: 1.0,
@@ -2433,7 +2951,7 @@ export function App(props: any) {
         },
         'plastic': {
             name: 'Plastic',
-            description: "",
+            information: "",
             stackable: true,
             image: createImage('np_plastic'),
             weight: 1.0,
@@ -2443,7 +2961,7 @@ export function App(props: any) {
         },
         'copper': {
             name: 'Copper',
-            description: "",
+            information: "",
             stackable: true,
             image: createImage('np_copper'),
             weight: 1.0,
@@ -2453,7 +2971,7 @@ export function App(props: any) {
         },
         'electronics': {
             name: 'Electronics',
-            description: "",
+            information: "",
             stackable: true,
             image: createImage('np_electronics'),
             weight: 1.0,
@@ -2463,7 +2981,7 @@ export function App(props: any) {
         },
         'rubber': {
             name: 'Rubber',
-            description: "",
+            information: "",
             stackable: true,
             image: createImage('np_rubber'),
             weight: 1.0,
@@ -2473,7 +2991,7 @@ export function App(props: any) {
         },
         'scrapmetal': {
             name: 'Scrap Metal',
-            description: "",
+            information: "",
             stackable: true,
             image: createImage('np_scrap-metal'),
             weight: 1.0,
@@ -2483,7 +3001,7 @@ export function App(props: any) {
         },
         'steel': {
             name: 'Steel',
-            description: "",
+            information: "",
             stackable: true,
             image: createImage('np_steel'),
             weight: 1.0,
@@ -2493,7 +3011,7 @@ export function App(props: any) {
         },
         'glass': {
             name: 'Glass',
-            description: "",
+            information: "",
             stackable: true,
             image: createImage('np_glass'),
             weight: 1.0,
@@ -2503,7 +3021,7 @@ export function App(props: any) {
         },
         'pdpanicbutton': {
             name: 'Panic Button',
-            description: 'Alert Police?',
+            information: 'Alert Police?',
             stackable: true,
             image: createImage('qb_panicbutton'),
             weight: 2.0,
@@ -2513,7 +3031,7 @@ export function App(props: any) {
         },
         'lockpickbp': {
             name: 'Lockpick Blueprint',
-            description: "",
+            information: "",
             stackable: true,
             image: createImage('np_bp-lockpick'),
             weight: 2.0,
@@ -2523,7 +3041,7 @@ export function App(props: any) {
         },
         'advlockpickbp': {
             name: 'Advanced Lockpick Blueprint',
-            description: "",
+            information: "",
             stackable: true,
             image: createImage('np_bp-advlockpick'),
             weight: 2.0,
@@ -2533,7 +3051,7 @@ export function App(props: any) {
         },
         'lockpick': {
             name: 'Lockpick Set',
-            description: 'Unlocks things, if you have the skill!',
+            information: 'Unlocks things, if you have the skill!',
             stackable: true,
             image: createImage('np_lockpick1'),
             weight: 2.0,
@@ -2543,7 +3061,7 @@ export function App(props: any) {
         },
         'advlockpick': {
             name: 'Adv Lock Pick',
-            description: 'Unlocks things, if you have the skill!',
+            information: 'Unlocks things, if you have the skill!',
             stackable: true,
             image: createImage('np_advanced-lockpick'),
             weight: 2.0,
@@ -2553,7 +3071,7 @@ export function App(props: any) {
         },
         'hackingdevice': {
             name: 'Security System Hacking Device',
-            description: 'Marked for Police Seizure',
+            information: 'Marked for Police Seizure',
             stackable: true,
             image: createImage('np_hacking_device'),
             weight: 3.0,
@@ -2563,7 +3081,7 @@ export function App(props: any) {
         },
         'armor': {
             name: 'Chest Armor',
-            description: 'Protects you from bleeding and stumbling on injuries',
+            information: 'Protects you from bleeding and stumbling on injuries',
             stackable: true,
             image: createImage('np_chest-armor'),
             weight: 5.0,
@@ -2573,7 +3091,7 @@ export function App(props: any) {
         },
         'pdarmor': {
             name: '(PD) Chest Armor',
-            description: 'Government (PD/EMS/DOC) Issued Equipment',
+            information: 'Government (PD/EMS/DOC) Issued Equipment',
             stackable: true,
             image: createImage('np_chest-armor'),
             weight: 5.0,
@@ -2583,7 +3101,7 @@ export function App(props: any) {
         },
         'aluminiumoxide': {
             name: 'Aluminium Oxide',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_aluminum-oxide'),
             weight: 1.0,
@@ -2593,7 +3111,7 @@ export function App(props: any) {
         },
         'advrepairkit': {
             name: 'Adv Repair Kit',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_repair-toolkit'),
             weight: 8.0,
@@ -2603,7 +3121,7 @@ export function App(props: any) {
         },
         'tirerepairkit': {
             name: 'For swapping damaged tires.',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_tire_repair-kit'),
             weight: 8.0,
@@ -2613,7 +3131,7 @@ export function App(props: any) {
         },
         'carbattery': {
             name: 'Car Battery',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_car-battery'),
             weight: 8.0,
@@ -2623,7 +3141,7 @@ export function App(props: any) {
         },
         'carhood': {
             name: 'Car Hood',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_car-hood'),
             weight: 8.0,
@@ -2633,7 +3151,7 @@ export function App(props: any) {
         },
         'cashstack': {
             name: 'Stack of Cash',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_cash-stack'),
             weight: 1.0,
@@ -2643,7 +3161,7 @@ export function App(props: any) {
         },
         'band': {
             name: 'Band of Notes',
-            description: 'Lots of low denominators - Indicates drug sales.',
+            information: 'Lots of low denominators - Indicates drug sales.',
             stackable: true,
             image: createImage('np_cash-stack'),
             weight: 1.0,
@@ -2653,7 +3171,7 @@ export function App(props: any) {
         },
         'rollcash': {
             name: 'Dirty Money',
-            description: 'I need to find a way to clean this money.',
+            information: 'I need to find a way to clean this money.',
             stackable: true,
             image: createImage('np_cash-roll'),
             weight: 1.0,
@@ -2663,7 +3181,7 @@ export function App(props: any) {
         },
         'battery': {
             name: 'Battery',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_battery'),
             weight: 1.0,
@@ -2673,7 +3191,7 @@ export function App(props: any) {
         },
         'binoculars': {
             name: 'Binoculars',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_binoculars'),
             weight: 2.0,
@@ -2683,7 +3201,7 @@ export function App(props: any) {
         },
         'blindfold': {
             name: 'Blindfold',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_blindfold'),
             weight: 1.0,
@@ -2693,7 +3211,7 @@ export function App(props: any) {
         },
         'bloodbag': {
             name: 'Blood Bag',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_blood-bag'),
             weight: 1.0,
@@ -2703,7 +3221,7 @@ export function App(props: any) {
         },
         'bloodvial': {
             name: 'Blood Vial',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_blood-tube'),
             weight: 1.0,
@@ -2713,7 +3231,7 @@ export function App(props: any) {
         },
         'Boombox': {
             name: 'Boombox',
-            description: 'Its a prop, wow?',
+            information: 'Its a prop, wow?',
             stackable: true,
             image: createImage('np_boombox'),
             weight: 5.0,
@@ -2723,7 +3241,7 @@ export function App(props: any) {
         },
         'Box': {
             name: 'Box',
-            description: 'Its a prop, wow?',
+            information: 'Its a prop, wow?',
             stackable: true,
             image: createImage('np_box'),
             weight: 5.0,
@@ -2733,7 +3251,7 @@ export function App(props: any) {
         },
         'breadboard': {
             name: 'Breadboard',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_breadboard'),
             weight: 2.0,
@@ -2743,7 +3261,7 @@ export function App(props: any) {
         },
         'camera': {
             name: 'Nikea X1000',
-            description: 'Works 100% of the time 60% of the time.',
+            information: 'Works 100% of the time 60% of the time.',
             stackable: true,
             image: createImage('np_camera'),
             weight: 2.0,
@@ -2753,7 +3271,7 @@ export function App(props: any) {
         },
         'casing': {
             name: 'Bullet Casing',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_pistol-ammo'),
             weight: 1.0,
@@ -2763,7 +3281,7 @@ export function App(props: any) {
         },
         'certificate': {
             name: 'Certificate',
-            description: 'You made it!',
+            information: 'You made it!',
             stackable: true,
             image: createImage('np_certificate'),
             weight: 1.0,
@@ -2773,7 +3291,7 @@ export function App(props: any) {
         },
         'cgpapers': {
             name: 'CG Papers',
-            description: 'Wata woozers',
+            information: 'Wata woozers',
             stackable: true,
             image: createImage('np_cg-papers'),
             weight: 1.0,
@@ -2783,7 +3301,7 @@ export function App(props: any) {
         },
         'chestxray': {
             name: 'Chest X-Ray',
-            description: 'Argh...',
+            information: 'Argh...',
             stackable: true,
             image: createImage('np_chest-xray'),
             weight: 1.0,
@@ -2793,7 +3311,7 @@ export function App(props: any) {
         },
         'cigar': {
             name: 'Cigar',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_cigar'),
             weight: 1.0,
@@ -2803,7 +3321,7 @@ export function App(props: any) {
         },
         'ciggy': {
             name: 'Cigarette',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_cigarette'),
             weight: 1.0,
@@ -2813,7 +3331,7 @@ export function App(props: any) {
         },
         'ciggypack': {
             name: 'Cigarettes',
-            description: 'A packet of smokes, they smell and taste like shit, but they relieve stress, the stress created by the addiction sure, but they relieve stress.',
+            information: 'A packet of smokes, they smell and taste like shit, but they relieve stress, the stress created by the addiction sure, but they relieve stress.',
             stackable: true,
             image: createImage('np_ciggypack'),
             weight: 1.0,
@@ -2823,7 +3341,7 @@ export function App(props: any) {
         },
         'ckatana': {
             name: 'Sheathed Cursed Katana',
-            description: 'A normal human mind cannot control such power.',
+            information: 'A normal human mind cannot control such power.',
             stackable: true,
             image: createImage('np_cursed-katana'),
             weight: 1.0,
@@ -2833,7 +3351,7 @@ export function App(props: any) {
         },
         'cpelt': {
             name: 'Cougar Pelt',
-            description: 'The hunter becomes the hunted',
+            information: 'The hunter becomes the hunted',
             stackable: true,
             image: createImage('np_cougar-pelt'),
             weight: 1.0,
@@ -2843,7 +3361,7 @@ export function App(props: any) {
         },
         'cuffs': {
             name: 'Hand Cuffs',
-            description: 'Marked for Police Seizure',
+            information: 'Marked for Police Seizure',
             stackable: true,
             image: createImage('np_hand-cuffs'),
             weight: 1.0,
@@ -2853,7 +3371,7 @@ export function App(props: any) {
         },
         'dhide': {
             name: 'Deer Hide',
-            description: 'Call peta',
+            information: 'Call peta',
             stackable: true,
             image: createImage('np_deer-hide'),
             weight: 1.0,
@@ -2863,7 +3381,7 @@ export function App(props: any) {
         },
         'drill': {
             name: 'Drill',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('drill'),
             weight: 2.0,
@@ -2873,7 +3391,7 @@ export function App(props: any) {
         },
         'drillbit': {
             name: 'Drill Bit',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_drill-bit'),
             weight: 2.0,
@@ -2883,7 +3401,7 @@ export function App(props: any) {
         },
         'DuffelBag': {
             name: 'Black Duffel Bag',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_duffel'),
             weight: 1.0,
@@ -2893,7 +3411,7 @@ export function App(props: any) {
         },
         'electronickit': {
             name: 'Electronic Kit',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_electronic-kit'),
             weight: 1.0,
@@ -2903,7 +3421,7 @@ export function App(props: any) {
         },
         'evidence': {
             name: 'Evidence',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_evidence'),
             weight: 1.0,
@@ -2913,7 +3431,7 @@ export function App(props: any) {
         },
         'np_evidence_marker_yellow': {
             name: 'Evidence',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_evidence_marker_yellow'),
             weight: 1.0,
@@ -2923,7 +3441,7 @@ export function App(props: any) {
         },
         'np_evidence_marker_red': {
             name: 'Evidence',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_evidence_marker_red'),
             weight: 1.0,
@@ -2933,7 +3451,7 @@ export function App(props: any) {
         },
         'np_evidence_marker_white': {
             name: 'Evidence',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_evidence_marker_white'),
             weight: 1.0,
@@ -2943,7 +3461,7 @@ export function App(props: any) {
         },
         'np_evidence_marker_orange': {
             name: 'Evidence',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_evidence_marker_orange'),
             weight: 1.0,
@@ -2953,7 +3471,7 @@ export function App(props: any) {
         },
         'np_evidence_marker_light_blue': {
             name: 'Evidence',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_evidence_marker_light_blue'),
             weight: 1.0,
@@ -2963,7 +3481,7 @@ export function App(props: any) {
         },
         'np_evidence_marker_purple': {
             name: 'Evidence',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_evidence_marker_purple'),
             weight: 1.0,
@@ -2973,7 +3491,7 @@ export function App(props: any) {
         },
         'evidencebag': {
             name: 'Evidence Bag',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_evidence-bag'),
             weight: 1.0,
@@ -2983,7 +3501,7 @@ export function App(props: any) {
         },
         'pdbadge': {
             name: 'PD Badge',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_pd_badge'),
             weight: 1.0,
@@ -2993,7 +3511,7 @@ export function App(props: any) {
         },
         'fakeplate': {
             name: 'Fake Plate Kit',
-            description: 'Use on a vehicle to alter its plate or change it back - 1 time use..',
+            information: 'Use on a vehicle to alter its plate or change it back - 1 time use..',
             stackable: true,
             image: createImage('np_plate'),
             weight: 1.0,
@@ -3003,7 +3521,7 @@ export function App(props: any) {
         },
         'fbumper': {
             name: 'Front Bumper',
-            description: 'Ill have the tuna, no crust',
+            information: 'Ill have the tuna, no crust',
             stackable: true,
             image: createImage('np_front-bumper'),
             weight: 1.0,
@@ -3013,7 +3531,7 @@ export function App(props: any) {
         },
         'fertilizer': {
             name: 'Fertilizer',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_fertilizer'),
             weight: 1.0,
@@ -3023,7 +3541,7 @@ export function App(props: any) {
         },
         'fuse': {
             name: 'Fuse',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_fuse'),
             weight: 1.0,
@@ -3033,7 +3551,7 @@ export function App(props: any) {
         },
         'glowing': {
             name: 'Glowing Substance',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_glowing-substance'),
             weight: 2.0,
@@ -3043,7 +3561,7 @@ export function App(props: any) {
         },
         'glucose': {
             name: '500g Glucose',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_glucose'),
             weight: 3.0,
@@ -3053,7 +3571,7 @@ export function App(props: any) {
         },
         'goldbar': {
             name: 'Gold Bar',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_gold-bar'),
             weight: 3.0,
@@ -3063,7 +3581,7 @@ export function App(props: any) {
         },
         'goldcoin': {
             name: 'Gold Coin',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_gold-coin'),
             weight: 2.0,
@@ -3073,7 +3591,7 @@ export function App(props: any) {
         },
         'greenb': {
             name: 'Green Bandana',
-            description: 'Ay yo my mans',
+            information: 'Ay yo my mans',
             stackable: true,
             image: createImage('np_green-bandana'),
             weight: 1.0,
@@ -3083,7 +3601,7 @@ export function App(props: any) {
         },
         'gum': {
             name: 'Gum',
-            description: 'Release Gum. You chew, you suck then POW',
+            information: 'Release Gum. You chew, you suck then POW',
             stackable: true,
             image: createImage('np_gum'),
             weight: 1.0,
@@ -3093,7 +3611,7 @@ export function App(props: any) {
         },
         'hairtie': {
             name: 'Hair Tie',
-            description: 'We all know what this is really for...',
+            information: 'We all know what this is really for...',
             stackable: true,
             image: createImage('np_hairtie'),
             weight: 1.0,
@@ -3103,7 +3621,7 @@ export function App(props: any) {
         },
         'harness': {
             name: 'Racing Harness',
-            description: 'Stops you from being YEETED',
+            information: 'Stops you from being YEETED',
             stackable: true,
             image: createImage('np_harness'),
             weight: 2.0,
@@ -3113,7 +3631,7 @@ export function App(props: any) {
         },
         'heavycutters': {
             name: 'Heavy Cutters',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_heavy-cutters'),
             weight: 5.0,
@@ -3123,7 +3641,7 @@ export function App(props: any) {
         },
         'heavydutydrill': {
             name: 'Heavy Duty Drill',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_heavy-duty-drill'),
             weight: 5.0,
@@ -3133,7 +3651,7 @@ export function App(props: any) {
         },
         'hlights': {
             name: 'Headlights',
-            description: 'Cant detail a car with the cover on',
+            information: 'Cant detail a car with the cover on',
             stackable: true,
             image: createImage('np_headlights'),
             weight: 5.0,
@@ -3143,7 +3661,7 @@ export function App(props: any) {
         },
         'IFAK': {
             name: 'IFAK',
-            description: 'Government (PD/EMS/DOC) Issued Equipment',
+            information: 'Government (PD/EMS/DOC) Issued Equipment',
             stackable: true,
             image: createImage('ifak'),
             weight: 2.0,
@@ -3153,7 +3671,7 @@ export function App(props: any) {
         },
         'inkedmoneybag': {
             name: 'Inked Money Bag',
-            description: 'Made with cheap ink that expires',
+            information: 'Made with cheap ink that expires',
             stackable: true,
             image: createImage('np_inked-money-bag'),
             weight: 4.0,
@@ -3163,7 +3681,7 @@ export function App(props: any) {
         },
         'inkset': {
             name: 'Inked Set',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_inked-money-bag'),
             weight: 4.0,
@@ -3173,7 +3691,7 @@ export function App(props: any) {
         },
         'ironoxide': {
             name: 'Iron Oxide',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_iron-oxide'),
             weight: 2.0,
@@ -3183,7 +3701,7 @@ export function App(props: any) {
         },
         'katana': {
             name: 'Katana',
-            description: 'Steel folded over 1000 times',
+            information: 'Steel folded over 1000 times',
             stackable: true,
             image: createImage('np_katana'),
             weight: 4.0,
@@ -3193,7 +3711,7 @@ export function App(props: any) {
         },
         'keyfob': {
             name: 'Key Fob',
-            description: 'Used for opening doors remotely.',
+            information: 'Used for opening doors remotely.',
             stackable: true,
             image: createImage('np_keyfob'),
             weight: 1.0,
@@ -3203,7 +3721,7 @@ export function App(props: any) {
         },
         'key1': {
             name: 'Key 1',
-            description: 'Numbered Key',
+            information: 'Numbered Key',
             stackable: true,
             image: createImage('np_key1'),
             weight: 1.0,
@@ -3213,7 +3731,7 @@ export function App(props: any) {
         },
         'key2': {
             name: 'Key 2',
-            description: 'Numbered Key',
+            information: 'Numbered Key',
             stackable: true,
             image: createImage('np_key2'),
             weight: 1.0,
@@ -3223,7 +3741,7 @@ export function App(props: any) {
         },
         'key3': {
             name: 'Key 3',
-            description: 'Numbered Key',
+            information: 'Numbered Key',
             stackable: true,
             image: createImage('np_key3'),
             weight: 1.0,
@@ -3233,7 +3751,7 @@ export function App(props: any) {
         },
         'keya': {
             name: 'Key A',
-            description: 'Lettered Key',
+            information: 'Lettered Key',
             stackable: true,
             image: createImage('np_keya'),
             weight: 1.0,
@@ -3243,7 +3761,7 @@ export function App(props: any) {
         },
         'keyb': {
             name: 'Key B',
-            description: 'Lettered Key',
+            information: 'Lettered Key',
             stackable: true,
             image: createImage('np_keyb'),
             weight: 1.0,
@@ -3253,7 +3771,7 @@ export function App(props: any) {
         },
         'keyc': {
             name: 'Key C',
-            description: 'Lettered Key',
+            information: 'Lettered Key',
             stackable: true,
             image: createImage('np_keyc'),
             weight: 1.0,
@@ -3263,7 +3781,7 @@ export function App(props: any) {
         },
         'lighter': {
             name: 'Lighter',
-            description: 'Dont start a fire with this.',
+            information: 'Dont start a fire with this.',
             stackable: true,
             image: createImage('np_lighter'),
             weight: 1.0,
@@ -3273,7 +3791,7 @@ export function App(props: any) {
         },
         'locksystem': {
             name: 'Air Pressure Lockpick',
-            description: 'Used to blow out small locks - one time use.',
+            information: 'Used to blow out small locks - one time use.',
             stackable: true,
             image: createImage('locksystem'),
             weight: 1.0,
@@ -3283,7 +3801,7 @@ export function App(props: any) {
         },
         'log': {
             name: 'Log',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_wood'),
             weight: 3.0,
@@ -3293,7 +3811,7 @@ export function App(props: any) {
         },
         'markedbills': {
             name: 'Marked Bills',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_inked-money-bag'),
             weight: 3.0,
@@ -3303,7 +3821,7 @@ export function App(props: any) {
         },
         'adrenaline': {
             name: 'Adrenaline Syringe',
-            description: 'Adrenaline, gives a good pump! If you are not SWAT certified do not buy this.',
+            information: 'Adrenaline, gives a good pump! If you are not SWAT certified do not buy this.',
             stackable: true,
             image: createImage('np_adrenaline'),
             weight: 2.0,
@@ -3313,7 +3831,7 @@ export function App(props: any) {
         },
         'MedicalBag': {
             name: 'Medical Bag',
-            description: 'Its a prop, wow?',
+            information: 'Its a prop, wow?',
             stackable: true,
             image: createImage('np_medbag'),
             weight: 2.0,
@@ -3323,7 +3841,7 @@ export function App(props: any) {
         },
         'headphones': {
             name: 'Medical Bag',
-            description: 'Its a prop, wow?',
+            information: 'Its a prop, wow?',
             stackable: true,
             image: createImage('np_headphones'),
             weight: 2.0,
@@ -3333,7 +3851,7 @@ export function App(props: any) {
         },
         'varusb': {
             name: 'VAR USB',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_mkii-usb-device'),
             weight: 2.0,
@@ -3343,7 +3861,7 @@ export function App(props: any) {
         },
         'nitrous': {
             name: 'Nitrous Oxide',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_nitrous-oxide'),
             weight: 3.0,
@@ -3353,7 +3871,7 @@ export function App(props: any) {
         },
         'copium': {
             name: 'Copium',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_nitrous-oxide'),
             weight: 3.0,
@@ -3363,7 +3881,7 @@ export function App(props: any) {
         },
         'oil': {
             name: 'Oil',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_oil'),
             weight: 10.0,
@@ -3373,7 +3891,7 @@ export function App(props: any) {
         },
         'oxygentank': {
             name: 'Oxygen Tank',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_oxygen-tank'),
             weight: 100.0,
@@ -3383,7 +3901,7 @@ export function App(props: any) {
         },
         'pallet': {
             name: 'Pallet of Boxes',
-            description: 'Transportable goods',
+            information: 'Transportable goods',
             stackable: false,
             image: createImage('np_pallet-of-boxes'),
             weight: 115.0,
@@ -3393,7 +3911,7 @@ export function App(props: any) {
         },
         'purpleb': {
             name: 'Purple Bandana',
-            description: 'Straight outta da cul-de-sac',
+            information: 'Straight outta da cul-de-sac',
             stackable: false,
             image: createImage('np_purple-bandana'),
             weight: 1.0,
@@ -3403,7 +3921,7 @@ export function App(props: any) {
         },
         'qualityscales': {
             name: 'High Quality Scales',
-            description: 'Weighs Baggies with no loss',
+            information: 'Weighs Baggies with no loss',
             stackable: true,
             image: createImage('np_high-quality-scales'),
             weight: 1.0,
@@ -3413,7 +3931,7 @@ export function App(props: any) {
         },
         'rbumper': {
             name: 'Rear Bumper',
-            description: 'You owe me a ten second car',
+            information: 'You owe me a ten second car',
             stackable: true,
             image: createImage('np_rear-bumper'),
             weight: 1.0,
@@ -3423,7 +3941,7 @@ export function App(props: any) {
         },
         'recyclablematerial': {
             name: 'Recyclable Material',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_recyclable-material'),
             weight: 1.0,
@@ -3433,7 +3951,7 @@ export function App(props: any) {
         },
         'redb': {
             name: 'Red Bandana',
-            description: 'Lean with me',
+            information: 'Lean with me',
             stackable: false,
             image: createImage('np_red-bandana'),
             weight: 1.0,
@@ -3443,7 +3961,7 @@ export function App(props: any) {
         },
         'repairtoolkit': {
             name: 'Repair Toolkit',
-            description: 'Used by Tow Truck drivers and repair people.',
+            information: 'Used by Tow Truck drivers and repair people.',
             stackable: true,
             image: createImage('np_repair-toolkit'),
             weight: 20.0,
@@ -3453,7 +3971,7 @@ export function App(props: any) {
         },
         'riflebody': {
             name: 'Rifle Body',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_rifle-body'),
             weight: 10.0,
@@ -3463,7 +3981,7 @@ export function App(props: any) {
         },
         'riflebodybox': {
             name: 'Box (10+ Rifle Bodys)',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_rifle-box'),
             weight: 85.0,
@@ -3473,7 +3991,7 @@ export function App(props: any) {
         },
         'rims': {
             name: 'Racing Rims',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_racing-rims'),
             weight: 15.0,
@@ -3483,7 +4001,7 @@ export function App(props: any) {
         },
         'benjiwatch': {
             name: 'Benjis Watch',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_benjiwatch'),
             weight: 1.0,
@@ -3493,7 +4011,7 @@ export function App(props: any) {
         },
         'rolexwatch': {
             name: 'Rolex Watch (p)',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_rolex-watchatch'),
             weight: 1.0,
@@ -3503,7 +4021,7 @@ export function App(props: any) {
         },
         'rollingpaper': {
             name: 'Rolling Paper',
-            description: 'Required to roll joints!',
+            information: 'Required to roll joints!',
             stackable: true,
             image: createImage('np_rolling-paper'),
             weight: 1.0,
@@ -3513,7 +4031,7 @@ export function App(props: any) {
         },
         'scanner': {
             name: 'Radio Scanner',
-            description: 'Used to receive random radio chatter.',
+            information: 'Used to receive random radio chatter.',
             stackable: true,
             image: createImage('np_radio-scanner'),
             weight: 2.0,
@@ -3521,29 +4039,9 @@ export function App(props: any) {
                 useItem: true,
             }
         },
-        'civradio': {
-            name: 'Standard Radio',
-            description: 'Used to communicate to radio chatter.',
-            stackable: true,
-            image: createImage('np_civradio'),
-            weight: 2.0,
-            context: {
-                useItem: true,
-            }
-        },
-        'radio': {
-            name: 'Government Radio',
-            description: 'Used to communicate to Police radio.',
-            stackable: true,
-            image: createImage('np_radio'),
-            weight: 2.0,
-            context: {
-                useItem: true,
-            }
-        },
         'scissors': {
             name: 'Scissors',
-            description: 'Fuck me up fam',
+            information: 'Fuck me up fam',
             stackable: true,
             image: createImage('np_scissors'),
             weight: 1.0,
@@ -3553,7 +4051,7 @@ export function App(props: any) {
         },
         'sealedbucket': {
             name: 'Fisher Bucket',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_sealed-bucket'),
             weight: 2.0,
@@ -3563,7 +4061,7 @@ export function App(props: any) {
         },
         'sealedevidencebag': {
             name: 'Sealed Evidence Bag',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_sealed-evidence-bag'),
             weight: 1.0,
@@ -3573,7 +4071,7 @@ export function App(props: any) {
         },
         'seat': {
             name: 'Seat',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_seat'),
             weight: 8.0,
@@ -3583,7 +4081,7 @@ export function App(props: any) {
         },
         'secretfile': {
             name: 'Secret File',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_secret-file'),
             weight: 1.0,
@@ -3593,7 +4091,7 @@ export function App(props: any) {
         },
         'SecurityCase': {
             name: 'Security Case',
-            description: 'Its a prop, wow?',
+            information: 'Its a prop, wow?',
             stackable: true,
             image: createImage('np_securitycase'),
             weight: 1.0,
@@ -3603,7 +4101,7 @@ export function App(props: any) {
         },
         'shipbox': {
             name: 'Shipping Box',
-            description: 'Free 2day shipping',
+            information: 'Free 2day shipping',
             stackable: true,
             image: createImage('np_shipping-box'),
             weight: 2.0,
@@ -3613,7 +4111,7 @@ export function App(props: any) {
         },
         'shipcrate': {
             name: 'Shipping Crate',
-            description: 'This side up',
+            information: 'This side up',
             stackable: true,
             image: createImage('np_shipping-crate'),
             weight: 30.0,
@@ -3623,7 +4121,7 @@ export function App(props: any) {
         },
         'silvercoin': {
             name: 'Silver Coin',
-            description: 'Dont lose it',
+            information: 'Dont lose it',
             stackable: true,
             image: createImage('np_silver-coin'),
             weight: 1.0,
@@ -3633,7 +4131,7 @@ export function App(props: any) {
         },
         'slushy': {
             name: 'The best slushy ever.',
-            description: 'The only thing in Jail that tastes good.',
+            information: 'The only thing in Jail that tastes good.',
             stackable: true,
             image: createImage('np_slushy'),
             weight: 1.0,
@@ -3643,7 +4141,7 @@ export function App(props: any) {
         },
         'smallscales': {
             name: 'Small Scales',
-            description: 'Weighs Baggies with minimal loss',
+            information: 'Weighs Baggies with minimal loss',
             stackable: true,
             image: createImage('np_small-scale'),
             weight: 2.0,
@@ -3653,7 +4151,7 @@ export function App(props: any) {
         },
         'smirror': { //car part
             name: 'Side Mirror',
-            description: "On green, I'm going for it",
+            information: "On green, I'm going for it",
             stackable: true,
             image: createImage('np_side-mirror'),
             weight: 5.0,
@@ -3663,7 +4161,7 @@ export function App(props: any) {
         },
         'sound': { //car part
             name: 'Sound System',
-            description: "Makes your ears bleed",
+            information: "Makes your ears bleed",
             stackable: true,
             image: createImage('np_sound-system'),
             weight: 6.0,
@@ -3673,7 +4171,7 @@ export function App(props: any) {
         },
         'spoiler': { //car part
             name: 'Spoiler',
-            description: "Quarter mile at a time",
+            information: "Quarter mile at a time",
             stackable: true,
             image: createImage('np_spoiler'),
             weight: 5.0,
@@ -3683,7 +4181,7 @@ export function App(props: any) {
         },
         'sskirts': { //car part
             name: 'Side Skirts',
-            description: "Ride or die, remember?",
+            information: "Ride or die, remember?",
             stackable: true,
             image: createImage('np_side-skirts'),
             weight: 4.0,
@@ -3693,7 +4191,7 @@ export function App(props: any) {
         },
         'swheel': { //car part
             name: 'Steering Wheel',
-            description: "Winning is winning...",
+            information: "Winning is winning...",
             stackable: true,
             image: createImage('np_steering-wheel'),
             weight: 4.0,
@@ -3703,7 +4201,7 @@ export function App(props: any) {
         },
         'sprunk': {
             name: 'Sprunk',
-            description: "The Essence of Life",
+            information: "The Essence of Life",
             stackable: true,
             image: createImage('np_sprunk'),
             weight: 1.0,
@@ -3713,7 +4211,7 @@ export function App(props: any) {
         },
         'stolen10ctchain': {
             name: '10ct Gold Chain (p)',
-            description: "",
+            information: "",
             stackable: true,
             image: createImage('np_10ct-gold-chain'),
             weight: 2.0,
@@ -3723,7 +4221,7 @@ export function App(props: any) {
         },
         'stolen2ctchain': {
             name: '2ct Gold Chain (p)',
-            description: "",
+            information: "",
             stackable: true,
             image: createImage('np_2ct-gold-chain'),
             weight: 2.0,
@@ -3733,7 +4231,7 @@ export function App(props: any) {
         },
         'stolen5ctchain': {
             name: '5ct Gold Chain (p)',
-            description: "",
+            information: "",
             stackable: true,
             image: createImage('np_5ct-gold-chain'),
             weight: 2.0,
@@ -3743,7 +4241,7 @@ export function App(props: any) {
         },
         'stolen8ctchain': {
             name: '8ct Gold Chain (p)',
-            description: "",
+            information: "",
             stackable: true,
             image: createImage('np_8ct-gold-chain'),
             weight: 2.0,
@@ -3753,7 +4251,7 @@ export function App(props: any) {
         },
         'stolencasiowatch': {
             name: 'Casio Watch (p)',
-            description: "",
+            information: "",
             stackable: true,
             image: createImage('np_casio-watch'),
             weight: 1.0,
@@ -3763,7 +4261,7 @@ export function App(props: any) {
         },
         'stolengameboy': {
             name: 'Gameboy (p)',
-            description: "",
+            information: "",
             stackable: true,
             image: createImage('np_gameboy'),
             weight: 2.0,
@@ -3773,7 +4271,7 @@ export function App(props: any) {
         },
         'stoleniphone': {
             name: 'Apple Iphone (p)',
-            description: "",
+            information: "",
             stackable: true,
             image: createImage('np_apple-iphone'),
             weight: 1.0,
@@ -3783,7 +4281,7 @@ export function App(props: any) {
         },
         'stolennokia': {
             name: 'Nokia Phone (p)',
-            description: "",
+            information: "",
             stackable: true,
             image: createImage('np_nokia-phone'),
             weight: 1.0,
@@ -3793,7 +4291,7 @@ export function App(props: any) {
         },
         'stolenoakleys': {
             name: 'Oakley Sunglasses (p)',
-            description: "",
+            information: "",
             stackable: true,
             image: createImage('np_oakley-sunglasses'),
             weight: 1.0,
@@ -3803,7 +4301,7 @@ export function App(props: any) {
         },
         'stolenpsp': {
             name: 'PSP (p)',
-            description: "",
+            information: "",
             stackable: true,
             image: createImage('np_psp'),
             weight: 2.0,
@@ -3813,7 +4311,7 @@ export function App(props: any) {
         },
         'stolenraybans': {
             name: 'Ray Ban Sunglasses (p)',
-            description: "",
+            information: "",
             stackable: true,
             image: createImage('np_raybans'),
             weight: 1.0,
@@ -3823,7 +4321,7 @@ export function App(props: any) {
         },
         'stolens8': {
             name: 'Samsung S8 (p)',
-            description: "",
+            information: "",
             stackable: true,
             image: createImage('np_samsung-s8'),
             weight: 1.0,
@@ -3833,7 +4331,7 @@ export function App(props: any) {
         },
         'stolentv': {
             name: 'Flat Panel TV (p)',
-            description: "",
+            information: "",
             stackable: false,
             image: createImage('np_stolentv'),
             weight: 50.0,
@@ -3843,7 +4341,7 @@ export function App(props: any) {
         },
         'stolenmusic': {
             name: 'Music Equipment (p)',
-            description: "",
+            information: "",
             stackable: false,
             image: createImage('np_stolenmusic'),
             weight: 50.0,
@@ -3853,7 +4351,7 @@ export function App(props: any) {
         },
         'stolencomputer': {
             name: 'Computer Equipment (p)',
-            description: "",
+            information: "",
             stackable: false,
             image: createImage('np_stolencomputer'),
             weight: 50.0,
@@ -3863,7 +4361,7 @@ export function App(props: any) {
         },
         'stolenart': {
             name: 'Art (p)',
-            description: "",
+            information: "",
             stackable: false,
             image: createImage('np_stolenart'),
             weight: 30.0,
@@ -3873,7 +4371,7 @@ export function App(props: any) {
         },
         'Suitcase': {
             name: 'Suitcase',
-            description: 'Its a prop, wow?',
+            information: 'Its a prop, wow?',
             stackable: true,
             image: createImage('np_suitcase'),
             weight: 1.0,
@@ -3883,7 +4381,7 @@ export function App(props: any) {
         },
         'tbag': {
             name: 'Transport Bag',
-            description: 'Keeping your organs fresh',
+            information: 'Keeping your organs fresh',
             stackable: true,
             image: createImage('np_transport-bag'),
             weight: 1.0,
@@ -3893,7 +4391,7 @@ export function App(props: any) {
         },
         'thermite': {
             name: 'Thermite',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_thermite_charge'),
             weight: 2.0,
@@ -3903,7 +4401,7 @@ export function App(props: any) {
         },
         'thermitecharge': {
             name: 'Thermite Charger',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_thermite_charge'),
             weight: 4.0,
@@ -3913,7 +4411,7 @@ export function App(props: any) {
         },
         'Toolbox': {
             name: 'Toolbox',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_toolbox'),
             weight: 4.0,
@@ -3923,7 +4421,7 @@ export function App(props: any) {
         },
         'umbrella': {
             name: 'Umbrella',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_umbrella'),
             weight: 1.0,
@@ -3933,7 +4431,7 @@ export function App(props: any) {
         },
         'vpnxj': {
             name: 'VPN',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_vpn-xj'),
             weight: 2.0,
@@ -3943,7 +4441,7 @@ export function App(props: any) {
         },
         'watch': {
             name: 'PD Watch & Compass',
-            description: 'Government (PD/EMS/DOC) Issued Equipment',
+            information: 'Government (PD/EMS/DOC) Issued Equipment',
             stackable: true,
             image: createImage('np_watch'),
             weight: 1.0,
@@ -3953,7 +4451,7 @@ export function App(props: any) {
         },
         'yellowb': {
             name: 'Yellow Bandana',
-            description: 'Im tellin you',
+            information: 'Im tellin you',
             stackable: true,
             image: createImage('np_yellow-bandana'),
             weight: 1.0,
@@ -3963,7 +4461,7 @@ export function App(props: any) {
         },
         'Bankbox': {
             name: 'Bank Box',
-            description: 'A locked bank box.',
+            information: 'A locked bank box.',
             stackable: false,
             image: createImage('np_bankbox'),
             weight: 15.0,
@@ -3973,7 +4471,7 @@ export function App(props: any) {
         },
         'Bankboxkey': {
             name: 'Briefcase Key',
-            description: 'A key that seems to fit somewhere.',
+            information: 'A key that seems to fit somewhere.',
             stackable: true,
             image: createImage('np_bankboxkey'),
             weight: 1.0,
@@ -3983,7 +4481,7 @@ export function App(props: any) {
         },
         'Largesupplycrate': {
             name: 'Large Supply crate',
-            description: 'A very big and heavy crate.',
+            information: 'A very big and heavy crate.',
             stackable: false,
             image: createImage('np_supplycrate_large'),
             weight: 150.0,
@@ -3993,7 +4491,7 @@ export function App(props: any) {
         },
         'Mediumsupplycrate': {
             name: 'Medium Supply crate',
-            description: 'A semi-heavy crate containing something.',
+            information: 'A semi-heavy crate containing something.',
             stackable: false,
             image: createImage('np_supplycrate_medium'),
             weight: 100.0,
@@ -4003,7 +4501,7 @@ export function App(props: any) {
         },
         'Smallsupplycrate': {
             name: 'Small Arms Crate',
-            description: 'A small unmarked crate.',
+            information: 'A small unmarked crate.',
             stackable: false,
             image: createImage('np_smallarmscrate'),
             weight: 50.0,
@@ -4014,7 +4512,7 @@ export function App(props: any) {
         // Start Of Fishing Items
         'illegalhook': {
             name: 'Illegal Hook',
-            description: 'Hmm maybe fish will like this more?',
+            information: 'Hmm maybe fish will like this more?',
             stackable: true,
             image: createImage('np_illegal_hook'),
             weight: 5.0,
@@ -4024,7 +4522,7 @@ export function App(props: any) {
         },
         'fishingrod': {
             name: 'Fishing Rod',
-            description: 'Lets fish',
+            information: 'Lets fish',
             stackable: false,
             image: createImage('np_fishing-rod'),
             weight: 10.0,
@@ -4034,7 +4532,7 @@ export function App(props: any) {
         },
         'fishingbass': {
             name: 'Bass',
-            description: 'Striped Bass. Bass like the fish, not the officer',
+            information: 'Striped Bass. Bass like the fish, not the officer',
             stackable: true,
             image: createImage('np_fishing-bass'),
             weight: 8.0,
@@ -4044,7 +4542,7 @@ export function App(props: any) {
         },
         'fishingcarp': {
             name: 'Carp',
-            description: 'Carp. Carpe diem!',
+            information: 'Carp. Carpe diem!',
             stackable: true,
             image: createImage('np_fishing-carp'),
             weight: 8.0,
@@ -4054,7 +4552,7 @@ export function App(props: any) {
         },
         'fishingcatfish': {
             name: 'Catfish',
-            description: 'Catfish. Did you just get done catfish noodlin?',
+            information: 'Catfish. Did you just get done catfish noodlin?',
             stackable: true,
             image: createImage('np_fishing-cat'),
             weight: 8.0,
@@ -4064,7 +4562,7 @@ export function App(props: any) {
         },
         'fishingyellowperch': {
             name: 'Yellow Perch',
-            description: 'Yellow Perch. Did they tell you not to perch or not to poach?',
+            information: 'Yellow Perch. Did they tell you not to perch or not to poach?',
             stackable: true,
             image: createImage('np_fishing-yellowperch'),
             weight: 8.0,
@@ -4074,7 +4572,7 @@ export function App(props: any) {
         },
         'fishingalligatorturtle': {
             name: 'Alligator Snapping Turtle',
-            description: 'Alligator Snapping Turtle. This thing could snap your fingers off like twigs.',
+            information: 'Alligator Snapping Turtle. This thing could snap your fingers off like twigs.',
             stackable: true,
             image: createImage('np_fishing-alligator-snapping-turtle'),
             weight: 45.0,
@@ -4084,7 +4582,7 @@ export function App(props: any) {
         },
         'fishingsockeyesalmon': {
             name: 'Sockeye Salmon',
-            description: 'Sockeye Salmon. It looks like you caught this one before it could reach its spawning grounds...',
+            information: 'Sockeye Salmon. It looks like you caught this one before it could reach its spawning grounds...',
             stackable: true,
             image: createImage('np_fishing-sockeye-salmon'),
             weight: 8.0,
@@ -4094,7 +4592,7 @@ export function App(props: any) {
         },
         'fishingsturgeon': {
             name: 'Sturgeon',
-            description: 'Green Sturgeon. It looks prehistoric and rare. Maybe it has caviar? ',
+            information: 'Green Sturgeon. It looks prehistoric and rare. Maybe it has caviar? ',
             stackable: true,
             image: createImage('np_fishing-sturgeon'),
             weight: 45.0,
@@ -4104,7 +4602,7 @@ export function App(props: any) {
         },
         'fishingbluefish': {
             name: 'Bluegill',
-            description: 'Bluegill. Catching this took no skill.',
+            information: 'Bluegill. Catching this took no skill.',
             stackable: true,
             image: createImage('np_fishing-bluefish'),
             weight: 8.0,
@@ -4114,7 +4612,7 @@ export function App(props: any) {
         },
         'fishingflounder': {
             name: 'Flounder',
-            description: 'I went fishing and all I got was this lousy flounder',
+            information: 'I went fishing and all I got was this lousy flounder',
             stackable: true,
             image: createImage('np_fishing-flounder'),
             weight: 8.0,
@@ -4124,7 +4622,7 @@ export function App(props: any) {
         },
         'fishingmackerel': {
             name: 'Mackerel',
-            description: 'Sometimes holy',
+            information: 'Sometimes holy',
             stackable: true,
             image: createImage('np_fishing-mackerel'),
             weight: 8.0,
@@ -4134,7 +4632,7 @@ export function App(props: any) {
         },
         'fishingcod': {
             name: 'Cod',
-            description: 'Modern Warfare',
+            information: 'Modern Warfare',
             stackable: true,
             image: createImage('np_fishing-cod'),
             weight: 8.0,
@@ -4144,7 +4642,7 @@ export function App(props: any) {
         },
         'fishingwhale': {
             name: 'Baby Whale',
-            description: 'A fucking whale! Someone might be interested in buying it? Lol, jk. Throw it back. Unless..?',
+            information: 'A fucking whale! Someone might be interested in buying it? Lol, jk. Throw it back. Unless..?',
             stackable: true,
             image: createImage('np_fishing-whale'),
             weight: 55.0,
@@ -4154,7 +4652,7 @@ export function App(props: any) {
         },
         'fishingdolphin': {
             name: 'Baby Dolphin',
-            description: 'A fucking dolphin! Someone might be interested in buying it? Lol, jk. Throw it back. Unless..?',
+            information: 'A fucking dolphin! Someone might be interested in buying it? Lol, jk. Throw it back. Unless..?',
             stackable: true,
             image: createImage('np_fishing-dolphin'),
             weight: 45.0,
@@ -4164,7 +4662,7 @@ export function App(props: any) {
         },
         'fishingshark': {
             name: 'Baby Shark',
-            description: 'A fucking dolphin! Someone might be interested in buying it? Lol, jk. Throw it back. Unless..?',
+            information: 'A fucking dolphin! Someone might be interested in buying it? Lol, jk. Throw it back. Unless..?',
             stackable: true,
             image: createImage('np_fishing-shark'),
             weight: 45.0,
@@ -4174,7 +4672,7 @@ export function App(props: any) {
         },
         'fishingnet': {
             name: 'Gill Net',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_fishnet'),
             weight: 15.0,
@@ -4185,7 +4683,7 @@ export function App(props: any) {
         // FISHING JUNK
         'fishingboot': {
             name: 'Boot',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_fishingboot'),
             weight: 2.0,
@@ -4195,7 +4693,7 @@ export function App(props: any) {
         },
         'fishinglog': {
             name: 'Log',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_fishinglog'),
             weight: 2.0,
@@ -4205,7 +4703,7 @@ export function App(props: any) {
         },
         'fishingtin': {
             name: 'Tincan',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_fishingtin'),
             weight: 2.0,
@@ -4215,7 +4713,7 @@ export function App(props: any) {
         },
         'fishingtacklebox': {
             name: 'Tackle box',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_fishingtacklebox'),
             weight: 2.0,
@@ -4225,7 +4723,7 @@ export function App(props: any) {
         },
         'fishingchest': {
             name: 'Treasure chest',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_fishingchest'),
             weight: 2.0,
@@ -4235,7 +4733,7 @@ export function App(props: any) {
         },
         'fishinglockbox': {
             name: 'Lockbox',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_fishinglockbox'),
             weight: 2.0,
@@ -4245,7 +4743,7 @@ export function App(props: any) {
         },
         'fishingtunac': {
             name: 'Tuna Chip',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_tuner'),
             weight: 2.0,
@@ -4257,7 +4755,7 @@ export function App(props: any) {
         // HUNTING
         '3648318199': {
             name: 'Hunting Rifle',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_huntingrifle'),
             weight: 11.0,
@@ -4267,7 +4765,7 @@ export function App(props: any) {
         },
         'huntingammo': {
             name: '223 Hunting Rounds',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_223ammo'),
             weight: 7.0,
@@ -4277,7 +4775,7 @@ export function App(props: any) {
         },
         'huntingknife': {
             name: 'Hunting Knife',
-            description: '',
+            information: '',
             stackable: false,
             image: createImage('np_huntingknife'),
             weight: 7.0,
@@ -4287,7 +4785,7 @@ export function App(props: any) {
         },
         'huntingbait': {
             name: 'Animal Bait',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_huntingbait'),
             weight: 1.0,
@@ -4297,7 +4795,7 @@ export function App(props: any) {
         },
         'fishingbait': {
             name: 'Fishing Bait',
-            description: 'Wormy like you',
+            information: 'Wormy like you',
             stackable: true,
             image: createImage('fish_bait'),
             weight: 1.0,
@@ -4307,7 +4805,7 @@ export function App(props: any) {
         },
         'huntingcarcass1': {
             name: 'Animal Pelt 1',
-            description: 'What is this? Did you shoot it with an AK?',
+            information: 'What is this? Did you shoot it with an AK?',
             stackable: true,
             image: createImage('np_huntingcarcass1'),
             weight: 35.0,
@@ -4317,7 +4815,7 @@ export function App(props: any) {
         },
         'huntingcarcass2': {
             name: 'Animal Pelt 2',
-            description: 'Someone might pay a pretty penny for this',
+            information: 'Someone might pay a pretty penny for this',
             stackable: true,
             image: createImage('np_huntingcarcass2'),
             weight: 35.0,
@@ -4327,7 +4825,7 @@ export function App(props: any) {
         },
         'huntingcarcass3': {
             name: 'Animal Pelt 3',
-            description: 'I am sure we can turn this in to something fancy',
+            information: 'I am sure we can turn this in to something fancy',
             stackable: true,
             image: createImage('np_huntingcarcass3'),
             weight: 55.0,
@@ -4337,7 +4835,7 @@ export function App(props: any) {
         },
         'huntingcarcass4': {
             name: 'Animal Pelt 4',
-            description: 'Hunting in the South Side are we?',
+            information: 'Hunting in the South Side are we?',
             stackable: true,
             image: createImage('np_huntingcarcass4'),
             weight: 75.0,
@@ -4347,7 +4845,7 @@ export function App(props: any) {
         },
         'huntingpelt': {
             name: 'Animal Pelt',
-            description: 'This used to keep an animal warm in the winter! You ANIMAL!',
+            information: 'This used to keep an animal warm in the winter! You ANIMAL!',
             stackable: true,
             image: createImage('np_huntingpelt'),
             weight: 1.0,
@@ -4357,7 +4855,7 @@ export function App(props: any) {
         },
         'huntingmeat': {
             name: 'Animal Meat',
-            description: 'I am sure this could turn in to a killer burger',
+            information: 'I am sure this could turn in to a killer burger',
             stackable: true,
             image: createImage('np_animalmeat'),
             weight: 1.0,
@@ -4370,7 +4868,7 @@ export function App(props: any) {
         // practice
         'heistlaptopprac': {
             name: 'Laptop',
-            description: 'Practice makes perfect. Marked for police seizure.',
+            information: 'Practice makes perfect. Marked for police seizure.',
             stackable: true,
             image: createImage('np_laptop_prac'),
             weight: 20.0,
@@ -4381,7 +4879,7 @@ export function App(props: any) {
         // fleeca
         'heistlaptop3': {
             name: 'Laptop',
-            description: 'Pre-configured to access certain systems. Marked for police seizure.',
+            information: 'Pre-configured to access certain systems. Marked for police seizure.',
             stackable: true,
             image: createImage('np_laptop03'),
             weight: 20.0,
@@ -4392,7 +4890,7 @@ export function App(props: any) {
         // paleto
         'heistlaptop2': {
             name: 'Laptop',
-            description: 'Pre-configured to access certain systems. Marked for police seizure.',
+            information: 'Pre-configured to access certain systems. Marked for police seizure.',
             stackable: true,
             image: createImage('np_laptop02'),
             weight: 20.0,
@@ -4403,7 +4901,7 @@ export function App(props: any) {
         // vault upper
         'heistlaptop4': {
             name: 'Laptop',
-            description: 'Pre-configured to access certain systems. Marked for police seizure.',
+            information: 'Pre-configured to access certain systems. Marked for police seizure.',
             stackable: true,
             image: createImage('np_laptop04'),
             weight: 20.0,
@@ -4414,7 +4912,7 @@ export function App(props: any) {
         // vault lower
         'heistlaptop1': {
             name: 'Laptop',
-            description: 'Pre-configured to access certain systems. Marked for police seizure.',
+            information: 'Pre-configured to access certain systems. Marked for police seizure.',
             stackable: true,
             image: createImage('np_laptop01'),
             weight: 20.0,
@@ -4425,7 +4923,7 @@ export function App(props: any) {
         //END
         'receipt': {
             name: 'Receipt',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_receipt'),
             weight: 1.0,
@@ -4435,7 +4933,7 @@ export function App(props: any) {
         },
         'emptybaggies': {
             name: 'Empty Baggies',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_pack_of_empty_baggies'),
             weight: 1.0,
@@ -4446,7 +4944,7 @@ export function App(props: any) {
         //RACING
         'racingusb0': {
             name: 'Race Creating Dongle',
-            description: 'You do not see this...',
+            information: 'You do not see this...',
             stackable: true,
             image: createImage('np_racing_usb_blue'),
             weight: 5.0,
@@ -4456,7 +4954,7 @@ export function App(props: any) {
         },
         'racingusb1': {
             name: 'Phone Dongle',
-            description: 'Marked for Police Seizure',
+            information: 'Marked for Police Seizure',
             stackable: true,
             image: createImage('np_racing_usb_blue'),
             weight: 5.0,
@@ -4466,7 +4964,7 @@ export function App(props: any) {
         },
         'racingusb2': {
             name: 'Phone Dongle',
-            description: 'Marked for Police Seizure',
+            information: 'Marked for Police Seizure',
             stackable: true,
             image: createImage('np_racing_usb_blue'),
             weight: 5.0,
@@ -4476,7 +4974,7 @@ export function App(props: any) {
         },
         'racingusb3': {
             name: 'Phone Dongle',
-            description: 'Access to SASP Time Trials App',
+            information: 'Access to SASP Time Trials App',
             stackable: true,
             image: createImage('np_racing_usb_blue'),
             weight: 5.0,
@@ -4488,7 +4986,7 @@ export function App(props: any) {
         //MECHANIC REPAIR SHOPS
         'xfixbrake': {
             name: 'Brake Parts (X)',
-            description: 'New brake discs, pads, calipers, hubs & accessories',
+            information: 'New brake discs, pads, calipers, hubs & accessories',
             stackable: true,
             image: createImage('np_brake_parts_x'),
             weight: 5.0,
@@ -4498,7 +4996,7 @@ export function App(props: any) {
         },
         'xfixaxle': {
             name: 'Axle Parts (X)',
-            description: 'New axle components',
+            information: 'New axle components',
             stackable: true,
             image: createImage('np_axle_parts_x'),
             weight: 5.0,
@@ -4508,7 +5006,7 @@ export function App(props: any) {
         },
         'xfixradiator': {
             name: 'Radiator Parts (X)',
-            description: 'New radiator and cooling parts',
+            information: 'New radiator and cooling parts',
             stackable: true,
             image: createImage('np_cooling_parts_x'),
             weight: 5.0,
@@ -4518,7 +5016,7 @@ export function App(props: any) {
         },
         'xfixclutch': {
             name: 'Clutch Parts (X)',
-            description: 'New clutch disc and pressure plate',
+            information: 'New clutch disc and pressure plate',
             stackable: true,
             image: createImage('np_clutch_parts_x'),
             weight: 5.0,
@@ -4528,7 +5026,7 @@ export function App(props: any) {
         },
         'xfixtransmission': {
             name: 'Transmission Parts (X)',
-            description: 'New gear sets, shafts, converters and clutch packs',
+            information: 'New gear sets, shafts, converters and clutch packs',
             stackable: true,
             image: createImage('np_transmission_parts_x'),
             weight: 5.0,
@@ -4538,7 +5036,7 @@ export function App(props: any) {
         },
         'xfixelectronics': {
             name: 'Vehicle Electronics (X)',
-            description: 'Various vehicle electrical components',
+            information: 'Various vehicle electrical components',
             stackable: true,
             image: createImage('np_electronic_parts_x'),
             weight: 5.0,
@@ -4548,7 +5046,7 @@ export function App(props: any) {
         },
         'xfixinjector': {
             name: 'Fuel Injectors (X)',
-            description: 'New fuel injectors',
+            information: 'New fuel injectors',
             stackable: true,
             image: createImage('np_fuel_injectors_x'),
             weight: 5.0,
@@ -4558,7 +5056,7 @@ export function App(props: any) {
         },
         'vehrepairitem': {
             name: 'Vehicle Repair Tool',
-            description: 'For swapping and repairing worn or damaged tires',
+            information: 'For swapping and repairing worn or damaged tires',
             stackable: true,
             image: createImage('np_tire_kit_x'),
             weight: 5.0,
@@ -4568,7 +5066,7 @@ export function App(props: any) {
         },
         'xfixtire': {
             name: 'Tire Repair Kit (X)',
-            description: 'For swapping and repairing worn or damaged tires',
+            information: 'For swapping and repairing worn or damaged tires',
             stackable: true,
             image: createImage('np_tire_kit_x'),
             weight: 5.0,
@@ -4578,7 +5076,7 @@ export function App(props: any) {
         },
         'xfixbody': {
             name: 'Body Panels (X)',
-            description: 'New vehicle body panels',
+            information: 'New vehicle body panels',
             stackable: true,
             image: createImage('np_body_panels_x'),
             weight: 5.0,
@@ -4588,7 +5086,7 @@ export function App(props: any) {
         },
         'xfixengine': {
             name: 'Engine Parts (X)',
-            description: 'New engine parts',
+            information: 'New engine parts',
             stackable: true,
             image: createImage('np_engine_parts_x'),
             weight: 5.0,
@@ -4600,7 +5098,7 @@ export function App(props: any) {
         //S CLASS REPAIR PARTS
         'sfixbrake': {
             name: 'Brake Parts (S)',
-            description: 'New brake discs, pads, calipers, hubs & accessories',
+            information: 'New brake discs, pads, calipers, hubs & accessories',
             stackable: true,
             image: createImage('np_brake_parts_s'),
             weight: 5.0,
@@ -4610,7 +5108,7 @@ export function App(props: any) {
         },
         'sfixaxle': {
             name: 'sAxle Parts (S)',
-            description: 'New axle components',
+            information: 'New axle components',
             stackable: true,
             image: createImage('np_axle_parts_s'),
             weight: 5.0,
@@ -4620,7 +5118,7 @@ export function App(props: any) {
         },
         'sfixradiator': {
             name: 'Radiator Parts (S)',
-            description: 'New radiator and cooling parts',
+            information: 'New radiator and cooling parts',
             stackable: true,
             image: createImage('np_cooling_parts_s'),
             weight: 5.0,
@@ -4630,7 +5128,7 @@ export function App(props: any) {
         },
         'sfixclutch': {
             name: 'Clutch Parts (S)',
-            description: 'New clutch disc and pressure plate',
+            information: 'New clutch disc and pressure plate',
             stackable: true,
             image: createImage('np_clutch_parts_s'),
             weight: 5.0,
@@ -4640,7 +5138,7 @@ export function App(props: any) {
         },
         'sfixtransmission': {
             name: 'Transmission Parts (S)',
-            description: 'New gear sets, shafts, converters and clutch packs',
+            information: 'New gear sets, shafts, converters and clutch packs',
             stackable: true,
             image: createImage('np_transmission_parts_s'),
             weight: 5.0,
@@ -4650,7 +5148,7 @@ export function App(props: any) {
         },
         'sfixelectronics': {
             name: 'Vehicle Electronics (S)',
-            description: 'Various vehicle electrical components',
+            information: 'Various vehicle electrical components',
             stackable: true,
             image: createImage('np_electronic_parts_s'),
             weight: 5.0,
@@ -4660,7 +5158,7 @@ export function App(props: any) {
         },
         'sfixinjector': {
             name: 'Fuel Injectors (S)',
-            description: 'New fuel injectors',
+            information: 'New fuel injectors',
             stackable: true,
             image: createImage('np_fuel_injectors_s'),
             weight: 5.0,
@@ -4670,7 +5168,7 @@ export function App(props: any) {
         },
         'sfixtire': {
             name: 'Tire Repair Kit (S)',
-            description: 'For swapping and repairing worn or damaged tires',
+            information: 'For swapping and repairing worn or damaged tires',
             stackable: true,
             image: createImage('np_tire_kit_s'),
             weight: 5.0,
@@ -4680,7 +5178,7 @@ export function App(props: any) {
         },
         'sfixbody': {
             name: 'Body Panels (S)',
-            description: 'New vehicle body panels',
+            information: 'New vehicle body panels',
             stackable: true,
             image: createImage('np_body_panels_s'),
             weight: 5.0,
@@ -4690,7 +5188,7 @@ export function App(props: any) {
         },
         'sfixengine': {
             name: 'Engine Parts (S)',
-            description: 'New engine parts',
+            information: 'New engine parts',
             stackable: true,
             image: createImage('np_engine_parts_s'),
             weight: 5.0,
@@ -4701,7 +5199,7 @@ export function App(props: any) {
         //A CLASS REPAIR PARTS
         'afixbrake': {
             name: 'Brake Parts (A)',
-            description: 'New brake discs, pads, calipers, hubs & accessories',
+            information: 'New brake discs, pads, calipers, hubs & accessories',
             stackable: true,
             image: createImage('np_brake_parts_a'),
             weight: 5.0,
@@ -4711,7 +5209,7 @@ export function App(props: any) {
         },
         'afixaxle': {
             name: 'Axle Parts (A)',
-            description: 'New axle components',
+            information: 'New axle components',
             stackable: true,
             image: createImage('np_axle_parts_a'),
             weight: 5.0,
@@ -4721,7 +5219,7 @@ export function App(props: any) {
         },
         'afixradiator': {
             name: 'Radiator Parts (A)',
-            description: 'New radiator and cooling parts',
+            information: 'New radiator and cooling parts',
             stackable: true,
             image: createImage('np_cooling_parts_a'),
             weight: 5.0,
@@ -4731,7 +5229,7 @@ export function App(props: any) {
         },
         'afixclutch': {
             name: 'Clutch Parts (A)',
-            description: 'New clutch disc and pressure plate',
+            information: 'New clutch disc and pressure plate',
             stackable: true,
             image: createImage('np_clutch_parts_a'),
             weight: 5.0,
@@ -4741,7 +5239,7 @@ export function App(props: any) {
         },
         'afixtransmission': {
             name: 'Transmission Parts (A)',
-            description: 'New gear sets, shafts, converters and clutch packs',
+            information: 'New gear sets, shafts, converters and clutch packs',
             stackable: true,
             image: createImage('np_clutch_parts_a'),
             weight: 5.0,
@@ -4751,7 +5249,7 @@ export function App(props: any) {
         },
         'afixelectronics': {
             name: 'Vehicle Electronics (A)',
-            description: 'Various vehicle electrical components',
+            information: 'Various vehicle electrical components',
             stackable: true,
             image: createImage('np_electronic_parts_a'),
             weight: 5.0,
@@ -4761,7 +5259,7 @@ export function App(props: any) {
         },
         'afixinjector': {
             name: 'Fuel Injectors (A)',
-            description: 'New fuel injectors',
+            information: 'New fuel injectors',
             stackable: true,
             image: createImage('np_fuel_injectors_a'),
             weight: 5.0,
@@ -4771,7 +5269,7 @@ export function App(props: any) {
         },
         'afixtire': {
             name: 'Tire Repair Kit (A)',
-            description: 'For swapping and repairing worn or damaged tires',
+            information: 'For swapping and repairing worn or damaged tires',
             stackable: true,
             image: createImage('np_tire_kit_a'),
             weight: 5.0,
@@ -4781,7 +5279,7 @@ export function App(props: any) {
         },
         'afixbody': {
             name: 'Body Panels (A)',
-            description: 'New vehicle body panels',
+            information: 'New vehicle body panels',
             stackable: true,
             image: createImage('np_body_panels_a'),
             weight: 5.0,
@@ -4791,7 +5289,7 @@ export function App(props: any) {
         },
         'afixengine': {
             name: 'Engine Parts (A)',
-            description: 'New engine parts',
+            information: 'New engine parts',
             stackable: true,
             image: createImage('np_engine_parts_a'),
             weight: 5.0,
@@ -4802,7 +5300,7 @@ export function App(props: any) {
         //B CLASS REPAIR PARTS
         'bfixbrake': {
             name: 'Brake Parts (B)',
-            description: 'New brake discs, pads, calipers, hubs & accessories',
+            information: 'New brake discs, pads, calipers, hubs & accessories',
             stackable: true,
             image: createImage('np_brake_parts_b'),
             weight: 5.0,
@@ -4812,7 +5310,7 @@ export function App(props: any) {
         },
         'bfixaxle': {
             name: 'Axle Parts (B)',
-            description: 'New axle components',
+            information: 'New axle components',
             stackable: true,
             image: createImage('np_axle_parts_b'),
             weight: 5.0,
@@ -4822,7 +5320,7 @@ export function App(props: any) {
         },
         'bfixradiator': {
             name: 'Radiator Parts (B)',
-            description: 'New radiator and cooling parts',
+            information: 'New radiator and cooling parts',
             stackable: true,
             image: createImage('np_cooling_parts_b'),
             weight: 5.0,
@@ -4832,7 +5330,7 @@ export function App(props: any) {
         },
         'bfixclutch': {
             name: 'Clutch Parts (B)',
-            description: 'New clutch disc and pressure plate',
+            information: 'New clutch disc and pressure plate',
             stackable: true,
             image: createImage('np_clutch_parts_b'),
             weight: 5.0,
@@ -4842,7 +5340,7 @@ export function App(props: any) {
         },
         'bfixtransmission': {
             name: 'Transmission Parts (B)',
-            description: 'New gear sets, shafts, converters and clutch packs',
+            information: 'New gear sets, shafts, converters and clutch packs',
             stackable: true,
             image: createImage('np_transmission_parts_b'),
             weight: 5.0,
@@ -4852,7 +5350,7 @@ export function App(props: any) {
         },
         'bfixelectronics': {
             name: 'Vehicle Electronics (B)',
-            description: 'Various vehicle electrical components',
+            information: 'Various vehicle electrical components',
             stackable: true,
             image: createImage('np_electronic_parts_b'),
             weight: 5.0,
@@ -4862,7 +5360,7 @@ export function App(props: any) {
         },
         'bfixinjector': {
             name: 'Fuel Injectors (B)',
-            description: 'New fuel injectors',
+            information: 'New fuel injectors',
             stackable: true,
             image: createImage('np_fuel_injectors_b'),
             weight: 5.0,
@@ -4872,7 +5370,7 @@ export function App(props: any) {
         },
         'bfixtire': {
             name: 'Tire Repair Kit (B)',
-            description: 'For swapping and repairing worn or damaged tires',
+            information: 'For swapping and repairing worn or damaged tires',
             stackable: true,
             image: createImage('np_tire_kit_b'),
             weight: 5.0,
@@ -4882,7 +5380,7 @@ export function App(props: any) {
         },
         'bfixbody': {
             name: 'Body Panels (B)',
-            description: 'New vehicle body panels',
+            information: 'New vehicle body panels',
             stackable: true,
             image: createImage('np_body_panels_b'),
             weight: 5.0,
@@ -4892,7 +5390,7 @@ export function App(props: any) {
         },
         'bfixengine': {
             name: 'Engine Parts (B)',
-            description: 'New brake discs, pads, calipers, hubs & accessories',
+            information: 'New brake discs, pads, calipers, hubs & accessories',
             stackable: true,
             image: createImage('np_engine_parts_b'),
             weight: 5.0,
@@ -4903,7 +5401,7 @@ export function App(props: any) {
         //C CLASS REPAIR PARTS
         'cfixbrake': {
             name: 'Brake Parts (C)',
-            description: 'New brake discs, pads, calipers, hubs & accessories',
+            information: 'New brake discs, pads, calipers, hubs & accessories',
             stackable: true,
             image: createImage('np_brake_parts_c'),
             weight: 5.0,
@@ -4913,7 +5411,7 @@ export function App(props: any) {
         },
         'cfixaxle': {
             name: 'Axle Parts (C)',
-            description: 'New axle components',
+            information: 'New axle components',
             stackable: true,
             image: createImage('np_axle_parts_c'),
             weight: 5.0,
@@ -4923,7 +5421,7 @@ export function App(props: any) {
         },
         'cfixradiator': {
             name: 'Radiator Parts (C)',
-            description: 'New radiator and cooling parts',
+            information: 'New radiator and cooling parts',
             stackable: true,
             image: createImage('np_cooling_parts_c'),
             weight: 5.0,
@@ -4933,7 +5431,7 @@ export function App(props: any) {
         },
         'cfixclutch': {
             name: 'Clutch Parts (C)',
-            description: 'New clutch disc and pressure plate',
+            information: 'New clutch disc and pressure plate',
             stackable: true,
             image: createImage('np_clutch_parts_c'),
             weight: 5.0,
@@ -4943,7 +5441,7 @@ export function App(props: any) {
         },
         'cfixtransmission': {
             name: 'Transmission Parts (C)',
-            description: 'New gear sets, shafts, converters and clutch packs',
+            information: 'New gear sets, shafts, converters and clutch packs',
             stackable: true,
             image: createImage('np_transmission_parts_c'),
             weight: 5.0,
@@ -4953,7 +5451,7 @@ export function App(props: any) {
         },
         'cfixelectronics': {
             name: 'Vehicle Electronics (C)',
-            description: 'Various vehicle electrical components',
+            information: 'Various vehicle electrical components',
             stackable: true,
             image: createImage('np_electronic_parts_c'),
             weight: 5.0,
@@ -4963,7 +5461,7 @@ export function App(props: any) {
         },
         'cfixinjector': {
             name: 'Fuel Injectors (C)',
-            description: 'New fuel injectors',
+            information: 'New fuel injectors',
             stackable: true,
             image: createImage('np_fuel_injectors_c'),
             weight: 5.0,
@@ -4973,7 +5471,7 @@ export function App(props: any) {
         },
         'cfixtire': {
             name: 'Tire Repair Kit (C)',
-            description: 'For swapping and repairing worn or damaged tires',
+            information: 'For swapping and repairing worn or damaged tires',
             stackable: true,
             image: createImage('np_tire_kit_c'),
             weight: 5.0,
@@ -4983,7 +5481,7 @@ export function App(props: any) {
         },
         'cfixbody': {
             name: 'Body Panels (C)',
-            description: 'New vehicle body panels',
+            information: 'New vehicle body panels',
             stackable: true,
             image: createImage('np_body_panels_c'),
             weight: 5.0,
@@ -4993,7 +5491,7 @@ export function App(props: any) {
         },
         'cfixengine': {
             name: 'Engine Parts (C)',
-            description: 'New brake discs, pads, calipers, hubs & accessories',
+            information: 'New brake discs, pads, calipers, hubs & accessories',
             stackable: true,
             image: createImage('np_engine_parts_c'),
             weight: 5.0,
@@ -5004,7 +5502,7 @@ export function App(props: any) {
         //D CLASS REPAIR PARTS
         'dfixbrake': {
             name: 'Brake Parts (D)',
-            description: 'New brake discs, pads, calipers, hubs & accessories',
+            information: 'New brake discs, pads, calipers, hubs & accessories',
             stackable: true,
             image: createImage('np_brake_parts_d'),
             weight: 5.0,
@@ -5014,7 +5512,7 @@ export function App(props: any) {
         },
         'dfixaxle': {
             name: 'Axle Parts (D)',
-            description: 'New axle components',
+            information: 'New axle components',
             stackable: true,
             image: createImage('np_axle_parts_d'),
             weight: 5.0,
@@ -5024,7 +5522,7 @@ export function App(props: any) {
         },
         'dfixradiator': {
             name: 'Radiator Parts (D)',
-            description: 'New radiator and cooling parts',
+            information: 'New radiator and cooling parts',
             stackable: true,
             image: createImage('np_cooling_parts_d'),
             weight: 5.0,
@@ -5034,7 +5532,7 @@ export function App(props: any) {
         },
         'dfixclutch': {
             name: 'Clutch Parts (D)',
-            description: 'New clutch disc and pressure plate',
+            information: 'New clutch disc and pressure plate',
             stackable: true,
             image: createImage('np_clutch_parts_d'),
             weight: 5.0,
@@ -5044,7 +5542,7 @@ export function App(props: any) {
         },
         'dfixtransmission': {
             name: 'Transmission Parts (D)',
-            description: 'New gear sets, shafts, converters and clutch packs',
+            information: 'New gear sets, shafts, converters and clutch packs',
             stackable: true,
             image: createImage('np_transmission_parts_d'),
             weight: 5.0,
@@ -5054,7 +5552,7 @@ export function App(props: any) {
         },
         'dfixelectronics': {
             name: 'Vehicle Electronics (D)',
-            description: 'Various vehicle electrical components',
+            information: 'Various vehicle electrical components',
             stackable: true,
             image: createImage('np_electronic_parts_d'),
             weight: 5.0,
@@ -5064,7 +5562,7 @@ export function App(props: any) {
         },
         'dfixinjector': {
             name: 'Fuel Injectors (D)',
-            description: 'New fuel injectors',
+            information: 'New fuel injectors',
             stackable: true,
             image: createImage('np_fuel_injectors_d'),
             weight: 5.0,
@@ -5074,7 +5572,7 @@ export function App(props: any) {
         },
         'dfixtire': {
             name: 'Tire Repair Kit (D)',
-            description: 'For swapping and repairing worn or damaged tires',
+            information: 'For swapping and repairing worn or damaged tires',
             stackable: true,
             image: createImage('np_tire_kit_d'),
             weight: 5.0,
@@ -5084,7 +5582,7 @@ export function App(props: any) {
         },
         'dfixbody': {
             name: 'Body Panels (D)',
-            description: 'New vehicle body panels',
+            information: 'New vehicle body panels',
             stackable: true,
             image: createImage('np_body_panels_d'),
             weight: 5.0,
@@ -5094,7 +5592,7 @@ export function App(props: any) {
         },
         'dfixengine': {
             name: 'Engine Parts (D)',
-            description: 'New brake discs, pads, calipers, hubs & accessories',
+            information: 'New brake discs, pads, calipers, hubs & accessories',
             stackable: true,
             image: createImage('np_engine_parts_d'),
             weight: 5.0,
@@ -5105,7 +5603,7 @@ export function App(props: any) {
         //M CLASS REPAIR PARTS
         'mfixbrake': {
             name: 'Brake Parts (M)',
-            description: 'New brake discs, pads, calipers, hubs & accessories',
+            information: 'New brake discs, pads, calipers, hubs & accessories',
             stackable: true,
             image: createImage('np_brake_parts_m'),
             weight: 5.0,
@@ -5115,7 +5613,7 @@ export function App(props: any) {
         },
         'mfixaxle': {
             name: 'Axle Parts (M)',
-            description: 'New axle components',
+            information: 'New axle components',
             stackable: true,
             image: createImage('np_axle_parts_m'),
             weight: 5.0,
@@ -5125,7 +5623,7 @@ export function App(props: any) {
         },
         'mfixradiator': {
             name: 'Radiator Parts (M)',
-            description: 'New radiator and cooling parts',
+            information: 'New radiator and cooling parts',
             stackable: true,
             image: createImage('np_cooling_parts_m'),
             weight: 5.0,
@@ -5135,7 +5633,7 @@ export function App(props: any) {
         },
         'mfixclutch': {
             name: 'Clutch Parts (M)',
-            description: 'New clutch disc and pressure plate',
+            information: 'New clutch disc and pressure plate',
             stackable: true,
             image: createImage('np_clutch_parts_m'),
             weight: 5.0,
@@ -5145,7 +5643,7 @@ export function App(props: any) {
         },
         'mfixtransmission': {
             name: 'Transmission Parts (M)',
-            description: 'New gear sets, shafts, converters and clutch packs',
+            information: 'New gear sets, shafts, converters and clutch packs',
             stackable: true,
             image: createImage('np_transmission_parts_m'),
             weight: 5.0,
@@ -5155,7 +5653,7 @@ export function App(props: any) {
         },
         'mfixelectronics': {
             name: 'Vehicle Electronics (M)',
-            description: 'Various vehicle electrical components',
+            information: 'Various vehicle electrical components',
             stackable: true,
             image: createImage('np_electronic_parts_m'),
             weight: 5.0,
@@ -5165,7 +5663,7 @@ export function App(props: any) {
         },
         'mfixinjector': {
             name: 'Fuel Injectors (M)',
-            description: 'New fuel injectors',
+            information: 'New fuel injectors',
             stackable: true,
             image: createImage('np_fuel_injectors_m'),
             weight: 5.0,
@@ -5175,7 +5673,7 @@ export function App(props: any) {
         },
         'mfixtire': {
             name: 'Tire Repair Kit (M)',
-            description: 'For swapping and repairing worn or damaged tires',
+            information: 'For swapping and repairing worn or damaged tires',
             stackable: true,
             image: createImage('np_tire_kit_m'),
             weight: 5.0,
@@ -5185,7 +5683,7 @@ export function App(props: any) {
         },
         'mfixbody': {
             name: 'Body Panels (M)',
-            description: 'New vehicle body panels',
+            information: 'New vehicle body panels',
             stackable: true,
             image: createImage('np_body_panels_m'),
             weight: 5.0,
@@ -5195,7 +5693,7 @@ export function App(props: any) {
         },
         'mfixengine': {
             name: 'Engine Parts (M)',
-            description: 'New brake discs, pads, calipers, hubs & accessories',
+            information: 'New brake discs, pads, calipers, hubs & accessories',
             stackable: true,
             image: createImage('np_engine_parts_m'),
             weight: 5.0,
@@ -5206,7 +5704,7 @@ export function App(props: any) {
         // Vegetables
         'lettuce': {
             name: 'Lettuce',
-            description: 'Used to craft food - be aware, food doesnt last forever!',
+            information: 'Used to craft food - be aware, food doesnt last forever!',
             stackable: true,
             image: createImage('np_ingredients_lettuce'),
             weight: 1.0,
@@ -5216,7 +5714,7 @@ export function App(props: any) {
         },
         'hamburgerbuns': {
             name: 'Hamburger Bun',
-            description: 'Used to craft food - be aware, food doesnt last forever!',
+            information: 'Used to craft food - be aware, food doesnt last forever!',
             stackable: true,
             image: createImage('np_ingredients_buns'),
             weight: 1.0,
@@ -5226,7 +5724,7 @@ export function App(props: any) {
         },
         'hamburgerpatty': {
             name: 'Hamburger Patty',
-            description: 'Used to craft food - be aware, food doesnt last forever!',
+            information: 'Used to craft food - be aware, food doesnt last forever!',
             stackable: true,
             image: createImage('np_ingredients_patty'),
             weight: 1.0,
@@ -5236,7 +5734,7 @@ export function App(props: any) {
         },
         'cheese': {
             name: 'Cheese',
-            description: 'Used to craft food - be aware, food doesnt last forever!',
+            information: 'Used to craft food - be aware, food doesnt last forever!',
             stackable: true,
             image: createImage('np_ingredients_cheese'),
             weight: 1.0,
@@ -5246,7 +5744,7 @@ export function App(props: any) {
         },
         'potatoingred': {
             name: 'Potatoes',
-            description: 'Used to craft food - be aware, food doesnt last forever!',
+            information: 'Used to craft food - be aware, food doesnt last forever!',
             stackable: true,
             image: createImage('np_potato'),
             weight: 1.0,
@@ -5256,7 +5754,7 @@ export function App(props: any) {
         },
         'milk': {
             name: 'Milk',
-            description: 'Used to craft food - be aware, food doesnt last forever!',
+            information: 'Used to craft food - be aware, food doesnt last forever!',
             stackable: true,
             image: createImage('np_ingredients_milk'),
             weight: 1.0,
@@ -5266,7 +5764,7 @@ export function App(props: any) {
         },
         'icecreamingred': {
             name: 'Ice Cream',
-            description: 'Used to craft food - be aware, food doesnt last forever!',
+            information: 'Used to craft food - be aware, food doesnt last forever!',
             stackable: true,
             image: createImage('np_ingredients_icecream'),
             weight: 1.0,
@@ -5276,7 +5774,7 @@ export function App(props: any) {
         },
         'coffeebeans': {
             name: 'Coffee Beans',
-            description: 'Used to craft food - be aware, food doesnt last forever!',
+            information: 'Used to craft food - be aware, food doesnt last forever!',
             stackable: true,
             image: createImage('np_ingredients_coffeebeans'),
             weight: 1.0,
@@ -5286,7 +5784,7 @@ export function App(props: any) {
         },
         'hfcs': {
             name: 'High-Fructose Syrup',
-            description: 'Used to craft food - be aware, food doesnt last forever!',
+            information: 'Used to craft food - be aware, food doesnt last forever!',
             stackable: true,
             image: createImage('np_ingredients_hfcs'),
             weight: 1.0,
@@ -5296,7 +5794,7 @@ export function App(props: any) {
         },
         'tomato': {
             name: 'Tomato',
-            description: 'Used to craft food - be aware, food doesnt last forever!',
+            information: 'Used to craft food - be aware, food doesnt last forever!',
             stackable: true,
             image: createImage('np_ingredients_tomato'),
             weight: 1.0,
@@ -5306,7 +5804,7 @@ export function App(props: any) {
         },
         'cucumber': {
             name: 'Cucumber',
-            description: 'Used to craft food - be aware, food doesnt last forever!',
+            information: 'Used to craft food - be aware, food doesnt last forever!',
             stackable: true,
             image: createImage('np_ingredients_cucumber'),
             weight: 1.0,
@@ -5316,7 +5814,7 @@ export function App(props: any) {
         },
         'carrot': {
             name: 'Carrot',
-            description: 'Used to craft food - be aware, food doesnt last forever!',
+            information: 'Used to craft food - be aware, food doesnt last forever!',
             stackable: true,
             image: createImage('np_ingredients_carrot'),
             weight: 1.0,
@@ -5326,7 +5824,7 @@ export function App(props: any) {
         },
         'radish': {
             name: 'Radish',
-            description: 'Used to craft food - be aware, food doesnt last forever!',
+            information: 'Used to craft food - be aware, food doesnt last forever!',
             stackable: true,
             image: createImage('radish'),
             weight: 1.0,
@@ -5336,7 +5834,7 @@ export function App(props: any) {
         },
         'beetroot': {
             name: 'Beet',
-            description: 'Used to craft food - be aware, food doesnt last forever!',
+            information: 'Used to craft food - be aware, food doesnt last forever!',
             stackable: true,
             image: createImage('beetroot'),
             weight: 1.0,
@@ -5346,7 +5844,7 @@ export function App(props: any) {
         },
         'cabbage': {
             name: 'Cabbage',
-            description: 'Used to craft food - be aware, food doesnt last forever!',
+            information: 'Used to craft food - be aware, food doesnt last forever!',
             stackable: true,
             image: createImage('np_ingredients_cabbage'),
             weight: 1.0,
@@ -5356,7 +5854,7 @@ export function App(props: any) {
         },
         'chives': {
             name: 'Chives',
-            description: 'Used to craft food - be aware, food doesnt last forever!',
+            information: 'Used to craft food - be aware, food doesnt last forever!',
             stackable: true,
             image: createImage('np_ingredients_chives'),
             weight: 1.0,
@@ -5366,7 +5864,7 @@ export function App(props: any) {
         },
         'pumpkin': {
             name: 'Pumpkin',
-            description: 'Used to craft food - be aware, food doesnt last forever!',
+            information: 'Used to craft food - be aware, food doesnt last forever!',
             stackable: true,
             image: createImage('np_ingredients_pumpkin'),
             weight: 1.0,
@@ -5376,7 +5874,7 @@ export function App(props: any) {
         },
         'corn': {
             name: 'Corn',
-            description: 'Used to craft food - be aware, food doesnt last forever!',
+            information: 'Used to craft food - be aware, food doesnt last forever!',
             stackable: true,
             image: createImage('corn'),
             weight: 1.0,
@@ -5386,7 +5884,7 @@ export function App(props: any) {
         },
         'oregano': {
             name: 'Oregano',
-            description: 'Used to craft food - be aware, food doesnt last forever!',
+            information: 'Used to craft food - be aware, food doesnt last forever!',
             stackable: true,
             image: createImage('np_ingredients_oregano'),
             weight: 1.0,
@@ -5396,7 +5894,7 @@ export function App(props: any) {
         },
         'garlic': {
             name: 'Garlic',
-            description: 'Used to craft food - be aware, food doesnt last forever!',
+            information: 'Used to craft food - be aware, food doesnt last forever!',
             stackable: true,
             image: createImage('np_ingredients_garlic'),
             weight: 1.0,
@@ -5406,7 +5904,7 @@ export function App(props: any) {
         },
         'mushrooms': {
             name: 'Mushrooms',
-            description: 'Used to craft food - be aware, food doesnt last forever!',
+            information: 'Used to craft food - be aware, food doesnt last forever!',
             stackable: true,
             image: createImage('np_ingredients_mushrooms'),
             weight: 1.0,
@@ -5416,7 +5914,7 @@ export function App(props: any) {
         },
         'foodbag': {
             name: 'Brown Bag',
-            description: 'Enough space for one.',
+            information: 'Enough space for one.',
             stackable: false,
             image: createImage('np_food_bag'),
             weight: 1.0,
@@ -5427,7 +5925,7 @@ export function App(props: any) {
         //Mech
         'helicopterrepairkit': {
             name: 'Brown Bag',
-            description: 'Helicopter Repair Kit.',
+            information: 'Helicopter Repair Kit.',
             stackable: true,
             image: createImage('np_helicopter_repair_kit'),
             weight: 80.0,
@@ -5437,7 +5935,7 @@ export function App(props: any) {
         },
         'bodyrepairkit': {
             name: 'Body Repair Kit',
-            description: '1 Time use - repairs body to full.',
+            information: '1 Time use - repairs body to full.',
             stackable: true,
             image: createImage('np_body_repair_kit'),
             weight: 80.0,
@@ -5447,7 +5945,7 @@ export function App(props: any) {
         },
         'mask': {
             name: 'Mask',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_mask'),
             weight: 1.0,
@@ -5457,7 +5955,7 @@ export function App(props: any) {
         },
         'hat': {
             name: 'Hat',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_hat'),
             weight: 1.0,
@@ -5467,7 +5965,7 @@ export function App(props: any) {
         },
         'varhelmet': {
             name: 'VAR Helmet',
-            description: 'Virtually augmented reality, woah.',
+            information: 'Virtually augmented reality, woah.',
             stackable: true,
             image: createImage('np_var_headset'),
             weight: 1.0,
@@ -5477,7 +5975,7 @@ export function App(props: any) {
         },
         'darkmarketdeliveries': {
             name: 'Delivery List',
-            description: 'A suspicious list with transport instructions. Marked for Police Seizure.',
+            information: 'A suspicious list with transport instructions. Marked for Police Seizure.',
             stackable: true,
             image: createImage('np_dark_market_customers'),
             weight: 1.0,
@@ -5487,7 +5985,7 @@ export function App(props: any) {
         },
         'darkmarketpackage': {
             name: 'Suspicious Package',
-            description: 'Package covered in tape and milk stickers. Marked for Police Seizure.',
+            information: 'Package covered in tape and milk stickers. Marked for Police Seizure.',
             stackable: true,
             image: createImage('np_dark_market_package'),
             weight: 2.0,
@@ -5497,7 +5995,7 @@ export function App(props: any) {
         },
         'choplist': {
             name: 'Vehicle List',
-            description: 'List with locations and vehicle models. Marked for Police Seizure.',
+            information: 'List with locations and vehicle models. Marked for Police Seizure.',
             stackable: true,
             image: createImage('np_dark_market_customers'),
             weight: 1.0,
@@ -5507,7 +6005,7 @@ export function App(props: any) {
         },
         'bennysorder': {
             name: 'Bennys Order',
-            description: 'Go to the manager and buy the parts.<br>Then give this to an employee.',
+            information: 'Go to the manager and buy the parts.<br>Then give this to an employee.',
             stackable: true,
             image: createImage('np_receipt'),
             weight: 1.0,
@@ -5517,7 +6015,7 @@ export function App(props: any) {
         },
         'stolenshoes': {
             name: 'Stolen Shoes',
-            description: 'These are not yours, bro.',
+            information: 'These are not yours, bro.',
             stackable: true,
             image: createImage('np_stolenshoes'),
             weight: 1.0,
@@ -5527,7 +6025,7 @@ export function App(props: any) {
         },
         'rentalpapers': {
             name: 'Rental Papers',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('rental_paper'),
             weight: 1.0,
@@ -5537,7 +6035,7 @@ export function App(props: any) {
         },
         'dashcamracing': {
             name: 'GoPixel (Public)',
-            description: 'Throw this in your vehicle to stream live footage to the cloud! Unencrypted.',
+            information: 'Throw this in your vehicle to stream live footage to the cloud! Unencrypted.',
             stackable: true,
             image: createImage('np_dashcam'),
             weight: 1.0,
@@ -5547,7 +6045,7 @@ export function App(props: any) {
         },
         'dashcampd': {
             name: 'GoPixel (PD)',
-            description: 'Throw this in your vehicle to stream live footage to the cloud! Unencrypted.',
+            information: 'Throw this in your vehicle to stream live footage to the cloud! Unencrypted.',
             stackable: true,
             image: createImage('np_dashcam'),
             weight: 1.0,
@@ -5557,7 +6055,7 @@ export function App(props: any) {
         },
         'dashcamstatic': {
             name: 'GoPixel (Static)',
-            description: 'Security camera for things.',
+            information: 'Security camera for things.',
             stackable: true,
             image: createImage('np_dashcam'),
             weight: 1.0,
@@ -5567,7 +6065,7 @@ export function App(props: any) {
         },
         'dashcamstaticpd': {
             name: 'GoPixel (Static)',
-            description: 'Government (PD/EMS/DOC) Issued Equipment',
+            information: 'Government (PD/EMS/DOC) Issued Equipment',
             stackable: true,
             image: createImage('np_dashcam'),
             weight: 1.0,
@@ -5577,7 +6075,7 @@ export function App(props: any) {
         },
         'moneycase': {
             name: 'Regular Briefcase',
-            description: 'Good for about $20k in large bills.',
+            information: 'Good for about $20k in large bills.',
             stackable: true,
             image: createImage('np_moneycase'),
             weight: 10.0,
@@ -5587,7 +6085,7 @@ export function App(props: any) {
         },
         'nightvisiongoggles': {
             name: 'Night Vision Goggles',
-            description: 'Mil-Spec. High price, low quality.',
+            information: 'Mil-Spec. High price, low quality.',
             stackable: true,
             image: createImage('np_nv'),
             weight: 5.0,
@@ -5597,7 +6095,7 @@ export function App(props: any) {
         },
         'nightvisiongogglespd': {
             name: 'NVG (SWAT)',
-            description: 'Mil-Spec. High price, low quality. If you are not SWAT certified do not buy this.',
+            information: 'Mil-Spec. High price, low quality. If you are not SWAT certified do not buy this.',
             stackable: true,
             image: createImage('np_nv'),
             weight: 5.0,
@@ -5607,7 +6105,7 @@ export function App(props: any) {
         },
         'grapplegun': {
             name: 'Grapple Gun',
-            description: 'This is some Batman shit. Marked for Police Seizure.',
+            information: 'This is some Batman shit. Marked for Police Seizure.',
             stackable: true,
             image: createImage('np_grapple'),
             weight: 7.0,
@@ -5617,7 +6115,7 @@ export function App(props: any) {
         },
         'grapplegunpd': {
             name: 'Grapple Gun (SWAT)',
-            description: 'This is some Batman shit. If you are not SWAT certified do not buy this.',
+            information: 'This is some Batman shit. If you are not SWAT certified do not buy this.',
             stackable: true,
             image: createImage('np_grapple'),
             weight: 7.0,
@@ -5627,7 +6125,7 @@ export function App(props: any) {
         },
         'weedpackage': {
             name: 'Suspicious Package',
-            description: 'Marked for Police Seizure.',
+            information: 'Marked for Police Seizure.',
             stackable: true,
             image: createImage('np_box-of-weed-12-18-oz'),
             weight: 25.0,
@@ -5637,7 +6135,7 @@ export function App(props: any) {
         },
         'methpackage': {
             name: 'Suspicious Package',
-            description: 'Marked for Police Seizure.',
+            information: 'Marked for Police Seizure.',
             stackable: true,
             image: createImage('np_meth_brick'),
             weight: 25.0,
@@ -5647,7 +6145,7 @@ export function App(props: any) {
         },
         'methbag': {
             name: 'Big Meth Bag (100g)',
-            description: '100g of pure fuckin meth',
+            information: '100g of pure fuckin meth',
             stackable: true,
             image: createImage('np_meth_bag'),
             weight: 10.0,
@@ -5657,7 +6155,7 @@ export function App(props: any) {
         },
         'tattooremover': {
             name: 'Tattoo Remover',
-            description: 'Removes tattoos from someone.',
+            information: 'Removes tattoos from someone.',
             stackable: true,
             image: createImage('tattoo_remover'),
             weight: 10.0,
@@ -5667,7 +6165,7 @@ export function App(props: any) {
         },
         'megaphone': {
             name: 'Megaphone',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_megaphone'),
             weight: 10.0,
@@ -5677,7 +6175,7 @@ export function App(props: any) {
         },
         'murdermeal': {
             name: 'Murder Meal',
-            description: 'This burger may kill you! We are not responsible',
+            information: 'This burger may kill you! We are not responsible',
             stackable: true,
             image: createImage('np_murder_meal'),
             weight: 16.0,
@@ -5687,7 +6185,7 @@ export function App(props: any) {
         },
         'newsusb': {
             name: 'News USB',
-            description: 'Property of LS News Center',
+            information: 'Property of LS News Center',
             stackable: true,
             image: createImage('np_news_usb'),
             weight: 1.0,
@@ -5697,7 +6195,7 @@ export function App(props: any) {
         },
         'newscamera': {
             name: 'News Camera',
-            description: 'A little dusty',
+            information: 'A little dusty',
             stackable: true,
             image: createImage('np_news_camera'),
             weight: 5.0,
@@ -5707,7 +6205,7 @@ export function App(props: any) {
         },
         'newsmic': {
             name: 'News Mic',
-            description: 'Is this thing on?',
+            information: 'Is this thing on?',
             stackable: true,
             image: createImage('np_news_mic'),
             weight: 5.0,
@@ -5717,7 +6215,7 @@ export function App(props: any) {
         },
         'newsboom': {
             name: 'News Boom',
-            description: 'Heavier than it looks',
+            information: 'Heavier than it looks',
             stackable: true,
             image: createImage('np_news_boom'),
             weight: 3.0,
@@ -5727,7 +6225,7 @@ export function App(props: any) {
         },
         'newslight': {
             name: 'News Light',
-            description: 'I said, ooooh, Im blinded by the lights',
+            information: 'I said, ooooh, Im blinded by the lights',
             stackable: true,
             image: createImage('np_news_light'),
             weight: 6.0,
@@ -5737,7 +6235,7 @@ export function App(props: any) {
         },
         'safecrackingkit': {
             name: 'Safe Cracking Tool',
-            description: 'Marked for police seizure.',
+            information: 'Marked for police seizure.',
             stackable: true,
             image: createImage('np_safecrackingkit'),
             weight: 2.0,
@@ -5747,7 +6245,7 @@ export function App(props: any) {
         },
         'trackerdisabler': {
             name: 'Tracker Disabling Tool',
-            description: 'Plug this in and keep moving.',
+            information: 'Plug this in and keep moving.',
             stackable: true,
             image: createImage('np_disabler'),
             weight: 1.0,
@@ -5757,7 +6255,7 @@ export function App(props: any) {
         },
         'gatheringkit': {
             name: 'Detective Kit',
-            description: 'Used to gather evidence - should be seized by police if suspected of use in crime.',
+            information: 'Used to gather evidence - should be seized by police if suspected of use in crime.',
             stackable: true,
             image: createImage('np_cleaning-goods'),
             weight: 3.0,
@@ -5767,7 +6265,7 @@ export function App(props: any) {
         },
         'weapon_silencer_pistol': {
             name: 'Pistol Suppressor',
-            description: 'A silencer designed for use on some pistols.',
+            information: 'A silencer designed for use on some pistols.',
             stackable: true,
             image: createImage('np_ssilencer'),
             weight: 15.0,
@@ -5777,7 +6275,7 @@ export function App(props: any) {
         },
         'weapon_oil_silencer': {
             name: 'Oil Filter',
-            description: 'Old, used oil filter. Do not seem to last long.',
+            information: 'Old, used oil filter. Do not seem to last long.',
             stackable: true,
             image: createImage('np_oil_can_supp'),
             weight: 15.0,
@@ -5787,7 +6285,7 @@ export function App(props: any) {
         },
         'weapon_silencer_assault': {
             name: 'Rifle Suppressor',
-            description: 'Silencer designed for use on some rifles.',
+            information: 'Silencer designed for use on some rifles.',
             stackable: true,
             image: createImage('np_silencerbig'),
             weight: 15.0,
@@ -5797,7 +6295,7 @@ export function App(props: any) {
         },
         'weapon_scope': {
             name: 'Weapon Optics',
-            description: 'Scope designed for use on some weapons.',
+            information: 'Scope designed for use on some weapons.',
             stackable: true,
             image: createImage('np_lscope'),
             weight: 15.0,
@@ -5807,7 +6305,7 @@ export function App(props: any) {
         },
         'weapon_uzi_extended': {
             name: 'UZI extended mag',
-            description: 'Will only fit on the UZI.',
+            information: 'Will only fit on the UZI.',
             stackable: true,
             image: createImage('np_uzi_extended'),
             weight: 15.0,
@@ -5817,7 +6315,7 @@ export function App(props: any) {
         },
         'weapon_uzi_foldstock': {
             name: 'UZI Stock',
-            description: 'Will only fit on the UZI.',
+            information: 'Will only fit on the UZI.',
             stackable: true,
             image: createImage('np_uzi_fold_stock'),
             weight: 5.0,
@@ -5827,7 +6325,7 @@ export function App(props: any) {
         },
         'weapon_uzi_woodstock': {
             name: 'UZI Wooden Stock',
-            description: 'Will only fit on the UZI.',
+            information: 'Will only fit on the UZI.',
             stackable: true,
             image: createImage('np_uzi_wooden_stock'),
             weight: 5.0,
@@ -5837,7 +6335,7 @@ export function App(props: any) {
         },
         '2343591895': {
             name: 'Flash Light',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_flashlight'),
             weight: 11.0,
@@ -5847,7 +6345,7 @@ export function App(props: any) {
         },
         'miningprobe': {
             name: 'Mining Probe',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_metaldetector'),
             weight: 20.0,
@@ -5857,7 +6355,7 @@ export function App(props: any) {
         },
         'miningpickaxe': {
             name: 'Mining Pickaxe',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_pickaxe'),
             weight: 20.0,
@@ -5867,7 +6365,7 @@ export function App(props: any) {
         },
         'mininggem': {
             name: 'Mined Gemstone',
-            description: 'Go get rid of this shit!',
+            information: 'Go get rid of this shit!',
             stackable: true,
             image: createImage('np_gallery_diamond'),
             weight: 1.0,
@@ -5877,7 +6375,7 @@ export function App(props: any) {
         },
         'miningcoal': {
             name: 'Mined Coal',
-            description: 'Go get rid of this shit!',
+            information: 'Go get rid of this shit!',
             stackable: true,
             image: createImage('np_coal'),
             weight: 1.0,
@@ -5887,7 +6385,7 @@ export function App(props: any) {
         },
         'trowel': {
             name: 'Trowel',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_trowel'),
             weight: 10.0,
@@ -5897,7 +6395,7 @@ export function App(props: any) {
         },
         'pdevidencebag': {
             name: 'Evidence Bag',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_evidence_bag'),
             weight: 1.0,
@@ -5907,7 +6405,7 @@ export function App(props: any) {
         },
         'ketamine': {
             name: 'Special K',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_ketamine_baggie'),
             weight: 1.0,
@@ -5917,7 +6415,7 @@ export function App(props: any) {
         },
         'bakingsoda': {
             name: 'Cleaning Product (Baking Soda)',
-            description: 'Cleans n shit yo',
+            information: 'Cleans n shit yo',
             stackable: true,
             image: createImage('np_bakingsoda'),
             weight: 2.0,
@@ -5927,7 +6425,7 @@ export function App(props: any) {
         },
         'cleaningproduct': {
             name: 'Cleaning Product',
-            description: 'Cleans n shit yo',
+            information: 'Cleans n shit yo',
             stackable: true,
             image: createImage('np_cleaningproduct'),
             weight: 2.0,
@@ -5937,7 +6435,7 @@ export function App(props: any) {
         },
         'cleaningproduct1': {
             name: 'Cleaning Product',
-            description: 'Cleans n shit yo',
+            information: 'Cleans n shit yo',
             stackable: true,
             image: createImage('np_cleaningproduct2'),
             weight: 2.0,
@@ -5947,7 +6445,7 @@ export function App(props: any) {
         },
         'hqparts': {
             name: 'HQ Car Parts',
-            description: "Meta-gamed in minutes.",
+            information: "Meta-gamed in minutes.",
             stackable: true,
             image: createImage('np_hqparts'),
             weight: 15.0,
@@ -5957,7 +6455,7 @@ export function App(props: any) {
         },
         'cryptostick': {
             name: 'GNE Stick',
-            description: 'Contains 10GNE. Somehow more valuable than DOGE',
+            information: 'Contains 10GNE. Somehow more valuable than DOGE',
             stackable: true,
             image: createImage('np_cryptostick'),
             weight: 1.0,
@@ -5967,7 +6465,7 @@ export function App(props: any) {
         },
         'turbokit': {
             name: 'Quality Turbo Parts',
-            description: 'Turbo, might need repairs to fully function!',
+            information: 'Turbo, might need repairs to fully function!',
             stackable: true,
             image: createImage('np_vehicle_part'),
             weight: 10.0,
@@ -5977,7 +6475,7 @@ export function App(props: any) {
         },
         'enginekit': {
             name: 'Quality Engine Parts',
-            description: 'Looks like some engine parts, might need repairs to fully function!',
+            information: 'Looks like some engine parts, might need repairs to fully function!',
             stackable: true,
             image: createImage('np_vehicle_part'),
             weight: 10.0,
@@ -5987,7 +6485,7 @@ export function App(props: any) {
         },
         'transmissionkit': {
             name: 'Quality Transmission Parts',
-            description: 'Transmission Parts, might need repairs to fully function!',
+            information: 'Transmission Parts, might need repairs to fully function!',
             stackable: true,
             image: createImage('np_vehicle_part'),
             weight: 10.0,
@@ -5997,7 +6495,7 @@ export function App(props: any) {
         },
         'brakingkit': {
             name: 'Quality Braking Parts',
-            description: 'Transmission Parts, might need repairs to fully function!',
+            information: 'Transmission Parts, might need repairs to fully function!',
             stackable: true,
             image: createImage('np_vehicle_part'),
             weight: 10.0,
@@ -6007,7 +6505,7 @@ export function App(props: any) {
         },
         'suspensionkit': {
             name: 'Quality Suspension Parts',
-            description: 'Transmission Parts, might need repairs to fully function!',
+            information: 'Transmission Parts, might need repairs to fully function!',
             stackable: true,
             image: createImage('np_vehicle_part'),
             weight: 10.0,
@@ -6017,7 +6515,7 @@ export function App(props: any) {
         },
         'enginebay': {
             name: 'Placeholder Item',
-            description: 'Hey, dont touch this!',
+            information: 'Hey, dont touch this!',
             stackable: true,
             image: createImage('np_vehicle_part'),
             weight: 10.0,
@@ -6027,7 +6525,7 @@ export function App(props: any) {
         },
         'refinedaluminium': {
             name: 'Refined Aluminium',
-            description: 'Refined Aluminium.',
+            information: 'Refined Aluminium.',
             stackable: true,
             image: createImage('np_refined_aluminium'),
             weight: 2.0,
@@ -6037,7 +6535,7 @@ export function App(props: any) {
         },
         'refinedcopper': {
             name: 'Refined Copper',
-            description: 'Refined Copper.',
+            information: 'Refined Copper.',
             stackable: true,
             image: createImage('np_refined_copper'),
             weight: 2.0,
@@ -6047,7 +6545,7 @@ export function App(props: any) {
         },
         'refinedglass': {
             name: 'Refined Glass',
-            description: 'Refined Glass.',
+            information: 'Refined Glass.',
             stackable: true,
             image: createImage('np_refined_glass'),
             weight: 2.0,
@@ -6057,7 +6555,7 @@ export function App(props: any) {
         },
         'refinedplastic': {
             name: 'Refined Plastic',
-            description: 'Refined Plastic.',
+            information: 'Refined Plastic.',
             stackable: true,
             image: createImage('np_refined_plastic'),
             weight: 2.0,
@@ -6067,7 +6565,7 @@ export function App(props: any) {
         },
         'refinedrubber': {
             name: 'Refined Rubber',
-            description: 'Refined Rubber.',
+            information: 'Refined Rubber.',
             stackable: true,
             image: createImage('np_refined_rubber'),
             weight: 2.0,
@@ -6077,7 +6575,7 @@ export function App(props: any) {
         },
         'refinedscrap': {
             name: 'Refined Scrap',
-            description: 'Refined Scrap.',
+            information: 'Refined Scrap.',
             stackable: true,
             image: createImage('np_refined_scrap'),
             weight: 2.0,
@@ -6087,7 +6585,7 @@ export function App(props: any) {
         },
         'refinedsteel': {
             name: 'Refined Steel',
-            description: 'Refined Steel.',
+            information: 'Refined Steel.',
             stackable: true,
             image: createImage('np_refined_steel'),
             weight: 2.0,
@@ -6097,7 +6595,7 @@ export function App(props: any) {
         },
         'dodopackagesmall': {
             name: 'Dodo Small Package',
-            description: 'Store various products in this packaging!',
+            information: 'Store various products in this packaging!',
             stackable: true,
             image: createImage('np_dodobox1'),
             weight: 2.0,
@@ -6107,7 +6605,7 @@ export function App(props: any) {
         },
         'dodopackagemedium': {
             name: 'Dodo Medium Package',
-            description: 'Store various products in this packaging!',
+            information: 'Store various products in this packaging!',
             stackable: true,
             image: createImage('np_dodobox2'),
             weight: 2.0,
@@ -6117,7 +6615,7 @@ export function App(props: any) {
         },
         'dodopackagelarge': {
             name: 'Dodo Large Package',
-            description: 'Store various products in this packaging!',
+            information: 'Store various products in this packaging!',
             stackable: true,
             image: createImage('np_dodobox3'),
             weight: 2.0,
@@ -6127,7 +6625,7 @@ export function App(props: any) {
         },
         'lawnchair': {
             name: 'Lawn Chair',
-            description: 'Get off my lawn!',
+            information: 'Get off my lawn!',
             stackable: true,
             image: createImage('np_props_lawnchair'),
             weight: 1.0,
@@ -6137,7 +6635,7 @@ export function App(props: any) {
         },
         'lawnchair2': {
             name: 'Lawn Chair',
-            description: 'Get off my lawn!',
+            information: 'Get off my lawn!',
             stackable: true,
             image: createImage('np_props_lawnchair2'),
             weight: 1.0,
@@ -6147,7 +6645,7 @@ export function App(props: any) {
         },
         'stonechisel': {
             name: 'Chisel',
-            description: 'Used for stone.',
+            information: 'Used for stone.',
             stackable: true,
             image: createImage('np_chisel'),
             weight: 1.0,
@@ -6157,7 +6655,7 @@ export function App(props: any) {
         },
         'metalshaper': {
             name: 'Shaper',
-            description: 'Used for metal.',
+            information: 'Used for metal.',
             stackable: true,
             image: createImage('np_shaper'),
             weight: 100.0,
@@ -6167,7 +6665,7 @@ export function App(props: any) {
         },
         'woodsaw': {
             name: 'Saw',
-            description: 'Used for wood.',
+            information: 'Used for wood.',
             stackable: true,
             image: createImage('np_saw'),
             weight: 5.0,
@@ -6177,7 +6675,7 @@ export function App(props: any) {
         },
         'usedbattery': {
             name: 'Used Battery',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_used_battery'),
             weight: 1.0,
@@ -6187,7 +6685,7 @@ export function App(props: any) {
         },
         'detcord': {
             name: 'Det. Cord',
-            description: 'Government (PD/EMS/DOC) Issued Equipment',
+            information: 'Government (PD/EMS/DOC) Issued Equipment',
             stackable: true,
             image: createImage('np_detcord'),
             weight: 15.0,
@@ -6197,7 +6695,7 @@ export function App(props: any) {
         },
         'mobilecratelock': {
             name: 'Padlock',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_padlock'),
             weight: 1.0,
@@ -6207,7 +6705,7 @@ export function App(props: any) {
         },
         'mobilecratekey': {
             name: 'Padlock Key',
-            description: 'A key for some padlock',
+            information: 'A key for some padlock',
             stackable: true,
             image: createImage('np_mobilecratekey'),
             weight: 1.0,
@@ -6217,7 +6715,7 @@ export function App(props: any) {
         },
         'mobilecratekeylock': {
             name: 'Keypad',
-            description: 'A keypad for something',
+            information: 'A keypad for something',
             stackable: true,
             image: createImage('np_mobilecratekeylock'),
             weight: 1.0,
@@ -6227,7 +6725,7 @@ export function App(props: any) {
         },
         'surveyortool': {
             name: 'Surveying Device',
-            description: 'Various tools for surveying.',
+            information: 'Various tools for surveying.',
             stackable: true,
             image: createImage('np_digi_scanner'),
             weight: 11.0,
@@ -6237,7 +6735,7 @@ export function App(props: any) {
         },
         'agenericmechanicpart': {
             name: 'Mechanical Part (A)',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_generic_mechanical_A'),
             weight: 10.0,
@@ -6247,7 +6745,7 @@ export function App(props: any) {
         },
         'bgenericmechanicpart': {
             name: 'Mechanical Part (B)',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_generic_mechanical_B'),
             weight: 10.0,
@@ -6257,7 +6755,7 @@ export function App(props: any) {
         },
         'cgenericmechanicpart': {
             name: 'Mechanical Part (C)',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_generic_mechanical_C'),
             weight: 10.0,
@@ -6267,7 +6765,7 @@ export function App(props: any) {
         },
         'dgenericmechanicpart': {
             name: 'Mechanical Part (D)',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_generic_mechanical_D'),
             weight: 10.0,
@@ -6277,7 +6775,7 @@ export function App(props: any) {
         },
         'mgenericmechanicpart': {
             name: 'Mechanical Part (M)',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_generic_mechanical_M'),
             weight: 10.0,
@@ -6287,7 +6785,7 @@ export function App(props: any) {
         },
         'sgenericmechanicpart': {
             name: 'Mechanical Part (S)',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_generic_mechanical_S'),
             weight: 10.0,
@@ -6297,7 +6795,7 @@ export function App(props: any) {
         },
         'xgenericmechanicpart': {
             name: 'Mechanical Part (X)',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_generic_mechanical_X'),
             weight: 10.0,
@@ -6307,7 +6805,7 @@ export function App(props: any) {
         },
         'genericelectronicpart': {
             name: 'Electronic Part',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_generic_electronic'),
             weight: 10.0,
@@ -6317,7 +6815,7 @@ export function App(props: any) {
         },
         'housesafe': {
             name: 'Home Safe',
-            description: 'Verying tempting to crack into...',
+            information: 'Verying tempting to crack into...',
             stackable: true,
             image: createImage('np_housesafe'),
             weight: 100.0,
@@ -6327,7 +6825,7 @@ export function App(props: any) {
         },
         'Desomorphine': {
             name: 'Metamorphine',
-            description: 'Dumpster Flu Shot',
+            information: 'Dumpster Flu Shot',
             stackable: true,
             image: createImage('np_desomorphine'),
             weight: 1.0,
@@ -6337,7 +6835,7 @@ export function App(props: any) {
         },
         'Desomorphine_used': {
             name: 'Used Syringe',
-            description: 'I would not touch that if I were you.',
+            information: 'I would not touch that if I were you.',
             stackable: true,
             image: createImage('np_empty_syringe'),
             weight: 1.0,
@@ -6347,7 +6845,7 @@ export function App(props: any) {
         },
         'wateringcan': {
             name: 'Used Syringe',
-            description: 'Fill this at a river or lake.',
+            information: 'Fill this at a river or lake.',
             stackable: true,
             image: createImage('wateringcan'),
             weight: 2.0,
@@ -6357,7 +6855,7 @@ export function App(props: any) {
         },
         'farmhoe': {
             name: 'Hoe',
-            description: 'Used to plant groups of crops.',
+            information: 'Used to plant groups of crops.',
             stackable: true,
             image: createImage('np_hoe'),
             weight: 3.0,
@@ -6367,7 +6865,7 @@ export function App(props: any) {
         },
         'drone_lspd': {
             name: 'Police Drone',
-            description: 'Government (PD/EMS/DOC) Issued Equipment',
+            information: 'Government (PD/EMS/DOC) Issued Equipment',
             stackable: true,
             image: createImage('np_drone'),
             weight: 11.0,
@@ -6377,7 +6875,7 @@ export function App(props: any) {
         },
         'drone_civ': {
             name: 'Drone',
-            description: 'It flies!',
+            information: 'It flies!',
             stackable: true,
             image: createImage('np_drone'),
             weight: 11.0,
@@ -6387,7 +6885,7 @@ export function App(props: any) {
         },
         'rccontroller': {
             name: 'Remote Controller',
-            description: 'Used to control a variety of RC vehicles.',
+            information: 'Used to control a variety of RC vehicles.',
             stackable: true,
             image: createImage('np_drone_control'),
             weight: 2.0,
@@ -6397,7 +6895,7 @@ export function App(props: any) {
         },
         'C4_dev': {
             name: 'C4',
-            description: 'Beep...Beep...Beep...',
+            information: 'Beep...Beep...Beep...',
             stackable: true,
             image: createImage('np_c4'),
             weight: 5.0,
@@ -6407,7 +6905,7 @@ export function App(props: any) {
         },
         'car_bomb': {
             name: 'Car Bomb',
-            description: 'Beep...Beep...Beep...',
+            information: 'Beep...Beep...Beep...',
             stackable: true,
             image: createImage('np_phone_bomb'),
             weight: 5.0,
@@ -6417,7 +6915,7 @@ export function App(props: any) {
         },
         'car_bomb_defused': {
             name: 'Defused Car Bomb',
-            description: 'You should try and shake it!',
+            information: 'You should try and shake it!',
             stackable: true,
             image: createImage('np_phone_bomb'),
             weight: 5.0,
@@ -6427,7 +6925,7 @@ export function App(props: any) {
         },
         'C4_defused': {
             name: 'Defused C4',
-            description: 'You should try and shake it!',
+            information: 'You should try and shake it!',
             stackable: true,
             image: createImage('np_c4'),
             weight: 5.0,
@@ -6437,7 +6935,7 @@ export function App(props: any) {
         },
         'bombmirror': {
             name: 'Car Bomb Detector',
-            description: 'Helps stop boom boom',
+            information: 'Helps stop boom boom',
             stackable: true,
             image: createImage('np_bombmirror'),
             weight: 5.0,
@@ -6448,7 +6946,7 @@ export function App(props: any) {
         //Stolen
         'stolencartrunk': {
             name: 'Stolen Trunk',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_cartrunk'),
             weight: 25.0,
@@ -6458,7 +6956,7 @@ export function App(props: any) {
         },
         'stolencardoor': {
             name: 'Stolen Door',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_cardoor'),
             weight: 25.0,
@@ -6468,7 +6966,7 @@ export function App(props: any) {
         },
         'stolencarwheel': {
             name: 'Stolen Wheel',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_carwheel'),
             weight: 25.0,
@@ -6478,7 +6976,7 @@ export function App(props: any) {
         },
         'stolencarhood': {
             name: 'Stolen Hood',
-            description: '',
+            information: '',
             stackable: true,
             image: createImage('np_car-hood'),
             weight: 25.0,
@@ -6504,569 +7002,13 @@ export function App(props: any) {
         }
     })
 
-    const [Inventory, setInventory] = createStore<any>({
-        ClothingSlots: [
-            {
-                id: 'hat',
-                item: null,
-                acceptedItems: [
-                    'hat'
-                ]
-            },
-            {
-                id: 'mask',
-                item: null,
-                acceptedItems: [
-                    'mask'
-                ]
-            },
-            {
-                id: 'glasses',
-                item: null,
-                acceptedItems: [
-                    'glasses'
-                ]
-            },
-            {
-                id: 'armor',
-                item: null,
-                acceptedItems: [
-                    'armorplate'
-                ]
-            },
-            {
-                id: 'bag',
-                item: null,
-                acceptedItems: [
-                    'bag'
-                ]
-            }
-        ],
-
-        Pockets: {
-            name: 'pockets-1',
-            Slots: [
-                {
-                    id: 1,
-                    icon: 'idcard',
-                    item: null,
-                    acceptedItems: [
-                        'ID Card'
-                    ]
-                },
-                {
-                    id: 2,
-                    icon: 'phone',
-                    item: {
-                        itemId: 'phone',
-                        durability: 1,
-                    },
-                    acceptedItems: [
-                        'Mobile Phone'
-                    ]
-                },
-                {
-                    id: 3,
-                    icon: 'tablet',
-                    item: null,
-                    acceptedItems: [
-                        'OC Tablet'
-                    ]
-                },
-                {
-                    id: 4,
-                    icon: 'key',
-                    item: null,
-                    acceptedItems: [
-                        'housekey'
-                    ]
-                },
-                {
-                    id: 5,
-                    icon: 'wallet',
-                    item: null,
-                    acceptedItems: [
-                        'Wallet'
-                    ]
-                }
-            ]
-        },
-
-        PersonalInventory: {
-            maxWeight: 150,
-            inventoryName: 'body-1',
-            slots: [
-                {
-                    id: 1,
-                    hotBar: true,
-                    item: {
-                        itemId: 'phone',
-                        durability: 1,
-                    },
-                },
-                {
-                    id: 2,
-                    hotBar: true,
-                    item: {
-                        itemId: 'knife',
-                        durability: 25,
-                    },
-                },
-                {
-                    id: 3,
-                    hotBar: true,
-                    item: {
-                        itemId: 'id_card',
-                        durability: 1,
-                    },
-                },
-                {
-                    id: 4,
-                    hotBar: true,
-                    item: {
-                        itemId: 'octablet',
-                        durability: 1,
-                    },
-                },
-                {
-                    id: 5,
-                    hotBar: true,
-                    item: {
-                        itemId: 'wallet',
-                        durability: 1,
-                    },
-                },
-                {
-                    id: 6,
-                    item: null,
-                },
-                {
-                    id: 7,
-                    item: null,
-                },
-                {
-                    id: 8,
-                    item: null,
-                },
-                {
-                    id: 9,
-                    item: null,
-                },
-                {
-                    id: 10,
-                    item: {
-                        itemId: 'cash',
-                        amount: 100,
-                    },
-                },
-                {
-                    id: 11,
-                    item: {
-                        itemId: 'glock',
-                    },
-                },
-                {
-                    id: 12,
-                    item: {
-                        itemId: 'hotdog',
-                        amount: 5,
-                    },
-                },
-                {
-                    id: 13,
-                    item: {
-                        itemId: 'water',
-                    },
-                },
-                {
-                    id: 14,
-                    item: {
-                        itemId: 'water',
-                    },
-                },
-                {
-                    id: 15,
-                    item: {
-                        itemId: 'water',
-                    },
-                },
-            ]
-        },
-
-        PersonalBackpack: {
-            maxWeight: 250,
-            inventoryName: 'backpack-1',
-            slots: [
-                {
-                    id: 1,
-                    item: {
-                        itemId: 'knife',
-                        durability: 76,
-                    },
-                },
-                {
-                    id: 2,
-                    item: null,
-                },
-                {
-                    id: 3,
-                    item: null,
-                },
-                {
-                    id: 4,
-                    item: null,
-                },
-                {
-                    id: 5,
-                    item: null,
-                },
-                {
-                    id: 6,
-                    item: null,
-                },
-                {
-                    id: 7,
-                    item: null,
-                },
-                {
-                    id: 8,
-                    item: null,
-                },
-                {
-                    id: 9,
-                    item: null,
-                },
-                {
-                    id: 10,
-                    item: null,
-                },
-                {
-                    id: 11,
-                    item: null,
-                },
-                {
-                    id: 12,
-                    item: null,
-                },
-                {
-                    id: 13,
-                    item: null,
-                },
-                {
-                    id: 14,
-                    item: null,
-                },
-                {
-                    id: 15,
-                    item: null,
-                },
-                {
-                    id: 16,
-                    item: null,
-                },
-                {
-                    id: 17,
-                    item: null,
-                },
-                {
-                    id: 18,
-                    item: null,
-                },
-                {
-                    id: 19,
-                    item: null,
-                },
-                {
-                    id: 20,
-                    item: null,
-                },
-                {
-                    id: 21,
-                    item: null,
-                },
-                {
-                    id: 22,
-                    item: null,
-                },
-                {
-                    id: 23,
-                    item: null,
-                },
-                {
-                    id: 24,
-                    item: null,
-                },
-                {
-                    id: 25,
-                    item: null,
-                },
-            ]
-        },
-
-        PrimarySecondaryInventory: {
-            maxWeight: 150,
-            Weight: 1,
-            inventoryName: 'glovebox-NE14ABJ',
-            inventoryLabel: 'Glovebox',
-            slots: [
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-            ]
-        },
-
-        Drops: [
-            {
-                id: 1,
-                item: null,
-            },
-            {
-                id: 2,
-                item: null,
-            },
-            {
-                id: 3,
-                item: null,
-            },
-            {
-                id: 4,
-                item: null,
-            },
-            {
-                id: 5,
-                item: null,
-            },
-            {
-                id: 6,
-                item: null,
-            },
-            {
-                id: 7,
-                item: null,
-            },
-            {
-                id: 8,
-                item: null,
-            },
-            {
-                id: 9,
-                item: null,
-            },
-            {
-                id: 10,
-                item: null,
-            },
-            {
-                id: 11,
-                item: null,
-            },
-            {
-                id: 12,
-                item: null,
-            },
-            {
-                id: 13,
-                item: null,
-            },
-            {
-                id: 14,
-                item: null,
-            },
-            {
-                id: 15,
-                item: null,
-            },
-            {
-                id: 16,
-                item: null,
-            },
-            {
-                id: 17,
-                item: null,
-            },
-            {
-                id: 18,
-                item: null,
-            },
-            {
-                id: 19,
-                item: null,
-            },
-            {
-                id: 20,
-                item: null,
-            },
-            {
-                id: 21,
-                item: null,
-            },
-            {
-                id: 22,
-                item: null,
-            },
-            {
-                id: 23,
-                item: null,
-            },
-            {
-                id: 24,
-                item: null,
-            },
-            {
-                id: 25,
-                item: null,
-            },
-            {
-                id: 26,
-                item: null,
-            },
-            {
-                id: 27,
-                item: null,
-            },
-            {
-                id: 28,
-                item: null,
-            },
-            {
-                id: 29,
-                item: null,
-            },
-            {
-                id: 30,
-                item: null,
-            },
-            {
-                id: 31,
-                item: null,
-            },
-            {
-                id: 32,
-                item: null,
-            },
-            {
-                id: 33,
-                item: null,
-            },
-            {
-                id: 34,
-                item: null,
-            },
-            {
-                id: 35,
-                item: null,
-            },
-            {
-                id: 36,
-                item: null,
-            },
-            {
-                id: 37,
-                item: null,
-            },
-            {
-                id: 38,
-                item: null,
-            },
-            {
-                id: 39,
-                item: null,
-            },
-            {
-                id: 40,
-                item: null,
-            },
-            {
-                id: 41,
-                item: null,
-            },
-            {
-                id: 42,
-                item: null,
-            },
-            {
-                id: 43,
-                item: null,
-            },
-            {
-                id: 44,
-                item: null,
-            },
-            {
-                id: 45,
-                item: null,
-            },
-            {
-                id: 46,
-                item: null,
-            },
-            {
-                id: 47,
-                item: null,
-            },
-            {
-                id: 48,
-                item: null,
-            },
-            {
-                id: 49,
-                item: null,
-            },
-            {
-                id: 50,
-                item: null,
-            },
-        ],
-
-        AdditionalInventories: [
-            {
-                id: 'body-15',
-                name: 'Robbed Player',
-                maxWeight: 5,
-                InventoryOpened: true,
-                inventoryName: 'body-25',
-                slots: [
-                    {
-                        id: 1,
-                        item: {
-                            itemId: 'water',
-                            durability: 1,
-                        },
-                    },
-                    {
-                        id: 1,
-                        item: {
-                            itemId: 'water',
-                            durability: 50,
-                        },
-                    }
-                ]
-            },
-            {
-                id: '2',
-                name: 'Mobile Phone',
-                maxWeight: 5,
-                InventoryOpened: false,
-                inventoryName: 'phone-1',
-                slots: [
-                    {
-                        id: 1,
-                        item: {
-                            itemId: 'simcard',
-                        },
-                    }
-                ]
-            },
-        ]
-    })
+    
 
     return (
         <InventoryContext.Provider
             value={{
+                invConfig, 
+                setInvConfig,
                 showingHelpMenu,
                 setShowingHelpMenu,
                 showingSettingsMenu,
@@ -7086,16 +7028,24 @@ export function App(props: any) {
                 splittingItem,
                 setSplittingItem,
                 itemList,
-                draggingItem, 
+                setItemList,
+                Notifications,
+                SetNotfications,
+                draggingItem,
                 setDraggingItem,
                 activeInventory,
                 setActiveInventory,
-                activeSlot, 
+                activeSlot,
                 setActiveSlot,
                 movingSplitItem,
                 setMovingSplitItem,
-                Notifications, 
-                SetNotfications
+                actionbarItems,
+                setActionbarItems,
+                woundPosition,
+                setWoundPosition,
+                searchedItem,
+                setSearchedItem,
+                setDropSlot
             }}
 
             children={props.children}

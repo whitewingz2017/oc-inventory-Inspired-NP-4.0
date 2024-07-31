@@ -23,18 +23,12 @@ RPC.register('inventory:additionalInventoriesAdd', async (source: any, data: any
         '@slot': data.slot
     });
 
-    // console.log("SHIT",data.fromInventory !== undefined || data.fromInventory !== null ? extractNumber(data.fromInventory) : 'untest')
-    // console.log("FROM SHIT SLOT",data.isSideSlot,data.isSideSlot ? 'pockets-'+character.id : extractNumber(data.fromInventory))
     // let openItem = data.ItemId + result[0].id
     if(data.itemAction === lastAction){
         return
     }
     lastAction = data.itemAction
-    // console.log("OPEN ITEM SHIT", data.fromInventory,data.fromInventory === null ? character.id : extractNumber(data.fromInventory))
-    // console.log("name",data.isSideSlot ? 'pockets-'+character.id : data.fromInventory)
-    // console.log("itemid",data.ItemId)
-    // console.log("slot",data.slot)
-    // console.log("FUCKING RESULT:", JSON.stringify(data))
+
     if (data.itemAction === "openSimSlot"){
         let customCid = data.fromInventory === null ? character.id : extractNumber(data.fromInventory)
         invAdd = {
@@ -95,7 +89,7 @@ RPC.register('inventory:additionalInventoriesAdd', async (source: any, data: any
                     icon: 'tablet',
                     item: await getItemInSlot(source, 'pockets-' + data.cid, 3),
                     acceptedItems: [
-                        'OC Tablet'
+                        'OneCity Tablet'
                     ]
                 },
                 {

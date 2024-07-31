@@ -9,6 +9,7 @@ export const Settings = () => {
         PlayerState,
         setPlayerState
     } = getInventoryContext()
+
     return (
         <Show
             when={showingSettingsMenu()}

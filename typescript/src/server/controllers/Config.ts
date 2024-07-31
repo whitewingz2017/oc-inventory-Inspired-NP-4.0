@@ -38,16 +38,6 @@ export const InventoryConfig = {
         MaxWeight: 5
     },
 
-    Tablet: {
-        id: 1,
-        Slots: 2,
-        acceptedItems: [
-            'chips',
-            'chips_1'
-        ],
-        MaxWeight: 5
-    },
-
     ApartmentStash: {
         Slots: 50,
         MaxWeight: 1000,

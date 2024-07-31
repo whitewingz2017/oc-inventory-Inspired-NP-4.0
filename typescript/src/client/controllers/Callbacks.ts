@@ -24,10 +24,10 @@ NUI.register('itemDrag', async(data: any, cb: any) => {
     let coords = GetEntityCoords(PlayerPedId())
     RPC.execute('inventory:dragItem', data, coords)
 
-    setTimeout(async() => {
-        const Inventory = await RPC.execute('inventory:getInventories',cid, IsPedInVehicle(PlayerPedId(), GetVehiclePedIsIn(PlayerPedId(), false), false), GetVehicleNumberPlateText(GetVehiclePedIsIn(PlayerPedId(), false)), inTrunk, trunkPlate)
-        SendNUIMessage({Inventory: Inventory})
-    }, 100)
+    // setTimeout(async() => {
+    //     const Inventory = await RPC.execute('inventory:getInventories',cid, IsPedInVehicle(PlayerPedId(), GetVehiclePedIsIn(PlayerPedId(), false), false), GetVehicleNumberPlateText(GetVehiclePedIsIn(PlayerPedId(), false)), inTrunk, trunkPlate)
+    //     SendNUIMessage({Inventory: Inventory})
+    // }, 100)
 })
 
 NUI.register('itemSplit', async(data: any, cb: any) => {
@@ -69,17 +69,14 @@ NUI.register('useItem', async(data: any, cb: any) => {
 })
 
 NUI.register('openItem', async(data: any, cb: any) => {
-    console.log("OPEN ITEM", JSON.stringify(data))
     let cid = global.exports['isPed'].isPed('cid')
     let open = await RPC.execute('inventory:additionalInventoriesAdd', data)
     const Inventory = await RPC.execute('inventory:getInventories',cid, IsPedInVehicle(PlayerPedId(), GetVehiclePedIsIn(PlayerPedId(), false), false), GetVehicleNumberPlateText(GetVehiclePedIsIn(PlayerPedId(), false)), inTrunk, trunkPlate)
-    console.log("INVENTORY ADD",JSON.stringify(Inventory))
     SendNUIMessage({
         Inventory: Inventory,
     })
 })
 
 NUI.register('giveItem', async(data: any, cb: any) => {
-    console.log("GIVE ITEM SHIT HAHAHA")
     giveItem = true
 })

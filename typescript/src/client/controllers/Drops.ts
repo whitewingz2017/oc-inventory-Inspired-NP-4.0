@@ -1,4 +1,3 @@
-import { Interface } from "../modules/interface";
 import { loadAnimDict } from "./Exports";
 
 const Drops = []
@@ -34,6 +33,7 @@ onNet('Inventory-Dropped-Remove', (sentIndexName) => {
 });
 
 
+
 export function GroundInventoryScan() {
     let cid = global.exports['isPed'].isPed('cid')
     let row = DroppedInventories.find(ScanClose);
@@ -66,14 +66,12 @@ function ScanClose(row) {
 
 
 function CacheInventories() {
-    // console.log("ANO TONG CACHE")
     DrawInventories = NearInventories.filter(DrawMarkers);
 }
 
 setInterval(CacheInventories, 1000);
 
 function DrawMarkers(row) {
-    // console.log("CHECKING",row)
     let playerPos = GetEntityCoords(PlayerPedId());
     let targetPos = row.position;
     let distanceb = GetDistanceBetweenCoords(playerPos[0], playerPos[1], playerPos[2], targetPos.x, targetPos.y, targetPos.z, false);
@@ -132,7 +130,6 @@ function ClearCache(sentIndexName) {
 const createOneDrop = async (item,name,coords, props) => {
     let object = await RPC.execute('getObject',props)
     DropItemid[name] = [];
- 
     const box = CreateObject(GetHashKey(object), coords.x, coords.y, coords.z, false, false, false)
    
     PlaceObjectOnGroundProperly(box)
@@ -140,47 +137,28 @@ const createOneDrop = async (item,name,coords, props) => {
     SetEntityCollision(box, false, false)
     DropItemid[name].push(box);
     let  _0x22fda5 = GetEntityCoords(box);
-    var _0x5d283b = {
-        distance: {
-          draw: 2,
-          use: 2
-        },
-        isToggled: true,
-        flag: [],
-        isEnabled: function () {
-          return true;
-        }
-      };
-    Interface.addInteractionByModel(`deploy-${object}`, [object], [{
-        id: `deploy-${object}`,
-        label: "Pick Up",
-        event: "inventory:pickupObject",
-        parameters: {
-            item: item
-        }
-      }], _0x5d283b);
     // console.log('_0x22fda5',_0x22fda5,_0x22fda5[0])
-    // global.exports['interactions'].AddInteraction({
-    //     id: "pickup_object_"+box,
-    //     coords: [_0x22fda5[0], _0x22fda5[1], _0x22fda5[2]],
-    //     options: [{
-    //       id: "pickup_object_"+box,
-    //       label: "Pick Up",
-    //       icon: "comment",
-    //       event: "inventory:pickupObject",
-    //       parameters: {
-    //         entity:box,
-    //         dropId:box,
-    //         item: item
-    //       }
-    //     }],
-    //     context: {
-    //       distance: {
-    //         draw: 2,
-    //         use: 2
-    //       }
-    //     }
-    //   })
+    global.exports['interactions'].AddInteraction({
+        id: "pickup_object_"+box,
+        coords: [_0x22fda5[0], _0x22fda5[1], _0x22fda5[2]],
+        options: [{
+          id: "pickup_object_"+box,
+          label: "Pickup",
+          icon: "comment",
+          event: "inventory:pickupObject",
+          parameters: {
+            entity:box,
+            dropId:box,
+            item: item
+          }
+        }],
+        context: {
+          distance: {
+            draw: 2,
+            use: 2
+          }
+        }
+      })
 }
 
 const createMultiDrop = (item, name, coords, props) => {
@@ -194,47 +172,27 @@ const createMultiDrop = (item, name, coords, props) => {
     PlaceObjectOnGroundProperly(box)
     DropItemid[name].push(box);
     let  _0x22fwda5w = GetEntityCoords(box);
-    const randomDigit = Math.floor(Math.random() * 10);
-    var _0x5d283b = {
-        distance: {
-          draw: 2,
-          use: 2
-        },
-        isToggled: true,
-        flag: [],
-        isEnabled: function () {
-          return true;
-        }
-      };
-    Interface.addInteractionByModel(`deploy-${object}`, [object], [{
-        id: `deploy-${object+randomDigit}`,
-        label: "Pick Up",
-        event: "inventory:pickupObject",
-        parameters: {
+    global.exports['interactions'].AddInteraction({
+        id: "pickup_object_"+box,
+        coords: [_0x22fwda5w[0], _0x22fwda5w[1], _0x22fwda5w[2]],
+        options: [{
+          id: "pickup_object_"+box,
+          label: "Pickup",
+          icon: "comment",
+          event: "inventory:pickupObject",
+          parameters: {
+            entity:box,
+            dropId:box,
             item: item
+          }
+        }],
+        context: {
+          distance: {
+            draw: 2,
+            use: 2
+          }
         }
-      }], _0x5d283b);
-    // global.exports['interactions'].AddInteraction({
-    //     id: "pickup_object_"+box,
-    //     coords: [_0x22fwda5w[0], _0x22fwda5w[1], _0x22fwda5w[2]],
-    //     options: [{
-    //       id: "pickup_object_"+box,
-    //       label: "Pickup",
-    //       icon: "comment",
-    //       event: "inventory:pickupObject",
-    //       parameters: {
-    //         entity:box,
-    //         dropId:box,
-    //         item: item
-    //       }
-    //     }],
-    //     context: {
-    //       distance: {
-    //         draw: 2,
-    //         use: 2
-    //       }
-    //     }
-    //   })
+      })
 }
 
 const clearObject = (name) => {
@@ -266,13 +224,3 @@ on('inventory:pickupAnimation', async () => {
 // let _0x371704 = "anim@amb@nightclub@mini@drinking@drinking_shots@ped_d@normal";
 // TaskPlayAnim(PlayerPedId(), _0x371704, "pickup", 8, -8, -1, 48, 0, false, false, false);
 
-
-// const shit = () => {
-//     console.log("SHIT TEST")
-// }
-
-// setTick(shit)
-
-// setInterval(() => {
-//     console.log("ITEM ID", DropItemid)
-// }, 2000)

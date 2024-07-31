@@ -29,7 +29,6 @@ async function displayActionbar(state: any) {
 }
 
 RegisterCommand('+actionBar', () => {
-    console.log("FUCK U KBA ACTION BAR")
     displayActionbar(true);
 }, false);
 
@@ -54,7 +53,6 @@ actionBarSlots.forEach(slot => {
         let cid = global.exports['isPed'].isPed('cid')
         const Item = await RPC.execute('inventory:getItemInActionbarSlot', slot,cid)
        
-        console.log("ITEM USDE",Item,JSON.stringify(Item))
         if (Item.Info.Item && !actionbarTimeout) {
             emit('inventory:sendNotification', Item.Info.Item, 1, 'Used')
             usedItem(Item)

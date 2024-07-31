@@ -18,7 +18,8 @@ export const CreateSlot = (props: any) => {
         movingSplitItem,
         setMovingSplitItem,
         searchedItem,
-        setShow
+        setShow,
+        setInventory
     } = getInventoryContext();
     
     const pItem = itemList[props.item?.itemId] ?? null
@@ -44,7 +45,6 @@ export const CreateSlot = (props: any) => {
 
         if (e.button !== 0) {return}
         if (PlayerState.settings.holdToDrag && props.item && !movingSplitItem()) {
-            console.log("SET DRAGGING MOTHER AND FUCKHER",pItem, JSON.stringify(pItem))
             setDraggingSlot(true)
             setDraggingItem({
                 isDragging: true,
@@ -60,9 +60,53 @@ export const CreateSlot = (props: any) => {
 
     const handleMouseUp = (e: any) => {
         if (draggingItem.isDragging && !movingSplitItem()) {
+            const slot = draggingItem.fromSlot
             console.log('Inventory dropped in ' + activeInventory())
-            console.log('Dropped ' + props.item.itemId + ' in slot ' + activeSlot() + ' from slot ' + draggingItem.fromSlot + ' from inventory ' + draggingItem.fromInventory + ' into inventory ' + activeInventory())
-    
+            console.log('Dropped [1] ' + props.item.itemId + ' in slot ' + activeSlot() + ' from slot ' + draggingItem.fromSlot + ' from inventory ' + draggingItem.fromInventory + ' into inventory ' + activeInventory())
+            // const itemToMove = slot.find((slot: { id: number; }) => slot.id === activeSlot()).item;
+            // console.log("ITEM TO MOVE ", itemToMove)
+            // console.log("PROPS",props,JSON.stringify(props))
+            setInventory('PersonalInventory', 'slots', (slots: any[]) => {
+                const fromSlotId = slot; // Slot id of the item to move
+                const toSlotId = activeSlot(); // Slot id where the item is being moved to
+                const fromSlot = slots.find(slota => slota.id === fromSlotId);
+                const toSlot = slots.find(slota => slota.id === toSlotId);
+              
+                if (!fromSlot || !fromSlot.item) return slots; // If fromSlot or its item is not found, return slots unchanged
+              
+                const fromItem = fromSlot.item;
+                const toItem = toSlot ? toSlot.item : null;
+              
+                const fromItemStackable = itemList[fromItem.itemId].stackable;
+                const toItemStackable = toItem && itemList[toItem.itemId].stackable;
+              
+                return slots.map(slota => {
+                  if (slota.id === fromSlotId) {
+                    if (toItem && toItem.itemId === fromItem.itemId && fromItemStackable && toItemStackable) {
+                      // Combine items if they are the same and stackable
+                      return { ...slota, item: null }; // Clear the from slot after combining
+                    } else {
+                      // Swap items if they are different
+                      return { ...slota, item: toItem || null };
+                    }
+                  } else if (slota.id === toSlotId) {
+                    if (toItem && toItem.itemId === fromItem.itemId && fromItemStackable && toItemStackable) {
+                      // Combine items if they are the same and stackable
+                      return { ...slota, item: { ...toItem, amount: toItem.amount + fromItem.amount } };
+                    } else {
+                      // Place the from item in the to slot
+                      return { ...slota, item: fromItem };
+                    }
+                  } else {
+                    // Keep other slots unchanged
+                    return slota;
+                  }
+                });
+              });
+              
+              
+              
+              
             nuiAction('itemDrag', {
                 itemId: props.item.itemId,
                 fromSlot: draggingItem.fromSlot,
@@ -84,10 +128,47 @@ export const CreateSlot = (props: any) => {
 
     const handleClick = () => {
         if (movingSplitItem() && acceptingItem()) {
+            const slot = draggingItem.fromSlot
             setMovingSplitItem(false)
             console.log('[ITEM SPLIT] | Inventory dropped in ' + activeInventory())
             console.log('Dropped ' + draggingItem.Item.name + ' in slot ' + activeSlot() + ' inventory ' + activeInventory())
-
+            setInventory('PersonalInventory', 'slots', (slots: any[]) => {
+                const fromSlotId = slot; // Slot id of the item to move
+                const toSlotId = activeSlot(); // Slot id where the item is being moved to
+                const fromSlot = slots.find(slota => slota.id === fromSlotId);
+                const toSlot = slots.find(slota => slota.id === toSlotId);
+              
+                if (!fromSlot || !fromSlot.item) return slots; // If fromSlot or its item is not found, return slots unchanged
+              
+                const fromItem = fromSlot.item;
+                const toItem = toSlot ? toSlot.item : null;
+              
+                const fromItemStackable = itemList[fromItem.itemId].stackable;
+                const toItemStackable = toItem && itemList[toItem.itemId].stackable;
+              
+                return slots.map(slota => {
+                  if (slota.id === fromSlotId) {
+                    if (toItem && toItem.itemId === fromItem.itemId && fromItemStackable && toItemStackable) {
+                      // Combine items if they are the same and stackable
+                      return { ...slota, item: null }; // Clear the from slot after combining
+                    } else {
+                      // Swap items if they are different
+                      return { ...slota, item: toItem || null };
+                    }
+                  } else if (slota.id === toSlotId) {
+                    if (toItem && toItem.itemId === fromItem.itemId && fromItemStackable && toItemStackable) {
+                      // Combine items if they are the same and stackable
+                      return { ...slota, item: { ...toItem, amount: toItem.amount + fromItem.amount } };
+                    } else {
+                      // Place the from item in the to slot
+                      return { ...slota, item: fromItem };
+                    }
+                  } else {
+                    // Keep other slots unchanged
+                    return slota;
+                  }
+                });
+              });
             nuiAction('itemSplit', {
                 itemId: draggingItem.Item.name,
                 fromSlot: draggingItem.fromSlot,
@@ -106,7 +187,7 @@ export const CreateSlot = (props: any) => {
             });
             return
         }
-
+        console.log("HOLD")
         if (!PlayerState.settings.holdToDrag) {
             if (draggingItem.isDragging && !movingSplitItem()) {
                 console.log('[ITEM CLICK] | Inventory dropped in ' + activeInventory())
@@ -201,7 +282,6 @@ export const CreateSlot = (props: any) => {
             onMouseEnter={() => {
                 setActiveSlot(props.id)
                 if (!hoveringItem.frozenPosition && props.item !== null) {
-                    // console.log("HOVERING SHIT",props.item, JSON.stringify(props.item))
                     setHoveringItem({
                         show: true,
                         Information: props.item,

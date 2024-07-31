@@ -42,7 +42,7 @@ export const ItemList = {
         }
     },
     'octablet': {
-        name: 'OC Tablet',
+        name: 'OneCity Tablet',
         description: 'Tablet',
         decayrate: 0.4,
         stackable: false,
@@ -367,7 +367,7 @@ export const ItemList = {
     },
     '-828058162': {
         name: 'Stolen Shoes',
-        description: 'These are not yours, bro.',
+        information: 'These are not yours, bro.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_stolenshoes'),
@@ -380,7 +380,7 @@ export const ItemList = {
     // weapon_ltl
     '218362403': {
         name: 'Rubber Slug Shotgun',
-        description: 'PD and DOC Issued LTL Weapon',
+        information: 'PD and DOC Issued LTL Weapon',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_lessthanlethal'),
@@ -392,7 +392,7 @@ export const ItemList = {
     },
     'rubberslugpd': {
         name: 'Rubber Slug Shotgun (Short Life)',
-        description: 'PD and DOC Issued LTL Weapon',
+        information: 'PD and DOC Issued LTL Weapon',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_lessthanlethal'),
@@ -405,7 +405,7 @@ export const ItemList = {
     // weapon_shiv
     '-262696221': {
         name: 'Prison Shiv',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_shiv'),
@@ -420,7 +420,7 @@ export const ItemList = {
     // weapon_browning
     '148457251': {
         name: 'Browning Hi-Power',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_browning'),
@@ -433,7 +433,7 @@ export const ItemList = {
     // weapon_dp9 (it's called dp9, just rock with it)
     '-2012211169': {
         name: 'Diamondback DB9',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_DB9'),
@@ -445,7 +445,7 @@ export const ItemList = {
     },
     '-1746263880': {
         name: 'Colt Python',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_colt'),
@@ -458,7 +458,7 @@ export const ItemList = {
     // weapon_xxxxxx
     '453432689': {
         name: 'Colt 1911',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_pistol'),
@@ -471,7 +471,7 @@ export const ItemList = {
     // weapon_pistol_mk2
     '-1075685676': {
         name: 'FN Five-Seven',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_pistol2'),
@@ -484,7 +484,7 @@ export const ItemList = {
     // weapon_combatpistol
     '1593441988': {
         name: 'FN FNX-45',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_combat-pistol'),
@@ -497,7 +497,7 @@ export const ItemList = {
     // weapon_heavypistol
     '-771403250': {
         name: 'Entreprise Wide Body 1911a',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_heavy-pistol'),
@@ -510,7 +510,7 @@ export const ItemList = {
     // weapon_taser
     '-820634585': {
         name: 'Government (PD/EMS/DOC) Issued Equipment',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_stun-gun'),
@@ -534,22 +534,10 @@ export const ItemList = {
             useItem: true,
         }
     },
-    'glock19_mags': {
-        name: 'Glock 19 Magazine',
-        description: ``,
-        decayrate: 0.0,
-        stackable: false,
-        image: createImage('mag_pistol'),
-        weight: 3.0,
-        weapon: true,
-        context: {
-            useItem: true,
-        }
-    },
      // weapon_pistol50
     '-1716589765': {
         name: 'Desert Eagle',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_pistol-50'),
@@ -562,7 +550,7 @@ export const ItemList = {
    // weapon_microsmg3
    '-134995899': {
         name: 'Mac-10',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_micro-smg'),
@@ -576,7 +564,7 @@ export const ItemList = {
     // weapon_appistol
     '584646201': {
         name: 'Glock 18C',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_glock18c'),
@@ -589,7 +577,7 @@ export const ItemList = {
     // weapon_microsmg
     '324215364': {
         name: 'MP7',
-        description: 'Government (PD/EMS/DOC) Issued Equipment',
+        information: 'Government (PD/EMS/DOC) Issued Equipment',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_mp7'),
@@ -602,7 +590,7 @@ export const ItemList = {
     // weapon_microsmg2
     '-942620673': {
         name: 'Uzi',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_micro-smg2'),
@@ -615,7 +603,7 @@ export const ItemList = {
     // weapon_smg
     '736523883': {
         name: 'MP5',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_mp5'),
@@ -628,7 +616,7 @@ export const ItemList = {
     // weapon_carbinerifle
     '-2084633992': {
         name: 'HK416',
-        description: 'SWAT',
+        information: 'SWAT',
         decayrate: 0.0,
         stackable: false,
         image: createImage('HK416'),
@@ -641,7 +629,7 @@ export const ItemList = {
     // weapon_m4
     '1192676223': {
         name: 'M4',
-        description: 'Government (PD/EMS/DOC) Issued Equipment',
+        information: 'Government (PD/EMS/DOC) Issued Equipment',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_m4'),
@@ -654,7 +642,7 @@ export const ItemList = {
     //Scar-L
     '-1768145561': {
         name: 'FN SCAR-L',
-        description: 'Government (PD/EMS/DOC) Issued Equipment',
+        information: 'Government (PD/EMS/DOC) Issued Equipment',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_m4'),
@@ -667,7 +655,7 @@ export const ItemList = {
     // weapon_m14
     '-1719357158': {
         name: 'Mk14',
-        description: 'Government (PD/EMS/DOC) Issued Equipment',
+        information: 'Government (PD/EMS/DOC) Issued Equipment',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_mk14'),
@@ -680,7 +668,7 @@ export const ItemList = {
     // weapon_m24
     '-1536150836': {
         name: 'AWM',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_awm'),
@@ -693,7 +681,7 @@ export const ItemList = {
     // weapon_assaultrifle  
     '-1074790547': {
         name: 'AK 74',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_ak74'),
@@ -706,7 +694,7 @@ export const ItemList = {
     // weapon_assaultrifle2
     '497969164': {
         name: 'M70',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_m70'),
@@ -719,7 +707,7 @@ export const ItemList = {
     // weapon_dbshotgun
     '-275439685': {
         name: 'Sawn-off Shotgun',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_db-shotgun'),
@@ -732,7 +720,7 @@ export const ItemList = {
     // weapon_pumpshotgun
     '487013001': {
         name: 'IZh-81',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_izh81'),
@@ -745,7 +733,7 @@ export const ItemList = {
     // weapon_pumpshotgun_mk2
     '1432025498': {
         name: 'Remington 870',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_remington'),
@@ -758,7 +746,7 @@ export const ItemList = {
     // WEAPON_COMBATPDW
     '171789620': {
         name: 'SIG MPX',
-        description: 'Government (PD/EMS/DOC) Issued Equipment',
+        information: 'Government (PD/EMS/DOC) Issued Equipment',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_mpx'),
@@ -771,7 +759,7 @@ export const ItemList = {
     // WEAPON_COMPACTRIFLE
     '1649403952': {
         name: 'Draco NAK9',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_draco'),
@@ -784,7 +772,7 @@ export const ItemList = {
     // weapon_gepard used to apply skin and still generate data for the weapon
     '-1518444656': {
         name: 'Gepard',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_gepard'),
@@ -797,7 +785,7 @@ export const ItemList = {
     //WEAPON_MINISMG2
     '-1472189665': {
         name: 'Skorpion',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_skorpion'),
@@ -810,7 +798,7 @@ export const ItemList = {
     // explosive type shit
     '-1813897027': {
         name: 'Stun Grenade (SWAT)',
-        description: 'So police can breach a building without feeling like a ______! If you are not SWAT certified do not buy this.',
+        information: 'So police can breach a building without feeling like a ______! If you are not SWAT certified do not buy this.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_stungrenade'),
@@ -822,7 +810,7 @@ export const ItemList = {
     },
     '1233104067': {
         name: 'Flare',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_flare'),
@@ -834,7 +822,7 @@ export const ItemList = {
     },
     '-1600701090': {
         name: 'M67 grenade',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_grenade'),
@@ -846,7 +834,7 @@ export const ItemList = {
     },
     '-37975472': {
         name: 'Smoke Grenade',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_stungrenade'),
@@ -858,7 +846,7 @@ export const ItemList = {
     },
     'smokegrenadeswat': {
         name: 'Smoke Grenade (SWAT)',
-        description: 'Mil-Spec. High price, low quality. If you are not SWAT certified do not buy this.',
+        information: 'Mil-Spec. High price, low quality. If you are not SWAT certified do not buy this.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_stungrenade'),
@@ -870,7 +858,7 @@ export const ItemList = {
     },
     'smokegrenadenpa': {
         name: 'Smoke Grenade',
-        description: 'NPA Edition.',
+        information: 'NPA Edition.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_stungrenade'),
@@ -883,7 +871,7 @@ export const ItemList = {
     // Pipebomb pipe bomb
     '-1169823560': {
         name: 'Pipebomb',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_pipe-bomb'),
@@ -896,7 +884,7 @@ export const ItemList = {
     // Molotov (Molly)
     '615608432': {
         name: 'Molly',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_molotov'),
@@ -909,7 +897,7 @@ export const ItemList = {
     // Sticky Bomb C4
     '741814745': {
         name: 'Sticky Bomb',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_molotov'),
@@ -924,7 +912,7 @@ export const ItemList = {
     // Nail gun nailgun
     '1748076076': {
         name: 'Nail gun',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_nailgun'),
@@ -937,7 +925,7 @@ export const ItemList = {
     // Parachute
     '-72657034': {
         name: 'Parachute',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_parachute'),
@@ -950,7 +938,7 @@ export const ItemList = {
     // Fire Extinguisher
     '101631238': {
         name: 'Fire Ext',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_fire-extinguisher'),
@@ -963,7 +951,7 @@ export const ItemList = {
     // Petrol can
     '883325847': {
         name: 'Petrol Can',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_petrol-can'),
@@ -977,7 +965,7 @@ export const ItemList = {
     //WEAPON_SLEDGEHAM
     '1923739240': {
         name: 'Sledge Hammer',
-        description: 'Big and girthy.',
+        information: 'Big and girthy.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_sledgehammer'),
@@ -989,7 +977,7 @@ export const ItemList = {
     },
     '419712736': {
         name: 'Pipe Wrench',
-        description: 'I\'m here to fix your pipes.',
+        information: 'I\'m here to fix your pipes.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_wrench'),
@@ -1001,7 +989,7 @@ export const ItemList = {
     },
     '-102323637': {
         name: 'Old broken bottle',
-        description: 'Looks like a green, premium, Karlsberg bottle.',
+        information: 'Looks like a green, premium, Karlsberg bottle.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_glass-bottle'),
@@ -1014,7 +1002,7 @@ export const ItemList = {
     //weapon_knuckle
     '3638508604': {
         name: 'Knuckle',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_knuckle-dusters'),
@@ -1026,7 +1014,7 @@ export const ItemList = {
     },
     'knuckle_chain': {
         name: 'Chain Dusters',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_chain_dusters'),
@@ -1038,7 +1026,7 @@ export const ItemList = {
     },
     '1317494643': {
         name: 'Hammer',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_hammer'),
@@ -1050,7 +1038,7 @@ export const ItemList = {
     },
     '1737195953': {
         name: 'Nightstick',
-        description: 'Government (PD/EMS/DOC) Issued Equipment',
+        information: 'Government (PD/EMS/DOC) Issued Equipment',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_nightstick'),
@@ -1062,7 +1050,7 @@ export const ItemList = {
     },
     '2227010557': {
         name: 'Crowbar',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_crowbar'),
@@ -1074,7 +1062,7 @@ export const ItemList = {
     },
     '-1786099057': {
         name: 'Model M Keyboard',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_keyboard'),
@@ -1087,7 +1075,7 @@ export const ItemList = {
     // sharp weapons
     '-1239161099': {
         name: 'Katana',
-        description: 'When you were partying, I studied the blade.',
+        information: 'When you were partying, I studied the blade.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_katana'),
@@ -1099,7 +1087,7 @@ export const ItemList = {
     },
     'cursedkatanaweapon': {
         name: 'Cursed Katana',
-        description: 'Infused with the blood of a Dragon; a normal human mind cannot control such power.',
+        information: 'Infused with the blood of a Dragon; a normal human mind cannot control such power.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_cursed-katana'),
@@ -1111,7 +1099,7 @@ export const ItemList = {
     },
     '-538741184': {
         name: 'Shank',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_switchblade'),
@@ -1123,7 +1111,7 @@ export const ItemList = {
     },
     '2460120199': {
         name: 'Dagger',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_dagger'),
@@ -1135,7 +1123,7 @@ export const ItemList = {
     },
     '126349499': {
         name: 'Snowball',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_dagger'),
@@ -1147,7 +1135,7 @@ export const ItemList = {
     },
     '-1024456158': {
         name: 'Bat',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_baseball-bat'),
@@ -1159,7 +1147,7 @@ export const ItemList = {
     },
     '-2000187721': {
         name: 'Secure Briefcase',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_securitycase'),
@@ -1171,7 +1159,7 @@ export const ItemList = {
     },
     '28811031': {
         name: 'Briefcase',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_suitcase'),
@@ -1183,7 +1171,7 @@ export const ItemList = {
     },
     '3713923289': {
         name: 'Machete',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_machete'),
@@ -1195,7 +1183,7 @@ export const ItemList = {
     },
     '4191993645': {
         name: 'Hatchet',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_hatchet'),
@@ -1211,7 +1199,7 @@ export const ItemList = {
     // weapon ammo
     'subammo': {
         name: 'Sub Ammo x50',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_sub-ammo'),
@@ -1222,7 +1210,7 @@ export const ItemList = {
     },
     'heavyammo': {
         name: 'Heavy Ammo x50',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_rifle-ammo'),
@@ -1233,7 +1221,7 @@ export const ItemList = {
     },
     'sniperammo': {
         name: 'Sniper Ammo x50',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_sniper-ammo'),
@@ -1245,7 +1233,7 @@ export const ItemList = {
     // LMG ammo is not actually being used for anything and has no "use function". It's the same as Heavy Ammo.
     'lmgammo': {
         name: 'LMG Ammo x50',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_lmg-ammo'),
@@ -1256,7 +1244,7 @@ export const ItemList = {
     },
     'shotgunammo': {
         name: 'SG Ammo x50',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_shotgun-ammo'),
@@ -1265,20 +1253,9 @@ export const ItemList = {
             useItem: true,
         }
     },
-    'pistolbullet': {
-        name: '9mm Ammo',
-        description: '',
-        decayrate: 0.0,
-        stackable: false,
-        image: createImage('bullet_1'),
-        weight: 2.0,
-        context: {
-            useItem: true,
-        }
-    },
     'pistolammo': {
         name: 'Pistol Ammo x50',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_pistol-ammo'),
@@ -1289,7 +1266,7 @@ export const ItemList = {
     },
     'rifleammo': {
         name: 'Rifle Ammo x50',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_rifle-ammo'),
@@ -1300,7 +1277,7 @@ export const ItemList = {
     },
     'pistolammoPD': {
         name: 'Pistol Ammo x50 PD',
-        description: 'Government (PD/EMS/DOC) Issued Equipment',
+        information: 'Government (PD/EMS/DOC) Issued Equipment',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_pistol-ammo'),
@@ -1311,7 +1288,7 @@ export const ItemList = {
     },
     'subammoPD': {
         name: 'Sub Ammo x50 PD',
-        description: 'Government (PD/EMS/DOC) Issued Equipment',
+        information: 'Government (PD/EMS/DOC) Issued Equipment',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_sub-ammo'),
@@ -1322,7 +1299,7 @@ export const ItemList = {
     },
     'rifleammoPD': {
         name: 'Rifle Ammo x50 PD',
-        description: 'Government (PD/EMS/DOC) Issued Equipment',
+        information: 'Government (PD/EMS/DOC) Issued Equipment',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_rifle-ammo'),
@@ -1333,7 +1310,7 @@ export const ItemList = {
     },
     'shotgunammoPD': {
         name: 'Shotgun Ammo x50 PD',
-        description: 'Government (PD/EMS/DOC) Issued Equipment',
+        information: 'Government (PD/EMS/DOC) Issued Equipment',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_shotgun-ammo'),
@@ -1344,7 +1321,7 @@ export const ItemList = {
     },
     'taserammo': {
         name: 'Taser Cartridges',
-        description: 'Government (PD/EMS/DOC) Issued Equipment',
+        information: 'Government (PD/EMS/DOC) Issued Equipment',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_taserammo'),
@@ -1355,7 +1332,7 @@ export const ItemList = {
     },
     'empammo': {
         name: 'EMP Cartridge',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_emp_ammo'),
@@ -1366,7 +1343,7 @@ export const ItemList = {
     },
     'nails': {
         name: 'Nails',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_nails'),
@@ -1377,7 +1354,7 @@ export const ItemList = {
     },
     'paintballs': {
         name: 'Paintballs',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_paintball_ammo'),
@@ -1388,7 +1365,7 @@ export const ItemList = {
     },
     'rubberslugs': {
         name: '12-Gauge Rubber Slugs',
-        description: 'Government (PD/EMS/DOC) Issued Equipment',
+        information: 'Government (PD/EMS/DOC) Issued Equipment',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_rubberslugs'),
@@ -1402,7 +1379,7 @@ export const ItemList = {
     // custom items with decay
     'spikes': {
         name: 'PD Spike Kit',
-        description: 'Considered Police Equipment - (only lasts around 10 seconds)',
+        information: 'Considered Police Equipment - (only lasts around 10 seconds)',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_spikes'),
@@ -1413,7 +1390,7 @@ export const ItemList = {
     },
     'repairkit': {
         name: 'Repair Kit',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_basic_repair-kit'),
@@ -1424,7 +1401,7 @@ export const ItemList = {
     },
     'wheelchair': {
         name: 'Wheelchair',
-        description: 'For broken legs n stuff',
+        information: 'For broken legs n stuff',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_wheelchair'),
@@ -1437,7 +1414,7 @@ export const ItemList = {
     // drugs
     '1gcocaine': {
         name: '10g cocaine',
-        description: 'Looks really high quality.',
+        information: 'Looks really high quality.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_cocaine-baggy'),
@@ -1448,7 +1425,7 @@ export const ItemList = {
     },
     '1gcrack': {
         name: '5g Crack',
-        description: 'Crack... ',
+        information: 'Crack... ',
         decayrate: 0.0,
         stackable: true,
         image: createImage('np_crack'),
@@ -1459,7 +1436,7 @@ export const ItemList = {
     },
     'cocainebrick': {
         name: 'Coke Brick (50g)',
-        description: 'Increases your Stamina and Movement Speed <br> Breaks down into product.',
+        information: 'Increases your Stamina and Movement Speed <br> Breaks down into product.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_cocaine-brick'),
@@ -1470,7 +1447,7 @@ export const ItemList = {
     },
     'coke50g': {
         name: 'Air Tight Cocaine Brick (1kg)',
-        description: 'Tightly sealed to prevent water from seeping in.',
+        information: 'Tightly sealed to prevent water from seeping in.',
         decayrate: 0.0,
         stackable: true,
         image: createImage('np_cocaine-brick'),
@@ -1481,7 +1458,7 @@ export const ItemList = {
     },
     'coke5g': {
         name: 'Coke Baggy (5g)',
-        description: 'Increases your Stamina and Movement Speed',
+        information: 'Increases your Stamina and Movement Speed',
         decayrate: 0.0,
         stackable: true,
         image: createImage('np_cocaine-baggy'),
@@ -1492,7 +1469,7 @@ export const ItemList = {
     },
     'joint': {
         name: '3g Joint',
-        description: 'Its a Joint, man. ',
+        information: 'Its a Joint, man. ',
         decayrate: 0.0,
         stackable: true,
         image: createImage('np_joint'),
@@ -1503,7 +1480,7 @@ export const ItemList = {
     },
     'maleseed': {
         name: 'Marijuana Seed',
-        description: 'Plant this seed if you wish for more seeds!',
+        information: 'Plant this seed if you wish for more seeds!',
         decayrate: 0.0,
         stackable: true,
         image: createImage('np_weed-seed'),
@@ -1514,7 +1491,7 @@ export const ItemList = {
     },
     'femaleseed': {
         name: 'Female Marijuana Seed',
-        description: 'Surely I can just plant this, right?',
+        information: 'Surely I can just plant this, right?',
         decayrate: 0.0,
         stackable: true,
         image: createImage('np_weed-seed'),
@@ -1525,7 +1502,7 @@ export const ItemList = {
     },
     'cocaleaves': {
         name: 'Coca Leaves',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: true,
         image: createImage('leaf'),
@@ -1536,7 +1513,7 @@ export const ItemList = {
     },
     'weedplant': {
         name: 'Weed Plant',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: true,
         image: createImage('weedplant'),
@@ -1547,7 +1524,7 @@ export const ItemList = {
     },
     'oxy': {
         name: 'Oxy 100mg',
-        description: 'Prescribed by Betta Life Pharmacy (Prescription required)',
+        information: 'Prescribed by Betta Life Pharmacy (Prescription required)',
         decayrate: 0.0,
         stackable: true,
         image: createImage('np_Oxy'),
@@ -1558,7 +1535,7 @@ export const ItemList = {
     },
     'weed12oz': {
         name: 'Weed 250 Oz',
-        description: 'Lowers Stress <br> Breaks Down into other Product',
+        information: 'Lowers Stress <br> Breaks Down into other Product',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_box-of-weed-12-18-oz'),
@@ -1569,7 +1546,7 @@ export const ItemList = {
     },
     'weed5oz': {
         name: 'Weed 5 Oz',
-        description: 'Lowers Stress <br> Breaks Down into other Product',
+        information: 'Lowers Stress <br> Breaks Down into other Product',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_weed-brick-40-Oz'),
@@ -1580,7 +1557,7 @@ export const ItemList = {
     },
     'weedoz': {
         name: 'Weed Oz',
-        description: 'Lowers Stress',
+        information: 'Lowers Stress',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_weed-4-Oz'),
@@ -1591,7 +1568,7 @@ export const ItemList = {
     },
     'weedq': {
         name: 'Weed Q',
-        description: 'Lowers Stress',
+        information: 'Lowers Stress',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_weed-oz'),
@@ -1602,7 +1579,7 @@ export const ItemList = {
     },
     'driedbud': {
         name: 'Dried Bud (100 Grams)',
-        description: 'Pack It?',
+        information: 'Pack It?',
         decayrate: 0.0,
         stackable: false,
         image: createImage('buddry2'),
@@ -1613,7 +1590,7 @@ export const ItemList = {
     },
     'smallbud': {
         name: 'Packed Bud (20 Grams)',
-        description: 'Sell It?',
+        information: 'Sell It?',
         decayrate: 0.0,
         stackable: false,
         image: createImage('buddry'),
@@ -1624,7 +1601,7 @@ export const ItemList = {
     },
     'lsdtab': {
         name: 'LSD Tab',
-        description: 'For spectacular trips, or whatever.',
+        information: 'For spectacular trips, or whatever.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_badlsdtab'),
@@ -1636,7 +1613,7 @@ export const ItemList = {
     // Fruits / Alcohol crafting
     'apple': {
         name: 'Apple',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_apple'),
@@ -1647,7 +1624,7 @@ export const ItemList = {
     },
     'banana': {
         name: 'Banana',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_banana'),
@@ -1658,7 +1635,7 @@ export const ItemList = {
     },
     'cherry': {
         name: 'Cherry',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_cherry'),
@@ -1669,7 +1646,7 @@ export const ItemList = {
     },
     'coconut': {
         name: 'Coconut',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_coconut'),
@@ -1680,7 +1657,7 @@ export const ItemList = {
     },
     'grain': {
         name: 'Grain',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_grain'),
@@ -1691,7 +1668,7 @@ export const ItemList = {
     },
     'grapes': {
         name: 'Grapes',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_grapes2'),
@@ -1702,7 +1679,7 @@ export const ItemList = {
     },
     'kiwi': {
         name: 'Kiwi',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_kiwi'),
@@ -1713,7 +1690,7 @@ export const ItemList = {
     },
     'lemon': {
         name: 'Lemon',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_lemon'),
@@ -1724,7 +1701,7 @@ export const ItemList = {
     },
     'lime': {
         name: 'Lime',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_lime'),
@@ -1735,7 +1712,7 @@ export const ItemList = {
     },
     'orange': {
         name: 'Orange',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_orange'),
@@ -1746,7 +1723,7 @@ export const ItemList = {
     },
     'peach': {
         name: 'Peach',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_peach'),
@@ -1757,7 +1734,7 @@ export const ItemList = {
     },
     'potato': {
         name: 'Potato',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_potato'),
@@ -1768,7 +1745,7 @@ export const ItemList = {
     },
     'strawberry': {
         name: 'Strawberry',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_strawberry'),
@@ -1779,7 +1756,7 @@ export const ItemList = {
     },
     'watermelon': {
         name: 'Watermelon',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_watermelon'),
@@ -1791,7 +1768,7 @@ export const ItemList = {
     // HOA Mead
     'bottle_cap': {
         name: 'Bottle Cap',
-        description: 'Bottle cap saying HOA on it.',
+        information: 'Bottle cap saying HOA on it.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_hoa_cap'),
@@ -1802,7 +1779,7 @@ export const ItemList = {
     },
     'mead_watermelon': {
         name: 'Watermelon Mead',
-        description: 'The danish vikings really knew how to get hammered.',
+        information: 'The danish vikings really knew how to get hammered.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_mead_watermelon'),
@@ -1813,7 +1790,7 @@ export const ItemList = {
     },
     'mead_Strawberry': {
         name: 'Strawberry Mead',
-        description: 'The danish vikings really knew how to get hammered.',
+        information: 'The danish vikings really knew how to get hammered.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_mead_strawberry'),
@@ -1824,7 +1801,7 @@ export const ItemList = {
     },
     'mead_potato': {
         name: 'Potato Mead',
-        description: 'The danish vikings really knew how to get hammered.',
+        information: 'The danish vikings really knew how to get hammered.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_mead_potato'),
@@ -1835,7 +1812,7 @@ export const ItemList = {
     },
     'mead_peach': {
         name: 'Peach Mead',
-        description: 'The danish vikings really knew how to get hammered.',
+        information: 'The danish vikings really knew how to get hammered.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_mead_peach'),
@@ -1846,7 +1823,7 @@ export const ItemList = {
     },
     'mead_orange': {
         name: 'Orange Mead',
-        description: 'The danish vikings really knew how to get hammered.',
+        information: 'The danish vikings really knew how to get hammered.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_mead_orange'),
@@ -1857,7 +1834,7 @@ export const ItemList = {
     },
     'mead_lime': {
         name: 'Lime Mead',
-        description: 'The danish vikings really knew how to get hammered.',
+        information: 'The danish vikings really knew how to get hammered.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_mead_lime'),
@@ -1868,7 +1845,7 @@ export const ItemList = {
     },
     'mead_lemon': {
         name: 'Lemon Mead',
-        description: 'The danish vikings really knew how to get hammered.',
+        information: 'The danish vikings really knew how to get hammered.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_mead_lemon'),
@@ -1879,7 +1856,7 @@ export const ItemList = {
     },
     'mead_kiwi': {
         name: 'Kiwi Mead',
-        description: 'The danish vikings really knew how to get hammered.',
+        information: 'The danish vikings really knew how to get hammered.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_mead_kiwi'),
@@ -1890,7 +1867,7 @@ export const ItemList = {
     },
     'mead_grape': {
         name: 'Grape Mead',
-        description: 'The danish vikings really knew how to get hammered.',
+        information: 'The danish vikings really knew how to get hammered.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_mead_grape'),
@@ -1901,7 +1878,7 @@ export const ItemList = {
     },
     'mead_coconut': {
         name: 'Coconut Mead',
-        description: 'The danish vikings really knew how to get hammered.',
+        information: 'The danish vikings really knew how to get hammered.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_mead_coconut'),
@@ -1912,7 +1889,7 @@ export const ItemList = {
     },
     'mead_cherry': {
         name: 'Cherry Mead',
-        description: 'The danish vikings really knew how to get hammered.',
+        information: 'The danish vikings really knew how to get hammered.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_mead_cherry'),
@@ -1923,7 +1900,7 @@ export const ItemList = {
     },
     'mead_banana': {
         name: 'Banana Mead',
-        description: 'The danish vikings really knew how to get hammered.',
+        information: 'The danish vikings really knew how to get hammered.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_mead_banana'),
@@ -1934,7 +1911,7 @@ export const ItemList = {
     },
     'mead_apple': {
         name: 'Apple Mead',
-        description: 'The danish vikings really knew how to get hammered.',
+        information: 'The danish vikings really knew how to get hammered.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_mead_apple'),
@@ -1946,7 +1923,7 @@ export const ItemList = {
     // Drinks for VU
     'drink1': {
         name: 'Orange Lemon',
-        description: 'A perfect happy hour choice for vodka drinkers. Sates Thirst',
+        information: 'A perfect happy hour choice for vodka drinkers. Sates Thirst',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_drink1'),
@@ -1957,7 +1934,7 @@ export const ItemList = {
     },
     'drink2': {
         name: 'Cherry Berry',
-        description: ' Berry bliss. Sates Thirst',
+        information: ' Berry bliss. Sates Thirst',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_drink2'),
@@ -1968,7 +1945,7 @@ export const ItemList = {
     },
     'drink3': {
         name: 'Banana Peach',
-        description: 'Tastes just like fruity bubblegum. Sates Thirst',
+        information: 'Tastes just like fruity bubblegum. Sates Thirst',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_drink3'),
@@ -1979,7 +1956,7 @@ export const ItemList = {
     },
     'drink4': {
         name: 'Orange Banana',
-        description: 'Tastes just like fruity bubblegum. Sates Thirst',
+        information: 'Tastes just like fruity bubblegum. Sates Thirst',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_drink4'),
@@ -1990,7 +1967,7 @@ export const ItemList = {
     },
     'drink5': {
         name: 'Cherry Kiwi',
-        description: 'Fruity and refreshing. Sates Thirst',
+        information: 'Fruity and refreshing. Sates Thirst',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_drink5'),
@@ -2001,7 +1978,7 @@ export const ItemList = {
     },
     'drink6': {
         name: 'Berry Watermelon',
-        description: 'Cool, Sweet, Colorful. Sates Thirst',
+        information: 'Cool, Sweet, Colorful. Sates Thirst',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_drink6'),
@@ -2012,7 +1989,7 @@ export const ItemList = {
     },
     'drink7': {
         name: 'Apple Lime',
-        description: 'Curbs sweet cravings. Sates Thirst',
+        information: 'Curbs sweet cravings. Sates Thirst',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_polarbear'),
@@ -2023,7 +2000,7 @@ export const ItemList = {
     },
     'drink8': {
         name: 'Cherry Peach',
-        description: 'Perfect for cooling off on hot days. Sates Thirst',
+        information: 'Perfect for cooling off on hot days. Sates Thirst',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_rumcoke'),
@@ -2034,7 +2011,7 @@ export const ItemList = {
     },
     'drink9': {
         name: 'Coconut Lime',
-        description: 'Blended with an island twist. Sates Thirst',
+        information: 'Blended with an island twist. Sates Thirst',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_straightvodka'),
@@ -2045,7 +2022,7 @@ export const ItemList = {
     },
     'drink10': {
         name: 'White Paw',
-        description: 'Enjoy on your porch admiring the stars. Sates Thirst',
+        information: 'Enjoy on your porch admiring the stars. Sates Thirst',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_whitepaw'),
@@ -2056,7 +2033,7 @@ export const ItemList = {
     },
     'absinthe': {
         name: 'Absinthe',
-        description: 'The strongest you can get, 95%.',
+        information: 'The strongest you can get, 95%.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_absinthe'),
@@ -2067,7 +2044,7 @@ export const ItemList = {
     },
     'shot1': {
         name: 'Orange Lemon',
-        description: 'Sates Thirst',
+        information: 'Sates Thirst',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_shot1'),
@@ -2078,7 +2055,7 @@ export const ItemList = {
     },
     'shot2': {
         name: 'Cherry Berry',
-        description: 'Sates Thirst',
+        information: 'Sates Thirst',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_shot2'),
@@ -2089,7 +2066,7 @@ export const ItemList = {
     },
     'shot3': {
         name: 'Banana Peach',
-        description: 'Sates Thirst',
+        information: 'Sates Thirst',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_shot3'),
@@ -2100,7 +2077,7 @@ export const ItemList = {
     },
     'shot4': {
         name: 'Orange Banana',
-        description: 'Sates Thirst',
+        information: 'Sates Thirst',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_shot4'),
@@ -2111,7 +2088,7 @@ export const ItemList = {
     },
     'shot5': {
         name: 'Cherry Kiwi',
-        description: 'Sates Thirst',
+        information: 'Sates Thirst',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_shot5'),
@@ -2122,7 +2099,7 @@ export const ItemList = {
     },
     'shot6': {
         name: 'Berry Watermelon',
-        description: 'Sates Thirst',
+        information: 'Sates Thirst',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_shot6'),
@@ -2133,7 +2110,7 @@ export const ItemList = {
     },
     'shot7': {
         name: 'Orange Lemon',
-        description: 'Lime Apple',
+        information: 'Lime Apple',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_shot7'),
@@ -2144,7 +2121,7 @@ export const ItemList = {
     },
     'shot8': {
         name: 'Cherry Peach',
-        description: 'Sates Thirst',
+        information: 'Sates Thirst',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_shot8'),
@@ -2155,7 +2132,7 @@ export const ItemList = {
     },
     'shot9': {
         name: 'Coconut Lime',
-        description: 'Sates Thirst',
+        information: 'Sates Thirst',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_shot1'),
@@ -2166,7 +2143,7 @@ export const ItemList = {
     },
     'shot10': {
         name: 'Grapes Watermelon',
-        description: 'Sates Thirst',
+        information: 'Sates Thirst',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_shot10'),
@@ -2177,7 +2154,7 @@ export const ItemList = {
     },
     'redwine': {
         name: 'Red Wine',
-        description: 'No crime just wine',
+        information: 'No crime just wine',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_red-wine-bottle'),
@@ -2188,7 +2165,7 @@ export const ItemList = {
     },
     'rum': {
         name: 'Rum',
-        description: 'Why is it gone?',
+        information: 'Why is it gone?',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_rum'),
@@ -2199,7 +2176,7 @@ export const ItemList = {
     },
     'tequila': {
         name: 'Tequila',
-        description: 'Tequilya brand',
+        information: 'Tequilya brand',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_tequila'),
@@ -2210,7 +2187,7 @@ export const ItemList = {
     },
     'tequilashot': {
         name: 'Shot of Tequila',
-        description: 'Uno mas por favor',
+        information: 'Uno mas por favor',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_tequila-shot'),
@@ -2221,7 +2198,7 @@ export const ItemList = {
     },
     'vodka': {
         name: 'Vodka',
-        description: 'Sates Thirst',
+        information: 'Sates Thirst',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_vodka'),
@@ -2232,7 +2209,7 @@ export const ItemList = {
     },
     'whiskey': {
         name: 'Whiskey',
-        description: 'Sates Thirst',
+        information: 'Sates Thirst',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_whiskey'),
@@ -2243,7 +2220,7 @@ export const ItemList = {
     },
     'champagne': {
         name: 'Champagne',
-        description: 'Time to celebrate',
+        information: 'Time to celebrate',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_champagne'),
@@ -2254,7 +2231,7 @@ export const ItemList = {
     },
     'beer': {
         name: 'Beer',
-        description: 'Sates Thirst',
+        information: 'Sates Thirst',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_beer'),
@@ -2265,7 +2242,7 @@ export const ItemList = {
     },
     'pinacolada': {
         name: 'Pina Colada',
-        description: 'And getting caught in the rain',
+        information: 'And getting caught in the rain',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_pina-colada'),
@@ -2278,7 +2255,7 @@ export const ItemList = {
     // other drugy shit
     'aspirin': {
         name: 'Aspirin',
-        description: 'Its an Aspirin',
+        information: 'Its an Aspirin',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_aspirin'),
@@ -2289,7 +2266,7 @@ export const ItemList = {
     },
     'cabsinthe': {
         name: 'Cannabis Absinthe',
-        description: 'Duuude..bro...',
+        information: 'Duuude..bro...',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_cannabis-absinthe'),
@@ -2300,7 +2277,7 @@ export const ItemList = {
     },
     '420bar': {
         name: '420 Bar',
-        description: 'Duuude..bro...',
+        information: 'Duuude..bro...',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_420-bar'),
@@ -2311,7 +2288,7 @@ export const ItemList = {
     },
     '69box': {
         name: '69 Cigar Box',
-        description: 'A taste of Cuba',
+        information: 'A taste of Cuba',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_69-cigar-box'),
@@ -2322,7 +2299,7 @@ export const ItemList = {
     },
     '69pack': {
         name: '69 Brand Pack',
-        description: 'Just one more',
+        information: 'Just one more',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_69-brand-pack'),
@@ -2333,7 +2310,7 @@ export const ItemList = {
     },
     'cgummies': {
         name: 'Cannabis Gummies',
-        description: 'Duuude...',
+        information: 'Duuude...',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_cannabis-gummies'),
@@ -2344,7 +2321,7 @@ export const ItemList = {
     },
     'chloroform': {
         name: 'Chloroform',
-        description: 'Special Cross recipe',
+        information: 'Special Cross recipe',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_chloroform'),
@@ -2355,7 +2332,7 @@ export const ItemList = {
     },
     'ibuprofen': {
         name: 'Ibuprofen',
-        description: 'Cures all. Right?',
+        information: 'Cures all. Right?',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_ibuprofen'),
@@ -2366,7 +2343,7 @@ export const ItemList = {
     },
     'drugx': {
         name: 'Drug X',
-        description: 'Now in testing by Humane Labs',
+        information: 'Now in testing by Humane Labs',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_drug-x'),
@@ -2377,7 +2354,7 @@ export const ItemList = {
     },
     'cbrownie': {
         name: 'Cannabis Brownie',
-        description: 'Dude...',
+        information: 'Dude...',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_cannabis-brownie'),
@@ -2390,7 +2367,7 @@ export const ItemList = {
     //food
     'bfsandwich': {
         name: 'Breakfast Sandwich',
-        description: 'Rise and shine',
+        information: 'Rise and shine',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_breakfast-sandwich'),
@@ -2401,7 +2378,7 @@ export const ItemList = {
     },
     'cbfowl': {
         name: 'Fowl Burger',
-        description: 'If you enjoyed it, the chicken didnt die in vain! 900Cal',
+        information: 'If you enjoyed it, the chicken didnt die in vain! 900Cal',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_fowl-burger'),
@@ -2412,7 +2389,7 @@ export const ItemList = {
     },
     'cbfries': {
         name: 'Cluckin Fries',
-        description: 'Cluckinsize included. 680Cal',
+        information: 'Cluckinsize included. 680Cal',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_cluckin-fries'),
@@ -2423,7 +2400,7 @@ export const ItemList = {
     },
     'cookie': {
         name: 'Cookie',
-        description: 'Baked with love',
+        information: 'Baked with love',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_cookie'),
@@ -2434,7 +2411,7 @@ export const ItemList = {
     },
     'tobacco': {
         name: 'Tobacco',
-        description: 'Used for ciggies',
+        information: 'Used for ciggies',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_tobacco'),
@@ -2445,7 +2422,7 @@ export const ItemList = {
     },
     'gause': {
         name: 'Gause',
-        description: 'Used for making bandages',
+        information: 'Used for making bandages',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_gause'),
@@ -2456,7 +2433,7 @@ export const ItemList = {
     },
     'pizza': {
         name: 'Pizza Slice',
-        description: 'Check for pineapple',
+        information: 'Check for pineapple',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_pizza-slice'),
@@ -2467,7 +2444,7 @@ export const ItemList = {
     },
     'chips': {
         name: 'Chips',
-        description: 'Phat Chips yeeeaaah. Thickens blood.',
+        information: 'Phat Chips yeeeaaah. Thickens blood.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_chips'),
@@ -2478,10 +2455,10 @@ export const ItemList = {
     },
     'chocobar': {
         name: 'Chips',
-        description: 'Phat Chips yeeeaaah. Thickens blood.',
+        information: 'Phat Chips yeeeaaah. Thickens blood.',
         decayrate: 0.0,
         stackable: false,
-        image: createImage('np_chocolate-bar'),
+        image: createImage('np_chips'),
         weight: 1.0,
         context: {
             useItem: true,
@@ -2489,7 +2466,7 @@ export const ItemList = {
     },
     'torta': {
         name: 'Torta',
-        description: 'El mejor jamon',
+        information: 'El mejor jamon',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_torta'),
@@ -2500,7 +2477,7 @@ export const ItemList = {
     },
     'coffee': {
         name: 'Cheap Coffee',
-        description: 'Tastes like dirt, but has the caffeine you need',
+        information: 'Tastes like dirt, but has the caffeine you need',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_coffee'),
@@ -2511,7 +2488,7 @@ export const ItemList = {
     },
     'burrito': {
         name: 'Burrito',
-        description: 'Burrito',
+        information: 'Burrito',
         decayrate: 0.01,
         stackable: true,
         image: createImage('np_burrito'),
@@ -2522,7 +2499,7 @@ export const ItemList = {
     },
     'donut': {
         name: 'Donut',
-        description: 'Fill the hole',
+        information: 'Fill the hole',
         decayrate: 0.01,
         stackable: true,
         image: createImage('donut'),
@@ -2533,7 +2510,7 @@ export const ItemList = {
     },
     'foodingredient': {
         name: 'Ingredients',
-        description: 'Used to craft food - be aware, food doesnt last forever!',
+        information: 'Used to craft food - be aware, food doesnt last forever!',
         decayrate: 0.01,
         stackable: true,
         image: createImage('np_ingredients'),
@@ -2544,7 +2521,7 @@ export const ItemList = {
     },
     'greencow': {
         name: 'Green Cow',
-        description: 'Slightly Increases Stamina and Speed',
+        information: 'Slightly Increases Stamina and Speed',
         decayrate: 0.01,
         stackable: true,
         image: createImage('np_green-cow'),
@@ -2555,7 +2532,7 @@ export const ItemList = {
     },
     'icecream': {
         name: 'Ice Cream',
-        description: 'Made from real human titty milk. Prevents stress from being gained or relieved.',
+        information: 'Made from real human titty milk. Prevents stress from being gained or relieved.',
         decayrate: 0.01,
         stackable: true,
         image: createImage('np_icecream'),
@@ -2566,7 +2543,7 @@ export const ItemList = {
     },
     'jailfood': {
         name: 'Jail Food',
-        description: "Looks as bad as the Sheriff's aim.",
+        information: "Looks as bad as the Sheriff's aim.",
         decayrate: 0.01,
         stackable: true,
         image: createImage('np_jailfood'),
@@ -2577,7 +2554,7 @@ export const ItemList = {
     },
     'jaildrink': {
         name: 'Jail Drink',
-        description: "Looks as bad as the Chief of Police's aim.",
+        information: "Looks as bad as the Chief of Police's aim.",
         decayrate: 0.01,
         stackable: true,
         image: createImage('np_jaildrink'),
@@ -2588,7 +2565,7 @@ export const ItemList = {
     },
     'hamburger': {
         name: 'Hamburger',
-        description: "Sates Hunger",
+        information: "Sates Hunger",
         decayrate: 0.01,
         stackable: true,
         image: createImage('np_hamburger'),
@@ -2601,7 +2578,7 @@ export const ItemList = {
     //Materials
     'aluminium': {
         name: 'Aluminium',
-        description: "",
+        information: "",
         decayrate: 0.7,
         stackable: true,
         image: createImage('np_aluminum'),
@@ -2612,7 +2589,7 @@ export const ItemList = {
     },
     'plastic': {
         name: 'Plastic',
-        description: "",
+        information: "",
         decayrate: 0.7,
         stackable: true,
         image: createImage('np_plastic'),
@@ -2623,7 +2600,7 @@ export const ItemList = {
     },
     'copper': {
         name: 'Copper',
-        description: "",
+        information: "",
         decayrate: 0.7,
         stackable: true,
         image: createImage('np_copper'),
@@ -2634,7 +2611,7 @@ export const ItemList = {
     },
     'electronics': {
         name: 'Electronics',
-        description: "",
+        information: "",
         decayrate: 0.7,
         stackable: true,
         image: createImage('np_electronics'),
@@ -2645,7 +2622,7 @@ export const ItemList = {
     },
     'rubber': {
         name: 'Rubber',
-        description: "",
+        information: "",
         decayrate: 0.7,
         stackable: true,
         image: createImage('np_rubber'),
@@ -2656,7 +2633,7 @@ export const ItemList = {
     },
     'scrapmetal': {
         name: 'Scrap Metal',
-        description: "",
+        information: "",
         decayrate: 0.7,
         stackable: true,
         image: createImage('np_scrap-metal'),
@@ -2667,7 +2644,7 @@ export const ItemList = {
     },
     'steel': {
         name: 'Steel',
-        description: "",
+        information: "",
         decayrate: 0.7,
         stackable: true,
         image: createImage('np_steel'),
@@ -2678,7 +2655,7 @@ export const ItemList = {
     },
     'glass': {
         name: 'Glass',
-        description: "",
+        information: "",
         decayrate: 0.7,
         stackable: true,
         image: createImage('np_glass'),
@@ -2689,7 +2666,7 @@ export const ItemList = {
     },
     'pdpanicbutton': {
         name: 'Panic Button',
-        description: 'Alert Police?',
+        information: 'Alert Police?',
         decayrate: 0.2,
         stackable: false,
         image: createImage('qb_panicbutton'),
@@ -2700,7 +2677,7 @@ export const ItemList = {
     },
     'lockpickbp': {
         name: 'Lockpick Blueprint',
-        description: "",
+        information: "",
         decayrate: 0.5,
         stackable: true,
         image: createImage('np_bp-lockpick'),
@@ -2711,7 +2688,7 @@ export const ItemList = {
     },
     'advlockpickbp': {
         name: 'Advanced Lockpick Blueprint',
-        description: "",
+        information: "",
         decayrate: 0.6,
         stackable: true,
         image: createImage('np_bp-advlockpick'),
@@ -2722,7 +2699,7 @@ export const ItemList = {
     },
     'lockpick': {
         name: 'Lockpick Set',
-        description: 'Unlocks things, if you have the skill!',
+        information: 'Unlocks things, if you have the skill!',
         decayrate: 0.5,
         stackable: true,
         image: createImage('np_lockpick1'),
@@ -2733,7 +2710,7 @@ export const ItemList = {
     },
     'advlockpick': {
         name: 'Adv Lock Pick',
-        description: 'Unlocks things, if you have the skill!',
+        information: 'Unlocks things, if you have the skill!',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_advanced-lockpick'),
@@ -2744,7 +2721,7 @@ export const ItemList = {
     },
     'hackingdevice': {
         name: 'Security System Hacking Device',
-        description: 'Marked for Police Seizure',
+        information: 'Marked for Police Seizure',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_hacking_device'),
@@ -2755,7 +2732,7 @@ export const ItemList = {
     },
     'armor': {
         name: 'Chest Armor',
-        description: 'Protects you from bleeding and stumbling on injuries',
+        information: 'Protects you from bleeding and stumbling on injuries',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_chest-armor'),
@@ -2766,7 +2743,7 @@ export const ItemList = {
     },
     'pdarmor': {
         name: '(PD) Chest Armor',
-        description: 'Government (PD/EMS/DOC) Issued Equipment',
+        information: 'Government (PD/EMS/DOC) Issued Equipment',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_chest-armor'),
@@ -2777,7 +2754,7 @@ export const ItemList = {
     },
     'aluminiumoxide': {
         name: 'Aluminium Oxide',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_aluminum-oxide'),
@@ -2788,7 +2765,7 @@ export const ItemList = {
     },
     'advrepairkit': {
         name: 'Adv Repair Kit',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_repair-toolkit'),
@@ -2799,7 +2776,7 @@ export const ItemList = {
     },
     'tirerepairkit': {
         name: 'For swapping damaged tires.',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_tire_repair-kit'),
@@ -2810,7 +2787,7 @@ export const ItemList = {
     },
     'carbattery': {
         name: 'Car Battery',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_car-battery'),
@@ -2821,7 +2798,7 @@ export const ItemList = {
     },
     'carhood': {
         name: 'Car Hood',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_car-hood'),
@@ -2832,7 +2809,7 @@ export const ItemList = {
     },
     'cashstack': {
         name: 'Stack of Cash',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_cash-stack'),
@@ -2843,7 +2820,7 @@ export const ItemList = {
     },
     'band': {
         name: 'Band of Notes',
-        description: 'Lots of low denominators - Indicates drug sales.',
+        information: 'Lots of low denominators - Indicates drug sales.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_cash-stack'),
@@ -2854,7 +2831,7 @@ export const ItemList = {
     },
     'rollcash': {
         name: 'Dirty Money',
-        description: 'I need to find a way to clean this money.',
+        information: 'I need to find a way to clean this money.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_cash-roll'),
@@ -2865,7 +2842,7 @@ export const ItemList = {
     },
     'battery': {
         name: 'Battery',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_battery'),
@@ -2876,7 +2853,7 @@ export const ItemList = {
     },
     'binoculars': {
         name: 'Binoculars',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_binoculars'),
@@ -2887,7 +2864,7 @@ export const ItemList = {
     },
     'blindfold': {
         name: 'Blindfold',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_blindfold'),
@@ -2898,7 +2875,7 @@ export const ItemList = {
     },
     'bloodbag': {
         name: 'Blood Bag',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_blood-bag'),
@@ -2909,7 +2886,7 @@ export const ItemList = {
     },
     'bloodvial': {
         name: 'Blood Vial',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_blood-tube'),
@@ -2920,7 +2897,7 @@ export const ItemList = {
     },
     'Boombox': {
         name: 'Boombox',
-        description: 'Its a prop, wow?',
+        information: 'Its a prop, wow?',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_boombox'),
@@ -2931,7 +2908,7 @@ export const ItemList = {
     },
     'Box': {
         name: 'Box',
-        description: 'Its a prop, wow?',
+        information: 'Its a prop, wow?',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_box'),
@@ -2942,7 +2919,7 @@ export const ItemList = {
     },
     'breadboard': {
         name: 'Breadboard',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_breadboard'),
@@ -2953,7 +2930,7 @@ export const ItemList = {
     },
     'camera': {
         name: 'Nikea X1000',
-        description: 'Works 100% of the time 60% of the time.',
+        information: 'Works 100% of the time 60% of the time.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_camera'),
@@ -2964,7 +2941,7 @@ export const ItemList = {
     },
     'casing': {
         name: 'Bullet Casing',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_pistol-ammo'),
@@ -2975,7 +2952,7 @@ export const ItemList = {
     },
     'certificate': {
         name: 'Certificate',
-        description: 'You made it!',
+        information: 'You made it!',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_certificate'),
@@ -2986,7 +2963,7 @@ export const ItemList = {
     },
     'cgpapers': {
         name: 'CG Papers',
-        description: 'Wata woozers',
+        information: 'Wata woozers',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_cg-papers'),
@@ -2997,7 +2974,7 @@ export const ItemList = {
     },
     'chestxray': {
         name: 'Chest X-Ray',
-        description: 'Argh...',
+        information: 'Argh...',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_chest-xray'),
@@ -3008,7 +2985,7 @@ export const ItemList = {
     },
     'cigar': {
         name: 'Cigar',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_cigar'),
@@ -3019,7 +2996,7 @@ export const ItemList = {
     },
     'ciggy': {
         name: 'Cigarette',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_cigarette'),
@@ -3030,7 +3007,7 @@ export const ItemList = {
     },
     'ciggypack': {
         name: 'Cigarettes',
-        description: 'A packet of smokes, they smell and taste like shit, but they relieve stress, the stress created by the addiction sure, but they relieve stress.',
+        information: 'A packet of smokes, they smell and taste like shit, but they relieve stress, the stress created by the addiction sure, but they relieve stress.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_ciggypack'),
@@ -3041,7 +3018,7 @@ export const ItemList = {
     },
     'ckatana': {
         name: 'Sheathed Cursed Katana',
-        description: 'A normal human mind cannot control such power.',
+        information: 'A normal human mind cannot control such power.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_cursed-katana'),
@@ -3052,7 +3029,7 @@ export const ItemList = {
     },
     'cpelt': {
         name: 'Cougar Pelt',
-        description: 'The hunter becomes the hunted',
+        information: 'The hunter becomes the hunted',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_cougar-pelt'),
@@ -3063,7 +3040,7 @@ export const ItemList = {
     },
     'cuffs': {
         name: 'Hand Cuffs',
-        description: 'Marked for Police Seizure',
+        information: 'Marked for Police Seizure',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_hand-cuffs'),
@@ -3074,7 +3051,7 @@ export const ItemList = {
     },
     'dhide': {
         name: 'Deer Hide',
-        description: 'Call peta',
+        information: 'Call peta',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_deer-hide'),
@@ -3085,7 +3062,7 @@ export const ItemList = {
     },
     'drill': {
         name: 'Drill',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('drill'),
@@ -3096,7 +3073,7 @@ export const ItemList = {
     },
     'drillbit': {
         name: 'Drill Bit',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_drill-bit'),
@@ -3107,7 +3084,7 @@ export const ItemList = {
     },
     'DuffelBag': {
         name: 'Black Duffel Bag',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_duffel'),
@@ -3118,7 +3095,7 @@ export const ItemList = {
     },
     'electronickit': {
         name: 'Electronic Kit',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_electronic-kit'),
@@ -3129,7 +3106,7 @@ export const ItemList = {
     },
     'evidence': {
         name: 'Evidence',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_evidence'),
@@ -3140,7 +3117,7 @@ export const ItemList = {
     },
     'np_evidence_marker_yellow': {
         name: 'Evidence',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_evidence_marker_yellow'),
@@ -3151,7 +3128,7 @@ export const ItemList = {
     },
     'np_evidence_marker_red': {
         name: 'Evidence',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_evidence_marker_red'),
@@ -3162,7 +3139,7 @@ export const ItemList = {
     },
     'np_evidence_marker_white': {
         name: 'Evidence',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_evidence_marker_white'),
@@ -3173,7 +3150,7 @@ export const ItemList = {
     },
     'np_evidence_marker_orange': {
         name: 'Evidence',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_evidence_marker_orange'),
@@ -3184,7 +3161,7 @@ export const ItemList = {
     },
     'np_evidence_marker_light_blue': {
         name: 'Evidence',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_evidence_marker_light_blue'),
@@ -3195,7 +3172,7 @@ export const ItemList = {
     },
     'np_evidence_marker_purple': {
         name: 'Evidence',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_evidence_marker_purple'),
@@ -3206,7 +3183,7 @@ export const ItemList = {
     },
     'evidencebag': {
         name: 'Evidence Bag',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_evidence-bag'),
@@ -3217,7 +3194,7 @@ export const ItemList = {
     },
     'pdbadge': {
         name: 'PD Badge',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_pd_badge'),
@@ -3228,7 +3205,7 @@ export const ItemList = {
     },
     'fakeplate': {
         name: 'Fake Plate Kit',
-        description: 'Use on a vehicle to alter its plate or change it back - 1 time use..',
+        information: 'Use on a vehicle to alter its plate or change it back - 1 time use..',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_plate'),
@@ -3239,7 +3216,7 @@ export const ItemList = {
     },
     'fbumper': {
         name: 'Front Bumper',
-        description: 'Ill have the tuna, no crust',
+        information: 'Ill have the tuna, no crust',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_front-bumper'),
@@ -3250,7 +3227,7 @@ export const ItemList = {
     },
     'fertilizer': {
         name: 'Fertilizer',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_fertilizer'),
@@ -3261,7 +3238,7 @@ export const ItemList = {
     },
     'fuse': {
         name: 'Fuse',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_fuse'),
@@ -3272,7 +3249,7 @@ export const ItemList = {
     },
     'glowing': {
         name: 'Glowing Substance',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_glowing-substance'),
@@ -3283,7 +3260,7 @@ export const ItemList = {
     },
     'glucose': {
         name: '500g Glucose',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_glucose'),
@@ -3294,7 +3271,7 @@ export const ItemList = {
     },
     'goldbar': {
         name: 'Gold Bar',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_gold-bar'),
@@ -3305,7 +3282,7 @@ export const ItemList = {
     },
     'goldcoin': {
         name: 'Gold Coin',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_gold-coin'),
@@ -3316,7 +3293,7 @@ export const ItemList = {
     },
     'greenb': {
         name: 'Green Bandana',
-        description: 'Ay yo my mans',
+        information: 'Ay yo my mans',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_green-bandana'),
@@ -3327,7 +3304,7 @@ export const ItemList = {
     },
     'gum': {
         name: 'Gum',
-        description: 'Release Gum. You chew, you suck then POW',
+        information: 'Release Gum. You chew, you suck then POW',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_gum'),
@@ -3338,7 +3315,7 @@ export const ItemList = {
     },
     'hairtie': {
         name: 'Hair Tie',
-        description: 'We all know what this is really for...',
+        information: 'We all know what this is really for...',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_hairtie'),
@@ -3349,7 +3326,7 @@ export const ItemList = {
     },
     'harness': {
         name: 'Racing Harness',
-        description: 'Stops you from being YEETED',
+        information: 'Stops you from being YEETED',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_harness'),
@@ -3360,7 +3337,7 @@ export const ItemList = {
     },
     'heavycutters': {
         name: 'Heavy Cutters',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_heavy-cutters'),
@@ -3371,7 +3348,7 @@ export const ItemList = {
     },
     'heavydutydrill': {
         name: 'Heavy Duty Drill',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_heavy-duty-drill'),
@@ -3382,7 +3359,7 @@ export const ItemList = {
     },
     'hlights': {
         name: 'Headlights',
-        description: 'Cant detail a car with the cover on',
+        information: 'Cant detail a car with the cover on',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_headlights'),
@@ -3393,7 +3370,7 @@ export const ItemList = {
     },
     'IFAK': {
         name: 'IFAK',
-        description: 'Government (PD/EMS/DOC) Issued Equipment',
+        information: 'Government (PD/EMS/DOC) Issued Equipment',
         decayrate: 0.0,
         stackable: false,
         image: createImage('ifak'),
@@ -3404,7 +3381,7 @@ export const ItemList = {
     },
     'inkedmoneybag': {
         name: 'Inked Money Bag',
-        description: 'Made with cheap ink that expires',
+        information: 'Made with cheap ink that expires',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_inked-money-bag'),
@@ -3415,7 +3392,7 @@ export const ItemList = {
     },
     'inkset': {
         name: 'Inked Set',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_inked-money-bag'),
@@ -3426,7 +3403,7 @@ export const ItemList = {
     },
     'ironoxide': {
         name: 'Iron Oxide',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_iron-oxide'),
@@ -3437,7 +3414,7 @@ export const ItemList = {
     },
     'katana': {
         name: 'Katana',
-        description: 'Steel folded over 1000 times',
+        information: 'Steel folded over 1000 times',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_katana'),
@@ -3448,7 +3425,7 @@ export const ItemList = {
     },
     'keyfob': {
         name: 'Key Fob',
-        description: 'Used for opening doors remotely.',
+        information: 'Used for opening doors remotely.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_keyfob'),
@@ -3459,7 +3436,7 @@ export const ItemList = {
     },
     'key1': {
         name: 'Key 1',
-        description: 'Numbered Key',
+        information: 'Numbered Key',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_key1'),
@@ -3470,7 +3447,7 @@ export const ItemList = {
     },
     'key2': {
         name: 'Key 2',
-        description: 'Numbered Key',
+        information: 'Numbered Key',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_key2'),
@@ -3481,7 +3458,7 @@ export const ItemList = {
     },
     'key3': {
         name: 'Key 3',
-        description: 'Numbered Key',
+        information: 'Numbered Key',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_key3'),
@@ -3492,7 +3469,7 @@ export const ItemList = {
     },
     'keya': {
         name: 'Key A',
-        description: 'Lettered Key',
+        information: 'Lettered Key',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_keya'),
@@ -3503,7 +3480,7 @@ export const ItemList = {
     },
     'keyb': {
         name: 'Key B',
-        description: 'Lettered Key',
+        information: 'Lettered Key',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_keyb'),
@@ -3514,7 +3491,7 @@ export const ItemList = {
     },
     'keyc': {
         name: 'Key C',
-        description: 'Lettered Key',
+        information: 'Lettered Key',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_keyc'),
@@ -3525,7 +3502,7 @@ export const ItemList = {
     },
     'lighter': {
         name: 'Lighter',
-        description: 'Dont start a fire with this.',
+        information: 'Dont start a fire with this.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_lighter'),
@@ -3536,7 +3513,7 @@ export const ItemList = {
     },
     'locksystem': {
         name: 'Air Pressure Lockpick',
-        description: 'Used to blow out small locks - one time use.',
+        information: 'Used to blow out small locks - one time use.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('locksystem'),
@@ -3547,7 +3524,7 @@ export const ItemList = {
     },
     'log': {
         name: 'Log',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_wood'),
@@ -3558,7 +3535,7 @@ export const ItemList = {
     },
     'markedbills': {
         name: 'Marked Bills',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_inked-money-bag'),
@@ -3569,7 +3546,7 @@ export const ItemList = {
     },
     'adrenaline': {
         name: 'Adrenaline Syringe',
-        description: 'Adrenaline, gives a good pump! If you are not SWAT certified do not buy this.',
+        information: 'Adrenaline, gives a good pump! If you are not SWAT certified do not buy this.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_adrenaline'),
@@ -3580,7 +3557,7 @@ export const ItemList = {
     },
     'MedicalBag': {
         name: 'Medical Bag',
-        description: 'Its a prop, wow?',
+        information: 'Its a prop, wow?',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_medbag'),
@@ -3591,7 +3568,7 @@ export const ItemList = {
     },
     'headphones': {
         name: 'Medical Bag',
-        description: 'Its a prop, wow?',
+        information: 'Its a prop, wow?',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_headphones'),
@@ -3602,7 +3579,7 @@ export const ItemList = {
     },
     'varusb': {
         name: 'VAR USB',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_mkii-usb-device'),
@@ -3613,7 +3590,7 @@ export const ItemList = {
     },
     'nitrous': {
         name: 'Nitrous Oxide',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_nitrous-oxide'),
@@ -3624,7 +3601,7 @@ export const ItemList = {
     },
     'copium': {
         name: 'Copium',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_nitrous-oxide'),
@@ -3635,7 +3612,7 @@ export const ItemList = {
     },
     'oil': {
         name: 'Oil',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_oil'),
@@ -3646,7 +3623,7 @@ export const ItemList = {
     },
     'oxygentank': {
         name: 'Oxygen Tank',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_oxygen-tank'),
@@ -3657,7 +3634,7 @@ export const ItemList = {
     },
     'pallet': {
         name: 'Pallet of Boxes',
-        description: 'Transportable goods',
+        information: 'Transportable goods',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_pallet-of-boxes'),
@@ -3668,7 +3645,7 @@ export const ItemList = {
     },
     'purpleb': {
         name: 'Purple Bandana',
-        description: 'Straight outta da cul-de-sac',
+        information: 'Straight outta da cul-de-sac',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_purple-bandana'),
@@ -3679,7 +3656,7 @@ export const ItemList = {
     },
     'qualityscales': {
         name: 'High Quality Scales',
-        description: 'Weighs Baggies with no loss',
+        information: 'Weighs Baggies with no loss',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_high-quality-scales'),
@@ -3690,7 +3667,7 @@ export const ItemList = {
     },
     'rbumper': {
         name: 'Rear Bumper',
-        description: 'You owe me a ten second car',
+        information: 'You owe me a ten second car',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_rear-bumper'),
@@ -3701,7 +3678,7 @@ export const ItemList = {
     },
     'recyclablematerial': {
         name: 'Recyclable Material',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_recyclable-material'),
@@ -3712,7 +3689,7 @@ export const ItemList = {
     },
     'redb': {
         name: 'Red Bandana',
-        description: 'Lean with me',
+        information: 'Lean with me',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_red-bandana'),
@@ -3723,7 +3700,7 @@ export const ItemList = {
     },
     'repairtoolkit': {
         name: 'Repair Toolkit',
-        description: 'Used by Tow Truck drivers and repair people.',
+        information: 'Used by Tow Truck drivers and repair people.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_repair-toolkit'),
@@ -3734,7 +3711,7 @@ export const ItemList = {
     },
     'riflebody': {
         name: 'Rifle Body',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_rifle-body'),
@@ -3745,7 +3722,7 @@ export const ItemList = {
     },
     'riflebodybox': {
         name: 'Box (10+ Rifle Bodys)',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_rifle-box'),
@@ -3756,7 +3733,7 @@ export const ItemList = {
     },
     'rims': {
         name: 'Racing Rims',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_racing-rims'),
@@ -3767,7 +3744,7 @@ export const ItemList = {
     },
     'benjiwatch': {
         name: 'Benjis Watch',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_benjiwatch'),
@@ -3778,7 +3755,7 @@ export const ItemList = {
     },
     'rolexwatch': {
         name: 'Rolex Watch (p)',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_rolex-watchatch'),
@@ -3789,7 +3766,7 @@ export const ItemList = {
     },
     'rollingpaper': {
         name: 'Rolling Paper',
-        description: 'Required to roll joints!',
+        information: 'Required to roll joints!',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_rolling-paper'),
@@ -3800,7 +3777,7 @@ export const ItemList = {
     },
     'scanner': {
         name: 'Radio Scanner',
-        description: 'Used to receive random radio chatter.',
+        information: 'Used to receive random radio chatter.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_radio-scanner'),
@@ -3809,29 +3786,9 @@ export const ItemList = {
             useItem: true,
         }
     },
-    'civradio': {
-        name: 'Standard Radio',
-        description: 'Used to communicate to radio chatter.',
-        stackable: true,
-        image: createImage('np_civradio'),
-        weight: 2.0,
-        context: {
-            useItem: true,
-        }
-    },
-    'radio': {
-        name: 'Government Radio',
-        description: 'Used to communicate to Police radio.',
-        stackable: true,
-        image: createImage('np_radio'),
-        weight: 2.0,
-        context: {
-            useItem: true,
-        }
-    },
     'scissors': {
         name: 'Scissors',
-        description: 'Fuck me up fam',
+        information: 'Fuck me up fam',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_scissors'),
@@ -3842,7 +3799,7 @@ export const ItemList = {
     },
     'sealedbucket': {
         name: 'Fisher Bucket',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_sealed-bucket'),
@@ -3853,7 +3810,7 @@ export const ItemList = {
     },
     'sealedevidencebag': {
         name: 'Sealed Evidence Bag',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_sealed-evidence-bag'),
@@ -3864,7 +3821,7 @@ export const ItemList = {
     },
     'seat': {
         name: 'Seat',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_seat'),
@@ -3875,7 +3832,7 @@ export const ItemList = {
     },
     'secretfile': {
         name: 'Secret File',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_secret-file'),
@@ -3886,7 +3843,7 @@ export const ItemList = {
     },
     'SecurityCase': {
         name: 'Security Case',
-        description: 'Its a prop, wow?',
+        information: 'Its a prop, wow?',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_securitycase'),
@@ -3897,7 +3854,7 @@ export const ItemList = {
     },
     'shipbox': {
         name: 'Shipping Box',
-        description: 'Free 2day shipping',
+        information: 'Free 2day shipping',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_shipping-box'),
@@ -3908,7 +3865,7 @@ export const ItemList = {
     },
     'shipcrate': {
         name: 'Shipping Crate',
-        description: 'This side up',
+        information: 'This side up',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_shipping-crate'),
@@ -3919,7 +3876,7 @@ export const ItemList = {
     },
     'silvercoin': {
         name: 'Silver Coin',
-        description: 'Dont lose it',
+        information: 'Dont lose it',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_silver-coin'),
@@ -3930,7 +3887,7 @@ export const ItemList = {
     },
     'slushy': {
         name: 'The best slushy ever.',
-        description: 'The only thing in Jail that tastes good.',
+        information: 'The only thing in Jail that tastes good.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_slushy'),
@@ -3941,7 +3898,7 @@ export const ItemList = {
     },
     'smallscales': {
         name: 'Small Scales',
-        description: 'Weighs Baggies with minimal loss',
+        information: 'Weighs Baggies with minimal loss',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_small-scale'),
@@ -3952,7 +3909,7 @@ export const ItemList = {
     },
     'smirror': { //car part
         name: 'Side Mirror',
-        description: "On green, I'm going for it",
+        information: "On green, I'm going for it",
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_side-mirror'),
@@ -3963,7 +3920,7 @@ export const ItemList = {
     },
     'sound': { //car part
         name: 'Sound System',
-        description: "Makes your ears bleed",
+        information: "Makes your ears bleed",
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_sound-system'),
@@ -3974,7 +3931,7 @@ export const ItemList = {
     },
     'spoiler': { //car part
         name: 'Spoiler',
-        description: "Quarter mile at a time",
+        information: "Quarter mile at a time",
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_spoiler'),
@@ -3985,7 +3942,7 @@ export const ItemList = {
     },
     'sskirts': { //car part
         name: 'Side Skirts',
-        description: "Ride or die, remember?",
+        information: "Ride or die, remember?",
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_side-skirts'),
@@ -3996,7 +3953,7 @@ export const ItemList = {
     },
     'swheel': { //car part
         name: 'Steering Wheel',
-        description: "Winning is winning...",
+        information: "Winning is winning...",
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_steering-wheel'),
@@ -4007,7 +3964,7 @@ export const ItemList = {
     },
     'sprunk': {
         name: 'Sprunk',
-        description: "The Essence of Life",
+        information: "The Essence of Life",
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_sprunk'),
@@ -4018,7 +3975,7 @@ export const ItemList = {
     },
     'stolen10ctchain': {
         name: '10ct Gold Chain (p)',
-        description: "",
+        information: "",
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_10ct-gold-chain'),
@@ -4029,7 +3986,7 @@ export const ItemList = {
     },
     'stolen2ctchain': {
         name: '2ct Gold Chain (p)',
-        description: "",
+        information: "",
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_2ct-gold-chain'),
@@ -4040,7 +3997,7 @@ export const ItemList = {
     },
     'stolen5ctchain': {
         name: '5ct Gold Chain (p)',
-        description: "",
+        information: "",
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_5ct-gold-chain'),
@@ -4051,7 +4008,7 @@ export const ItemList = {
     },
     'stolen8ctchain': {
         name: '8ct Gold Chain (p)',
-        description: "",
+        information: "",
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_8ct-gold-chain'),
@@ -4062,7 +4019,7 @@ export const ItemList = {
     },
     'stolencasiowatch': {
         name: 'Casio Watch (p)',
-        description: "",
+        information: "",
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_casio-watch'),
@@ -4073,7 +4030,7 @@ export const ItemList = {
     },
     'stolengameboy': {
         name: 'Gameboy (p)',
-        description: "",
+        information: "",
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_gameboy'),
@@ -4084,7 +4041,7 @@ export const ItemList = {
     },
     'stoleniphone': {
         name: 'Apple Iphone (p)',
-        description: "",
+        information: "",
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_apple-iphone'),
@@ -4095,7 +4052,7 @@ export const ItemList = {
     },
     'stolennokia': {
         name: 'Nokia Phone (p)',
-        description: "",
+        information: "",
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_nokia-phone'),
@@ -4106,7 +4063,7 @@ export const ItemList = {
     },
     'stolenoakleys': {
         name: 'Oakley Sunglasses (p)',
-        description: "",
+        information: "",
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_oakley-sunglasses'),
@@ -4117,7 +4074,7 @@ export const ItemList = {
     },
     'stolenpsp': {
         name: 'PSP (p)',
-        description: "",
+        information: "",
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_psp'),
@@ -4128,7 +4085,7 @@ export const ItemList = {
     },
     'stolenraybans': {
         name: 'Ray Ban Sunglasses (p)',
-        description: "",
+        information: "",
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_raybans'),
@@ -4139,7 +4096,7 @@ export const ItemList = {
     },
     'stolens8': {
         name: 'Samsung S8 (p)',
-        description: "",
+        information: "",
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_samsung-s8'),
@@ -4150,7 +4107,7 @@ export const ItemList = {
     },
     'stolentv': {
         name: 'Flat Panel TV (p)',
-        description: "",
+        information: "",
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_stolentv'),
@@ -4161,7 +4118,7 @@ export const ItemList = {
     },
     'stolenmusic': {
         name: 'Music Equipment (p)',
-        description: "",
+        information: "",
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_stolenmusic'),
@@ -4172,7 +4129,7 @@ export const ItemList = {
     },
     'stolencomputer': {
         name: 'Computer Equipment (p)',
-        description: "",
+        information: "",
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_stolencomputer'),
@@ -4183,7 +4140,7 @@ export const ItemList = {
     },
     'stolenart': {
         name: 'Art (p)',
-        description: "",
+        information: "",
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_stolenart'),
@@ -4194,7 +4151,7 @@ export const ItemList = {
     },
     'Suitcase': {
         name: 'Suitcase',
-        description: 'Its a prop, wow?',
+        information: 'Its a prop, wow?',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_suitcase'),
@@ -4205,7 +4162,7 @@ export const ItemList = {
     },
     'tbag': {
         name: 'Transport Bag',
-        description: 'Keeping your organs fresh',
+        information: 'Keeping your organs fresh',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_transport-bag'),
@@ -4216,7 +4173,7 @@ export const ItemList = {
     },
     'thermite': {
         name: 'Thermite',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: true,
         image: createImage('np_thermite_charge'),
@@ -4227,7 +4184,7 @@ export const ItemList = {
     },
     'thermitecharge': {
         name: 'Thermite Charger',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: true,
         image: createImage('np_thermite_charge'),
@@ -4238,7 +4195,7 @@ export const ItemList = {
     },
     'Toolbox': {
         name: 'Toolbox',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_toolbox'),
@@ -4249,7 +4206,7 @@ export const ItemList = {
     },
     'umbrella': {
         name: 'Umbrella',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_umbrella'),
@@ -4260,7 +4217,7 @@ export const ItemList = {
     },
     'vpnxj': {
         name: 'VPN',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_vpn-xj'),
@@ -4271,7 +4228,7 @@ export const ItemList = {
     },
     'watch': {
         name: 'PD Watch & Compass',
-        description: 'Government (PD/EMS/DOC) Issued Equipment',
+        information: 'Government (PD/EMS/DOC) Issued Equipment',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_watch'),
@@ -4282,7 +4239,7 @@ export const ItemList = {
     },
     'yellowb': {
         name: 'Yellow Bandana',
-        description: 'Im tellin you',
+        information: 'Im tellin you',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_yellow-bandana'),
@@ -4293,7 +4250,7 @@ export const ItemList = {
     },
     'Bankbox': {
         name: 'Bank Box',
-        description: 'A locked bank box.',
+        information: 'A locked bank box.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_bankbox'),
@@ -4304,7 +4261,7 @@ export const ItemList = {
     },
     'Bankboxkey': {
         name: 'Briefcase Key',
-        description: 'A key that seems to fit somewhere.',
+        information: 'A key that seems to fit somewhere.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_bankboxkey'),
@@ -4315,7 +4272,7 @@ export const ItemList = {
     },
     'Largesupplycrate': {
         name: 'Large Supply crate',
-        description: 'A very big and heavy crate.',
+        information: 'A very big and heavy crate.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_supplycrate_large'),
@@ -4326,7 +4283,7 @@ export const ItemList = {
     },
     'Mediumsupplycrate': {
         name: 'Medium Supply crate',
-        description: 'A semi-heavy crate containing something.',
+        information: 'A semi-heavy crate containing something.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_supplycrate_medium'),
@@ -4337,7 +4294,7 @@ export const ItemList = {
     },
     'Smallsupplycrate': {
         name: 'Small Arms Crate',
-        description: 'A small unmarked crate.',
+        information: 'A small unmarked crate.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_smallarmscrate'),
@@ -4349,7 +4306,7 @@ export const ItemList = {
     // Start Of Fishing Items
     'illegalhook': {
         name: 'Illegal Hook',
-        description: 'Hmm maybe fish will like this more?',
+        information: 'Hmm maybe fish will like this more?',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_illegal_hook'),
@@ -4360,7 +4317,7 @@ export const ItemList = {
     },
     'fishingrod': {
         name: 'Fishing Rod',
-        description: 'Lets fish',
+        information: 'Lets fish',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_fishing-rod'),
@@ -4371,7 +4328,7 @@ export const ItemList = {
     },
     'fishingbass': {
         name: 'Bass',
-        description: 'Striped Bass. Bass like the fish, not the officer',
+        information: 'Striped Bass. Bass like the fish, not the officer',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_fishing-bass'),
@@ -4382,7 +4339,7 @@ export const ItemList = {
     },
     'fishingcarp': {
         name: 'Carp',
-        description: 'Carp. Carpe diem!',
+        information: 'Carp. Carpe diem!',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_fishing-carp'),
@@ -4393,7 +4350,7 @@ export const ItemList = {
     },
     'fishingcatfish': {
         name: 'Catfish',
-        description: 'Catfish. Did you just get done catfish noodlin?',
+        information: 'Catfish. Did you just get done catfish noodlin?',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_fishing-cat'),
@@ -4404,7 +4361,7 @@ export const ItemList = {
     },
     'fishingyellowperch': {
         name: 'Yellow Perch',
-        description: 'Yellow Perch. Did they tell you not to perch or not to poach?',
+        information: 'Yellow Perch. Did they tell you not to perch or not to poach?',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_fishing-yellowperch'),
@@ -4415,7 +4372,7 @@ export const ItemList = {
     },
     'fishingalligatorturtle': {
         name: 'Alligator Snapping Turtle',
-        description: 'Alligator Snapping Turtle. This thing could snap your fingers off like twigs.',
+        information: 'Alligator Snapping Turtle. This thing could snap your fingers off like twigs.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_fishing-alligator-snapping-turtle'),
@@ -4426,7 +4383,7 @@ export const ItemList = {
     },
     'fishingsockeyesalmon': {
         name: 'Sockeye Salmon',
-        description: 'Sockeye Salmon. It looks like you caught this one before it could reach its spawning grounds...',
+        information: 'Sockeye Salmon. It looks like you caught this one before it could reach its spawning grounds...',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_fishing-sockeye-salmon'),
@@ -4437,7 +4394,7 @@ export const ItemList = {
     },
     'fishingsturgeon': {
         name: 'Sturgeon',
-        description: 'Green Sturgeon. It looks prehistoric and rare. Maybe it has caviar? ',
+        information: 'Green Sturgeon. It looks prehistoric and rare. Maybe it has caviar? ',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_fishing-sturgeon'),
@@ -4448,7 +4405,7 @@ export const ItemList = {
     },
     'fishingbluefish': {
         name: 'Bluegill',
-        description: 'Bluegill. Catching this took no skill.',
+        information: 'Bluegill. Catching this took no skill.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_fishing-bluefish'),
@@ -4459,7 +4416,7 @@ export const ItemList = {
     },
     'fishingflounder': {
         name: 'Flounder',
-        description: 'I went fishing and all I got was this lousy flounder',
+        information: 'I went fishing and all I got was this lousy flounder',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_fishing-flounder'),
@@ -4470,7 +4427,7 @@ export const ItemList = {
     },
     'fishingmackerel': {
         name: 'Mackerel',
-        description: 'Sometimes holy',
+        information: 'Sometimes holy',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_fishing-mackerel'),
@@ -4481,7 +4438,7 @@ export const ItemList = {
     },
     'fishingcod': {
         name: 'Cod',
-        description: 'Modern Warfare',
+        information: 'Modern Warfare',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_fishing-cod'),
@@ -4492,7 +4449,7 @@ export const ItemList = {
     },
     'fishingwhale': {
         name: 'Baby Whale',
-        description: 'A fucking whale! Someone might be interested in buying it? Lol, jk. Throw it back. Unless..?',
+        information: 'A fucking whale! Someone might be interested in buying it? Lol, jk. Throw it back. Unless..?',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_fishing-whale'),
@@ -4503,7 +4460,7 @@ export const ItemList = {
     },
     'fishingdolphin': {
         name: 'Baby Dolphin',
-        description: 'A fucking dolphin! Someone might be interested in buying it? Lol, jk. Throw it back. Unless..?',
+        information: 'A fucking dolphin! Someone might be interested in buying it? Lol, jk. Throw it back. Unless..?',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_fishing-dolphin'),
@@ -4514,7 +4471,7 @@ export const ItemList = {
     },
     'fishingshark': {
         name: 'Baby Shark',
-        description: 'A fucking dolphin! Someone might be interested in buying it? Lol, jk. Throw it back. Unless..?',
+        information: 'A fucking dolphin! Someone might be interested in buying it? Lol, jk. Throw it back. Unless..?',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_fishing-shark'),
@@ -4525,7 +4482,7 @@ export const ItemList = {
     },
     'fishingnet': {
         name: 'Gill Net',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_fishnet'),
@@ -4537,7 +4494,7 @@ export const ItemList = {
     // FISHING JUNK
     'fishingboot': {
         name: 'Boot',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_fishingboot'),
@@ -4548,7 +4505,7 @@ export const ItemList = {
     },
     'fishinglog': {
         name: 'Log',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_fishinglog'),
@@ -4559,7 +4516,7 @@ export const ItemList = {
     },
     'fishingtin': {
         name: 'Tincan',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_fishingtin'),
@@ -4570,7 +4527,7 @@ export const ItemList = {
     },
     'fishingtacklebox': {
         name: 'Tackle box',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_fishingtacklebox'),
@@ -4581,7 +4538,7 @@ export const ItemList = {
     },
     'fishingchest': {
         name: 'Treasure chest',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_fishingchest'),
@@ -4592,7 +4549,7 @@ export const ItemList = {
     },
     'fishinglockbox': {
         name: 'Lockbox',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_fishinglockbox'),
@@ -4603,7 +4560,7 @@ export const ItemList = {
     },
     'fishingtunac': {
         name: 'Tuna Chip',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_tuner'),
@@ -4616,7 +4573,7 @@ export const ItemList = {
     // HUNTING
     '3648318199': {
         name: 'Hunting Rifle',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_huntingrifle'),
@@ -4627,7 +4584,7 @@ export const ItemList = {
     },
     'huntingammo': {
         name: '223 Hunting Rounds',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_223ammo'),
@@ -4638,7 +4595,7 @@ export const ItemList = {
     },
     'huntingknife': {
         name: 'Hunting Knife',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_huntingknife'),
@@ -4649,7 +4606,7 @@ export const ItemList = {
     },
     'huntingbait': {
         name: 'Animal Bait',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_huntingbait'),
@@ -4660,7 +4617,7 @@ export const ItemList = {
     },
     'fishingbait': {
         name: 'Fishing Bait',
-        description: 'Wormy like you',
+        information: 'Wormy like you',
         decayrate: 0.0,
         stackable: false,
         image: createImage('fish_bait'),
@@ -4671,7 +4628,7 @@ export const ItemList = {
     },
     'huntingcarcass1': {
         name: 'Animal Pelt 1',
-        description: 'What is this? Did you shoot it with an AK?',
+        information: 'What is this? Did you shoot it with an AK?',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_huntingcarcass1'),
@@ -4682,7 +4639,7 @@ export const ItemList = {
     },
     'huntingcarcass2': {
         name: 'Animal Pelt 2',
-        description: 'Someone might pay a pretty penny for this',
+        information: 'Someone might pay a pretty penny for this',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_huntingcarcass2'),
@@ -4693,7 +4650,7 @@ export const ItemList = {
     },
     'huntingcarcass3': {
         name: 'Animal Pelt 3',
-        description: 'I am sure we can turn this in to something fancy',
+        information: 'I am sure we can turn this in to something fancy',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_huntingcarcass3'),
@@ -4704,7 +4661,7 @@ export const ItemList = {
     },
     'huntingcarcass4': {
         name: 'Animal Pelt 4',
-        description: 'Hunting in the South Side are we?',
+        information: 'Hunting in the South Side are we?',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_huntingcarcass4'),
@@ -4715,7 +4672,7 @@ export const ItemList = {
     },
     'huntingpelt': {
         name: 'Animal Pelt',
-        description: 'This used to keep an animal warm in the winter! You ANIMAL!',
+        information: 'This used to keep an animal warm in the winter! You ANIMAL!',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_huntingpelt'),
@@ -4726,7 +4683,7 @@ export const ItemList = {
     },
     'huntingmeat': {
         name: 'Animal Meat',
-        description: 'I am sure this could turn in to a killer burger',
+        information: 'I am sure this could turn in to a killer burger',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_animalmeat'),
@@ -4740,7 +4697,7 @@ export const ItemList = {
     // practice
     'heistlaptopprac': {
         name: 'Laptop',
-        description: 'Practice makes perfect. Marked for police seizure.',
+        information: 'Practice makes perfect. Marked for police seizure.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_laptop_prac'),
@@ -4752,7 +4709,7 @@ export const ItemList = {
     // fleeca
     'heistlaptop3': {
         name: 'Laptop',
-        description: 'Pre-configured to access certain systems. Marked for police seizure.',
+        information: 'Pre-configured to access certain systems. Marked for police seizure.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_laptop03'),
@@ -4764,7 +4721,7 @@ export const ItemList = {
     // paleto
     'heistlaptop2': {
         name: 'Laptop',
-        description: 'Pre-configured to access certain systems. Marked for police seizure.',
+        information: 'Pre-configured to access certain systems. Marked for police seizure.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_laptop02'),
@@ -4776,7 +4733,7 @@ export const ItemList = {
     // vault upper
     'heistlaptop4': {
         name: 'Laptop',
-        description: 'Pre-configured to access certain systems. Marked for police seizure.',
+        information: 'Pre-configured to access certain systems. Marked for police seizure.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_laptop04'),
@@ -4788,7 +4745,7 @@ export const ItemList = {
     // vault lower
     'heistlaptop1': {
         name: 'Laptop',
-        description: 'Pre-configured to access certain systems. Marked for police seizure.',
+        information: 'Pre-configured to access certain systems. Marked for police seizure.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_laptop01'),
@@ -4800,7 +4757,7 @@ export const ItemList = {
     //END
     'receipt': {
         name: 'Receipt',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_receipt'),
@@ -4811,7 +4768,7 @@ export const ItemList = {
     },
     'emptybaggies': {
         name: 'Empty Baggies',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_pack_of_empty_baggies'),
@@ -4823,7 +4780,7 @@ export const ItemList = {
     //RACING
     'racingusb0': {
         name: 'Race Creating Dongle',
-        description: 'You do not see this...',
+        information: 'You do not see this...',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_racing_usb_blue'),
@@ -4834,7 +4791,7 @@ export const ItemList = {
     },
     'racingusb1': {
         name: 'Phone Dongle',
-        description: 'Marked for Police Seizure',
+        information: 'Marked for Police Seizure',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_racing_usb_blue'),
@@ -4845,7 +4802,7 @@ export const ItemList = {
     },
     'racingusb2': {
         name: 'Phone Dongle',
-        description: 'Marked for Police Seizure',
+        information: 'Marked for Police Seizure',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_racing_usb_blue'),
@@ -4856,7 +4813,7 @@ export const ItemList = {
     },
     'racingusb3': {
         name: 'Phone Dongle',
-        description: 'Access to SASP Time Trials App',
+        information: 'Access to SASP Time Trials App',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_racing_usb_blue'),
@@ -4869,7 +4826,7 @@ export const ItemList = {
     //MECHANIC REPAIR SHOPS
     'xfixbrake': {
         name: 'Brake Parts (X)',
-        description: 'New brake discs, pads, calipers, hubs & accessories',
+        information: 'New brake discs, pads, calipers, hubs & accessories',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_brake_parts_x'),
@@ -4880,7 +4837,7 @@ export const ItemList = {
     },
     'xfixaxle': {
         name: 'Axle Parts (X)',
-        description: 'New axle components',
+        information: 'New axle components',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_axle_parts_x'),
@@ -4891,7 +4848,7 @@ export const ItemList = {
     },
     'xfixradiator': {
         name: 'Radiator Parts (X)',
-        description: 'New radiator and cooling parts',
+        information: 'New radiator and cooling parts',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_cooling_parts_x'),
@@ -4902,7 +4859,7 @@ export const ItemList = {
     },
     'xfixclutch': {
         name: 'Clutch Parts (X)',
-        description: 'New clutch disc and pressure plate',
+        information: 'New clutch disc and pressure plate',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_clutch_parts_x'),
@@ -4913,7 +4870,7 @@ export const ItemList = {
     },
     'xfixtransmission': {
         name: 'Transmission Parts (X)',
-        description: 'New gear sets, shafts, converters and clutch packs',
+        information: 'New gear sets, shafts, converters and clutch packs',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_transmission_parts_x'),
@@ -4924,7 +4881,7 @@ export const ItemList = {
     },
     'xfixelectronics': {
         name: 'Vehicle Electronics (X)',
-        description: 'Various vehicle electrical components',
+        information: 'Various vehicle electrical components',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_electronic_parts_x'),
@@ -4935,7 +4892,7 @@ export const ItemList = {
     },
     'xfixinjector': {
         name: 'Fuel Injectors (X)',
-        description: 'New fuel injectors',
+        information: 'New fuel injectors',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_fuel_injectors_x'),
@@ -4946,7 +4903,7 @@ export const ItemList = {
     },
     'vehrepairitem': {
         name: 'Vehicle Repair Tool',
-        description: 'For swapping and repairing worn or damaged tires',
+        information: 'For swapping and repairing worn or damaged tires',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_tire_kit_x'),
@@ -4957,7 +4914,7 @@ export const ItemList = {
     },
     'xfixtire': {
         name: 'Tire Repair Kit (X)',
-        description: 'For swapping and repairing worn or damaged tires',
+        information: 'For swapping and repairing worn or damaged tires',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_tire_kit_x'),
@@ -4968,7 +4925,7 @@ export const ItemList = {
     },
     'xfixbody': {
         name: 'Body Panels (X)',
-        description: 'New vehicle body panels',
+        information: 'New vehicle body panels',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_body_panels_x'),
@@ -4979,7 +4936,7 @@ export const ItemList = {
     },
     'xfixengine': {
         name: 'Engine Parts (X)',
-        description: 'New engine parts',
+        information: 'New engine parts',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_engine_parts_x'),
@@ -4992,7 +4949,7 @@ export const ItemList = {
     //S CLASS REPAIR PARTS
     'sfixbrake': {
         name: 'Brake Parts (S)',
-        description: 'New brake discs, pads, calipers, hubs & accessories',
+        information: 'New brake discs, pads, calipers, hubs & accessories',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_brake_parts_s'),
@@ -5003,7 +4960,7 @@ export const ItemList = {
     },
     'sfixaxle': {
         name: 'sAxle Parts (S)',
-        description: 'New axle components',
+        information: 'New axle components',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_axle_parts_s'),
@@ -5014,7 +4971,7 @@ export const ItemList = {
     },
     'sfixradiator': {
         name: 'Radiator Parts (S)',
-        description: 'New radiator and cooling parts',
+        information: 'New radiator and cooling parts',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_cooling_parts_s'),
@@ -5025,7 +4982,7 @@ export const ItemList = {
     },
     'sfixclutch': {
         name: 'Clutch Parts (S)',
-        description: 'New clutch disc and pressure plate',
+        information: 'New clutch disc and pressure plate',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_clutch_parts_s'),
@@ -5036,7 +4993,7 @@ export const ItemList = {
     },
     'sfixtransmission': {
         name: 'Transmission Parts (S)',
-        description: 'New gear sets, shafts, converters and clutch packs',
+        information: 'New gear sets, shafts, converters and clutch packs',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_transmission_parts_s'),
@@ -5047,7 +5004,7 @@ export const ItemList = {
     },
     'sfixelectronics': {
         name: 'Vehicle Electronics (S)',
-        description: 'Various vehicle electrical components',
+        information: 'Various vehicle electrical components',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_electronic_parts_s'),
@@ -5058,7 +5015,7 @@ export const ItemList = {
     },
     'sfixinjector': {
         name: 'Fuel Injectors (S)',
-        description: 'New fuel injectors',
+        information: 'New fuel injectors',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_fuel_injectors_s'),
@@ -5069,7 +5026,7 @@ export const ItemList = {
     },
     'sfixtire': {
         name: 'Tire Repair Kit (S)',
-        description: 'For swapping and repairing worn or damaged tires',
+        information: 'For swapping and repairing worn or damaged tires',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_tire_kit_s'),
@@ -5080,7 +5037,7 @@ export const ItemList = {
     },
     'sfixbody': {
         name: 'Body Panels (S)',
-        description: 'New vehicle body panels',
+        information: 'New vehicle body panels',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_body_panels_s'),
@@ -5091,7 +5048,7 @@ export const ItemList = {
     },
     'sfixengine': {
         name: 'Engine Parts (S)',
-        description: 'New engine parts',
+        information: 'New engine parts',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_engine_parts_s'),
@@ -5103,7 +5060,7 @@ export const ItemList = {
     //A CLASS REPAIR PARTS
     'afixbrake': {
         name: 'Brake Parts (A)',
-        description: 'New brake discs, pads, calipers, hubs & accessories',
+        information: 'New brake discs, pads, calipers, hubs & accessories',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_brake_parts_a'),
@@ -5114,7 +5071,7 @@ export const ItemList = {
     },
     'afixaxle': {
         name: 'Axle Parts (A)',
-        description: 'New axle components',
+        information: 'New axle components',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_axle_parts_a'),
@@ -5125,7 +5082,7 @@ export const ItemList = {
     },
     'afixradiator': {
         name: 'Radiator Parts (A)',
-        description: 'New radiator and cooling parts',
+        information: 'New radiator and cooling parts',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_cooling_parts_a'),
@@ -5136,7 +5093,7 @@ export const ItemList = {
     },
     'afixclutch': {
         name: 'Clutch Parts (A)',
-        description: 'New clutch disc and pressure plate',
+        information: 'New clutch disc and pressure plate',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_clutch_parts_a'),
@@ -5147,7 +5104,7 @@ export const ItemList = {
     },
     'afixtransmission': {
         name: 'Transmission Parts (A)',
-        description: 'New gear sets, shafts, converters and clutch packs',
+        information: 'New gear sets, shafts, converters and clutch packs',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_clutch_parts_a'),
@@ -5158,7 +5115,7 @@ export const ItemList = {
     },
     'afixelectronics': {
         name: 'Vehicle Electronics (A)',
-        description: 'Various vehicle electrical components',
+        information: 'Various vehicle electrical components',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_electronic_parts_a'),
@@ -5169,7 +5126,7 @@ export const ItemList = {
     },
     'afixinjector': {
         name: 'Fuel Injectors (A)',
-        description: 'New fuel injectors',
+        information: 'New fuel injectors',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_fuel_injectors_a'),
@@ -5180,7 +5137,7 @@ export const ItemList = {
     },
     'afixtire': {
         name: 'Tire Repair Kit (A)',
-        description: 'For swapping and repairing worn or damaged tires',
+        information: 'For swapping and repairing worn or damaged tires',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_tire_kit_a'),
@@ -5191,7 +5148,7 @@ export const ItemList = {
     },
     'afixbody': {
         name: 'Body Panels (A)',
-        description: 'New vehicle body panels',
+        information: 'New vehicle body panels',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_body_panels_a'),
@@ -5202,7 +5159,7 @@ export const ItemList = {
     },
     'afixengine': {
         name: 'Engine Parts (A)',
-        description: 'New engine parts',
+        information: 'New engine parts',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_engine_parts_a'),
@@ -5214,7 +5171,7 @@ export const ItemList = {
     //B CLASS REPAIR PARTS
     'bfixbrake': {
         name: 'Brake Parts (B)',
-        description: 'New brake discs, pads, calipers, hubs & accessories',
+        information: 'New brake discs, pads, calipers, hubs & accessories',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_brake_parts_b'),
@@ -5225,7 +5182,7 @@ export const ItemList = {
     },
     'bfixaxle': {
         name: 'Axle Parts (B)',
-        description: 'New axle components',
+        information: 'New axle components',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_axle_parts_b'),
@@ -5236,7 +5193,7 @@ export const ItemList = {
     },
     'bfixradiator': {
         name: 'Radiator Parts (B)',
-        description: 'New radiator and cooling parts',
+        information: 'New radiator and cooling parts',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_cooling_parts_b'),
@@ -5247,7 +5204,7 @@ export const ItemList = {
     },
     'bfixclutch': {
         name: 'Clutch Parts (B)',
-        description: 'New clutch disc and pressure plate',
+        information: 'New clutch disc and pressure plate',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_clutch_parts_b'),
@@ -5258,7 +5215,7 @@ export const ItemList = {
     },
     'bfixtransmission': {
         name: 'Transmission Parts (B)',
-        description: 'New gear sets, shafts, converters and clutch packs',
+        information: 'New gear sets, shafts, converters and clutch packs',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_transmission_parts_b'),
@@ -5269,7 +5226,7 @@ export const ItemList = {
     },
     'bfixelectronics': {
         name: 'Vehicle Electronics (B)',
-        description: 'Various vehicle electrical components',
+        information: 'Various vehicle electrical components',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_electronic_parts_b'),
@@ -5280,7 +5237,7 @@ export const ItemList = {
     },
     'bfixinjector': {
         name: 'Fuel Injectors (B)',
-        description: 'New fuel injectors',
+        information: 'New fuel injectors',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_fuel_injectors_b'),
@@ -5291,7 +5248,7 @@ export const ItemList = {
     },
     'bfixtire': {
         name: 'Tire Repair Kit (B)',
-        description: 'For swapping and repairing worn or damaged tires',
+        information: 'For swapping and repairing worn or damaged tires',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_tire_kit_b'),
@@ -5302,7 +5259,7 @@ export const ItemList = {
     },
     'bfixbody': {
         name: 'Body Panels (B)',
-        description: 'New vehicle body panels',
+        information: 'New vehicle body panels',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_body_panels_b'),
@@ -5313,7 +5270,7 @@ export const ItemList = {
     },
     'bfixengine': {
         name: 'Engine Parts (B)',
-        description: 'New brake discs, pads, calipers, hubs & accessories',
+        information: 'New brake discs, pads, calipers, hubs & accessories',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_engine_parts_b'),
@@ -5325,7 +5282,7 @@ export const ItemList = {
     //C CLASS REPAIR PARTS
     'cfixbrake': {
         name: 'Brake Parts (C)',
-        description: 'New brake discs, pads, calipers, hubs & accessories',
+        information: 'New brake discs, pads, calipers, hubs & accessories',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_brake_parts_c'),
@@ -5336,7 +5293,7 @@ export const ItemList = {
     },
     'cfixaxle': {
         name: 'Axle Parts (C)',
-        description: 'New axle components',
+        information: 'New axle components',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_axle_parts_c'),
@@ -5347,7 +5304,7 @@ export const ItemList = {
     },
     'cfixradiator': {
         name: 'Radiator Parts (C)',
-        description: 'New radiator and cooling parts',
+        information: 'New radiator and cooling parts',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_cooling_parts_c'),
@@ -5358,7 +5315,7 @@ export const ItemList = {
     },
     'cfixclutch': {
         name: 'Clutch Parts (C)',
-        description: 'New clutch disc and pressure plate',
+        information: 'New clutch disc and pressure plate',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_clutch_parts_c'),
@@ -5369,7 +5326,7 @@ export const ItemList = {
     },
     'cfixtransmission': {
         name: 'Transmission Parts (C)',
-        description: 'New gear sets, shafts, converters and clutch packs',
+        information: 'New gear sets, shafts, converters and clutch packs',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_transmission_parts_c'),
@@ -5380,7 +5337,7 @@ export const ItemList = {
     },
     'cfixelectronics': {
         name: 'Vehicle Electronics (C)',
-        description: 'Various vehicle electrical components',
+        information: 'Various vehicle electrical components',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_electronic_parts_c'),
@@ -5391,7 +5348,7 @@ export const ItemList = {
     },
     'cfixinjector': {
         name: 'Fuel Injectors (C)',
-        description: 'New fuel injectors',
+        information: 'New fuel injectors',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_fuel_injectors_c'),
@@ -5402,7 +5359,7 @@ export const ItemList = {
     },
     'cfixtire': {
         name: 'Tire Repair Kit (C)',
-        description: 'For swapping and repairing worn or damaged tires',
+        information: 'For swapping and repairing worn or damaged tires',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_tire_kit_c'),
@@ -5413,7 +5370,7 @@ export const ItemList = {
     },
     'cfixbody': {
         name: 'Body Panels (C)',
-        description: 'New vehicle body panels',
+        information: 'New vehicle body panels',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_body_panels_c'),
@@ -5424,7 +5381,7 @@ export const ItemList = {
     },
     'cfixengine': {
         name: 'Engine Parts (C)',
-        description: 'New brake discs, pads, calipers, hubs & accessories',
+        information: 'New brake discs, pads, calipers, hubs & accessories',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_engine_parts_c'),
@@ -5436,7 +5393,7 @@ export const ItemList = {
     //D CLASS REPAIR PARTS
     'dfixbrake': {
         name: 'Brake Parts (D)',
-        description: 'New brake discs, pads, calipers, hubs & accessories',
+        information: 'New brake discs, pads, calipers, hubs & accessories',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_brake_parts_d'),
@@ -5447,7 +5404,7 @@ export const ItemList = {
     },
     'dfixaxle': {
         name: 'Axle Parts (D)',
-        description: 'New axle components',
+        information: 'New axle components',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_axle_parts_d'),
@@ -5458,7 +5415,7 @@ export const ItemList = {
     },
     'dfixradiator': {
         name: 'Radiator Parts (D)',
-        description: 'New radiator and cooling parts',
+        information: 'New radiator and cooling parts',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_cooling_parts_d'),
@@ -5469,7 +5426,7 @@ export const ItemList = {
     },
     'dfixclutch': {
         name: 'Clutch Parts (D)',
-        description: 'New clutch disc and pressure plate',
+        information: 'New clutch disc and pressure plate',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_clutch_parts_d'),
@@ -5480,7 +5437,7 @@ export const ItemList = {
     },
     'dfixtransmission': {
         name: 'Transmission Parts (D)',
-        description: 'New gear sets, shafts, converters and clutch packs',
+        information: 'New gear sets, shafts, converters and clutch packs',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_transmission_parts_d'),
@@ -5491,7 +5448,7 @@ export const ItemList = {
     },
     'dfixelectronics': {
         name: 'Vehicle Electronics (D)',
-        description: 'Various vehicle electrical components',
+        information: 'Various vehicle electrical components',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_electronic_parts_d'),
@@ -5502,7 +5459,7 @@ export const ItemList = {
     },
     'dfixinjector': {
         name: 'Fuel Injectors (D)',
-        description: 'New fuel injectors',
+        information: 'New fuel injectors',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_fuel_injectors_d'),
@@ -5513,7 +5470,7 @@ export const ItemList = {
     },
     'dfixtire': {
         name: 'Tire Repair Kit (D)',
-        description: 'For swapping and repairing worn or damaged tires',
+        information: 'For swapping and repairing worn or damaged tires',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_tire_kit_d'),
@@ -5524,7 +5481,7 @@ export const ItemList = {
     },
     'dfixbody': {
         name: 'Body Panels (D)',
-        description: 'New vehicle body panels',
+        information: 'New vehicle body panels',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_body_panels_d'),
@@ -5535,7 +5492,7 @@ export const ItemList = {
     },
     'dfixengine': {
         name: 'Engine Parts (D)',
-        description: 'New brake discs, pads, calipers, hubs & accessories',
+        information: 'New brake discs, pads, calipers, hubs & accessories',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_engine_parts_d'),
@@ -5547,7 +5504,7 @@ export const ItemList = {
     //M CLASS REPAIR PARTS
     'mfixbrake': {
         name: 'Brake Parts (M)',
-        description: 'New brake discs, pads, calipers, hubs & accessories',
+        information: 'New brake discs, pads, calipers, hubs & accessories',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_brake_parts_m'),
@@ -5558,7 +5515,7 @@ export const ItemList = {
     },
     'mfixaxle': {
         name: 'Axle Parts (M)',
-        description: 'New axle components',
+        information: 'New axle components',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_axle_parts_m'),
@@ -5569,7 +5526,7 @@ export const ItemList = {
     },
     'mfixradiator': {
         name: 'Radiator Parts (M)',
-        description: 'New radiator and cooling parts',
+        information: 'New radiator and cooling parts',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_cooling_parts_m'),
@@ -5580,7 +5537,7 @@ export const ItemList = {
     },
     'mfixclutch': {
         name: 'Clutch Parts (M)',
-        description: 'New clutch disc and pressure plate',
+        information: 'New clutch disc and pressure plate',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_clutch_parts_m'),
@@ -5591,7 +5548,7 @@ export const ItemList = {
     },
     'mfixtransmission': {
         name: 'Transmission Parts (M)',
-        description: 'New gear sets, shafts, converters and clutch packs',
+        information: 'New gear sets, shafts, converters and clutch packs',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_transmission_parts_m'),
@@ -5602,7 +5559,7 @@ export const ItemList = {
     },
     'mfixelectronics': {
         name: 'Vehicle Electronics (M)',
-        description: 'Various vehicle electrical components',
+        information: 'Various vehicle electrical components',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_electronic_parts_m'),
@@ -5613,7 +5570,7 @@ export const ItemList = {
     },
     'mfixinjector': {
         name: 'Fuel Injectors (M)',
-        description: 'New fuel injectors',
+        information: 'New fuel injectors',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_fuel_injectors_m'),
@@ -5624,7 +5581,7 @@ export const ItemList = {
     },
     'mfixtire': {
         name: 'Tire Repair Kit (M)',
-        description: 'For swapping and repairing worn or damaged tires',
+        information: 'For swapping and repairing worn or damaged tires',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_tire_kit_m'),
@@ -5635,7 +5592,7 @@ export const ItemList = {
     },
     'mfixbody': {
         name: 'Body Panels (M)',
-        description: 'New vehicle body panels',
+        information: 'New vehicle body panels',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_body_panels_m'),
@@ -5646,7 +5603,7 @@ export const ItemList = {
     },
     'mfixengine': {
         name: 'Engine Parts (M)',
-        description: 'New brake discs, pads, calipers, hubs & accessories',
+        information: 'New brake discs, pads, calipers, hubs & accessories',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_engine_parts_m'),
@@ -5658,7 +5615,7 @@ export const ItemList = {
     // Vegetables
     'lettuce': {
         name: 'Lettuce',
-        description: 'Used to craft food - be aware, food doesnt last forever!',
+        information: 'Used to craft food - be aware, food doesnt last forever!',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_ingredients_lettuce'),
@@ -5669,7 +5626,7 @@ export const ItemList = {
     },
     'hamburgerbuns': {
         name: 'Hamburger Bun',
-        description: 'Used to craft food - be aware, food doesnt last forever!',
+        information: 'Used to craft food - be aware, food doesnt last forever!',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_ingredients_buns'),
@@ -5680,7 +5637,7 @@ export const ItemList = {
     },
     'hamburgerpatty': {
         name: 'Hamburger Patty',
-        description: 'Used to craft food - be aware, food doesnt last forever!',
+        information: 'Used to craft food - be aware, food doesnt last forever!',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_ingredients_patty'),
@@ -5691,7 +5648,7 @@ export const ItemList = {
     },
     'cheese': {
         name: 'Cheese',
-        description: 'Used to craft food - be aware, food doesnt last forever!',
+        information: 'Used to craft food - be aware, food doesnt last forever!',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_ingredients_cheese'),
@@ -5702,7 +5659,7 @@ export const ItemList = {
     },
     'potatoingred': {
         name: 'Potatoes',
-        description: 'Used to craft food - be aware, food doesnt last forever!',
+        information: 'Used to craft food - be aware, food doesnt last forever!',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_potato'),
@@ -5713,7 +5670,7 @@ export const ItemList = {
     },
     'milk': {
         name: 'Milk',
-        description: 'Used to craft food - be aware, food doesnt last forever!',
+        information: 'Used to craft food - be aware, food doesnt last forever!',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_ingredients_milk'),
@@ -5724,7 +5681,7 @@ export const ItemList = {
     },
     'icecreamingred': {
         name: 'Ice Cream',
-        description: 'Used to craft food - be aware, food doesnt last forever!',
+        information: 'Used to craft food - be aware, food doesnt last forever!',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_ingredients_icecream'),
@@ -5735,7 +5692,7 @@ export const ItemList = {
     },
     'coffeebeans': {
         name: 'Coffee Beans',
-        description: 'Used to craft food - be aware, food doesnt last forever!',
+        information: 'Used to craft food - be aware, food doesnt last forever!',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_ingredients_coffeebeans'),
@@ -5746,7 +5703,7 @@ export const ItemList = {
     },
     'hfcs': {
         name: 'High-Fructose Syrup',
-        description: 'Used to craft food - be aware, food doesnt last forever!',
+        information: 'Used to craft food - be aware, food doesnt last forever!',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_ingredients_hfcs'),
@@ -5757,7 +5714,7 @@ export const ItemList = {
     },
     'tomato': {
         name: 'Tomato',
-        description: 'Used to craft food - be aware, food doesnt last forever!',
+        information: 'Used to craft food - be aware, food doesnt last forever!',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_ingredients_tomato'),
@@ -5768,7 +5725,7 @@ export const ItemList = {
     },
     'cucumber': {
         name: 'Cucumber',
-        description: 'Used to craft food - be aware, food doesnt last forever!',
+        information: 'Used to craft food - be aware, food doesnt last forever!',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_ingredients_cucumber'),
@@ -5779,7 +5736,7 @@ export const ItemList = {
     },
     'carrot': {
         name: 'Carrot',
-        description: 'Used to craft food - be aware, food doesnt last forever!',
+        information: 'Used to craft food - be aware, food doesnt last forever!',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_ingredients_carrot'),
@@ -5790,7 +5747,7 @@ export const ItemList = {
     },
     'radish': {
         name: 'Radish',
-        description: 'Used to craft food - be aware, food doesnt last forever!',
+        information: 'Used to craft food - be aware, food doesnt last forever!',
         decayrate: 0.0,
         stackable: false,
         image: createImage('radish'),
@@ -5801,7 +5758,7 @@ export const ItemList = {
     },
     'beetroot': {
         name: 'Beet',
-        description: 'Used to craft food - be aware, food doesnt last forever!',
+        information: 'Used to craft food - be aware, food doesnt last forever!',
         decayrate: 0.0,
         stackable: false,
         image: createImage('beetroot'),
@@ -5812,7 +5769,7 @@ export const ItemList = {
     },
     'cabbage': {
         name: 'Cabbage',
-        description: 'Used to craft food - be aware, food doesnt last forever!',
+        information: 'Used to craft food - be aware, food doesnt last forever!',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_ingredients_cabbage'),
@@ -5823,7 +5780,7 @@ export const ItemList = {
     },
     'chives': {
         name: 'Chives',
-        description: 'Used to craft food - be aware, food doesnt last forever!',
+        information: 'Used to craft food - be aware, food doesnt last forever!',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_ingredients_chives'),
@@ -5834,7 +5791,7 @@ export const ItemList = {
     },
     'pumpkin': {
         name: 'Pumpkin',
-        description: 'Used to craft food - be aware, food doesnt last forever!',
+        information: 'Used to craft food - be aware, food doesnt last forever!',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_ingredients_pumpkin'),
@@ -5845,7 +5802,7 @@ export const ItemList = {
     },
     'corn': {
         name: 'Corn',
-        description: 'Used to craft food - be aware, food doesnt last forever!',
+        information: 'Used to craft food - be aware, food doesnt last forever!',
         decayrate: 0.0,
         stackable: false,
         image: createImage('corn'),
@@ -5856,7 +5813,7 @@ export const ItemList = {
     },
     'oregano': {
         name: 'Oregano',
-        description: 'Used to craft food - be aware, food doesnt last forever!',
+        information: 'Used to craft food - be aware, food doesnt last forever!',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_ingredients_oregano'),
@@ -5867,7 +5824,7 @@ export const ItemList = {
     },
     'garlic': {
         name: 'Garlic',
-        description: 'Used to craft food - be aware, food doesnt last forever!',
+        information: 'Used to craft food - be aware, food doesnt last forever!',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_ingredients_garlic'),
@@ -5878,7 +5835,7 @@ export const ItemList = {
     },
     'mushrooms': {
         name: 'Mushrooms',
-        description: 'Used to craft food - be aware, food doesnt last forever!',
+        information: 'Used to craft food - be aware, food doesnt last forever!',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_ingredients_mushrooms'),
@@ -5889,7 +5846,7 @@ export const ItemList = {
     },
     'foodbag': {
         name: 'Brown Bag',
-        description: 'Enough space for one.',
+        information: 'Enough space for one.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_food_bag'),
@@ -5901,7 +5858,7 @@ export const ItemList = {
     //Mech
     'helicopterrepairkit': {
         name: 'Brown Bag',
-        description: 'Helicopter Repair Kit.',
+        information: 'Helicopter Repair Kit.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_helicopter_repair_kit'),
@@ -5912,7 +5869,7 @@ export const ItemList = {
     },
     'bodyrepairkit': {
         name: 'Body Repair Kit',
-        description: '1 Time use - repairs body to full.',
+        information: '1 Time use - repairs body to full.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_body_repair_kit'),
@@ -5923,7 +5880,7 @@ export const ItemList = {
     },
     'mask': {
         name: 'Mask',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_mask'),
@@ -5934,7 +5891,7 @@ export const ItemList = {
     },
     'hat': {
         name: 'Hat',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_hat'),
@@ -5945,7 +5902,7 @@ export const ItemList = {
     },
     'varhelmet': {
         name: 'VAR Helmet',
-        description: 'Virtually augmented reality, woah.',
+        information: 'Virtually augmented reality, woah.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_var_headset'),
@@ -5956,7 +5913,7 @@ export const ItemList = {
     },
     'darkmarketdeliveries': {
         name: 'Delivery List',
-        description: 'A suspicious list with transport instructions. Marked for Police Seizure.',
+        information: 'A suspicious list with transport instructions. Marked for Police Seizure.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_dark_market_customers'),
@@ -5967,7 +5924,7 @@ export const ItemList = {
     },
     'darkmarketpackage': {
         name: 'Suspicious Package',
-        description: 'Package covered in tape and milk stickers. Marked for Police Seizure.',
+        information: 'Package covered in tape and milk stickers. Marked for Police Seizure.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_dark_market_package'),
@@ -5978,7 +5935,7 @@ export const ItemList = {
     },
     'choplist': {
         name: 'Vehicle List',
-        description: 'List with locations and vehicle models. Marked for Police Seizure.',
+        information: 'List with locations and vehicle models. Marked for Police Seizure.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_dark_market_customers'),
@@ -5989,7 +5946,7 @@ export const ItemList = {
     },
     'bennysorder': {
         name: 'Bennys Order',
-        description: 'Go to the manager and buy the parts.<br>Then give this to an employee.',
+        information: 'Go to the manager and buy the parts.<br>Then give this to an employee.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_receipt'),
@@ -6000,7 +5957,7 @@ export const ItemList = {
     },
     'stolenshoes': {
         name: 'Stolen Shoes',
-        description: 'These are not yours, bro.',
+        information: 'These are not yours, bro.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_stolenshoes'),
@@ -6011,7 +5968,7 @@ export const ItemList = {
     },
     'rentalpapers': {
         name: 'Rental Papers',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('rental_paper'),
@@ -6022,7 +5979,7 @@ export const ItemList = {
     },
     'dashcamracing': {
         name: 'GoPixel (Public)',
-        description: 'Throw this in your vehicle to stream live footage to the cloud! Unencrypted.',
+        information: 'Throw this in your vehicle to stream live footage to the cloud! Unencrypted.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_dashcam'),
@@ -6033,7 +5990,7 @@ export const ItemList = {
     },
     'dashcampd': {
         name: 'GoPixel (PD)',
-        description: 'Throw this in your vehicle to stream live footage to the cloud! Unencrypted.',
+        information: 'Throw this in your vehicle to stream live footage to the cloud! Unencrypted.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_dashcam'),
@@ -6044,7 +6001,7 @@ export const ItemList = {
     },
     'dashcamstatic': {
         name: 'GoPixel (Static)',
-        description: 'Security camera for things.',
+        information: 'Security camera for things.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_dashcam'),
@@ -6055,7 +6012,7 @@ export const ItemList = {
     },
     'dashcamstaticpd': {
         name: 'GoPixel (Static)',
-        description: 'Government (PD/EMS/DOC) Issued Equipment',
+        information: 'Government (PD/EMS/DOC) Issued Equipment',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_dashcam'),
@@ -6066,7 +6023,7 @@ export const ItemList = {
     },
     'moneycase': {
         name: 'Regular Briefcase',
-        description: 'Good for about $20k in large bills.',
+        information: 'Good for about $20k in large bills.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_moneycase'),
@@ -6077,7 +6034,7 @@ export const ItemList = {
     },
     'nightvisiongoggles': {
         name: 'Night Vision Goggles',
-        description: 'Mil-Spec. High price, low quality.',
+        information: 'Mil-Spec. High price, low quality.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_nv'),
@@ -6088,7 +6045,7 @@ export const ItemList = {
     },
     'nightvisiongogglespd': {
         name: 'NVG (SWAT)',
-        description: 'Mil-Spec. High price, low quality. If you are not SWAT certified do not buy this.',
+        information: 'Mil-Spec. High price, low quality. If you are not SWAT certified do not buy this.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_nv'),
@@ -6099,7 +6056,7 @@ export const ItemList = {
     },
     'grapplegun': {
         name: 'Grapple Gun',
-        description: 'This is some Batman shit. Marked for Police Seizure.',
+        information: 'This is some Batman shit. Marked for Police Seizure.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_grapple'),
@@ -6110,7 +6067,7 @@ export const ItemList = {
     },
     'grapplegunpd': {
         name: 'Grapple Gun (SWAT)',
-        description: 'This is some Batman shit. If you are not SWAT certified do not buy this.',
+        information: 'This is some Batman shit. If you are not SWAT certified do not buy this.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_grapple'),
@@ -6121,7 +6078,7 @@ export const ItemList = {
     },
     'weedpackage': {
         name: 'Suspicious Package',
-        description: 'Marked for Police Seizure.',
+        information: 'Marked for Police Seizure.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_box-of-weed-12-18-oz'),
@@ -6132,7 +6089,7 @@ export const ItemList = {
     },
     'methpackage': {
         name: 'Suspicious Package',
-        description: 'Marked for Police Seizure.',
+        information: 'Marked for Police Seizure.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_meth_brick'),
@@ -6143,7 +6100,7 @@ export const ItemList = {
     },
     'methbag': {
         name: 'Big Meth Bag (100g)',
-        description: '100g of pure fuckin meth',
+        information: '100g of pure fuckin meth',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_meth_bag'),
@@ -6154,7 +6111,7 @@ export const ItemList = {
     },
     'tattooremover': {
         name: 'Tattoo Remover',
-        description: 'Removes tattoos from someone.',
+        information: 'Removes tattoos from someone.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('tattoo_remover'),
@@ -6165,7 +6122,7 @@ export const ItemList = {
     },
     'megaphone': {
         name: 'Megaphone',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_megaphone'),
@@ -6176,7 +6133,7 @@ export const ItemList = {
     },
     'murdermeal': {
         name: 'Murder Meal',
-        description: 'This burger may kill you! We are not responsible',
+        information: 'This burger may kill you! We are not responsible',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_murder_meal'),
@@ -6187,7 +6144,7 @@ export const ItemList = {
     },
     'newsusb': {
         name: 'News USB',
-        description: 'Property of LS News Center',
+        information: 'Property of LS News Center',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_news_usb'),
@@ -6198,7 +6155,7 @@ export const ItemList = {
     },
     'newscamera': {
         name: 'News Camera',
-        description: 'A little dusty',
+        information: 'A little dusty',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_news_camera'),
@@ -6209,7 +6166,7 @@ export const ItemList = {
     },
     'newsmic': {
         name: 'News Mic',
-        description: 'Is this thing on?',
+        information: 'Is this thing on?',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_news_mic'),
@@ -6220,7 +6177,7 @@ export const ItemList = {
     },
     'newsboom': {
         name: 'News Boom',
-        description: 'Heavier than it looks',
+        information: 'Heavier than it looks',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_news_boom'),
@@ -6231,7 +6188,7 @@ export const ItemList = {
     },
     'newslight': {
         name: 'News Light',
-        description: 'I said, ooooh, Im blinded by the lights',
+        information: 'I said, ooooh, Im blinded by the lights',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_news_light'),
@@ -6242,7 +6199,7 @@ export const ItemList = {
     },
     'safecrackingkit': {
         name: 'Safe Cracking Tool',
-        description: 'Marked for police seizure.',
+        information: 'Marked for police seizure.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_safecrackingkit'),
@@ -6253,7 +6210,7 @@ export const ItemList = {
     },
     'trackerdisabler': {
         name: 'Tracker Disabling Tool',
-        description: 'Plug this in and keep moving.',
+        information: 'Plug this in and keep moving.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_disabler'),
@@ -6264,7 +6221,7 @@ export const ItemList = {
     },
     'gatheringkit': {
         name: 'Detective Kit',
-        description: 'Used to gather evidence - should be seized by police if suspected of use in crime.',
+        information: 'Used to gather evidence - should be seized by police if suspected of use in crime.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_cleaning-goods'),
@@ -6275,7 +6232,7 @@ export const ItemList = {
     },
     'weapon_silencer_pistol': {
         name: 'Pistol Suppressor',
-        description: 'A silencer designed for use on some pistols.',
+        information: 'A silencer designed for use on some pistols.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_ssilencer'),
@@ -6286,7 +6243,7 @@ export const ItemList = {
     },
     'weapon_oil_silencer': {
         name: 'Oil Filter',
-        description: 'Old, used oil filter. Do not seem to last long.',
+        information: 'Old, used oil filter. Do not seem to last long.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_oil_can_supp'),
@@ -6297,7 +6254,7 @@ export const ItemList = {
     },
     'weapon_silencer_assault': {
         name: 'Rifle Suppressor',
-        description: 'Silencer designed for use on some rifles.',
+        information: 'Silencer designed for use on some rifles.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_silencerbig'),
@@ -6308,7 +6265,7 @@ export const ItemList = {
     },
     'weapon_scope': {
         name: 'Weapon Optics',
-        description: 'Scope designed for use on some weapons.',
+        information: 'Scope designed for use on some weapons.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_lscope'),
@@ -6319,7 +6276,7 @@ export const ItemList = {
     },
     'weapon_uzi_extended': {
         name: 'UZI extended mag',
-        description: 'Will only fit on the UZI.',
+        information: 'Will only fit on the UZI.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_uzi_extended'),
@@ -6330,7 +6287,7 @@ export const ItemList = {
     },
     'weapon_uzi_foldstock': {
         name: 'UZI Stock',
-        description: 'Will only fit on the UZI.',
+        information: 'Will only fit on the UZI.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_uzi_fold_stock'),
@@ -6341,7 +6298,7 @@ export const ItemList = {
     },
     'weapon_uzi_woodstock': {
         name: 'UZI Wooden Stock',
-        description: 'Will only fit on the UZI.',
+        information: 'Will only fit on the UZI.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_uzi_wooden_stock'),
@@ -6352,7 +6309,7 @@ export const ItemList = {
     },
     '2343591895': {
         name: 'Flash Light',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_flashlight'),
@@ -6363,7 +6320,7 @@ export const ItemList = {
     },
     'miningprobe': {
         name: 'Mining Probe',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_metaldetector'),
@@ -6374,7 +6331,7 @@ export const ItemList = {
     },
     'miningpickaxe': {
         name: 'Mining Pickaxe',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_pickaxe'),
@@ -6385,7 +6342,7 @@ export const ItemList = {
     },
     'mininggem': {
         name: 'Mined Gemstone',
-        description: 'Go get rid of this shit!',
+        information: 'Go get rid of this shit!',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_gallery_diamond'),
@@ -6396,7 +6353,7 @@ export const ItemList = {
     },
     'miningcoal': {
         name: 'Mined Coal',
-        description: 'Go get rid of this shit!',
+        information: 'Go get rid of this shit!',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_coal'),
@@ -6407,7 +6364,7 @@ export const ItemList = {
     },
     'trowel': {
         name: 'Trowel',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_trowel'),
@@ -6418,7 +6375,7 @@ export const ItemList = {
     },
     'pdevidencebag': {
         name: 'Evidence Bag',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_evidence_bag'),
@@ -6429,7 +6386,7 @@ export const ItemList = {
     },
     'ketamine': {
         name: 'Special K',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_ketamine_baggie'),
@@ -6440,7 +6397,7 @@ export const ItemList = {
     },
     'bakingsoda': {
         name: 'Cleaning Product (Baking Soda)',
-        description: 'Cleans n shit yo',
+        information: 'Cleans n shit yo',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_bakingsoda'),
@@ -6451,7 +6408,7 @@ export const ItemList = {
     },
     'cleaningproduct': {
         name: 'Cleaning Product',
-        description: 'Cleans n shit yo',
+        information: 'Cleans n shit yo',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_cleaningproduct'),
@@ -6462,7 +6419,7 @@ export const ItemList = {
     },
     'cleaningproduct1': {
         name: 'Cleaning Product',
-        description: 'Cleans n shit yo',
+        information: 'Cleans n shit yo',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_cleaningproduct2'),
@@ -6473,7 +6430,7 @@ export const ItemList = {
     },
     'hqparts': {
         name: 'HQ Car Parts',
-        description: "Meta-gamed in minutes.",
+        information: "Meta-gamed in minutes.",
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_hqparts'),
@@ -6484,7 +6441,7 @@ export const ItemList = {
     },
     'cryptostick': {
         name: 'GNE Stick',
-        description: 'Contains 10GNE. Somehow more valuable than DOGE',
+        information: 'Contains 10GNE. Somehow more valuable than DOGE',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_cryptostick'),
@@ -6495,7 +6452,7 @@ export const ItemList = {
     },
     'turbokit': {
         name: 'Quality Turbo Parts',
-        description: 'Turbo, might need repairs to fully function!',
+        information: 'Turbo, might need repairs to fully function!',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_vehicle_part'),
@@ -6506,7 +6463,7 @@ export const ItemList = {
     },
     'enginekit': {
         name: 'Quality Engine Parts',
-        description: 'Looks like some engine parts, might need repairs to fully function!',
+        information: 'Looks like some engine parts, might need repairs to fully function!',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_vehicle_part'),
@@ -6517,7 +6474,7 @@ export const ItemList = {
     },
     'transmissionkit': {
         name: 'Quality Transmission Parts',
-        description: 'Transmission Parts, might need repairs to fully function!',
+        information: 'Transmission Parts, might need repairs to fully function!',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_vehicle_part'),
@@ -6528,7 +6485,7 @@ export const ItemList = {
     },
     'brakingkit': {
         name: 'Quality Braking Parts',
-        description: 'Transmission Parts, might need repairs to fully function!',
+        information: 'Transmission Parts, might need repairs to fully function!',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_vehicle_part'),
@@ -6539,7 +6496,7 @@ export const ItemList = {
     },
     'suspensionkit': {
         name: 'Quality Suspension Parts',
-        description: 'Transmission Parts, might need repairs to fully function!',
+        information: 'Transmission Parts, might need repairs to fully function!',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_vehicle_part'),
@@ -6550,7 +6507,7 @@ export const ItemList = {
     },
     'enginebay': {
         name: 'Placeholder Item',
-        description: 'Hey, dont touch this!',
+        information: 'Hey, dont touch this!',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_vehicle_part'),
@@ -6561,7 +6518,7 @@ export const ItemList = {
     },
     'refinedaluminium': {
         name: 'Refined Aluminium',
-        description: 'Refined Aluminium.',
+        information: 'Refined Aluminium.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_refined_aluminium'),
@@ -6572,7 +6529,7 @@ export const ItemList = {
     },
     'refinedcopper': {
         name: 'Refined Copper',
-        description: 'Refined Copper.',
+        information: 'Refined Copper.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_refined_copper'),
@@ -6583,7 +6540,7 @@ export const ItemList = {
     },
     'refinedglass': {
         name: 'Refined Glass',
-        description: 'Refined Glass.',
+        information: 'Refined Glass.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_refined_glass'),
@@ -6594,7 +6551,7 @@ export const ItemList = {
     },
     'refinedplastic': {
         name: 'Refined Plastic',
-        description: 'Refined Plastic.',
+        information: 'Refined Plastic.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_refined_plastic'),
@@ -6605,7 +6562,7 @@ export const ItemList = {
     },
     'refinedrubber': {
         name: 'Refined Rubber',
-        description: 'Refined Rubber.',
+        information: 'Refined Rubber.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_refined_rubber'),
@@ -6616,7 +6573,7 @@ export const ItemList = {
     },
     'refinedscrap': {
         name: 'Refined Scrap',
-        description: 'Refined Scrap.',
+        information: 'Refined Scrap.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_refined_scrap'),
@@ -6627,7 +6584,7 @@ export const ItemList = {
     },
     'refinedsteel': {
         name: 'Refined Steel',
-        description: 'Refined Steel.',
+        information: 'Refined Steel.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_refined_steel'),
@@ -6638,7 +6595,7 @@ export const ItemList = {
     },
     'dodopackagesmall': {
         name: 'Dodo Small Package',
-        description: 'Store various products in this packaging!',
+        information: 'Store various products in this packaging!',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_dodobox1'),
@@ -6649,7 +6606,7 @@ export const ItemList = {
     },
     'dodopackagemedium': {
         name: 'Dodo Medium Package',
-        description: 'Store various products in this packaging!',
+        information: 'Store various products in this packaging!',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_dodobox2'),
@@ -6660,7 +6617,7 @@ export const ItemList = {
     },
     'dodopackagelarge': {
         name: 'Dodo Large Package',
-        description: 'Store various products in this packaging!',
+        information: 'Store various products in this packaging!',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_dodobox3'),
@@ -6671,7 +6628,7 @@ export const ItemList = {
     },
     'lawnchair': {
         name: 'Lawn Chair',
-        description: 'Get off my lawn!',
+        information: 'Get off my lawn!',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_props_lawnchair'),
@@ -6682,7 +6639,7 @@ export const ItemList = {
     },
     'lawnchair2': {
         name: 'Lawn Chair',
-        description: 'Get off my lawn!',
+        information: 'Get off my lawn!',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_props_lawnchair2'),
@@ -6693,7 +6650,7 @@ export const ItemList = {
     },
     'stonechisel': {
         name: 'Chisel',
-        description: 'Used for stone.',
+        information: 'Used for stone.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_chisel'),
@@ -6704,7 +6661,7 @@ export const ItemList = {
     },
     'metalshaper': {
         name: 'Shaper',
-        description: 'Used for metal.',
+        information: 'Used for metal.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_shaper'),
@@ -6715,7 +6672,7 @@ export const ItemList = {
     },
     'woodsaw': {
         name: 'Saw',
-        description: 'Used for wood.',
+        information: 'Used for wood.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_saw'),
@@ -6726,7 +6683,7 @@ export const ItemList = {
     },
     'usedbattery': {
         name: 'Used Battery',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_used_battery'),
@@ -6737,7 +6694,7 @@ export const ItemList = {
     },
     'detcord': {
         name: 'Det. Cord',
-        description: 'Government (PD/EMS/DOC) Issued Equipment',
+        information: 'Government (PD/EMS/DOC) Issued Equipment',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_detcord'),
@@ -6748,7 +6705,7 @@ export const ItemList = {
     },
     'mobilecratelock': {
         name: 'Padlock',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_padlock'),
@@ -6759,7 +6716,7 @@ export const ItemList = {
     },
     'mobilecratekey': {
         name: 'Padlock Key',
-        description: 'A key for some padlock',
+        information: 'A key for some padlock',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_mobilecratekey'),
@@ -6770,7 +6727,7 @@ export const ItemList = {
     },
     'mobilecratekeylock': {
         name: 'Keypad',
-        description: 'A keypad for something',
+        information: 'A keypad for something',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_mobilecratekeylock'),
@@ -6781,7 +6738,7 @@ export const ItemList = {
     },
     'surveyortool': {
         name: 'Surveying Device',
-        description: 'Various tools for surveying.',
+        information: 'Various tools for surveying.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_digi_scanner'),
@@ -6792,7 +6749,7 @@ export const ItemList = {
     },
     'agenericmechanicpart': {
         name: 'Mechanical Part (A)',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_generic_mechanical_A'),
@@ -6803,7 +6760,7 @@ export const ItemList = {
     },
     'bgenericmechanicpart': {
         name: 'Mechanical Part (B)',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_generic_mechanical_B'),
@@ -6814,7 +6771,7 @@ export const ItemList = {
     },
     'cgenericmechanicpart': {
         name: 'Mechanical Part (C)',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_generic_mechanical_C'),
@@ -6825,7 +6782,7 @@ export const ItemList = {
     },
     'dgenericmechanicpart': {
         name: 'Mechanical Part (D)',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_generic_mechanical_D'),
@@ -6836,7 +6793,7 @@ export const ItemList = {
     },
     'mgenericmechanicpart': {
         name: 'Mechanical Part (M)',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_generic_mechanical_M'),
@@ -6847,7 +6804,7 @@ export const ItemList = {
     },
     'sgenericmechanicpart': {
         name: 'Mechanical Part (S)',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_generic_mechanical_S'),
@@ -6858,7 +6815,7 @@ export const ItemList = {
     },
     'xgenericmechanicpart': {
         name: 'Mechanical Part (X)',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_generic_mechanical_X'),
@@ -6869,7 +6826,7 @@ export const ItemList = {
     },
     'genericelectronicpart': {
         name: 'Electronic Part',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_generic_electronic'),
@@ -6880,7 +6837,7 @@ export const ItemList = {
     },
     'housesafe': {
         name: 'Home Safe',
-        description: 'Verying tempting to crack into...',
+        information: 'Verying tempting to crack into...',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_housesafe'),
@@ -6891,7 +6848,7 @@ export const ItemList = {
     },
     'Desomorphine': {
         name: 'Metamorphine',
-        description: 'Dumpster Flu Shot',
+        information: 'Dumpster Flu Shot',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_desomorphine'),
@@ -6902,7 +6859,7 @@ export const ItemList = {
     },
     'Desomorphine_used': {
         name: 'Used Syringe',
-        description: 'I would not touch that if I were you.',
+        information: 'I would not touch that if I were you.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_empty_syringe'),
@@ -6913,7 +6870,7 @@ export const ItemList = {
     },
     'wateringcan': {
         name: 'Used Syringe',
-        description: 'Fill this at a river or lake.',
+        information: 'Fill this at a river or lake.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('wateringcan'),
@@ -6924,7 +6881,7 @@ export const ItemList = {
     },
     'farmhoe': {
         name: 'Hoe',
-        description: 'Used to plant groups of crops.',
+        information: 'Used to plant groups of crops.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_hoe'),
@@ -6935,7 +6892,7 @@ export const ItemList = {
     },
     'drone_lspd': {
         name: 'Police Drone',
-        description: 'Government (PD/EMS/DOC) Issued Equipment',
+        information: 'Government (PD/EMS/DOC) Issued Equipment',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_drone'),
@@ -6946,7 +6903,7 @@ export const ItemList = {
     },
     'drone_civ': {
         name: 'Drone',
-        description: 'It flies!',
+        information: 'It flies!',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_drone'),
@@ -6957,7 +6914,7 @@ export const ItemList = {
     },
     'rccontroller': {
         name: 'Remote Controller',
-        description: 'Used to control a variety of RC vehicles.',
+        information: 'Used to control a variety of RC vehicles.',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_drone_control'),
@@ -6968,7 +6925,7 @@ export const ItemList = {
     },
     'C4_dev': {
         name: 'C4',
-        description: 'Beep...Beep...Beep...',
+        information: 'Beep...Beep...Beep...',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_c4'),
@@ -6979,7 +6936,7 @@ export const ItemList = {
     },
     'car_bomb': {
         name: 'Car Bomb',
-        description: 'Beep...Beep...Beep...',
+        information: 'Beep...Beep...Beep...',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_phone_bomb'),
@@ -6990,7 +6947,7 @@ export const ItemList = {
     },
     'car_bomb_defused': {
         name: 'Defused Car Bomb',
-        description: 'You should try and shake it!',
+        information: 'You should try and shake it!',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_phone_bomb'),
@@ -7001,7 +6958,7 @@ export const ItemList = {
     },
     'C4_defused': {
         name: 'Defused C4',
-        description: 'You should try and shake it!',
+        information: 'You should try and shake it!',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_c4'),
@@ -7012,7 +6969,7 @@ export const ItemList = {
     },
     'bombmirror': {
         name: 'Car Bomb Detector',
-        description: 'Helps stop boom boom',
+        information: 'Helps stop boom boom',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_bombmirror'),
@@ -7024,7 +6981,7 @@ export const ItemList = {
     //Stolen
     'stolencartrunk': {
         name: 'Stolen Trunk',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_cartrunk'),
@@ -7035,7 +6992,7 @@ export const ItemList = {
     },
     'stolencardoor': {
         name: 'Stolen Door',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_cardoor'),
@@ -7046,7 +7003,7 @@ export const ItemList = {
     },
     'stolencarwheel': {
         name: 'Stolen Wheel',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_carwheel'),
@@ -7057,7 +7014,7 @@ export const ItemList = {
     },
     'stolencarhood': {
         name: 'Stolen Hood',
-        description: '',
+        information: '',
         decayrate: 0.0,
         stackable: false,
         image: createImage('np_car-hood'),
